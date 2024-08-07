@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+  font-family: "Montserat";
+  font-weight: 400;
+  src: url("./assets/fonts/Montserrat-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Montserat-Bold";
+  font-weight: 700;
+  src: url("./assets/fonts/Montserrat-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Montserat-Medium";
+  font-weight: 500;
+  src: url("./assets/fonts/Montserrat-Medium.ttf") format("truetype");
+}
+
+
+body {
+  font-family: "Montserat", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  font-weight: 400;
+}

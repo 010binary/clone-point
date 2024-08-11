@@ -4,6 +4,7 @@ import ForgotPassword from "./pages/onboarding/fotgot-password/ForgotPassword";
 import VerifyEmailAccount from "./pages/onboarding/fotgot-password/VerifyEmail";
 import ResetPassword from "./pages/onboarding/reset-password/ResetPassword";
 import SignIn from "./pages/onboarding/sign-in/SiginIn";
+import SignUp from "./pages/onboarding/sign-up/SignUp";
 
 export const router = createBrowserRouter([
   {
@@ -12,6 +13,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <SignIn />,
+      },
+      {
+        path: "/sign-up",
+        element: <SignUp />,
       },
       {
         path: "/forgot-password",

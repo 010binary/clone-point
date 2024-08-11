@@ -4,7 +4,7 @@ import BaseButton from "../../../components/ui/base-button/BaseButton";
 import { Link } from "react-router-dom";
 import useSignInForm from "./useSignInForm";
 
-const ForgotPassword = () => {
+const SignIn = () => {
   const {
     formData,
     handleChange,
@@ -67,4 +67,4 @@ const ForgotPassword = () => {
   );
 };
 
-export default ForgotPassword;
+export default SignIn;

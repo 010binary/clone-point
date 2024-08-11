@@ -1,4 +1,4 @@
-import { FormInputPayload } from "@/utils/types/global.types";
+import { FormInputPayload } from "../../../utils/types/global.types";
 import { InputHTMLAttributes } from "react";
 
 export type TextInputProps = {
@@ -8,4 +8,5 @@ export type TextInputProps = {
   validation?: any;
   validationTrigger?: string | null;
   type?: string;
+  placeholder?: string;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, "className" | "onChange">;

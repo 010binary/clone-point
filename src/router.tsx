@@ -1,7 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import SignIn from "./pages/onboarding/sign-in";
-import ForgotPassword from "./pages/onboarding/forgot-password";
+import ForgotPassword from "./pages/onboarding/fotgot-password/forgot-password";
+
 
 export const router = createBrowserRouter([
     {

@@ -12,6 +12,8 @@ export default function TextInput(props: TextInputProps) {
     validation,
     validationTrigger,
     type,
+    placeholder,
+    width,
     ...inputProps
   } = props;
 
@@ -37,12 +39,11 @@ export default function TextInput(props: TextInputProps) {
   };
 
   return (
-    <div className="">
+    <div className="flex flex-col">
       <label
-        className="border pl-2 pr-12 py-[23px] text-sm rounded-l-lg"
+        className="font-semibold mb-2"
         style={{
-          color: labelColor ? "#239fac" : "000",
-          border: "0.71px solid #00000033",
+          color: labelColor ? "#1C1A1A" : "#1C1A1A",
           borderRight: "none",
         }}
       >
@@ -59,7 +60,8 @@ export default function TextInput(props: TextInputProps) {
           backgroundColor: hasContent ? "#eef9fa" : "",
           border: "0.71px solid #00000033",
         }}
-        className="border border-l-0 pl-2 h-16 pr-12 py-4 md:w-96 text-sm rounded-r-lg focus:outline-none"
+        className={`border border-l-0 pl-2 h-12 pr-12 ${width} text-sm rounded-lg focus:outline-none`}
+        placeholder={placeholder ? placeholder : ""}
       />
       {validationError && (
         <p className="text-red-500 font-bold text-xs mt-1.5">

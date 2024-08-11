@@ -144,6 +144,11 @@ export default function OtpInput({
           onFocus={inputOnFocus}
         />
       ))}
+      {/* {validationError && (
+        <p className="text-red-500 font-bold text-xs mt-1.5">
+          {validationError}
+        </p>
+      )} */}
     </div>
   );
 }

@@ -9,7 +9,7 @@ type OnboardingLayoutProps = {
 
 export default function OnboardingLayout({ children }: OnboardingLayoutProps) {
   return (
-    <main className="h-[1000px]">
+    <main className="h-[800px]">
       <div className="w-full py-5 bg-white">
           <div className="flex items-center justify-between md:px-20 px-5">
             <img src={Ezone} alt="" />

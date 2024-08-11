@@ -3,6 +3,8 @@ import BaseButton from "../../../components/ui/base-button/BaseButton";
 import { Link } from "react-router-dom";
 import OtpInput from "../../../components/ui/text-input/OtpInput";
 import useVerifyEmailForm from "./useVerifyEmail";
+import SuccessModal from "../../../components/ui/modals/SuccessModal";
+import BackgroundOverlay from "../../../components/ui/modals/BackgroundOverlay";
 
 const VerifyEmailAccount = () => {
   const {
@@ -35,7 +37,7 @@ const VerifyEmailAccount = () => {
           />
 
           <BaseButton type="submit" className="mt-6 w-96">
-            <p>Send</p>
+            <p>{isLoading ? "Submitting" : "Done"}</p>
           </BaseButton>
         </form>
 
@@ -46,6 +48,11 @@ const VerifyEmailAccount = () => {
           </Link>
         </div>
       </div>
+
+      <div className="w-full absolute top-0 left-0 items-center justify-center">
+        <SuccessModal  />
+      </div>
+      <BackgroundOverlay />
     </OnboardingLayout>
   );
 };

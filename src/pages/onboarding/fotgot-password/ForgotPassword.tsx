@@ -40,7 +40,7 @@ const ForgotPassword = () => {
           />
 
           <BaseButton type="submit" className="mt-6 w-96">
-            <p>Send</p>
+          <p>{isLoading ? "Submitting..." : "Send"}</p>
           </BaseButton>
         </form>
 

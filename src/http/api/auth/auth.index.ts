@@ -25,6 +25,14 @@ export function ForgotPassword (dto: UserAPI.ForgotPasswordDTO) {
   })
 }
 
+export function VerifyEmail (dto: UserAPI.VerifyEmailDTO) {
+  return SetupHttpClient.SendRequest({
+    method: 'post',
+    path: '/',
+    body: dto
+  })
+}
+
 
 export function SignUpUser (dto: UserAPI.SignUpUserDTO) {
   return SetupHttpClient.SendRequest({

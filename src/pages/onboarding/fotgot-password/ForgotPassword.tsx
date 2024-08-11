@@ -13,7 +13,7 @@ const ForgotPassword = () => {
     validationSchema,
     isLoading,
   } = useForgotPasswordForm();
-  
+
   return (
     <OnboardingLayout>
       <div className="flex flex-col w-full items-center">
@@ -25,7 +25,7 @@ const ForgotPassword = () => {
           your password
         </p>
 
-        <form action="" className="mt-12">
+        <form onSubmit={handleSubmit} className="mt-12">
           <TextInput
             id="email"
             type="email"

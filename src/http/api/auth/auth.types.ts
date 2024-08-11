@@ -13,6 +13,10 @@ export namespace UserAPI {
     email: string;
   };
 
+  export type VerifyEmailDTO = {
+    otp: string;
+  };
+
   export type SignUpUserDTO = {
     fullName: string;
     email: string;

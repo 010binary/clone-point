@@ -10,7 +10,6 @@ export function SignInExistingUser (dto: UserAPI.SignInExistingUserDTO) {
 }
 
 export function ResetPassword (dto: UserAPI.ResetPasswordDTO) {
-  console.log(dto)
   return SetupHttpClient.SendRequest({
     method: 'post',
     path: '/users/reset-password',

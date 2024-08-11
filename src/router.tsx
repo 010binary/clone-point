@@ -3,24 +3,28 @@ import App from "./App";
 import SignIn from "./pages/onboarding/sign-in";
 import ForgotPassword from "./pages/onboarding/fotgot-password/ForgotPassword";
 import VerifyEmailAccount from "./pages/onboarding/fotgot-password/VerifyEmail";
-
+import ResetPassword from "./pages/onboarding/reset-password/ResetPassword";
 
 export const router = createBrowserRouter([
-    {
-      element: <App />,
-      children: [
-        {
-          path: '/',
-          element: <SignIn />,
-        },
-        {
-          path: '/forgot-password',
-          element: <ForgotPassword />,
-        },
-        {
-          path: '/verify-email',
-          element: <VerifyEmailAccount />,
-        },
-      ],
-    },
-  ]);
+  {
+    element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <SignIn />,
+      },
+      {
+        path: "/forgot-password",
+        element: <ForgotPassword />,
+      },
+      {
+        path: "/verify-email",
+        element: <VerifyEmailAccount />,
+      },
+      {
+        path: "/reset-password",
+        element: <ResetPassword />,
+      },
+    ],
+  },
+]);

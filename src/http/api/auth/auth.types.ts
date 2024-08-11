@@ -4,13 +4,13 @@ export namespace UserAPI {
     password: string;
   };
 
-  export type ResetPasswordDTO = {
-    token: string;
-    new_password: string;
-  };
-
   export type ForgotPasswordDTO = {
     email: string;
+  };
+
+  export type ResetPasswordDTO = {
+    password: string;
+    confirmPassword: string;
   };
 
   export type VerifyEmailDTO = {

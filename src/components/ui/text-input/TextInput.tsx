@@ -68,7 +68,7 @@ export default function TextInput(props: TextInputProps) {
           {validationError}
         </p>
       )}
-      {type === "password" && (
+      {/* {type === "password" && (
         <p onClick={togglePasswordVisibility} className="">
           {showPassword ? (
             <FontAwesomeIcon icon={faEye} />
@@ -76,7 +76,7 @@ export default function TextInput(props: TextInputProps) {
             <FontAwesomeIcon icon={faEyeSlash} />
           )}
         </p>
-      )}
+      )} */}
     </div>
   );
 }

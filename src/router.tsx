@@ -5,6 +5,7 @@ import VerifyEmailAccount from "./pages/onboarding/fotgot-password/VerifyEmail";
 import ResetPassword from "./pages/onboarding/reset-password/ResetPassword";
 import SignIn from "./pages/onboarding/sign-in/SiginIn";
 import SignUp from "./pages/onboarding/sign-up/SignUp";
+import Branch from "./pages/dashboard/admin/Branch";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
       {
         path: "/reset-password",
         element: <ResetPassword />,
+      },
+      {
+        path: "/admin/branch",
+        element: <Branch />,
       },
     ],
   },

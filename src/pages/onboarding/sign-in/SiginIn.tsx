@@ -58,7 +58,7 @@ const SignIn = () => {
               Forogot Password?
             </Link>
           </div>
-          <BaseButton type="submit" className="mt-2 w-fit">
+          <BaseButton type="submit" className="mt-2 max-w-96">
             <p className="w-96">{isLoading ? "Submitting..." : "Login"}</p>
           </BaseButton>
         </form>

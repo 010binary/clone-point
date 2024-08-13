@@ -6,6 +6,7 @@ import { RouterProvider } from "react-router-dom";
 import { router } from "./router.tsx";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import 'remixicon/fonts/remixicon.css'
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

@@ -6,8 +6,11 @@ import TextInput from "../../../components/ui/text-input/TextInput";
 import Action from "../../../assets/icons/action.svg";
 import AddTeller from "../../../components/templates/admin/AddTeller";
 import EditTeller from "../../../components/templates/admin/EditTeller";
+import AddInterest from "../../../components/templates/admin/AddInterest";
+import ViewInterest from "./ViewInterestRate";
+import EditInterest from "../../../components/templates/admin/EditInterest";
 
-const Teller = () => {
+const InterestRate = () => {
   const [activeAction, setActiveAction] = useState(null);
   const [showAddTeller, setShowAddTeller] = useState(false);
   const [showEditTeller, setShowEditTeller] = useState(false);
@@ -27,52 +30,49 @@ const Teller = () => {
   const tnx = [
     {
       txId: "B02337",
-      paymentDate: "06/11/2023",
+      startDate: "06/11/2023",
+      endDate: "06/11/2023",
       accountNumber: "1022022820",
-      inputter: "Joy Essien",
+      rate: "5%",
       amount: "NGN 200,000",
       type: "Credit",
     },
     {
-      txId: "B02337",
-      paymentDate: "06/11/2023",
-      accountNumber: "1022022820",
-      inputter: "Joy Essien",
-      amount: "NGN 200,000",
-      type: "Credit",
-    },
-    {
-      txId: "B02337",
-      paymentDate: "06/11/2023",
-      accountNumber: "1022022820",
-      inputter: "Joy Essien",
-      amount: "NGN 200,000",
-      type: "Credit",
-    },
-    {
-      txId: "B02337",
-      paymentDate: "06/11/2023",
-      accountNumber: "1022022820",
-      inputter: "Joy Essien",
-      amount: "NGN 200,000",
-      type: "Credit",
-    },
-    {
-      txId: "B02337",
-      paymentDate: "06/11/2023",
-      accountNumber: "1022022820",
-      inputter: "Joy Essien",
-      amount: "NGN 200,000",
-      type: "Credit",
-    },
-    {
-      txId: "B02337",
-      paymentDate: "06/11/2023",
-      accountNumber: "1022022820",
-      inputter: "Joy Essien",
-      amount: "NGN 200,000",
-      type: "Credit",
-    },
+        txId: "B02337",
+        startDate: "06/11/2023",
+        endDate: "06/11/2023",
+        accountNumber: "1022022820",
+        rate: "5%",
+        amount: "NGN 200,000",
+        type: "Credit",
+      },
+      {
+        txId: "B02337",
+        startDate: "06/11/2023",
+        endDate: "06/11/2023",
+        accountNumber: "1022022820",
+        rate: "5%",
+        amount: "NGN 200,000",
+        type: "Credit",
+      },
+      {
+        txId: "B02337",
+        startDate: "06/11/2023",
+        endDate: "06/11/2023",
+        accountNumber: "1022022820",
+        rate: "5%",
+        amount: "NGN 200,000",
+        type: "Credit",
+      },
+      {
+        txId: "B02337",
+        startDate: "06/11/2023",
+        endDate: "06/11/2023",
+        accountNumber: "1022022820",
+        rate: "5%",
+        amount: "NGN 200,000",
+        type: "Credit",
+      },
   ];
 
   return (
@@ -82,7 +82,7 @@ const Teller = () => {
           className="w-full bg-white flex justify-between py-5 mt-5"
           style={{ boxShadow: "0px 4px 30px 0px #1A88E14A inset" }}
         >
-          <h6 className="font-bold text-black px-6">Today’s Transaction</h6>
+          <h6 className="font-bold text-black px-6">Interests</h6>
         </div>
 
         <div className="flex items-center justify-between mt-5">
@@ -94,7 +94,7 @@ const Teller = () => {
               className="flex items-center cursor-pointer px-4 py-2 gap-2 border border-[#00000066]"
             >
               <img src={plusIcon} alt="" />
-              <p className="text-[#E51919] font-medium">Create new teller</p>
+              <p className="text-[#E51919] font-medium">Create</p>
             </div>
 
             <button className="flex items-center px-4 py-2 gap-2 border border-[#1A88E1]">
@@ -132,13 +132,16 @@ const Teller = () => {
                   Transaction ID <i className="ri-arrow-drop-down-fill"></i>
                 </th>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
-                  Payment Date <i className="ri-arrow-drop-down-fill"></i>
+                  Start Date <i className="ri-arrow-drop-down-fill"></i>
+                </th>
+                <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
+                  End Date <i className="ri-arrow-drop-down-fill"></i>
                 </th>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
                   Account Number <i className="ri-arrow-drop-down-fill"></i>
                 </th>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
-                  Inputter
+                  Rate
                   <i className="ri-arrow-drop-down-fill"></i>
                 </th>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
@@ -164,13 +167,16 @@ const Teller = () => {
                       {tnx?.txId}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-xs font-semibold text-black">
-                      {tnx?.paymentDate}
+                      {tnx?.startDate}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-xs font-semibold text-black">
+                      {tnx?.endDate}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-xs font-semibold text-black">
                       {tnx?.accountNumber}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-xs font-semibold text-black">
-                      {tnx?.inputter}
+                      {tnx?.rate}
                     </td>
                     <td className="px-6 py-4 text-green-700 whitespace-nowrap text-xs font-semibold">
                       {tnx?.amount}
@@ -188,7 +194,7 @@ const Teller = () => {
                           <div className="absolute top-5 left-0 bg-gray-50 z-10 px-4 py-3 shadow-sm">
                             <ul className="flex flex-col gap-2 text-black">
                               <li className="font-bold text-sm">
-                                <a href="/admin/view-teller">View</a>
+                                <a href="/admin/view-interest">View</a>
                               </li>
                               <li className="font-bold text-sm">
                                 <p
@@ -219,7 +225,7 @@ const Teller = () => {
           <>
             <div className="w-full h-[1020px] bg-opacity-70 z-0 bg-black absolute top-0"></div>
             <div className="z-50 absolute top-24">
-              <AddTeller callBack={handleShowAddTeller}></AddTeller>
+              <AddInterest callBack={handleShowAddTeller}></AddInterest>
             </div>
           </>
         )}
@@ -227,7 +233,7 @@ const Teller = () => {
           <>
             <div className="w-full h-[1020px] bg-opacity-70 z-0 bg-black absolute top-0"></div>
             <div className="z-50 absolute top-24">
-              <EditTeller callBack={handleShowEditTeller} />
+              <EditInterest callBack={handleShowEditTeller} />
             </div>
           </>
         )}
@@ -236,4 +242,4 @@ const Teller = () => {
   );
 };
 
-export default Teller;
+export default InterestRate;

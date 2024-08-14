@@ -11,6 +11,8 @@ import AddBranch from "./pages/dashboard/admin/AddBranch";
 import EditBranch from "./pages/dashboard/admin/EditBranch";
 import Teller from "./pages/dashboard/admin/Teller";
 import ViewTeller from "./pages/dashboard/admin/ViewTeller";
+import InterestRate from "./pages/dashboard/admin/InterestRate";
+import ViewInterestRate from "./pages/dashboard/admin/ViewInterestRate";
 
 export const router = createBrowserRouter([
   {
@@ -59,6 +61,14 @@ export const router = createBrowserRouter([
       {
         path: "/admin/view-teller",
         element: <ViewTeller />,
+      },
+      {
+        path: "/admin/interest-rate",
+        element: <InterestRate />,
+      },
+      {
+        path: "/admin/view-interest-rate",
+        element: <ViewInterestRate />,
       },
     ],
   },

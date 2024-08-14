@@ -14,6 +14,7 @@ export default function TextInput(props: TextInputProps) {
     type,
     placeholder,
     width,
+    height,
     ...inputProps
   } = props;
 
@@ -60,7 +61,7 @@ export default function TextInput(props: TextInputProps) {
           backgroundColor: hasContent ? "#eef9fa" : "",
           border: "0.71px solid #00000033",
         }}
-        className={`border border-l-0 pl-2 h-12 pr-12 ${width} text-sm rounded-lg focus:outline-none`}
+        className={`border border-l-0 pl-2 ${height ? height : "h-12"} pr-12 ${width} text-sm rounded-lg focus:outline-none`}
         placeholder={placeholder ? placeholder : ""}
       />
       {validationError && (

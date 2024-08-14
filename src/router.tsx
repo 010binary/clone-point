@@ -6,6 +6,9 @@ import ResetPassword from "./pages/onboarding/reset-password/ResetPassword";
 import SignIn from "./pages/onboarding/sign-in/SiginIn";
 import SignUp from "./pages/onboarding/sign-up/SignUp";
 import Branch from "./pages/dashboard/admin/Branch";
+import ViewBranch from "./pages/dashboard/admin/ViewBranch";
+import AddBranch from "./pages/dashboard/admin/AddBranch";
+import EditBranch from "./pages/dashboard/admin/EditBranch";
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +37,18 @@ export const router = createBrowserRouter([
       {
         path: "/admin/branch",
         element: <Branch />,
+      },
+      {
+        path: "/admin/view-branch",
+        element: <ViewBranch />,
+      },
+      {
+        path: "/admin/add-branch",
+        element: <AddBranch />,
+      },
+      {
+        path: "/admin/edit-branch",
+        element: <EditBranch />,
       },
     ],
   },

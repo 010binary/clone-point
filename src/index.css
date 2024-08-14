@@ -37,3 +37,7 @@ body {
 .sidebar__container::-webkit-scrollbar {
   display: none;
 }
+
+.header__user__account{
+  z-index: -10 !important;
+}

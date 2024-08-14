@@ -9,4 +9,5 @@ export type TextInputProps = {
   validationTrigger?: string | null;
   type?: string;
   placeholder?: string;
+  height?:string;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, "className" | "onChange">;

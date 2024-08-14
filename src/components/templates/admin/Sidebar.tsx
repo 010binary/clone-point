@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ImageBG from "../../../assets/images/admin-top.png";
 import { AdminRoute } from "../../../utils/types/admin/admin.types";
 
@@ -7,7 +7,8 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ routes }) => {
-  console.log(routes);
+  const location = useLocation();
+
   return (
     <div
       className="w-64 h-full sidebar__container fixed overflow-y-scroll top-16 left-0 pb-48"
@@ -23,10 +24,23 @@ const Sidebar: React.FC<SidebarProps> = ({ routes }) => {
       <ul className="relative px-10 flex flex-col gap-8 mt-10 z-10">
         {routes &&
           routes.map((item) => (
-            <li key={item?.page}>
+            <li
+              key={item?.page}
+              className={`px-2 py-1 ${
+                location.pathname === item.route
+                  ? "bg-white text-primary"
+                  : "text-white"
+              }`}
+            >
               <Link to={item.route} className="flex gap-4 items-center">
-                <img src={item?.icon}></img>
-                <p className="text-white font-semibold">{item?.page}</p>
+                <img
+                  src={item?.icon}
+                  alt={`${item?.page} icon`}
+                  className={`${
+                    location.pathname === item.route ? "filter-primary" : ""
+                  }`}
+                />
+                <p className="font-semibold">{item?.page}</p>
               </Link>
             </li>
           ))}

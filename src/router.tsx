@@ -9,6 +9,8 @@ import Branch from "./pages/dashboard/admin/Branch";
 import ViewBranch from "./pages/dashboard/admin/ViewBranch";
 import AddBranch from "./pages/dashboard/admin/AddBranch";
 import EditBranch from "./pages/dashboard/admin/EditBranch";
+import Teller from "./pages/dashboard/admin/Teller";
+import ViewTeller from "./pages/dashboard/admin/ViewTeller";
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +51,14 @@ export const router = createBrowserRouter([
       {
         path: "/admin/edit-branch",
         element: <EditBranch />,
+      },
+      {
+        path: "/admin/teller",
+        element: <Teller />,
+      },
+      {
+        path: "/admin/view-teller",
+        element: <ViewTeller />,
       },
     ],
   },

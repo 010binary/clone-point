@@ -24,7 +24,7 @@ export const adminRoutes: AdminRoute[] = [
     {
         icon: TellerIcon,
         page: "Teller",
-        route: "/admin/dashboard"
+        route: "/admin/teller"
     },
     {
         icon: InterestRateIcon,

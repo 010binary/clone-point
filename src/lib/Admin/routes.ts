@@ -34,7 +34,7 @@ export const adminRoutes: AdminRoute[] = [
     {
         icon: UsersIcon,
         page: "Manage users",
-        route: "/admin/dashboard"
+        route: "/admin/manage-roles"
     },
     {
         icon: RolesIcon,

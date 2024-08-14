@@ -13,6 +13,8 @@ import Teller from "./pages/dashboard/admin/Teller";
 import ViewTeller from "./pages/dashboard/admin/ViewTeller";
 import InterestRate from "./pages/dashboard/admin/InterestRate";
 import ViewInterestRate from "./pages/dashboard/admin/ViewInterestRate";
+import ManageRoles from "./pages/dashboard/admin/ManageRoles";
+import CreateManagerRole from "./components/templates/admin/CreateManagerRole";
 
 export const router = createBrowserRouter([
   {
@@ -69,6 +71,10 @@ export const router = createBrowserRouter([
       {
         path: "/admin/view-interest-rate",
         element: <ViewInterestRate />,
+      },
+      {
+        path: "/admin/manage-roles",
+        element: <ManageRoles />,
       },
     ],
   },

@@ -4,8 +4,6 @@ import plusIcon from "../../../assets/icons/plus.svg";
 import shareIcon from "../../../assets/icons/share.svg";
 import TextInput from "../../../components/ui/text-input/TextInput";
 import Action from "../../../assets/icons/action.svg";
-import AddInterest from "../../../components/templates/admin/AddInterest";
-import EditInterest from "../../../components/templates/admin/EditInterest";
 import CreateManagerRole from "../../../components/templates/admin/CreateManagerRole";
 import EditManagerRole from "../../../components/templates/admin/EditManagerRoles";
 

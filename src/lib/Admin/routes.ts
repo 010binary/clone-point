@@ -34,26 +34,26 @@ export const adminRoutes: AdminRoute[] = [
     {
         icon: UsersIcon,
         page: "Manage users",
-        route: "/admin/manage-roles"
+        route: "/admin/manage-users"
     },
     {
         icon: RolesIcon,
         page: "Manage roles",
-        route: "/admin/dashboard"
+        route: "/admin/manage-roles"
     },
     {
         icon: LincenseIcon,
         page: "License",
-        route: "/admin/dashboard"
+        route: "/admin/license"
     },
     {
         icon: ReportIcon,
         page: "Reports",
-        route: "/admin/dashboard"
+        route: "/admin/reports"
     },
     {
         icon: SettingsIcon,
         page: "Settings",
-        route: "/admin/dashboard"
+        route: "/admin/settings"
     }
 ]

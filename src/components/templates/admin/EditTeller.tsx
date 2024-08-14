@@ -2,7 +2,7 @@ import BaseButton from "../../ui/base-button/BaseButton";
 import TextInput from "../../ui/text-input/TextInput";
 import useAddTellerForm from "./useAddTellerForm";
 
-const EditTeller = () => {
+const EditTeller = ({callBack}: any) => {
   const {
     formData,
     handleChange,
@@ -13,12 +13,12 @@ const EditTeller = () => {
   } = useAddTellerForm();
   return (
     <div className="w-[580px]">
-      <div className="bg-primary-dark flex px-3 py-1 items-center justify-between">
-        <h1 className="text-white font-bold">Create Teller</h1>
-        <i className="ri-close-large-line text-white text-xl"></i>
+      <div className="bg-primary-dark flex px-3 py-2 items-center justify-between">
+        <h1 className="text-white font-bold">Edit Teller</h1>
+        <i className="ri-close-large-line text-white text-xl cursor-pointer" onClick={callBack}></i>
       </div>
       <div className="bg-white px-3 -mt-2">
-        <h3 className="font-bold text-lg mt-2">Create a new teller</h3>
+        <h3 className="font-bold text-lg mt-2">Teller Details</h3>
         <form onSubmit={handleSubmit} className="mt-12 flex  gap-4 pb-10">
           <div className="flex flex-col gap-4">
             <TextInput
@@ -116,7 +116,7 @@ const EditTeller = () => {
               className="mt-2 max-w-[560px] bg-primary-light"
             >
               <p className="w-[560px] text-primary-dark">
-                {isLoading ? "Submitting..." : "Cancel"}
+                {isLoading ? "Submitting..." : "Delete"}
               </p>
             </BaseButton>
           </div>

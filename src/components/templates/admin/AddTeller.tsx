@@ -2,7 +2,7 @@ import BaseButton from "../../ui/base-button/BaseButton";
 import TextInput from "../../ui/text-input/TextInput";
 import useAddTellerForm from "./useAddTellerForm";
 
-const AddTeller = () => {
+const AddTeller = ({ callBack }: any) => {
   const {
     formData,
     handleChange,
@@ -13,9 +13,12 @@ const AddTeller = () => {
   } = useAddTellerForm();
   return (
     <div className="w-[580px]">
-      <div className="bg-primary-dark flex px-3 py-1 items-center justify-between">
+      <div className="bg-primary-dark flex px-3 py-2 items-center justify-between">
         <h1 className="text-white font-bold">Create Teller</h1>
-        <i className="ri-close-large-line text-white text-xl"></i>
+        <i
+          className="ri-close-large-line text-white text-xl cursor-pointer"
+          onClick={callBack}
+        ></i>
       </div>
       <div className="bg-white px-3 -mt-2">
         <h3 className="font-bold text-lg mt-2">Create a new teller</h3>

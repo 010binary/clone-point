@@ -6,9 +6,20 @@ import shareIcon from "../../../assets/icons/share.svg";
 import TextInput from "../../../components/ui/text-input/TextInput";
 import Action from "../../../assets/icons/action.svg";
 import AddTeller from "../../../components/templates/admin/AddTeller";
+import EditTeller from "../../../components/templates/admin/EditTeller";
 
 const Teller = () => {
   const [activeAction, setActiveAction] = useState(null);
+  const [showAddTeller, setShowAddTeller] = useState(false);
+  const [showEditTeller, setShowEditTeller] = useState(false);
+
+  const handleShowAddTeller = () => {
+    setShowAddTeller(!showAddTeller);
+  };
+
+  const handleShowEditTeller = () => {
+    setShowEditTeller(!showEditTeller);
+  };
 
   const handleActionClick = (index: any) => {
     setActiveAction(activeAction === index ? null : index);
@@ -79,13 +90,13 @@ const Teller = () => {
           <div></div>
 
           <div className="flex items-center gap-4">
-            <Link
-              to="/admin/add-branch"
-              className="flex items-center px-4 py-2 gap-2 border border-[#00000066]"
+            <div
+              onClick={() => handleShowAddTeller()}
+              className="flex items-center cursor-pointer px-4 py-2 gap-2 border border-[#00000066]"
             >
               <img src={plusIcon} alt="" />
               <p className="text-[#E51919] font-medium">Create new teller</p>
-            </Link>
+            </div>
 
             <button className="flex items-center px-4 py-2 gap-2 border border-[#1A88E1]">
               <img src={shareIcon} alt="" />
@@ -181,7 +192,12 @@ const Teller = () => {
                                 <a href="/admin/view-teller">View</a>
                               </li>
                               <li className="font-bold text-sm">
-                                <a href="">Edit</a>
+                                <p
+                                  className="cursor-pointer"
+                                  onClick={handleShowEditTeller}
+                                >
+                                  Edit
+                                </p>
                               </li>
                               <li className="font-bold text-sm">
                                 <a href="">Delete</a>
@@ -199,13 +215,24 @@ const Teller = () => {
         </div>
       </div>
 
-      
-     <div className="flex items-center justify-center">
-     <div className="w-full h-[1020px] bg-opacity-70 z-0 bg-black absolute top-0"></div>
-     <div className="z-50 absolute top-24">
-     <AddTeller></AddTeller>
-     </div>
-     </div>
+      <div className="flex items-center justify-center">
+        {showAddTeller && (
+          <>
+            <div className="w-full h-[1020px] bg-opacity-70 z-0 bg-black absolute top-0"></div>
+            <div className="z-50 absolute top-24">
+              <AddTeller callBack={handleShowAddTeller}></AddTeller>
+            </div>
+          </>
+        )}
+        {showEditTeller && (
+          <>
+            <div className="w-full h-[1020px] bg-opacity-70 z-0 bg-black absolute top-0"></div>
+            <div className="z-50 absolute top-24">
+              <EditTeller callBack={handleShowEditTeller} />
+            </div>
+          </>
+        )}
+      </div>
     </DashboardLayout>
   );
 };

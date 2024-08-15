@@ -1,7 +1,14 @@
-import LinkButton from "../../../components/ui/link-button/LinkButton";
+import { useState } from "react";
 import DashboardLayout from "../layout";
+import BaseButton from "../../../components/ui/base-button/BaseButton";
+import EditLicense from "../../../components/templates/admin/EditLicense";
 
 const Lincense = () => {
+  const [addLicense, setAddLicense] = useState<boolean>(false);
+
+  const handleShowLicense = () => {
+    setAddLicense(!addLicense);
+  };
   return (
     <DashboardLayout>
       <div className="pl-[270px] pr-10">
@@ -101,16 +108,27 @@ const Lincense = () => {
               </div>
             </div>
 
-            <LinkButton
-              href="/admin/edit-license"
+            <BaseButton
+              onClick={handleShowLicense}
               className="w-full bg-primary-light py-2 mt-7 rounded-lg"
             >
               <p className="text-lg font-extrabold text-center text-primary-dark ">
                 Edit License
               </p>
-            </LinkButton>
+            </BaseButton>
           </div>
         </div>
+      </div>
+
+      <div className="flex items-center justify-center">
+        {addLicense && (
+          <>
+            <div className="w-full  h-[1020px] bg-opacity-70 z-0 bg-black absolute top-0"></div>
+            <div className="z-50 absolute top-24">
+              <EditLicense callBack={handleShowLicense} />
+            </div>
+          </>
+        )}
       </div>
     </DashboardLayout>
   );

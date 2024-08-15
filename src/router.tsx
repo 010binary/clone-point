@@ -3,7 +3,6 @@ import App from "./App";
 import ForgotPassword from "./pages/onboarding/fotgot-password/ForgotPassword";
 import VerifyEmailAccount from "./pages/onboarding/fotgot-password/VerifyEmail";
 import ResetPassword from "./pages/onboarding/reset-password/ResetPassword";
-import SignIn from "./pages/onboarding/sign-in/SiginIn";
 import SignUp from "./pages/onboarding/sign-up/SignUp";
 import Branch from "./pages/dashboard/admin/Branch";
 import ViewBranch from "./pages/dashboard/admin/ViewBranch";
@@ -20,6 +19,7 @@ import { Router } from "@remix-run/router";
 import ViewUser from "./pages/dashboard/admin/ViewUser";
 import EditUser from "./pages/dashboard/admin/EditUser";
 import Lincense from "./pages/dashboard/admin/Lincense";
+import Index from "./pages/Index";
 
 export const router: Router = createBrowserRouter([
   {
@@ -27,7 +27,7 @@ export const router: Router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <SignIn />,
+        element: <Index />,
       },
       {
         path: "/sign-up",

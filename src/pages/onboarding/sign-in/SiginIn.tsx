@@ -4,7 +4,7 @@ import BaseButton from "../../../components/ui/base-button/BaseButton";
 import { Link } from "react-router-dom";
 import useSignInForm from "./useSignInForm";
 
-const SignIn = () => {
+const SignIn = ({ setActivePage }: any) => {
   const {
     formData,
     handleChange,
@@ -23,8 +23,29 @@ const SignIn = () => {
         <p className="md:w-[450px] text-[#6E6E6E] font-[Montserat-Medium] font-medium">
           Welcome, great to be have you back!
         </p>
+        
+        <div className="flex w-64 pt-5 pb-1 mb-6">
+          <div className="">
+            <h1
+              className="font-bold text-lg cursor-pointer pl-14 pb-2"
+              onClick={() => setActivePage("sign-up")}
+            >
+              Sign up
+            </h1>
+            <div className="border-b-[3px] max-w-1/2 rounded-full border-gray-300"></div>
+          </div>
+          <div>
+            <h1
+              className="font-bold text-lg cursor-pointer pl-14 pb-2"
+              onClick={() => setActivePage("log-in")}
+            >
+              Log in
+            </h1>
+            <div className="border-b-[3px] max-w-1/2 rounded-full border-primary-dark"></div>
+          </div>
+        </div>
 
-        <form onSubmit={handleSubmit} className="mt-12 flex flex-col gap-4">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <TextInput
             id="email"
             type="email"
@@ -58,7 +79,7 @@ const SignIn = () => {
               Forogot Password?
             </Link>
           </div>
-          <BaseButton type="submit" className="mt-2 max-w-96">
+          <BaseButton type="submit" className="mt-2 max-w-96 bg-primary">
             <p className="w-96">{isLoading ? "Submitting..." : "Login"}</p>
           </BaseButton>
         </form>

@@ -34,159 +34,162 @@ const AddBranch = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="mt-12 flex  gap-4 py-10">
-            <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4">
             <TextInput
-            id="branchName"
-            type="text"
-            name="branchName"
-            value={formData.email}
-            onChange={handleChange}
-            validation={validationSchema?.fields.email}
-            validationTrigger={validationError}
-            label="Branch Name"
-            placeholder="Enter branch name"
-            width="w-96"
-            height="h-10"
-          />
+              id="branchName"
+              type="text"
+              name="branchName"
+              value={formData.email}
+              onChange={handleChange}
+              validation={validationSchema?.fields.email}
+              validationTrigger={validationError}
+              label="Branch Name"
+              placeholder="Enter branch name"
+              width="w-96"
+              height="h-10"
+            />
 
-          <TextInput
-            id="branchAddress"
-            type="text"
-            name="branchAddress"
-            value={formData.password}
-            onChange={handleChange}
-            validation={validationSchema?.fields.password}
-            validationTrigger={validationError}
-            label="Branch address"
-            placeholder="Enter branch address"
-            width="w-96"
-            height="h-10"
-          />
-
-          <TextInput
-            id="city"
-            type="text"
-            name="city"
-            value={formData.password}
-            onChange={handleChange}
-            validation={validationSchema?.fields.password}
-            validationTrigger={validationError}
-            label="City"
-            placeholder="Enter branch city"
-            width="w-96"
-            height="h-10"
-          />
-
-          <TextInput
-            id="state"
-            type="text"
-            name="state"
-            value={formData.password}
-            onChange={handleChange}
-            validation={validationSchema?.fields.password}
-            validationTrigger={validationError}
-            label="State"
-            placeholder="Enter branch state"
-            width="w-96"
-            height="h-10"
-          />
-
-          <TextInput
-            id="country"
-            type="text"
-            name="country"
-            value={formData.password}
-            onChange={handleChange}
-            validation={validationSchema?.fields.password}
-            validationTrigger={validationError}
-            label="Country"
-            placeholder="Enter country"
-            width="w-96"
-            height="h-10"
-          />
-
-          <TextInput
-            id="businessManger"
-            type="text"
-            name="businessManger"
-            value={formData.password}
-            onChange={handleChange}
-            validation={validationSchema?.fields.password}
-            validationTrigger={validationError}
-            label="Business Manager"
-            placeholder="Enter business manager"
-            width="w-96"
-            height="h-10"
-          />
-
-          <TextInput
-            id="customerServiceManager"
-            type="text"
-            name="customerServiceManager"
-            value={formData.password}
-            onChange={handleChange}
-            validation={validationSchema?.fields.password}
-            validationTrigger={validationError}
-            label="Customer Service Manager"
-            placeholder="Enter customer service manager"
-            width="w-96"
-            height="h-10"
-          />
-            </div>
-
-            <div className="flex flex-col gap-4">
             <TextInput
-            id="operationManager"
-            type="text"
-            name="operationManager"
-            value={formData.email}
-            onChange={handleChange}
-            validation={validationSchema?.fields.email}
-            validationTrigger={validationError}
-            label="Operation Manager"
-            placeholder="Enter Operation Manager"
-            width="w-96"
-            height="h-10"
-          />
+              id="branchAddress"
+              type="text"
+              name="branchAddress"
+              value={formData.password}
+              onChange={handleChange}
+              validation={validationSchema?.fields.password}
+              validationTrigger={validationError}
+              label="Branch address"
+              placeholder="Enter branch address"
+              width="w-96"
+              height="h-10"
+            />
 
-          <TextInput
-            id="internaiControlManager"
-            type="text"
-            name="internaiControlManager"
-            value={formData.password}
-            onChange={handleChange}
-            validation={validationSchema?.fields.password}
-            validationTrigger={validationError}
-            label="Internal Control manager"
-            placeholder="Enter internal control manager"
-            width="w-96"
-            height="h-10"
-          />
+            <TextInput
+              id="city"
+              type="text"
+              name="city"
+              value={formData.password}
+              onChange={handleChange}
+              validation={validationSchema?.fields.password}
+              validationTrigger={validationError}
+              label="City"
+              placeholder="Enter branch city"
+              width="w-96"
+              height="h-10"
+            />
 
-          <TextInput
-            id="authorisers"
-            type="text"
-            name="authorisers"
-            value={formData.password}
-            onChange={handleChange}
-            validation={validationSchema?.fields.password}
-            validationTrigger={validationError}
-            label="Authorisers"
-            placeholder="Enter authorisers"
-            width="w-96"
-            height="h-10"
-          />
+            <TextInput
+              id="state"
+              type="text"
+              name="state"
+              value={formData.password}
+              onChange={handleChange}
+              validation={validationSchema?.fields.password}
+              validationTrigger={validationError}
+              label="State"
+              placeholder="Enter branch state"
+              width="w-96"
+              height="h-10"
+            />
 
-            
-<BaseButton type="submit" className="mt-2 max-w-96 bg-primary">
-            <p className="w-96">{isLoading ? "Submitting..." : "Save"}</p>
-          </BaseButton>
+            <TextInput
+              id="country"
+              type="text"
+              name="country"
+              value={formData.password}
+              onChange={handleChange}
+              validation={validationSchema?.fields.password}
+              validationTrigger={validationError}
+              label="Country"
+              placeholder="Enter country"
+              width="w-96"
+              height="h-10"
+            />
 
-          <BaseButton type="submit" className="mt-2 max-w-96 bg-primary-light">
-            <p className="w-96 text-primary-dark">{isLoading ? "Submitting..." : "Cancel"}</p>
-          </BaseButton>
-            </div>
-        
+            <TextInput
+              id="businessManger"
+              type="text"
+              name="businessManger"
+              value={formData.password}
+              onChange={handleChange}
+              validation={validationSchema?.fields.password}
+              validationTrigger={validationError}
+              label="Business Manager"
+              placeholder="Enter business manager"
+              width="w-96"
+              height="h-10"
+            />
+
+            <TextInput
+              id="customerServiceManager"
+              type="text"
+              name="customerServiceManager"
+              value={formData.password}
+              onChange={handleChange}
+              validation={validationSchema?.fields.password}
+              validationTrigger={validationError}
+              label="Customer Service Manager"
+              placeholder="Enter customer service manager"
+              width="w-96"
+              height="h-10"
+            />
+          </div>
+
+          <div className="flex flex-col gap-4">
+            <TextInput
+              id="operationManager"
+              type="text"
+              name="operationManager"
+              value={formData.email}
+              onChange={handleChange}
+              validation={validationSchema?.fields.email}
+              validationTrigger={validationError}
+              label="Operation Manager"
+              placeholder="Enter Operation Manager"
+              width="w-96"
+              height="h-10"
+            />
+
+            <TextInput
+              id="internaiControlManager"
+              type="text"
+              name="internaiControlManager"
+              value={formData.password}
+              onChange={handleChange}
+              validation={validationSchema?.fields.password}
+              validationTrigger={validationError}
+              label="Internal Control manager"
+              placeholder="Enter internal control manager"
+              width="w-96"
+              height="h-10"
+            />
+
+            <TextInput
+              id="authorisers"
+              type="text"
+              name="authorisers"
+              value={formData.password}
+              onChange={handleChange}
+              validation={validationSchema?.fields.password}
+              validationTrigger={validationError}
+              label="Authorisers"
+              placeholder="Enter authorisers"
+              width="w-96"
+              height="h-10"
+            />
+
+            <BaseButton type="submit" className="mt-2 max-w-96 bg-primary">
+              <p className="w-96">{isLoading ? "Submitting..." : "Save"}</p>
+            </BaseButton>
+
+            <BaseButton
+              type="submit"
+              className="mt-2 max-w-96 bg-primary-light"
+            >
+              <p className="w-96 text-primary-dark">
+                {isLoading ? "Submitting..." : "Cancel"}
+              </p>
+            </BaseButton>
+          </div>
         </form>
       </div>
     </DashboardLayout>

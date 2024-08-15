@@ -15,8 +15,13 @@ import InterestRate from "./pages/dashboard/admin/InterestRate";
 import ViewInterestRate from "./pages/dashboard/admin/ViewInterestRate";
 import ManageRoles from "./pages/dashboard/admin/ManageRoles";
 import Dashboard from "./pages/dashboard/admin/Dashboard";
+import User from "./pages/dashboard/admin/Users";
+import { Router } from "@remix-run/router";
+import ViewUser from "./pages/dashboard/admin/ViewUser";
+import EditUser from "./pages/dashboard/admin/EditUser";
+import Lincense from "./pages/dashboard/admin/Lincense";
 
-export const router = createBrowserRouter([
+export const router: Router = createBrowserRouter([
   {
     element: <App />,
     children: [
@@ -79,6 +84,22 @@ export const router = createBrowserRouter([
       {
         path: "/admin/dashboard",
         element: <Dashboard />,
+      },
+      {
+        path: "/admin/manage-users",
+        element: <User />,
+      },
+      {
+        path: "/admin/view-user",
+        element: <ViewUser />,
+      },
+      {
+        path: "/admin/edit-user",
+        element: <EditUser />,
+      },
+      {
+        path: "/admin/license",
+        element: <Lincense />,
       },
     ],
   },

@@ -33,12 +33,10 @@ export default function TextInput(props: TextInputProps) {
     }
   };
 
-  // const togglePasswordVisibility = () => {
-  //   setShowPassword((prevShowPassword) => !prevShowPassword);
-  // };
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
 
-  setShowPassword(false)
-  console.log(focused)
 
   return (
     <div className="flex flex-col">
@@ -62,7 +60,7 @@ export default function TextInput(props: TextInputProps) {
           backgroundColor: hasContent ? "#eef9fa" : "",
           border: "0.71px solid #00000033",
         }}
-        className={`border border-l-0 pl-2 ${height ? height : "h-12"} pr-12 ${width} text-sm rounded-lg focus:outline-none`}
+        className={`border border-l-0 pl-2 ${height ? height : "h-12"} pr-12 ${width} text-sm rounded-lg ${focused ? "focus:outline-none" : "focus:outline-none"}`}
         placeholder={placeholder ? placeholder : ""}
       />
       {validationError && (
@@ -70,15 +68,15 @@ export default function TextInput(props: TextInputProps) {
           {validationError}
         </p>
       )}
-      {/* {type === "password" && (
+      {type === "password" && (
         <p onClick={togglePasswordVisibility} className="">
           {showPassword ? (
-            <FontAwesomeIcon icon={faEye} />
+            <></>
           ) : (
-            <FontAwesomeIcon icon={faEyeSlash} />
+            <></>
           )}
         </p>
-      )} */}
+      )}
     </div>
   );
 }

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import DashboardLayout from "../layout";
-import plusIcon from "../../../assets/icons/plus.svg";
-import shareIcon from "../../../assets/icons/share.svg";
-import TextInput from "../../../components/ui/text-input/TextInput";
 import Action from "../../../assets/icons/action.svg";
+import BranchIcon from "../../../assets/icons/branch.png";
+import TellerIcon from "../../../assets/icons/tellers.png";
+import InterestIcon from "../../../assets/icons/interest.png";
+import UserIcon from "../../../assets/icons/users.png";
 
 const Dashboard = () => {
   const [activeAction, setActiveAction] = useState(null);
@@ -61,6 +62,41 @@ const Dashboard = () => {
           <h6 className="font-bold text-black px-6">Today</h6>
         </div>
 
+        <div className="flex items-start justify-between py-10">
+        <div className="bg-gray-200 border rounded-lg border-gray-300 flex gap-3 items-start px-8 py-4">
+          <img src={BranchIcon} alt="" />
+          <div>
+            <p className="text-center">Total Branch</p>
+            <h6 className="text-center font-bold">57</h6>
+          </div>
+        </div>
+
+        <div className="bg-gray-200 border rounded-lg border-gray-300 flex gap-3 items-start px-8 py-4">
+          <img src={TellerIcon} alt="" />
+          <div>
+            <p className="text-center">All tellers</p>
+            <h6 className="text-center font-bold">25</h6>
+          </div>
+        </div>
+
+
+        <div className="bg-gray-200 border rounded-lg border-gray-300 flex gap-3 items-start px-8 py-4">
+          <img src={InterestIcon} alt="" />
+          <div>
+            <p className="text-center">Total Interest</p>
+            <h6 className="text-center font-bold">49%</h6>
+          </div>
+        </div>
+
+        <div className="bg-gray-200 border rounded-lg border-gray-300 flex gap-3 items-start px-8 py-4">
+          <img src={UserIcon} alt="" />
+          <div>
+            <p className="text-center">All users</p>
+            <h6 className="text-center font-bold">250</h6>
+          </div>
+        </div>
+      </div>
+
         <div className="flex items-center justify-between mt-5">
           <div>
             <p className="text-lg text-black font-semibold">Recent Branches</p>
@@ -72,6 +108,8 @@ const Dashboard = () => {
             </Link>
           </div>
         </div>
+
+
         <div className="flex">
           <div className="flex">
             <h6></h6>

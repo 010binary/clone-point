@@ -33,6 +33,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
           backgroundColor:"#fff",
           border: "0.71px solid #00000033",
         }}
+        {...rest}
         className={`border border-l-0 pl-2 h-12 pr-12 ${width} text-sm rounded-lg focus:outline-none`}
       >
         {options.map((option, index) => (

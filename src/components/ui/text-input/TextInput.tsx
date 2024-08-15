@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { TextInputProps } from "./TextInput.types";
 import useTextInput from "./useTextInput";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons/index";
 
 export default function TextInput(props: TextInputProps) {
   const {
@@ -35,9 +33,12 @@ export default function TextInput(props: TextInputProps) {
     }
   };
 
-  const togglePasswordVisibility = () => {
-    setShowPassword((prevShowPassword) => !prevShowPassword);
-  };
+  // const togglePasswordVisibility = () => {
+  //   setShowPassword((prevShowPassword) => !prevShowPassword);
+  // };
+
+  setShowPassword(false)
+  console.log(focused)
 
   return (
     <div className="flex flex-col">

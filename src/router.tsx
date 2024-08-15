@@ -14,7 +14,6 @@ import ViewTeller from "./pages/dashboard/admin/ViewTeller";
 import InterestRate from "./pages/dashboard/admin/InterestRate";
 import ViewInterestRate from "./pages/dashboard/admin/ViewInterestRate";
 import ManageRoles from "./pages/dashboard/admin/ManageRoles";
-import CreateManagerRole from "./components/templates/admin/CreateManagerRole";
 import Dashboard from "./pages/dashboard/admin/Dashboard";
 
 export const router = createBrowserRouter([

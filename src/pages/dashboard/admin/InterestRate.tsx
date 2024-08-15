@@ -4,10 +4,7 @@ import plusIcon from "../../../assets/icons/plus.svg";
 import shareIcon from "../../../assets/icons/share.svg";
 import TextInput from "../../../components/ui/text-input/TextInput";
 import Action from "../../../assets/icons/action.svg";
-import AddTeller from "../../../components/templates/admin/AddTeller";
-import EditTeller from "../../../components/templates/admin/EditTeller";
 import AddInterest from "../../../components/templates/admin/AddInterest";
-import ViewInterest from "./ViewInterestRate";
 import EditInterest from "../../../components/templates/admin/EditInterest";
 
 const InterestRate = () => {

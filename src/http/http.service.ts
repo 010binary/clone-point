@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // import Environment from "@/utils/config/environment.config";
 import axios, {
-  AxiosHeaders,
+  // AxiosHeaders,
   AxiosInstance,
   AxiosResponse,
   CreateAxiosDefaults,

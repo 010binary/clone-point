@@ -23,7 +23,7 @@ const Sidebar: React.FC<SidebarProps> = ({ routes }) => {
         className={`md:w-64 h-full ${
           isSideBarActive
             ? "block translate-x-[0px] duration-[300ms] ease-in transform top-0 w-72"
-            : "hidden translate-x-[-500px]"
+            : "hidden md:translate-x-[0px] translate-x-[-500px]"
         } md:block sidebar__container z-[1000] fixed overflow-y-scroll md:top-16 left-0 pb-48`}
         style={{
           background:

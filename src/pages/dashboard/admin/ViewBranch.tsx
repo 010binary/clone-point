@@ -16,14 +16,14 @@ const ViewBranch = () => {
 
   return (
     <DashboardLayout>
-        <div className="pl-[300px] pr-10">
+        <div className="md:pl-[300px] px-5 md:pr-10">
            <div
           className="w-full bg-white flex justify-between py-5 mt-5"
           style={{ boxShadow: "0px 4px 30px 0px #1A88E14A inset" }}
         >
           <h6 className="font-bold text-black px-6">View Branch</h6>
         </div>
-      <div className="mt-10 w-[600px]">
+      <div className="mt-10 md:w-[600px]">
         <div
           className="px-4 py-2"
           style={{

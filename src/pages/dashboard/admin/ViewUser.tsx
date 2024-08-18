@@ -3,7 +3,7 @@ import DashboardLayout from "../layout";
 const ViewUser = () => {
   return (
     <DashboardLayout>
-      <div className="pl-[300px] pr-10">
+      <div className="md:pl-[300px] md:pr-10 px-5">
         <div
           className="w-full bg-white flex justify-between py-5 mt-5"
           style={{ boxShadow: "0px 4px 30px 0px #1A88E14A inset" }}

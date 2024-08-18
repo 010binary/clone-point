@@ -14,7 +14,7 @@ const AddBranch = () => {
   } = useSignInForm();
   return (
     <DashboardLayout>
-      <div className="pl-[270px] pr-10">
+      <div className="md:pl-[270px] md:pr-10 px-5">
         <div
           className="w-full bg-white flex justify-between py-5 mt-5"
           style={{ boxShadow: "0px 4px 30px 0px #1A88E14A inset" }}
@@ -33,7 +33,7 @@ const AddBranch = () => {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="mt-12 flex  gap-4 py-10">
+        <form onSubmit={handleSubmit} className="md:mt-12 flex flex-col md:flex-row gap-4 py-10">
           <div className="flex flex-col gap-4">
             <TextInput
               id="branchName"

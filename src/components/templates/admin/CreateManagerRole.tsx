@@ -12,7 +12,7 @@ const CreateManagerRole = ({ callBack }: any) => {
     isLoading,
   } = useAddTellerForm();
   return (
-    <div className="w-[580px]">
+    <div className="md:w-[580px] w-[360px]">
       <div className="bg-primary-dark flex px-3 py-2 items-center justify-between">
         <h1 className="text-white font-bold">Create manager roles</h1>
         <i
@@ -34,7 +34,7 @@ const CreateManagerRole = ({ callBack }: any) => {
               validationTrigger={validationError}
               label="Name"
               placeholder="Enter Name"
-              width="w-[560px]"
+              width="md:w-[560px] w-[300px]"
               height="h-10"
             />
 
@@ -48,7 +48,7 @@ const CreateManagerRole = ({ callBack }: any) => {
               validationTrigger={validationError}
               label="Phone Number"
               placeholder="Enter Phone Number"
-              width="w-[560px]"
+              width="md:w-[560px] w-[300px]"
               height="h-10"
             />
 
@@ -62,7 +62,7 @@ const CreateManagerRole = ({ callBack }: any) => {
               validationTrigger={validationError}
               label="Email Address"
               placeholder="Enter email"
-              width="w-[560px]"
+              width="md:w-[560px] w-[300px]"
               height="h-10"
             />
 
@@ -76,7 +76,7 @@ const CreateManagerRole = ({ callBack }: any) => {
               validationTrigger={validationError}
               label="Gender"
               placeholder="Enter gender"
-              width="w-[560px]"
+              width="md:w-[560px] w-[300px]"
               height="h-10"
             />
 
@@ -90,7 +90,7 @@ const CreateManagerRole = ({ callBack }: any) => {
               validationTrigger={validationError}
               label="Role"
               placeholder="Enter role"
-              width="w-[560px]"
+              width="md:w-[560px] w-[300px]"
               height="h-10"
             />
 
@@ -104,7 +104,7 @@ const CreateManagerRole = ({ callBack }: any) => {
               validationTrigger={validationError}
               label="Role Description"
               placeholder="Enter Role Description"
-              width="w-[560px]"
+              width="md:w-[560px] w-[300px]"
               height="h-10"
             />
 
@@ -118,21 +118,21 @@ const CreateManagerRole = ({ callBack }: any) => {
               validationTrigger={validationError}
               label="Date Onboarded"
               placeholder="Enter payment date"
-              width="w-[560px]"
+              width="md:w-[560px] w-[300px]"
               height="h-10"
             />
 
-            <BaseButton type="submit" className="mt-2 max-w-[560px] bg-primary">
-              <p className="w-[560px]">
+            <BaseButton type="submit" className="mt-2 md:w-[560px] w-[300px] bg-primary">
+              <p className="md:w-[560px] w-[300px]">
                 {isLoading ? "Submitting..." : "Save"}
               </p>
             </BaseButton>
 
             <BaseButton
               type="submit"
-              className="mt-2 max-w-[560px] bg-primary-light"
+              className="mt-2 md:w-[560px] w-[300px] bg-primary-light"
             >
-              <p className="w-[560px] text-primary-dark">
+              <p className="md:w-[560px] w-[300px] text-primary-dark">
                 {isLoading ? "Submitting..." : "Cancel"}
               </p>
             </BaseButton>

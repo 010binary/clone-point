@@ -5,7 +5,7 @@ import DashboardLayout from "../layout";
 const EditUser = () => {
   return (
     <DashboardLayout>
-      <div className="pl-[300px] pr-10">
+      <div className="md:pl-[300px] px-5 md:pr-10">
         <div
           className="w-full bg-white flex justify-between py-5 mt-5"
           style={{ boxShadow: "0px 4px 30px 0px #1A88E14A inset" }}
@@ -13,7 +13,7 @@ const EditUser = () => {
           <h6 className="font-bold text-black px-6">Edit User</h6>
         </div>
 
-        <div className="mt-10 w-[600px]">
+        <div className="mt-10 md:w-[600px]">
           <div
             className="px-4 py-2"
             style={{
@@ -26,7 +26,7 @@ const EditUser = () => {
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto pl-10 pt-10 bg-white rounded-lg">
+      <div className="md:max-w-4xl max-w-2xl mx-auto pl-10 pt-10 bg-white rounded-lg">
         <div className="flex items-center mb-6">
           <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center">
             {/* Placeholder for Profile Image */}
@@ -47,8 +47,8 @@ const EditUser = () => {
           </div>
         </div>
         <form className=" gap-20">
-          <div className="grid grid-cols-2">
-            <div className="pb-20">
+          <div className="md:grid grid-cols-2">
+            <div className="md:pb-20">
               <div className="mb-4 flex gap-10 items-center">
                 <TextInput
                   id="txId"
@@ -188,7 +188,7 @@ const EditUser = () => {
 
             {/* Right Column */}
             <div>
-              <div className="mb-4 flex gap-10 items-center">
+              <div className="md:mb-4 flex gap-10 items-center">
                 <TextInput
                   id="txId"
                   type="text"
@@ -295,14 +295,14 @@ const EditUser = () => {
               </div>
             </div>
           </div>
-          <div className="flex justify-between w-full">
-            <BaseButton type="submit" className="mt-2 max-w-64 bg-primary">
+          <div className="flex flex-col md:flex-row justify-between w-full">
+            <BaseButton type="submit" className="mt-2 md:w-64 w-full bg-primary">
               <p className="w-96">Save</p>
             </BaseButton>
 
             <BaseButton
               type="submit"
-              className="mt-2 max-w-64 bg-primary-light"
+              className="mt-2 md:w-64 w-full bg-primary-light"
             >
               <p className="w-96 text-primary-dark">Cancel</p>
             </BaseButton>

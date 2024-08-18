@@ -12,7 +12,7 @@ const EditLicense = ({ callBack }: any) => {
     isLoading,
   } = useAddTellerForm();
   return (
-    <div className="w-[580px]">
+    <div className="md:w-[580px] w-[360px]">
       <div className="bg-primary-dark flex px-3 py-2 items-center justify-between">
         <h1 className="text-white font-bold">Edit License</h1>
         <i
@@ -34,7 +34,7 @@ const EditLicense = ({ callBack }: any) => {
               validationTrigger={validationError}
               label="Name"
               placeholder=""
-              width="w-[560px]"
+              width="md:w-[560px] w-[300px]"
               height="h-10"
             />
 
@@ -48,7 +48,7 @@ const EditLicense = ({ callBack }: any) => {
               validationTrigger={validationError}
               label="Phone Number"
               placeholder="Enter payment date"
-              width="w-[560px]"
+              width="md:w-[560px] w-[300px]"
               height="h-10"
             />
 
@@ -62,7 +62,7 @@ const EditLicense = ({ callBack }: any) => {
               validationTrigger={validationError}
               label="Email Address"
               placeholder="Enter Account Number"
-              width="w-[560px]"
+              width="md:w-[560px] w-[300px]"
               height="h-10"
             />
 
@@ -76,7 +76,7 @@ const EditLicense = ({ callBack }: any) => {
               validationTrigger={validationError}
               label="State"
               placeholder="Enter Inputter"
-              width="w-[560px]"
+              width="md:w-[560px] w-[300px]"
               height="h-10"
             />
 
@@ -90,7 +90,7 @@ const EditLicense = ({ callBack }: any) => {
               validationTrigger={validationError}
               label="Country"
               placeholder="Enter amount"
-              width="w-[560px]"
+              width="md:w-[560px] w-[300px]"
               height="h-10"
             />
 
@@ -104,7 +104,7 @@ const EditLicense = ({ callBack }: any) => {
               validationTrigger={validationError}
               label="License Number"
               placeholder="Enter Type"
-              width="w-[560px]"
+              width="md:w-[560px] w-[300px]"
               height="h-10"
             />
 
@@ -118,7 +118,7 @@ const EditLicense = ({ callBack }: any) => {
               validationTrigger={validationError}
               label="Date obtained"
               placeholder="Enter Type"
-              width="w-[560px]"
+              width="md:w-[560px] w-[300px]"
               height="h-10"
             />
 
@@ -132,21 +132,21 @@ const EditLicense = ({ callBack }: any) => {
               validationTrigger={validationError}
               label="Expiry Date"
               placeholder="Enter Type"
-              width="w-[560px]"
+              width="md:w-[560px] w-[300px]"
               height="h-10"
             />
 
-            <BaseButton type="submit" className="mt-2 max-w-[560px] bg-primary">
-              <p className="w-[560px]">
+            <BaseButton type="submit" className="mt-2 md:w-[560px] w-[300px] bg-primary">
+              <p className="md:w-[560px] w-[300px]">
                 {isLoading ? "Submitting..." : "Save"}
               </p>
             </BaseButton>
 
             <BaseButton
               type="submit"
-              className="mt-2 max-w-[560px] bg-primary-light"
+              className="mt-2 md:w-[560px] w-[300px] bg-primary-light"
             >
-              <p className="w-[560px] text-primary-dark">
+              <p className="md:w-[560px] w-[300px] text-primary-dark">
                 {isLoading ? "Submitting..." : "Delete"}
               </p>
             </BaseButton>

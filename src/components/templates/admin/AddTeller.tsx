@@ -12,7 +12,7 @@ const AddTeller = ({ callBack }: any) => {
     isLoading,
   } = useAddTellerForm();
   return (
-    <div className="w-[580px]">
+    <div className="md:w-[580px] w-[340px]">
       <div className="bg-primary-dark flex px-3 py-2 items-center justify-between">
         <h1 className="text-white font-bold">Create Teller</h1>
         <i
@@ -34,7 +34,7 @@ const AddTeller = ({ callBack }: any) => {
               validationTrigger={validationError}
               label="Transaction ID"
               placeholder="Enter Transaction ID"
-              width="w-[560px]"
+              width="md:w-[560px] w-[300px]"
               height="h-10"
             />
 
@@ -48,7 +48,7 @@ const AddTeller = ({ callBack }: any) => {
               validationTrigger={validationError}
               label="Payment Date"
               placeholder="Enter payment date"
-              width="w-[560px]"
+              width="md:w-[560px] w-[300px]"
               height="h-10"
             />
 
@@ -62,7 +62,7 @@ const AddTeller = ({ callBack }: any) => {
               validationTrigger={validationError}
               label="Account Number"
               placeholder="Enter Account Number"
-              width="w-[560px]"
+              width="md:w-[560px] w-[300px]"
               height="h-10"
             />
 
@@ -76,7 +76,7 @@ const AddTeller = ({ callBack }: any) => {
               validationTrigger={validationError}
               label="Inputter"
               placeholder="Enter Inputter"
-              width="w-[560px]"
+              width="md:w-[560px] w-[300px]"
               height="h-10"
             />
 
@@ -90,7 +90,7 @@ const AddTeller = ({ callBack }: any) => {
               validationTrigger={validationError}
               label="Amount"
               placeholder="Enter amount"
-              width="w-[560px]"
+              width="md:w-[560px] w-[300px]"
               height="h-10"
             />
 
@@ -104,21 +104,21 @@ const AddTeller = ({ callBack }: any) => {
               validationTrigger={validationError}
               label="Type"
               placeholder="Enter Type"
-              width="w-[560px]"
+              width="md:w-[560px] w-[300px]"
               height="h-10"
             />
 
-            <BaseButton type="submit" className="mt-2 max-w-[560px] bg-primary">
-              <p className="w-[560px]">
+            <BaseButton type="submit" className="mt-2 md:w-[560px] w-[300px] bg-primary">
+              <p className="md:w-[560px] w-[300px]">
                 {isLoading ? "Submitting..." : "Save"}
               </p>
             </BaseButton>
 
             <BaseButton
               type="submit"
-              className="mt-2 max-w-[560px] bg-primary-light"
+              className="mt-2 md:w-[560px] w-[300px] bg-primary-light"
             >
-              <p className="w-[560px] text-primary-dark">
+              <p className="md:w-[560px] w-[300px] text-primary-dark">
                 {isLoading ? "Submitting..." : "Cancel"}
               </p>
             </BaseButton>

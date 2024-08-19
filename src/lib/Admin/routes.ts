@@ -8,6 +8,11 @@ import ReportIcon from "../../assets/icons/Vector (12).svg";
 import UsersIcon from "../../assets/icons/manage_accounts_FILL1_wght400_GRAD0_opsz24 1 (1).svg";
 import SettingsIcon from "../../assets/icons/Group.svg";
 import { AdminRoute } from "../../utils/types/admin/admin.types";
+import Types from "../../assets/icons/types.svg";
+import Titles from "../../assets/icons/titles.svg";
+import Language from "../../assets/icons/language.svg";
+import Activity from "../../assets/icons/activity.svg";
+import OtherUsers from "../../assets/icons/other-users.svg";
 
 
 export const adminRoutes: AdminRoute[] = [
@@ -56,4 +61,33 @@ export const adminRoutes: AdminRoute[] = [
         page: "Settings",
         route: "/admin/settings"
     }
+]
+
+
+export const adminSettingsRoutes: AdminRoute[] = [
+    {
+        icon: Types,
+        page: "Types",
+        route: "/admin/dashboard"
+    },
+    {
+        icon: OtherUsers,
+        page: "Other users",
+        route: "/admin/branch"
+    },
+    {
+        icon: Language,
+        page: "Language preference",
+        route: "/admin/teller"
+    },
+    {
+        icon: Activity,
+        page: "Activity log",
+        route: "/admin/interest-rate"
+    },
+    {
+        icon: Titles,
+        page: "Titles",
+        route: "/admin/manage-users"
+    },
 ]

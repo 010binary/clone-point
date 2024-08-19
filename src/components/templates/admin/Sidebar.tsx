@@ -24,7 +24,7 @@ const Sidebar: React.FC<SidebarProps> = ({ routes }) => {
           isSideBarActive
             ? "block translate-x-[0px] duration-[300ms] ease-in transform top-0 w-72"
             : "hidden md:translate-x-[0px] translate-x-[-500px]"
-        } md:block sidebar__container z-[1000] fixed overflow-y-scroll md:top-16 left-0 pb-48`}
+        } md:block sidebar__container z-[1000] md:z-0 fixed overflow-y-scroll md:top-16 left-0 pb-48`}
         style={{
           background:
             "linear-gradient(359.88deg, #250943 55.29%, #1702FF 127.12%)",

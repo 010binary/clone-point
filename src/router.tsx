@@ -20,6 +20,7 @@ import ViewUser from "./pages/dashboard/admin/ViewUser";
 import EditUser from "./pages/dashboard/admin/EditUser";
 import Lincense from "./pages/dashboard/admin/Lincense";
 import Index from "./pages/Index";
+import Settings from "./pages/dashboard/admin-settings/Settings";
 
 export const router: Router = createBrowserRouter([
   {
@@ -100,6 +101,10 @@ export const router: Router = createBrowserRouter([
       {
         path: "/admin/license",
         element: <Lincense />,
+      },
+      {
+        path: "/admin/settings",
+        element: <Settings />,
       },
     ],
   },

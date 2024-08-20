@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import SettingsSidebar from "../../../components/templates/admin/SettingsSidebar";
 import DashboardLayout from "../layout";
-import CreateTitle from "../../../components/templates/admin-settings/CreateTittle";
 import ViewTitle from "../../../components/templates/admin-settings/ViewTitle";
 import User from "../../../assets/icons/user.svg";
 import CreateUser from "../../../components/templates/admin-settings/User";

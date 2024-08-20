@@ -73,7 +73,7 @@ export const adminSettingsRoutes: AdminRoute[] = [
     {
         icon: OtherUsers,
         page: "Other users",
-        route: "/admin/branch"
+        route: "/admin/settings/users"
     },
     {
         icon: Language,
@@ -83,11 +83,11 @@ export const adminSettingsRoutes: AdminRoute[] = [
     {
         icon: Activity,
         page: "Activity log",
-        route: "/admin/interest-rate"
+        route: "/admin/settings/activity-log"
     },
     {
         icon: Titles,
         page: "Titles",
-        route: "/admin/manage-users"
-    },
+        route: "/admin/settings/titles"
+    }
 ]

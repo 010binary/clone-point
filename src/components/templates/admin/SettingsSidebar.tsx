@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { adminSettingsRoutes } from "../../../lib/Admin/routes";
 
 const SettingsSidebar = () => {
@@ -15,7 +16,7 @@ const SettingsSidebar = () => {
           {adminSettingsRoutes && adminSettingsRoutes.map((item) => (
             <li className="flex gap-2">
                 <img src={item.icon}></img>
-                <a href={item?.route}>{item?.page}</a>
+                <Link to={item?.route}>{item?.page}</Link>
             </li>
         ))}
         </ul>

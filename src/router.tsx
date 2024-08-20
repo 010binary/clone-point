@@ -21,6 +21,9 @@ import EditUser from "./pages/dashboard/admin/EditUser";
 import Lincense from "./pages/dashboard/admin/Lincense";
 import Index from "./pages/Index";
 import Settings from "./pages/dashboard/admin-settings/Settings";
+import ActivityLog from "./pages/dashboard/admin-settings/ActivityLog";
+import Titles from "./pages/dashboard/admin-settings/Titles";
+import Users from "./pages/dashboard/admin-settings/Users";
 
 export const router: Router = createBrowserRouter([
   {
@@ -106,6 +109,18 @@ export const router: Router = createBrowserRouter([
         path: "/admin/settings",
         element: <Settings />,
       },
+      {
+        path: "/admin/settings/activity-log",
+        element: <ActivityLog />,
+      },
+      {
+        path: "/admin/settings/titles",
+        element: <Titles />,
+      },
+      {
+        path: "/admin/settings/users",
+        element: <Users />,
+      }
     ],
   },
 ]);

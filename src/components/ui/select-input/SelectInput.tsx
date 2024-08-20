@@ -6,6 +6,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
   options,
   labelColor,
   width,
+  height,
   onChange = () => {},
   ...rest
 }) => {
@@ -34,7 +35,7 @@ const SelectInput: React.FC<SelectInputProps> = ({
           border: "0.71px solid #00000033",
         }}
         {...rest}
-        className={`border border-l-0 pl-2 h-12 pr-12 ${width} text-sm rounded-lg focus:outline-none`}
+        className={`border border-l-0 pl-2  pr-12 ${width} ${height ? height : "h-12"} text-sm rounded-lg focus:outline-none`}
       >
         {options.map((option, index) => (
           <option key={index} value={option.value}>

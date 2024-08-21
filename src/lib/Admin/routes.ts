@@ -68,7 +68,7 @@ export const adminSettingsRoutes: AdminRoute[] = [
     {
         icon: Types,
         page: "Types",
-        route: "/admin/dashboard"
+        route: "/admin/settings"
     },
     {
         icon: OtherUsers,

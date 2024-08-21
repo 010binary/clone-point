@@ -24,6 +24,7 @@ import Settings from "./pages/dashboard/admin-settings/Settings";
 import ActivityLog from "./pages/dashboard/admin-settings/ActivityLog";
 import Titles from "./pages/dashboard/admin-settings/Titles";
 import Users from "./pages/dashboard/admin-settings/Users";
+import ManageAccesibility from "./pages/dashboard/admin-settings/ManageAccesibility";
 
 export const router: Router = createBrowserRouter([
   {
@@ -120,6 +121,10 @@ export const router: Router = createBrowserRouter([
       {
         path: "/admin/settings/users",
         element: <Users />,
+      },
+      {
+        path: "/admin/settings/accesibility",
+        element: <ManageAccesibility />,
       }
     ],
   },

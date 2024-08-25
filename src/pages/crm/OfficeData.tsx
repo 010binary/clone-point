@@ -4,7 +4,7 @@ import shareIcon from "../../assets/icons/share.svg";
 import Action from "../../assets/icons/action.svg";
 import CreateCustomerAccount from "./CustomerAccount";
 
-const AccountGenerator = () => {
+const OfficeData = () => {
   const [activeAction, setActiveAction] = useState(null);
   const [createCustomer, setCreateCustomer] = useState(false);
 
@@ -83,7 +83,7 @@ const AccountGenerator = () => {
           className="w-full bg-white flex justify-between py-5 mt-5"
           style={{ boxShadow: "0px 4px 30px 0px #1A88E14A inset" }}
         >
-          <h6 className="font-bold text-black px-6">Customer’s Data</h6>
+          <h6 className="font-bold text-black px-6">Office Data</h6>
         </div>
 
         <div className="flex items-center justify-between mt-5">
@@ -101,17 +101,7 @@ const AccountGenerator = () => {
               onClick={handleShowCreateCustomer}
               className="flex items-center gap-4 border rounded-lg px-4 py-2"
             >
-              <p className="text-sm font-semibold">New Individual Customer</p>
-              <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
-                <i className="ri-add-line text-white"></i>
-              </div>
-            </button>
-
-            <button
-              onClick={handleShowCreateCustomer}
-              className="flex items-center gap-4 border rounded-lg px-4 py-2"
-            >
-              <p className="text-sm font-semibold">New Co-operate Customer</p>
+              <p className="text-sm font-semibold">New Office Employee</p>
               <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
                 <i className="ri-add-line text-white"></i>
               </div>
@@ -228,4 +218,4 @@ const AccountGenerator = () => {
   );
 };
 
-export default AccountGenerator;
+export default OfficeData;

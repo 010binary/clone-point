@@ -71,3 +71,100 @@ export const identification = [
         value: "Voters Card",
       },
   ];
+
+
+  export const residentialType = [
+    {
+      label: "Rented",
+      value: "Rented",
+    },
+    {
+      label: "Owned",
+      value: "Owned",
+    },
+
+    {
+        label: "Living with Family",
+        value: "Living with Family",
+      },
+      {
+        label: "Provided by Employer",
+        value: "Provided by Employer",
+      }
+  ];
+
+  
+  export const relationship = [
+    {
+      label: "Father",
+      value: "Father",
+    },
+    {
+      label: "Mother",
+      value: "Mother",
+    },
+
+    {
+        label: "Sister",
+        value: "Sister",
+      },
+      {
+        label: "Brother",
+        value: "Brother",
+      },
+      {
+        label: "Uncle",
+        value: "Uncle",
+      },
+      {
+        label: "Aunt",
+        value: "Aunt",
+      },
+      {
+        label: "Child",
+        value: "Child",
+      }
+  ];
+
+  export const employmentStatus = [
+    {
+      label: "Employed",
+      value: "Employed",
+    },
+    {
+      label: "Self Employed",
+      value: "Self Employed",
+    }
+  ];
+
+
+  export const workSector = [
+    {
+      label: "Banking",
+      value: "Banking",
+    },
+    {
+      label: "Agriculture",
+      value: "Agriculture",
+    },
+    {
+        label: "Health",
+        value: "Health",
+      },
+      {
+        label: "Finance",
+        value: "Finance",
+      },
+      {
+        label: "Education",
+        value: "Education",
+      },
+      {
+        label: "Government Agency",
+        value: "Government Agency",
+      },
+      {
+        label: "Oil and Gas",
+        value: "Oil and Gas",
+      }
+  ];

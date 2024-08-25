@@ -7,9 +7,10 @@ import { useState } from "react";
 
 interface SidebarProps {
   routes: AdminRoute[];
+  title?: string;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ routes }) => {
+const Sidebar: React.FC<SidebarProps> = ({ routes, title }) => {
   const location = useLocation();
   const [isSideBarActive, setIsSideBarActive] = useState<boolean>(false);
 
@@ -20,7 +21,7 @@ const Sidebar: React.FC<SidebarProps> = ({ routes }) => {
   return (
     <>
       <div
-        className={`md:w-64 h-full ${
+        className={`md:w-[260px] h-full ${
           isSideBarActive
             ? "block translate-x-[0px] duration-[300ms] ease-in transform top-0 w-72"
             : "hidden md:translate-x-[0px] translate-x-[-500px]"
@@ -31,10 +32,10 @@ const Sidebar: React.FC<SidebarProps> = ({ routes }) => {
         }}
       >
         <div className="mt-20">
-          <h4 className="text-white px-8 text-lg font-bold">Administrations</h4>
+          <h4 className="text-white px-5 font-bold">{title}</h4>
         </div>
 
-        <ul className="relative px-10 flex flex-col gap-8 mt-10 z-10">
+        <ul className="relative px-5 flex flex-col gap-8 mt-10 z-10">
           {routes &&
             routes.map((item) => (
               <li
@@ -53,7 +54,7 @@ const Sidebar: React.FC<SidebarProps> = ({ routes }) => {
                       location.pathname === item.route ? "filter-primary" : ""
                     }`}
                   />
-                  <p className="font-semibold">{item?.page}</p>
+                  <p className="font-semibold text-base">{item?.page}</p>
                 </Link>
               </li>
             ))}

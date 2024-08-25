@@ -25,6 +25,8 @@ import ActivityLog from "./pages/dashboard/admin-settings/ActivityLog";
 import Titles from "./pages/dashboard/admin-settings/Titles";
 import Users from "./pages/dashboard/admin-settings/Users";
 import ManageAccesibility from "./pages/dashboard/admin-settings/ManageAccesibility";
+import AccountGenerator from "./pages/crm/AccountGenerator";
+import CRMDashboard from "./pages/crm/Dashboard";
 
 export const router: Router = createBrowserRouter([
   {
@@ -124,6 +126,18 @@ export const router: Router = createBrowserRouter([
       },
       {
         path: "/admin/settings/accesibility",
+        element: <ManageAccesibility />,
+      },
+      {
+        path: "/admin/crm",
+        element: <CRMDashboard />,
+      },
+      {
+        path: "/admin/crm/account-generator",
+        element: <AccountGenerator />,
+      },
+      {
+        path: "/admin/crm/client-manager",
         element: <ManageAccesibility />,
       }
     ],

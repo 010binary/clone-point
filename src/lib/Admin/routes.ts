@@ -91,3 +91,22 @@ export const adminSettingsRoutes: AdminRoute[] = [
         route: "/admin/settings/titles"
     }
 ]
+
+export const CRMRoutes: AdminRoute[] = [
+    {
+        icon: DashboardIcon,
+        page: "Dashboard",
+        route: "/admin/crm"
+    },
+    {
+        icon: OtherUsers,
+        page: "Account Generator",
+        route: "/admin/crm/account-generator"
+    },
+    {
+        icon: OtherUsers,
+        page: "Client manager",
+        route: "/admin/crm/client-manger"
+    }
+]
+

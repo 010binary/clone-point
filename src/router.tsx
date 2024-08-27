@@ -30,6 +30,10 @@ import CRMDashboard from "./pages/crm/Dashboard";
 import OfficeData from "./pages/crm/OfficeData";
 import ViewDetails from "./pages/crm/ViewDetails";
 import PostTransaction from "./pages/operations/PostTransaction";
+import AuthorizeTransaction from "./pages/operations/AuthorizeTransactions";
+import ViewAuthorizedTransaction from "./pages/operations/ViewAuthorizedTransaction";
+import TellerTransaction from "./pages/operations/TellerTransactions";
+import ViewTellerTransaction from "./pages/operations/ViewTellerTransaction";
 
 export const router: Router = createBrowserRouter([
   {
@@ -154,6 +158,22 @@ export const router: Router = createBrowserRouter([
       {
         path: "/admin/operation/post-transactions",
         element: <PostTransaction />,
+      },
+      {
+        path: "/admin/operation/authorize-transactions",
+        element: <AuthorizeTransaction />,
+      },
+      {
+        path: "/admin/operation/view-authorized-transaction",
+        element: <ViewAuthorizedTransaction />,
+      },
+      {
+        path: "/admin/operation/teller-transactions",
+        element: <TellerTransaction />,
+      },
+      {
+        path: "/admin/operation/view-teller-transactions",
+        element: <ViewTellerTransaction />,
       }
     ],
   },

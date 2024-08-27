@@ -124,7 +124,12 @@ export const OperationRoutes: AdminRoute[] = [
     },
     {
         icon: OtherUsers,
-        page: "Client manager",
-        route: "/admin/crm/client-manger"
+        page: "Authorize Transactions",
+        route: "/admin/operation/authorize-transactions"
+    },
+    {
+        icon: OtherUsers,
+        page: "Teller Transactions",
+        route: "/admin/operation/teller-transactions"
     }
 ]

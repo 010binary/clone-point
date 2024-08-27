@@ -110,3 +110,21 @@ export const CRMRoutes: AdminRoute[] = [
     }
 ]
 
+
+export const OperationRoutes: AdminRoute[] = [
+    {
+        icon: DashboardIcon,
+        page: "Dashboard",
+        route: "/admin/operation"
+    },
+    {
+        icon: OtherUsers,
+        page: "Post Transactions",
+        route: "/admin/operation/post-transactions"
+    },
+    {
+        icon: OtherUsers,
+        page: "Client manager",
+        route: "/admin/crm/client-manger"
+    }
+]

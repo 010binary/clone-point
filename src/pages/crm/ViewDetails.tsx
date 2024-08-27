@@ -1,19 +1,6 @@
 import DashboardLayout from "./layout";
 
 const ViewDetails = () => {
-  const details = [
-    { label: "Branch Name", value: "Keystone Bank" },
-    { label: "Branch Address", value: "50, Isaac street Somolu" },
-    { label: "City", value: "Lagos" },
-    { label: "State", value: "Lagos" },
-    { label: "Country", value: "Nigeria" },
-    { label: "Business Manager", value: "Math Adedayo" },
-    { label: "Customer Service Manager", value: "Wade Warren" },
-    { label: "Operation Manager", value: "John Doe" },
-    { label: "Internal Control Manager", value: "Bimpe Eniloa" },
-    { label: "Authorisers", value: "Keystone" },
-  ];
-
   return (
     <DashboardLayout>
       <div className="md:pl-[300px] px-5 md:pr-10">

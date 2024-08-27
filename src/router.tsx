@@ -29,6 +29,7 @@ import AccountGenerator from "./pages/crm/AccountGenerator";
 import CRMDashboard from "./pages/crm/Dashboard";
 import OfficeData from "./pages/crm/OfficeData";
 import ViewDetails from "./pages/crm/ViewDetails";
+import PostTransaction from "./pages/operations/PostTransaction";
 
 export const router: Router = createBrowserRouter([
   {
@@ -149,6 +150,10 @@ export const router: Router = createBrowserRouter([
       {
         path: "/admin/crm/view-details",
         element: <ViewDetails />,
+      },
+      {
+        path: "/admin/operation/post-transactions",
+        element: <PostTransaction />,
       }
     ],
   },

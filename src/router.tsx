@@ -28,6 +28,7 @@ import ManageAccesibility from "./pages/dashboard/admin-settings/ManageAccesibil
 import AccountGenerator from "./pages/crm/AccountGenerator";
 import CRMDashboard from "./pages/crm/Dashboard";
 import OfficeData from "./pages/crm/OfficeData";
+import ViewDetails from "./pages/crm/ViewDetails";
 
 export const router: Router = createBrowserRouter([
   {
@@ -144,6 +145,10 @@ export const router: Router = createBrowserRouter([
       {
         path: "/admin/crm/office-data",
         element: <OfficeData />,
+      },
+      {
+        path: "/admin/crm/view-details",
+        element: <ViewDetails />,
       }
     ],
   },

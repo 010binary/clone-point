@@ -30,7 +30,7 @@ const SignUp = ({setActivePage}: any) => {
               className="font-bold text-lg cursor-pointer pl-14 pb-2"
               onClick={() => setActivePage("sign-up")}
             >
-              Sign up
+              Signup
             </h1>
             <div className="border-b-[3px] max-w-1/2 rounded-full border-primary-dark"></div>
           </div>
@@ -97,7 +97,7 @@ const SignUp = ({setActivePage}: any) => {
             onChange={handleChange}
             validation={validationSchema?.fields.userName}
             validationTrigger={validationError}
-            label="User Name"
+            label="Username"
             placeholder="Enter user name"
             width="w-[600px]"
           />

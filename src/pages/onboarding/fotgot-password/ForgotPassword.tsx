@@ -39,14 +39,14 @@ const ForgotPassword = () => {
             width="w-96"
           />
 
-          <BaseButton type="submit" className="mt-6 w-96">
+          <BaseButton type="submit" className="mt-6 bg-primary w-96">
           <p>{isLoading ? "Submitting..." : "Send"}</p>
           </BaseButton>
         </form>
 
         <div className="flex mt-4 gap-2">
           <p>Do you remember your password?</p>
-          <Link to="/sign-in" className="text-primary underline font-bold">
+          <Link to="/" className="text-primary underline font-bold">
             Try signing in
           </Link>
         </div>

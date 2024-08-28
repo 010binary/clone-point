@@ -21,7 +21,7 @@ const SignIn = ({ setActivePage }: any) => {
           Sign in to Finman
         </h1>
         <p className="md:w-[450px] text-[#6E6E6E] font-[Montserat-Medium] font-medium">
-          Welcome, great to be have you back!
+          Welcome, great to have you back!
         </p>
         
         <div className="flex w-64 pt-5 pb-1 mb-6">
@@ -39,7 +39,7 @@ const SignIn = ({ setActivePage }: any) => {
               className="font-bold text-lg cursor-pointer pl-14 pb-2"
               onClick={() => setActivePage("log-in")}
             >
-              Log in
+              Login
             </h1>
             <div className="border-b-[3px] max-w-1/2 rounded-full border-primary-dark"></div>
           </div>
@@ -71,12 +71,16 @@ const SignIn = ({ setActivePage }: any) => {
             placeholder="Enter password"
             width="w-96"
           />
-          <div className="flex justify-end w-96">
-            <Link
+          <div className="flex justify-between w-96">
+            <div className="flex items-center gap-1">
+              <input type="checkbox" className="w-4 h-4 text-primary-dark form-checkbox" />
+              <p className="font-medium">Remember me</p>
+            </div>
+          <Link
               to="/forgot-password"
               className="text-primary underline text-sm font-bold"
             >
-              Forogot Password?
+              Forgot Password?
             </Link>
           </div>
           <BaseButton type="submit" className="mt-2 max-w-96 bg-primary">

@@ -34,6 +34,9 @@ import AuthorizeTransaction from "./pages/operations/AuthorizeTransactions";
 import ViewAuthorizedTransaction from "./pages/operations/ViewAuthorizedTransaction";
 import TellerTransaction from "./pages/operations/TellerTransactions";
 import ViewTellerTransaction from "./pages/operations/ViewTellerTransaction";
+import TransactionReport from "./pages/operations/ViewTransactionReport";
+import TransactionsReport from "./pages/operations/TransactionsREport";
+import ViewTransactionReport from "./pages/operations/ViewTransactionReport";
 
 export const router: Router = createBrowserRouter([
   {
@@ -174,6 +177,14 @@ export const router: Router = createBrowserRouter([
       {
         path: "/admin/operation/view-teller-transactions",
         element: <ViewTellerTransaction />,
+      },
+      {
+        path: "/admin/operation/transactions-report",
+        element: <TransactionsReport />,
+      },
+      {
+        path: "/admin/operation/view-transactions-report",
+        element: <ViewTransactionReport />,
       }
     ],
   },

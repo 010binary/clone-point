@@ -13,6 +13,12 @@ import Titles from "../../assets/icons/titles.svg";
 import Language from "../../assets/icons/language.svg";
 import Activity from "../../assets/icons/activity.svg";
 import OtherUsers from "../../assets/icons/other-users.svg";
+import PostTransactionIcon from "../../assets/icons/post-transactions.svg";
+import AuthorizeTransactionIcon from "../../assets/icons/4.svg";
+import TellerTransactionIcon from "../../assets/icons/5.svg";
+import TransactionIconReport from "../../assets/icons/6.svg";
+import LoanManager from "../../assets/icons/7.svg";
+import Investment from "../../assets/icons/8.svg";
 
 
 export const adminRoutes: AdminRoute[] = [
@@ -118,18 +124,33 @@ export const OperationRoutes: AdminRoute[] = [
         route: "/admin/operation"
     },
     {
-        icon: OtherUsers,
+        icon: PostTransactionIcon,
         page: "Post Transactions",
         route: "/admin/operation/post-transactions"
     },
     {
-        icon: OtherUsers,
+        icon: AuthorizeTransactionIcon,
         page: "Authorize Transactions",
         route: "/admin/operation/authorize-transactions"
     },
     {
-        icon: OtherUsers,
+        icon: TellerTransactionIcon,
         page: "Teller Transactions",
+        route: "/admin/operation/teller-transactions"
+    },
+    {
+        icon: TransactionIconReport,
+        page: "Transactions Report",
+        route: "/admin/operation/transactions-report"
+    },
+    {
+        icon: LoanManager,
+        page: "Loan Manager",
+        route: "/admin/operation/teller-transactions"
+    },
+    {
+        icon: Investment,
+        page: "Investments",
         route: "/admin/operation/teller-transactions"
     }
 ]

@@ -36,6 +36,7 @@ import TellerTransaction from "./pages/operations/TellerTransactions";
 import ViewTellerTransaction from "./pages/operations/ViewTellerTransaction";
 import ViewTransactionReport from "./pages/operations/ViewTransactionReport";
 import TransactionsReport from "./pages/operations/TransactionsReport";
+import OperationsDashboard from "./pages/operations/MainDashboard";
 
 export const router: Router = createBrowserRouter([
   {
@@ -184,6 +185,10 @@ export const router: Router = createBrowserRouter([
       {
         path: "/admin/operation/view-transactions-report",
         element: <ViewTransactionReport />,
+      },
+      {
+        path: "/admin/operation",
+        element: <OperationsDashboard />,
       }
     ],
   },

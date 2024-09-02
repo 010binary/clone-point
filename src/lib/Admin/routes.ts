@@ -10,7 +10,6 @@ import SettingsIcon from "../../assets/icons/Group.svg";
 import { AdminRoute } from "../../utils/types/admin/admin.types";
 import Types from "../../assets/icons/types.svg";
 import Titles from "../../assets/icons/titles.svg";
-import Language from "../../assets/icons/language.svg";
 import Activity from "../../assets/icons/activity.svg";
 import OtherUsers from "../../assets/icons/other-users.svg";
 import PostTransactionIcon from "../../assets/icons/post-transactions.svg";
@@ -80,11 +79,6 @@ export const adminSettingsRoutes: AdminRoute[] = [
         icon: OtherUsers,
         page: "Other users",
         route: "/admin/settings/users"
-    },
-    {
-        icon: Language,
-        page: "Language preference",
-        route: "/admin/teller"
     },
     {
         icon: Activity,

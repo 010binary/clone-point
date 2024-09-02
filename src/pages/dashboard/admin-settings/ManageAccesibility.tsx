@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SettingsSidebar from "../../../components/templates/admin/SettingsSidebar";
 import DashboardLayout from "../layout";
 import SelectInput from "../../../components/ui/select-input/SelectInput";
+import { controls } from "../../../lib/Admin/options";
 
 const ManageAccesibility = () => {
   const branches = [
@@ -46,7 +47,7 @@ const ManageAccesibility = () => {
         <div className="flex flex-col md:flex-row gap-4 pb-40">
           <SettingsSidebar />
 
-          <div className="flex flex-col items-end mt-10 md:w-[70%]">
+          <div className="flex flex-col items-end mt-10 md:w-[70%] md:py-10">
             <div className="flex w-full justify-between items-center">
               <h6 className="text-lg font-medium">
                 Give other users permission to access every section
@@ -70,9 +71,9 @@ const ManageAccesibility = () => {
                 Access limited to assigned controls only
               </h6>
               <form action="" className="flex flex-col gap-3 w-96">
-                <SelectInput  label="Control" options={[{label: "Operation", value: "Operation"}]}></SelectInput>
-                <SelectInput  label="User" options={[{label: "Operation", value: "Operation"}]}></SelectInput>
-                <SelectInput  label="Branch" options={[{label: "Operation", value: "Operation"}]}></SelectInput>
+                <SelectInput  label="Control" options={controls}></SelectInput>
+                <SelectInput  label="User" options={[{label: "", value: ""}]}></SelectInput>
+                <SelectInput  label="Branch" options={[{label: "", value: ""}]}></SelectInput>
               </form>
             </div>
 

@@ -54,7 +54,7 @@ const Users = () => {
         <div className="flex flex-col md:flex-row gap-4 pb-40">
           <SettingsSidebar />
 
-          <div className="flex flex-col items-start mt-10 md:w-[70%]">
+          <div className="flex flex-col items-start mt-10 md:w-[70%] md:py-10">
             <p className="text-[#575757] mb-5">
               Assign role control to other users
             </p>

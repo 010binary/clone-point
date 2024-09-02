@@ -140,7 +140,21 @@ export const OperationRoutes: AdminRoute[] = [
     {
         icon: LoanManager,
         page: "Loan Manager",
-        route: "/admin/operation/teller-transactions"
+        route: "#",
+        subRoutes: [
+            {
+              page: "Loans",
+              route: "/admin/operation/loan-manager/loans",
+            },
+            {
+              page: "Active Loans",
+              route: "/admin/operation/loan-manager/active",
+            },
+            {
+              page: "Loan Statement",
+              route: "/admin/operation/loan-manager/loan-statement",
+            },
+          ],
     },
     {
         icon: Investment,

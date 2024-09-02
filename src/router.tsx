@@ -37,6 +37,15 @@ import ViewTellerTransaction from "./pages/operations/ViewTellerTransaction";
 import ViewTransactionReport from "./pages/operations/ViewTransactionReport";
 import TransactionsReport from "./pages/operations/TransactionsReport";
 import OperationsDashboard from "./pages/operations/MainDashboard";
+import LoanDashboard from "./pages/loans/LoanDashboard";
+import ApprovedLoans from "./pages/loans/ApprovedLoans";
+import LoanStatement from "./pages/loans/LoanStatement";
+import ActiveLoans from "./pages/loans/ActiveLoans";
+import ViewActiveLoan from "./pages/loans/ViewActiveLoan";
+import ViewApprovedLoan from "./pages/loans/ViewApprovedLoan";
+import ViewCompletedLoan from "./pages/loans/ViewCompletedLoan";
+import ViewDeclinedLoan from "./pages/loans/ViewDeclinedLoan";
+import ViewDueLoan from "./pages/loans/ViewDueLoan";
 
 export const router: Router = createBrowserRouter([
   {
@@ -189,7 +198,43 @@ export const router: Router = createBrowserRouter([
       {
         path: "/admin/operation",
         element: <OperationsDashboard />,
-      }
+      },
+      {
+        path: "/admin/operation/loan-manager/loans",
+        element: <LoanDashboard />,
+      },
+      {
+        path: "/admin/operation/loan-manager/approved-loans",
+        element: <ApprovedLoans />,
+      },
+      {
+        path: "/admin/operation/loan-manager/loan-statement",
+        element: <LoanStatement />,
+      },
+      {
+        path: "/admin/operation/loan-manager/active",
+        element: <ActiveLoans />,
+      },
+      {
+        path: "/admin/operation/loan-manager/view-active",
+        element: <ViewActiveLoan />,
+      },
+      {
+        path: "/admin/operation/loan-manager/view-approved",
+        element: <ViewApprovedLoan />,
+      },
+      {
+        path: "/admin/operation/loan-manager/view-completed",
+        element: <ViewCompletedLoan />,
+      },
+      {
+        path: "/admin/operation/loan-manager/view-declined",
+        element: <ViewDeclinedLoan />,
+      },
+      {
+        path: "/admin/operation/loan-manager/view-due",
+        element: <ViewDueLoan />,
+      },
     ],
   },
 ]);

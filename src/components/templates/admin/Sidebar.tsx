@@ -13,9 +13,14 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ routes, title }) => {
   const location = useLocation();
   const [isSideBarActive, setIsSideBarActive] = useState<boolean>(false);
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
 
   const handleSidebarState = () => {
     setIsSideBarActive(!isSideBarActive);
+  };
+
+  const handleMenuToggle = (route: string) => {
+    setOpenMenu(openMenu === route ? null : route);
   };
 
   return (
@@ -38,24 +43,47 @@ const Sidebar: React.FC<SidebarProps> = ({ routes, title }) => {
         <ul className="relative px-5 flex flex-col gap-8 mt-10 z-10">
           {routes &&
             routes.map((item) => (
-              <li
-                key={item?.page}
-                className={`px-2 py-1 ${
-                  location.pathname === item.route
-                    ? "bg-white text-primary"
-                    : "text-white"
-                }`}
-              >
-                <Link to={item.route} className="flex gap-4 items-center">
-                  <img
-                    src={item?.icon}
-                    alt={`${item?.page} icon`}
-                    className={`${
-                      location.pathname === item.route ? "filter-primary" : ""
-                    }`}
-                  />
-                  <p className="font-semibold text-base">{item?.page}</p>
-                </Link>
+              <li key={item?.page} className="px-2 py-1">
+                <div
+                  className={`${
+                    location.pathname.startsWith(item.route)
+                      ? "bg-white text-primary"
+                      : "text-white"
+                  }`}
+                >
+                  <div 
+                    className="flex gap-4 items-center cursor-pointer"
+                    onClick={() => handleMenuToggle(item.route)}
+                  >
+                    <img
+                      src={item?.icon}
+                      alt={`${item?.page} icon`}
+                      className={`${
+                        location.pathname === item.route ? "filter-primary" : ""
+                      }`}
+                    />
+                    <Link to={item.route} className="font-semibold text-base">{item?.page}</Link>
+                    {item?.subRoutes && (<i className={`ri-arrow-${openMenu === item.route ? "up" : "down"}-s-fill text-white`}></i>)}
+                  </div>
+                </div>
+                {item?.subRoutes && openMenu === item.route && (
+                  <ul className="ml-6 p-2 mt-2 flex flex-col gap-4 relative">
+                    {item.subRoutes.map((subItem: any) => (
+                      <li key={subItem.page} >
+                        <Link
+                          to={subItem.route}
+                          className={`${
+                            location.pathname === subItem.route
+                              ? "bg-white w-40 text-primary pr-5 pl-2 font-bold py-1"
+                              : "text-white pl-2"
+                          }`}
+                        >
+                          {subItem.page}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </li>
             ))}
         </ul>
@@ -78,11 +106,14 @@ const Sidebar: React.FC<SidebarProps> = ({ routes, title }) => {
         <div className="w-full fixed top-0 left-0 h-screen bg-black bg-opacity-80" />
       )}
 
-    {isSideBarActive && (
-        <div onClick={handleSidebarState} className="z-[1000] fixed top-4 right-4 bg-white p-4 flex items-center justify-center rounded-full w-12 h-12">
-        <i className="ri-close-large-line text-2xl font-semibold"></i>
+      {isSideBarActive && (
+        <div
+          onClick={handleSidebarState}
+          className="z-[1000] fixed top-4 right-4 bg-white p-4 flex items-center justify-center rounded-full w-12 h-12"
+        >
+          <i className="ri-close-large-line text-2xl font-semibold"></i>
         </div>
-    )}
+      )}
     </>
   );
 };

@@ -1,78 +1,97 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import plusIcon from "../../assets/icons/plus.svg";
+import DashboardLayout from "./layout";
 import shareIcon from "../../assets/icons/share.svg";
-import TextInput from "../../components/ui/text-input/TextInput";
 import Action from "../../assets/icons/action.svg";
-import OperationLayout from "./layout";
-import EditActiveLoan from "../../components/templates/operations/EditActiveLoans";
+import CreateNewAccount from "../../components/templates/crm/CreateNewAccount";
+import EditAccount from "../../components/templates/crm/EditAccount";
 
-const ActiveLoans = () => {
+const ManagerAccount = () => {
   const [activeAction, setActiveAction] = useState(null);
-  
   const [createCustomer, setCreateCustomer] = useState(false);
+  const [showEditAccount, setShowEditAccount] = useState(false);
 
   const handleActionClick = (index: any) => {
     setActiveAction(activeAction === index ? null : index);
   };
 
   const handleShowCreateCustomer = () => {
-    setCreateCustomer(!createCustomer)
-  }
+    setCreateCustomer(!createCustomer);
+  };
 
-  const loan = [
+  const handleShowEditCustomer = () => {
+    setShowEditAccount(!createCustomer);
+  };
+  const customer = [
     {
-      amount: "5000",
-      loanType: "Student",
-      tenure: "9",
-      startDate: "Fri Jan 29 00:00:00 WAT 2021",
-      monthlyPaid: "100",
-      account: "John Doe",
+      number: "2012001233",
+      balance: "NGN  20,000",
+      type: "Savings",
+      customer: "Customer",
+      branch: "Ilupeju",
+      manager: "Philip Mathew",
     },
     {
-      amount: "5000",
-      loanType: "Student",
-      tenure: "9",
-      startDate: "Fri Jan 29 00:00:00 WAT 2021",
-      monthlyPaid: "100",
-      account: "John Doe",
+      number: "2012001233",
+      balance: "NGN  20,000",
+      type: "Savings",
+      customer: "Customer",
+      branch: "Ilupeju",
+      manager: "Philip Mathew",
     },
     {
-      amount: "5000",
-      loanType: "Student",
-      tenure: "9",
-      startDate: "Fri Jan 29 00:00:00 WAT 2021",
-      monthlyPaid: "100",
-      account: "John Doe",
+      number: "2012001233",
+      balance: "NGN  20,000",
+      type: "Savings",
+      customer: "Customer",
+      branch: "Ilupeju",
+      manager: "Philip Mathew",
+    },
+    {
+      number: "2012001233",
+      balance: "NGN  20,000",
+      type: "Savings",
+      customer: "Customer",
+      branch: "Ilupeju",
+      manager: "Philip Mathew",
+    },
+    {
+      number: "2012001233",
+      balance: "NGN  20,000",
+      type: "Savings",
+      customer: "Customer",
+      branch: "Ilupeju",
+      manager: "Philip Mathew",
+    },
+    {
+      number: "2012001233",
+      balance: "NGN  20,000",
+      type: "Savings",
+      customer: "Customer",
+      branch: "Ilupeju",
+      manager: "Philip Mathew",
+    },
+    {
+      number: "2012001233",
+      balance: "NGN  20,000",
+      type: "Savings",
+      customer: "Customer",
+      branch: "Ilupeju",
+      manager: "Philip Mathew",
     },
   ];
 
   return (
-    <OperationLayout>
+    <DashboardLayout>
       <div className="w-full bg-white dashboard__body overflow-x-hidden md:pl-[268px] px-5 md:pr-10 pt-2">
         <div
           className="w-full bg-white flex justify-between py-5 mt-5"
           style={{ boxShadow: "0px 4px 30px 0px #1A88E14A inset" }}
         >
-          <h6 className="font-bold text-black px-6">Active Loans</h6>
+          <h6 className="font-bold text-black px-6">Account Details</h6>
         </div>
 
         <div className="flex items-center justify-between mt-5">
-          <div className="hidden md:block">
-            <p className="text-sm">
-              Total: <span className="font-bold">250</span>
-            </p>
-          </div>
-
-          <div className="flex  items-center gap-4">
-            <Link
-              to="/admin/add-branch"
-              className="flex items-center px-4 py-2 gap-2 border border-[#E51919]"
-            >
-              <img src={plusIcon} alt="" />
-              <p className="text-[#E51919] font-medium">Clear all</p>
-            </Link>
-
+          <div className="flex w-full items-center justify-end gap-4">
             <button className="flex items-center px-4 py-2 gap-2 border border-[#1A88E1]">
               <img src={shareIcon} alt="" />
               <p className="text-[#1A88E1] font-medium">Export as Pdf</p>
@@ -80,13 +99,18 @@ const ActiveLoans = () => {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-between">
-          <form action="">
-            <div>
-              <label>Account</label>
-              <TextInput width="w-full" placeholder="Enter account name" />
-            </div>
-          </form>
+        <div className="flex mt-6 flex-col md:flex-row items-center justify-between">
+          <div className="flex items-center gap-4">
+            <button
+              onClick={handleShowCreateCustomer}
+              className="flex items-center gap-4 border rounded-lg px-4 py-2"
+            >
+              <p className="text-sm font-semibold">Create Account</p>
+              <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
+                <i className="ri-add-line text-white"></i>
+              </div>
+            </button>
+          </div>
 
           <div className="flex items-center gap-4">
             <p className="font-semibold text-sm">
@@ -105,23 +129,22 @@ const ActiveLoans = () => {
             <thead className="bg-[#E4F1FB]">
               <tr className="border border-gray-200">
                 <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
-                  Amount (NGN) <i className="ri-arrow-drop-down-fill"></i>
+                  Number <i className="ri-arrow-drop-down-fill"></i>
                 </th>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
-                  Loan Type <i className="ri-arrow-drop-down-fill"></i>
+                  Balance <i className="ri-arrow-drop-down-fill"></i>
                 </th>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
-                  Tenure in months <i className="ri-arrow-drop-down-fill"></i>
+                  Type <i className="ri-arrow-drop-down-fill"></i>
                 </th>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
-                  Start Date <i className="ri-arrow-drop-down-fill"></i>
+                  Customer <i className="ri-arrow-drop-down-fill"></i>
                 </th>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
-                  Monthly Amount Paid (NGN)
-                  <i className="ri-arrow-drop-down-fill"></i>
+                  Branch <i className="ri-arrow-drop-down-fill"></i>
                 </th>
                 <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
-                  Account <i className="ri-arrow-drop-down-fill"></i>
+                  Manager <i className="ri-arrow-drop-down-fill"></i>
                 </th>
                 <th className="pl-6 py-4 text-left text-xs font-semiboldm textblack0 uppercase tracking-wider">
                   <i className="ri-arrow-drop-down-fill text-3xl"></i>
@@ -129,7 +152,7 @@ const ActiveLoans = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {loan.map((loan, index) => (
+              {customer.map((item, index) => (
                 <React.Fragment key={index}>
                   <tr className="h-6"></tr>
                   <tr
@@ -137,22 +160,22 @@ const ActiveLoans = () => {
                     className="hover:bg-gray-50 border border-gray-200"
                   >
                     <td className="px-6 py-4 whitespace-nowrap text-xs font-semibold text-black">
-                      {loan.amount}
+                      {item.number}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-xs font-semibold text-black">
-                      {loan.loanType}
+                      {item.balance}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-xs font-semibold text-black">
-                      {loan.tenure}
+                      {item.type}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-xs font-semibold text-black">
-                      {loan.startDate}
+                      {item.customer}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-xs font-semibold text-black">
-                      {loan.monthlyPaid}
+                      {item.branch}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-xs font-semibold text-black">
-                      {loan.account}
+                      {item.manager}
                     </td>
                     <td
                       onClick={() => handleActionClick(index)}
@@ -164,10 +187,13 @@ const ActiveLoans = () => {
                           <div className="absolute top-5 left-0 bg-gray-50 z-10 px-4 py-3 shadow-sm">
                             <ul className="flex flex-col gap-2 text-black">
                               <li className="font-bold text-sm">
-                                <a href="/admin/operation/loan-manager/view-active">View</a>
+                                <a href="/admin/crm/view-details">View</a>
                               </li>
-                              <li className="font-bold text-sm"  onClick={handleShowCreateCustomer}>
-                                Edit
+                              <li
+                                className="font-bold text-sm"
+                                onClick={handleShowEditCustomer}
+                              >
+                                <a href="">Edit</a>
                               </li>
                               <li className="font-bold text-sm">
                                 <a href="">Delete</a>
@@ -190,13 +216,22 @@ const ActiveLoans = () => {
           <>
             <div className="w-full h-full bg-opacity-70 z-0 bg-black fixed top-0"></div>
             <div className="z-50 absolute top-24">
-              <EditActiveLoan callBack={handleShowCreateCustomer} />
+              <CreateNewAccount callBack={handleShowCreateCustomer} />
+            </div>
+          </>
+        )}
+
+        {showEditAccount && (
+          <>
+            <div className="w-full h-full bg-opacity-70 z-0 bg-black fixed top-0"></div>
+            <div className="z-50 absolute top-24">
+              <EditAccount callBack={handleShowEditCustomer} />
             </div>
           </>
         )}
       </div>
-    </OperationLayout>
+    </DashboardLayout>
   );
 };
 
-export default ActiveLoans;
+export default ManagerAccount;

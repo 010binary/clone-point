@@ -46,6 +46,7 @@ import ViewApprovedLoan from "./pages/loans/ViewApprovedLoan";
 import ViewCompletedLoan from "./pages/loans/ViewCompletedLoan";
 import ViewDeclinedLoan from "./pages/loans/ViewDeclinedLoan";
 import ViewDueLoan from "./pages/loans/ViewDueLoan";
+import ManagerAccount from "./pages/crm/ManagerAccount";
 
 export const router: Router = createBrowserRouter([
   {
@@ -166,6 +167,10 @@ export const router: Router = createBrowserRouter([
       {
         path: "/admin/crm/view-details",
         element: <ViewDetails />,
+      },
+      {
+        path: "/admin/crm/client-manger",
+        element: <ManagerAccount />,
       },
       {
         path: "/admin/operation/post-transactions",

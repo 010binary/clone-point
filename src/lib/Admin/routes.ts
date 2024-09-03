@@ -106,7 +106,13 @@ export const CRMRoutes: AdminRoute[] = [
     {
         icon: OtherUsers,
         page: "Client manager",
-        route: "/admin/crm/client-manger"
+        route: "#",
+        subRoutes: [
+            {
+              page: "Account",
+              route: "/admin/crm/client-manger",
+            }
+          ],
     }
 ]
 

@@ -1,46 +1,8 @@
-import React from "react";
 import DashboardLayout from "../layout";
 import shareIcon from "../../../assets/icons/share.svg";
 import SelectInput from "../../../components/ui/select-input/SelectInput";
 
 const ViewTrialBalance = () => {
-  const trialBalance = [
-    {
-      type: "Asset",
-      accountName: "Cash in Vault",
-      glCode: "10033",
-      debit: "500,000",
-      credit: "",
-    },
-    {
-      type: "Asset",
-      accountName: "Cash in Vault",
-      glCode: "10033",
-      debit: "",
-      credit: "60,000",
-    },
-    {
-      type: "Asset",
-      accountName: "Cash in Vault",
-      glCode: "10033",
-      debit: "500,000",
-      credit: "",
-    },
-    {
-      type: "Asset",
-      accountName: "Cash in Vault",
-      glCode: "10033",
-      debit: "",
-      credit: "60,000",
-    },
-    {
-      type: "Asset",
-      accountName: "Cash in Vault",
-      glCode: "10033",
-      debit: "500,000",
-      credit: "",
-    },
-  ];
 
   return (
     <DashboardLayout>

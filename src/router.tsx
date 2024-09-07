@@ -47,6 +47,8 @@ import ViewCompletedLoan from "./pages/loans/ViewCompletedLoan";
 import ViewDeclinedLoan from "./pages/loans/ViewDeclinedLoan";
 import ViewDueLoan from "./pages/loans/ViewDueLoan";
 import ManagerAccount from "./pages/crm/ManagerAccount";
+import Report from "./pages/dashboard/admin/Report";
+import TrialBalance from "./pages/dashboard/admin/TrialBalance";
 
 export const router: Router = createBrowserRouter([
   {
@@ -147,6 +149,14 @@ export const router: Router = createBrowserRouter([
       {
         path: "/admin/settings/accesibility",
         element: <ManageAccesibility />,
+      },
+      {
+        path: "/admin/reports",
+        element: <Report />,
+      },
+      {
+        path: "/admin/reports/trial-balance",
+        element: <TrialBalance />,
       },
       {
         path: "/admin/crm",

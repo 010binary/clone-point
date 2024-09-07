@@ -28,3 +28,25 @@ export const controls = [
     value: "Client manager",
   },
 ];
+
+export const loanType = [
+  {
+    label: "Loan schedule",
+    value: "Loan schedule",
+  },
+  {
+    label: "Trial Balance",
+    value: "Trial Balance",
+  },
+  {
+    label: "Profit and Loss",
+    value: "Profit and Loss",
+  },
+  {
+    label: "Customer Account",
+    value: "Customer Account",
+  },{
+    label: "Transaction Report",
+    value: "Transaction Report",
+  }
+];

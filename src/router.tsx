@@ -49,6 +49,12 @@ import ViewDueLoan from "./pages/loans/ViewDueLoan";
 import ManagerAccount from "./pages/crm/ManagerAccount";
 import Report from "./pages/dashboard/admin/Report";
 import TrialBalance from "./pages/dashboard/admin/TrialBalance";
+import AccountReport from "./pages/dashboard/admin/AccountReport";
+import TransactionReport from "./pages/dashboard/admin/TransactionReport";
+import TransactionReportView from "./pages/dashboard/admin/TransactionReportView";
+import LoanReport from "./pages/dashboard/admin/LoanReport";
+import LoanReportDetails from "./pages/dashboard/admin/LoanReportDetails";
+import ViewTrialBalance from "./pages/dashboard/admin/ViewTrialBalance";
 
 export const router: Router = createBrowserRouter([
   {
@@ -157,6 +163,30 @@ export const router: Router = createBrowserRouter([
       {
         path: "/admin/reports/trial-balance",
         element: <TrialBalance />,
+      },
+      {
+        path: "/admin/reports/account-report",
+        element: <AccountReport />,
+      },
+      {
+        path: "/admin/reports/transaction-report",
+        element: <TransactionReport />,
+      },
+      {
+        path: "/admin/reports/transaction-report/view",
+        element: <TransactionReportView />,
+      },
+      {
+        path: "/admin/reports/loan-report",
+        element: <LoanReport />,
+      },
+      {
+        path: "/admin/reports/loan-report-details",
+        element: <LoanReportDetails />,
+      },
+      {
+        path: "/admin/reports/view-trial-balance",
+        element: <ViewTrialBalance />,
       },
       {
         path: "/admin/crm",

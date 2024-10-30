@@ -1,9 +1,9 @@
-import DashboardLayout from "./layout";
 import Customer from "../../assets/icons/customer-icon.png";
-import OfficeIcon from "../../assets/icons/office-icon.png";
+import OfficeIcon from "../../../assets/icons/office-icon.png";
 import { Link } from "react-router-dom";
+import DashboardLayout from "../layout";
 
-const CRMDashboard = () => {
+const OperationDashboard = () => {
   return (
     <DashboardLayout>
       <div className="md:w-full bg-white dashboard__body overflow-x-auto md:pl-[268px] px-5  md:pr-10 pt-2">
@@ -22,7 +22,10 @@ const CRMDashboard = () => {
             </div>
           </div>
 
-          <Link to="/admin/crm/office-data" className="bg-gray-200 md:w-fit w-full border rounded-lg border-gray-300 flex gap-3 md:items-start items-center justify-center px-8 py-4">
+          <Link
+            to="/admin/crm/office-data"
+            className="bg-gray-200 md:w-fit w-full border rounded-lg border-gray-300 flex gap-3 md:items-start items-center justify-center px-8 py-4"
+          >
             <img src={OfficeIcon} alt="" />
             <div>
               <p className="text-center">Office (Employees)</p>
@@ -34,4 +37,4 @@ const CRMDashboard = () => {
   );
 };
 
-export default CRMDashboard;
+export default OperationDashboard;

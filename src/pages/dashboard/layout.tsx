@@ -11,8 +11,8 @@ type OnboardingLayoutProps = {
 export default function DashboardLayout({ children }: OnboardingLayoutProps) {
   return (
     <main className="w-full">
-      <Sidebar title="Administrations" routes={adminRoutes} />
-      
+      <Sidebar title="Dashbord" routes={adminRoutes} />
+
       <div className="mt-20">
         <div className="md:pl-[268px] pl-5 pr-5 md:pr-10 relative">
           <div

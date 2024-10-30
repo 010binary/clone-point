@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import DashboardLayout from "./layout";
-import shareIcon from "../../assets/icons/share.svg";
-import TextInput from "../../components/ui/text-input/TextInput";
-import Action from "../../assets/icons/action.svg";
+import DashboardLayout from "../layout";
+import shareIcon from "../../../assets/icons/share.svg";
+import TextInput from "../../../components/ui/text-input/TextInput";
+import Action from "../../../assets/icons/action.svg";
 
-const AuthorizeTransaction = () => {
+const TransactionsReport = () => {
   const [activeAction, setActiveAction] = useState(null);
 
   const handleActionClick = (index: any) => {
@@ -236,7 +236,9 @@ const AuthorizeTransaction = () => {
                           <div className="absolute top-5 left-0 bg-gray-50 z-10 px-4 py-3 shadow-sm">
                             <ul className="flex flex-col gap-2 text-black">
                               <li className="font-bold text-sm">
-                                <a href="/admin/operation/view-authorized-transaction">View</a>
+                                <a href="/admin/operation/view-transactions-report">
+                                  View
+                                </a>
                               </li>
                               <li className="font-bold text-sm">
                                 <a href="">Delete</a>
@@ -257,4 +259,4 @@ const AuthorizeTransaction = () => {
   );
 };
 
-export default AuthorizeTransaction;
+export default TransactionsReport;

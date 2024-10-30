@@ -25,18 +25,7 @@ import ActivityLog from "./pages/dashboard/admin-settings/ActivityLog";
 import Titles from "./pages/dashboard/admin-settings/Titles";
 import Users from "./pages/dashboard/admin-settings/Users";
 import ManageAccesibility from "./pages/dashboard/admin-settings/ManageAccesibility";
-import AccountGenerator from "./pages/crm/AccountGenerator";
-import CRMDashboard from "./pages/crm/Dashboard";
-import OfficeData from "./pages/crm/OfficeData";
-import ViewDetails from "./pages/crm/ViewDetails";
-import PostTransaction from "./pages/operations/PostTransaction";
-import AuthorizeTransaction from "./pages/operations/AuthorizeTransactions";
-import ViewAuthorizedTransaction from "./pages/operations/ViewAuthorizedTransaction";
-import TellerTransaction from "./pages/operations/TellerTransactions";
-import ViewTellerTransaction from "./pages/operations/ViewTellerTransaction";
-import ViewTransactionReport from "./pages/operations/ViewTransactionReport";
-import TransactionsReport from "./pages/operations/TransactionsReport";
-import OperationsDashboard from "./pages/operations/MainDashboard";
+
 import LoanDashboard from "./pages/loans/LoanDashboard";
 import ApprovedLoans from "./pages/loans/ApprovedLoans";
 import LoanStatement from "./pages/loans/LoanStatement";
@@ -46,7 +35,7 @@ import ViewApprovedLoan from "./pages/loans/ViewApprovedLoan";
 import ViewCompletedLoan from "./pages/loans/ViewCompletedLoan";
 import ViewDeclinedLoan from "./pages/loans/ViewDeclinedLoan";
 import ViewDueLoan from "./pages/loans/ViewDueLoan";
-import ManagerAccount from "./pages/crm/ManagerAccount";
+
 import Report from "./pages/dashboard/admin/Report";
 import TrialBalance from "./pages/dashboard/admin/TrialBalance";
 import AccountReport from "./pages/dashboard/admin/AccountReport";
@@ -55,6 +44,19 @@ import TransactionReportView from "./pages/dashboard/admin/TransactionReportView
 import LoanReport from "./pages/dashboard/admin/LoanReport";
 import LoanReportDetails from "./pages/dashboard/admin/LoanReportDetails";
 import ViewTrialBalance from "./pages/dashboard/admin/ViewTrialBalance";
+import CRMDashboard from "./pages/dashboard/crm/Dashboard";
+import AccountGenerator from "./pages/dashboard/crm/AccountGenerator";
+import OfficeData from "./pages/dashboard/crm/OfficeData";
+import ViewDetails from "./pages/dashboard/crm/ViewDetails";
+import ManagerAccount from "./pages/dashboard/crm/ManagerAccount";
+import PostTransaction from "./pages/dashboard/operations/PostTransaction";
+import AuthorizeTransaction from "./pages/dashboard/operations/AuthorizeTransactions";
+import ViewAuthorizedTransaction from "./pages/dashboard/operations/ViewAuthorizedTransaction";
+import TellerTransaction from "./pages/dashboard/operations/TellerTransactions";
+import ViewTellerTransaction from "./pages/dashboard/operations/ViewTellerTransaction";
+import TransactionsReport from "./pages/dashboard/operations/TransactionsReport";
+import ViewTransactionReport from "./pages/dashboard/operations/ViewTransactionReport";
+import OperationsDashboard from "./pages/dashboard/operations/MainDashboard";
 
 export const router: Router = createBrowserRouter([
   {

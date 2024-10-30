@@ -4,7 +4,7 @@ import plusIcon from "../../assets/icons/plus.svg";
 import shareIcon from "../../assets/icons/share.svg";
 import TextInput from "../../components/ui/text-input/TextInput";
 import Action from "../../assets/icons/action.svg";
-import OperationLayout from "./layout";
+import DashboardLayout from "../dashboard/layout";
 
 const CompletedLoans = () => {
   const [activeAction, setActiveAction] = useState(null);
@@ -41,7 +41,7 @@ const CompletedLoans = () => {
   ];
 
   return (
-    <OperationLayout>
+    <DashboardLayout>
       <div className="w-full bg-white dashboard__body overflow-x-hidden md:pl-[268px] px-5 md:pr-10 pt-2">
         <div
           className="w-full bg-white flex justify-between py-5 mt-5"
@@ -157,7 +157,9 @@ const CompletedLoans = () => {
                           <div className="absolute top-5 left-0 bg-gray-50 z-10 px-4 py-3 shadow-sm">
                             <ul className="flex flex-col gap-2 text-black">
                               <li className="font-bold text-sm">
-                                <a href="/admin/operation/loan-manager/view-completed">View</a>
+                                <a href="/admin/operation/loan-manager/view-completed">
+                                  View
+                                </a>
                               </li>
                               <li className="font-bold text-sm">
                                 <a href="">Edit</a>
@@ -177,7 +179,7 @@ const CompletedLoans = () => {
           </table>
         </div>
       </div>
-    </OperationLayout>
+    </DashboardLayout>
   );
 };
 

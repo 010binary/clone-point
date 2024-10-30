@@ -3,7 +3,7 @@ import ImageBG from "../../../assets/images/admin-top.png";
 import { AdminRoute } from "../../../utils/types/admin/admin.types";
 import FinMan from "../../../assets/images/finman.png";
 import Ezone from "../../../assets/images/ezone.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface SidebarProps {
   routes: AdminRoute[];
@@ -15,12 +15,24 @@ const Sidebar: React.FC<SidebarProps> = ({ routes, title }) => {
   const [isSideBarActive, setIsSideBarActive] = useState<boolean>(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
 
+  // Set the open menu based on the current route on mount
+  useEffect(() => {
+    const activeRoute = routes.find((route) =>
+      route.subRoutes?.some(
+        (subRoute: any) => subRoute.route === location.pathname,
+      ),
+    );
+    if (activeRoute) {
+      setOpenMenu(activeRoute.id);
+    }
+  }, [routes]);
+
   const handleSidebarState = () => {
     setIsSideBarActive(!isSideBarActive);
   };
 
-  const handleMenuToggle = (route: string) => {
-    setOpenMenu(openMenu === route ? null : route);
+  const handleMenuToggle = (id: string) => {
+    setOpenMenu((prev) => (prev === id ? null : id));
   };
 
   return (
@@ -40,52 +52,59 @@ const Sidebar: React.FC<SidebarProps> = ({ routes, title }) => {
           <h4 className="text-white px-5 font-bold">{title}</h4>
         </div>
 
-        <ul className="relative px-5 flex flex-col gap-8 mt-10 z-10">
-          {routes &&
-            routes.map((item) => (
-              <li key={item?.page} className="px-2 py-1">
+        <ul className="relative px-3 flex flex-col gap-8 mt-10 z-10">
+          {routes.map((item) => (
+            <li key={item.id} className="px-2 py-1">
+              <div
+                className={`${
+                  location.pathname.startsWith(item.route)
+                    ? "bg-white text-primary"
+                    : "text-white"
+                }`}
+              >
                 <div
-                  className={`${
-                    location.pathname.startsWith(item.route)
-                      ? "bg-white text-primary"
-                      : "text-white"
-                  }`}
+                  className="flex gap-4 items-center justify-between cursor-pointer"
+                  onClick={() => handleMenuToggle(item.id)}
                 >
-                  <div 
-                    className="flex gap-4 items-center cursor-pointer"
-                    onClick={() => handleMenuToggle(item.route)}
-                  >
+                  <div className="flex gap-3 items-center">
                     <img
-                      src={item?.icon}
-                      alt={`${item?.page} icon`}
+                      src={item.icon}
+                      alt={`${item.page} icon`}
                       className={`${
                         location.pathname === item.route ? "filter-primary" : ""
                       }`}
                     />
-                    <Link to={item.route} className="font-semibold text-base">{item?.page}</Link>
-                    {item?.subRoutes && (<i className={`ri-arrow-${openMenu === item.route ? "up" : "down"}-s-fill text-white`}></i>)}
+                    <span className="font-semibold text-base">{item.page}</span>
                   </div>
+                  {item.subRoutes && (
+                    <i
+                      className={`ri-arrow-${
+                        openMenu === item.id ? "up" : "down"
+                      }-s-fill text-white`}
+                    ></i>
+                  )}
                 </div>
-                {item?.subRoutes && openMenu === item.route && (
-                  <ul className="ml-6 p-2 mt-2 flex flex-col gap-4 relative">
-                    {item.subRoutes.map((subItem: any) => (
-                      <li key={subItem.page} >
-                        <Link
-                          to={subItem.route}
-                          className={`${
-                            location.pathname === subItem.route
-                              ? "bg-white w-40 text-primary pr-5 pl-2 font-bold py-1"
-                              : "text-white pl-2"
-                          }`}
-                        >
-                          {subItem.page}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            ))}
+              </div>
+              {item.subRoutes && openMenu === item.id && (
+                <ul className="ml-4 mt-4 flex flex-col gap-4 relative">
+                  {item.subRoutes.map((subItem: any) => (
+                    <li key={subItem.id}>
+                      <Link
+                        to={subItem.route}
+                        className={`${
+                          location.pathname === subItem.route
+                            ? "bg-white text-primary pr-5 pl-2 font-bold py-1"
+                            : "text-white"
+                        }`}
+                      >
+                        {subItem.page}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
         </ul>
         <div className="w-full absolute top-0 left-0 z-0">
           <img src={ImageBG} className="w-full" alt="background" />

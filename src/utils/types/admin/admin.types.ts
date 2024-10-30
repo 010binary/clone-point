@@ -1,8 +1,7 @@
-
 export interface AdminRoute {
-    icon: any;
-    page: string;
-    route: string;
-    subRoutes?: any;
-  }
-  
+  id: any;
+  icon: any;
+  page: string;
+  route: string;
+  subRoutes?: any;
+}

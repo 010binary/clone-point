@@ -1,4 +1,4 @@
-import DashboardLayout from "./layout";
+import DashboardLayout from "../layout";
 
 const ViewDetails = () => {
   return (

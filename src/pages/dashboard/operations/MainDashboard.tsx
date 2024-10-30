@@ -1,15 +1,15 @@
-import DashboardLayout from "./layout";
-import Customer from "../../assets/icons/Frame 121.png";
-import OfficeIcon from "../../assets/icons/Frame 122.png";
-import PaymentIcon from "../../assets/icons/Frame 123.png";
-import LoanIcon from "../../assets/icons/Frame 124.png";
+import DashboardLayout from "../layout";
+import Customer from "../../../assets/icons/Frame 121.png";
+import OfficeIcon from "../../../assets/icons/Frame 122.png";
+import PaymentIcon from "../../../assets/icons/Frame 123.png";
+import LoanIcon from "../../../assets/icons/Frame 124.png";
 import ReactApexChart from "react-apexcharts";
 import React, { useState } from "react";
-import TextInput from "../../components/ui/text-input/TextInput";
-import SelectInput from "../../components/ui/select-input/SelectInput";
+import TextInput from "../../../components/ui/text-input/TextInput";
+import SelectInput from "../../../components/ui/select-input/SelectInput";
 import { ApexOptions } from "apexcharts";
-import BaseButton from "../../components/ui/base-button/BaseButton";
-import Action from "../../assets/icons/action.svg";
+import BaseButton from "../../../components/ui/base-button/BaseButton";
+import Action from "../../../assets/icons/action.svg";
 
 const OperationsDashboard = () => {
   const [options] = useState<ApexOptions>({

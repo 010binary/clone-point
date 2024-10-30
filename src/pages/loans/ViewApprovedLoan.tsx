@@ -1,4 +1,4 @@
-import DashboardLayout from "./layout";
+import DashboardLayout from "../dashboard/layout";
 
 const ViewApprovedLoan = () => {
   const details = [

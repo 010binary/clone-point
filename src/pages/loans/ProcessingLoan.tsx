@@ -4,7 +4,7 @@ import plusIcon from "../../assets/icons/plus.svg";
 import shareIcon from "../../assets/icons/share.svg";
 import TextInput from "../../components/ui/text-input/TextInput";
 import Action from "../../assets/icons/action.svg";
-import OperationLayout from "./layout";
+import DashboardLayout from "../dashboard/layout";
 
 const ProcessingLoans = () => {
   const [activeAction, setActiveAction] = useState(null);
@@ -41,7 +41,7 @@ const ProcessingLoans = () => {
   ];
 
   return (
-    <OperationLayout>
+    <DashboardLayout>
       <div className="w-full bg-white dashboard__body overflow-x-hidden md:pl-[268px] px-5 md:pr-10 pt-2">
         <div
           className="w-full bg-white flex justify-between py-5 mt-5"
@@ -177,7 +177,7 @@ const ProcessingLoans = () => {
           </table>
         </div>
       </div>
-    </OperationLayout>
+    </DashboardLayout>
   );
 };
 

@@ -1,21 +1,21 @@
-import DashboardLayout from "./layout";
-import CashReceipt from "../../assets/icons/receipt.png";
-import CashPayment from "../../assets/icons/cash-payment.png";
-import OfficeAccount from "../../assets/icons/office-accountant.png";
+import DashboardLayout from "../layout";
+import CashReceipt from "../../../assets/icons/receipt.png";
+import CashPayment from "../../../assets/icons/cash-payment.png";
+import OfficeAccount from "../../../assets/icons/office-accountant.png";
 import { useState } from "react";
-import AddCashReceipt from "../../components/templates/operations/CashReceipt";
-import AddCashPayment from "../../components/templates/operations/CashPayment";
+import AddCashReceipt from "../../../components/templates/operations/CashReceipt";
+import AddCashPayment from "../../../components/templates/operations/CashPayment";
 
 const PostTransaction = () => {
-    const [activeScreen, setActiveScreen] = useState("");
+  const [activeScreen, setActiveScreen] = useState("");
 
-    const handleScreen = (screen: string) => {
-        setActiveScreen(screen)
-    }
+  const handleScreen = (screen: string) => {
+    setActiveScreen(screen);
+  };
 
-    const handleScreenClose = () => {
-        setActiveScreen("")
-    }
+  const handleScreenClose = () => {
+    setActiveScreen("");
+  };
 
   return (
     <DashboardLayout>
@@ -35,7 +35,10 @@ const PostTransaction = () => {
               <p className="text-sm">(Deposit)</p>
             </div>
 
-            <div onClick={() => handleScreen("cash-receipt")} className="bg-primary cursor-pointer flex items-center justify-center ml-10 w-8 h-8 rounded-full">
+            <div
+              onClick={() => handleScreen("cash-receipt")}
+              className="bg-primary cursor-pointer flex items-center justify-center ml-10 w-8 h-8 rounded-full"
+            >
               <i className="ri-add-line text-white text-xl"></i>
             </div>
           </div>
@@ -47,7 +50,10 @@ const PostTransaction = () => {
               <p className="text-sm">(Withdraw)</p>
             </div>
 
-            <div onClick={() => handleScreen("cash-payment")} className="bg-primary cursor-pointer flex items-center justify-center ml-10 w-8 h-8 rounded-full">
+            <div
+              onClick={() => handleScreen("cash-payment")}
+              className="bg-primary cursor-pointer flex items-center justify-center ml-10 w-8 h-8 rounded-full"
+            >
               <i className="ri-add-line text-white text-xl"></i>
             </div>
           </div>
@@ -59,7 +65,10 @@ const PostTransaction = () => {
               <p className="text-sm">(Details)</p>
             </div>
 
-            <div onClick={() => handleScreen("office-account")} className="bg-primary cursor-pointer flex items-center justify-center ml-10 w-8 h-8 rounded-full">
+            <div
+              onClick={() => handleScreen("office-account")}
+              className="bg-primary cursor-pointer flex items-center justify-center ml-10 w-8 h-8 rounded-full"
+            >
               <i className="ri-add-line text-white text-xl"></i>
             </div>
           </div>
@@ -76,7 +85,7 @@ const PostTransaction = () => {
           </>
         )}
 
-{activeScreen == "cash-payment" && (
+        {activeScreen == "cash-payment" && (
           <>
             <div className="w-full h-full bg-opacity-70 z-0 bg-black fixed top-0"></div>
             <div className="z-50 absolute top-24">

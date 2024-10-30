@@ -4,12 +4,13 @@ import plusIcon from "../../assets/icons/plus.svg";
 import shareIcon from "../../assets/icons/share.svg";
 import TextInput from "../../components/ui/text-input/TextInput";
 import Action from "../../assets/icons/action.svg";
-import OperationLayout from "./layout";
+
 import EditActiveLoan from "../../components/templates/operations/EditActiveLoans";
+import DashboardLayout from "../dashboard/layout";
 
 const ActiveLoans = () => {
   const [activeAction, setActiveAction] = useState(null);
-  
+
   const [createCustomer, setCreateCustomer] = useState(false);
 
   const handleActionClick = (index: any) => {
@@ -17,8 +18,8 @@ const ActiveLoans = () => {
   };
 
   const handleShowCreateCustomer = () => {
-    setCreateCustomer(!createCustomer)
-  }
+    setCreateCustomer(!createCustomer);
+  };
 
   const loan = [
     {
@@ -48,7 +49,7 @@ const ActiveLoans = () => {
   ];
 
   return (
-    <OperationLayout>
+    <DashboardLayout>
       <div className="w-full bg-white dashboard__body overflow-x-hidden md:pl-[268px] px-5 md:pr-10 pt-2">
         <div
           className="w-full bg-white flex justify-between py-5 mt-5"
@@ -164,9 +165,14 @@ const ActiveLoans = () => {
                           <div className="absolute top-5 left-0 bg-gray-50 z-10 px-4 py-3 shadow-sm">
                             <ul className="flex flex-col gap-2 text-black">
                               <li className="font-bold text-sm">
-                                <a href="/admin/operation/loan-manager/view-active">View</a>
+                                <a href="/admin/operation/loan-manager/view-active">
+                                  View
+                                </a>
                               </li>
-                              <li className="font-bold text-sm"  onClick={handleShowCreateCustomer}>
+                              <li
+                                className="font-bold text-sm"
+                                onClick={handleShowCreateCustomer}
+                              >
                                 Edit
                               </li>
                               <li className="font-bold text-sm">
@@ -195,7 +201,7 @@ const ActiveLoans = () => {
           </>
         )}
       </div>
-    </OperationLayout>
+    </DashboardLayout>
   );
 };
 

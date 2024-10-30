@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import DashboardLayout from "./layout";
-import shareIcon from "../../assets/icons/share.svg";
-import Action from "../../assets/icons/action.svg";
-import CreateNewAccount from "../../components/templates/crm/CreateNewAccount";
-import EditAccount from "../../components/templates/crm/EditAccount";
+
+import shareIcon from "../../../assets/icons/share.svg";
+import Action from "../../../assets/icons/action.svg";
+import DashboardLayout from "../layout";
+import CreateNewAccount from "../../../components/templates/crm/CreateNewAccount";
+import EditAccount from "../../../components/templates/crm/EditAccount";
 
 const ManagerAccount = () => {
   const [activeAction, setActiveAction] = useState(null);

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import DashboardLayout from "./layout";
-import shareIcon from "../../assets/icons/share.svg";
-import TextInput from "../../components/ui/text-input/TextInput";
-import Action from "../../assets/icons/action.svg";
-import CreateTeller from "../../components/templates/operations/CreateTellerTransactions";
+import DashboardLayout from "../layout";
+import shareIcon from "../../../assets/icons/share.svg";
+import TextInput from "../../../components/ui/text-input/TextInput";
+import Action from "../../../assets/icons/action.svg";
+import CreateTeller from "../../../components/templates/operations/CreateTellerTransactions";
 
 const TellerTransaction = () => {
   const [activeAction, setActiveAction] = useState(null);

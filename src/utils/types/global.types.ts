@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export type FormInputPayload = {
   field: string;
-  value: string;
+  value: any;
 };
 
 export type ListItem = {

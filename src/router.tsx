@@ -19,7 +19,7 @@ import { Router } from "@remix-run/router";
 import ViewUser from "./pages/dashboard/admin/ViewUser";
 import EditUser from "./pages/dashboard/admin/EditUser";
 import Lincense from "./pages/dashboard/admin/Lincense";
-import Index from "./pages/Index";
+// import Index from "./pages/Index";
 import Settings from "./pages/dashboard/admin-settings/Settings";
 import ActivityLog from "./pages/dashboard/admin-settings/ActivityLog";
 import Titles from "./pages/dashboard/admin-settings/Titles";
@@ -64,7 +64,7 @@ export const router: Router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Index />,
+        element: <Dashboard />,
       },
       {
         path: "/sign-up",

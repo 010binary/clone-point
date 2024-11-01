@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { accountType } from "../../../lib/Onboarding";
 import BaseButton from "../../ui/base-button/BaseButton";
 import SelectInput from "../../ui/select-input/SelectInput";
@@ -112,7 +113,9 @@ const EditAccount = ({ callBack, setFormStep }: any) => {
             />
 
             <div className="flex gap-10">
-              <h1 className="text-lg font-bold text-primary underline">Signatories</h1>
+              <h1 className="text-lg font-bold text-primary underline">
+                Signatories
+              </h1>
               <h1 className="text-lg font-bold">Mandate</h1>
             </div>
             <div className="flex items-center gap-3">

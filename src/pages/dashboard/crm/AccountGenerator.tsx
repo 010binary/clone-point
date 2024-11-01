@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 
 import shareIcon from "../../../assets/icons/share.svg";
@@ -7,15 +8,29 @@ import DashboardLayout from "../layout";
 
 const AccountGenerator = () => {
   const [activeAction, setActiveAction] = useState(null);
-  const [createCustomer, setCreateCustomer] = useState(false);
+  // const [createCustomer, setCreateCustomer] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [customerType, setCustomerType] = useState("");
+
+  const openModal = (type: any) => {
+    setCustomerType(type);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setCustomerType("");
+  };
 
   const handleActionClick = (index: any) => {
     setActiveAction(activeAction === index ? null : index);
   };
 
-  const handleShowCreateCustomer = () => {
-    setCreateCustomer(!createCustomer);
-  };
+  // const handleShowCreateCustomer = () => {
+  //   setCreateCustomer(!createCustomer);
+
+  //   localStorage.setItem("customer_type", "ic");
+  // };
 
   const customer = [
     {
@@ -98,7 +113,7 @@ const AccountGenerator = () => {
         <div className="flex mt-6 flex-col md:flex-row items-center justify-between">
           <div className="flex items-center gap-4">
             <button
-              onClick={handleShowCreateCustomer}
+              onClick={() => openModal("ic")}
               className="flex items-center gap-4 border rounded-lg px-4 py-2"
             >
               <p className="text-sm font-semibold">New Individual Customer</p>
@@ -108,7 +123,7 @@ const AccountGenerator = () => {
             </button>
 
             <button
-              onClick={handleShowCreateCustomer}
+              onClick={() => openModal("cc")}
               className="flex items-center gap-4 border rounded-lg px-4 py-2"
             >
               <p className="text-sm font-semibold">New Co-operate Customer</p>
@@ -215,11 +230,15 @@ const AccountGenerator = () => {
       </div>
 
       <div className="flex items-center justify-center">
-        {createCustomer && (
+        {isModalOpen && (
           <>
             <div className="w-full h-full bg-opacity-70 z-0 bg-black fixed top-0"></div>
             <div className="z-50 absolute top-24">
-              <CreateCustomerAccount callBack={handleShowCreateCustomer} />
+              <CreateCustomerAccount
+                isOpen={isModalOpen}
+                onClose={closeModal}
+                customerType={customerType}
+              />
             </div>
           </>
         )}

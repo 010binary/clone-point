@@ -1,4 +1,6 @@
 import { ColumnDef } from "@tanstack/react-table";
+import UpdateInterest from "../update-interest";
+import { Edit } from "iconsax-react";
 
 // types/entities.ts
 
@@ -57,5 +59,18 @@ export const InterestUserColumns: ColumnDef<any>[] = [
     // accessorFn: (row) => formatDate(row.updated_at, "dd-MM-yyyy"),
     header: "Type",
     cell: ({ row }) => <p className="font-medium">{row.original?.type}</p>,
+  },
+  {
+    id: "tname",
+    // accessorKey: 'updatedAt',
+    // accessorFn: (row) => formatDate(row.updated_at, "dd-MM-yyyy"),
+    header: "Action",
+    cell: ({ row }) => (
+      <div className="font-medium">
+        <UpdateInterest data={row.original}>
+          <Edit size={18} color="#FF8A65" />
+        </UpdateInterest>
+      </div>
+    ),
   },
 ];

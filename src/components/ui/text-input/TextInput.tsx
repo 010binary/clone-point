@@ -37,7 +37,6 @@ export default function TextInput(props: TextInputProps) {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
-
   return (
     <div className="flex flex-col">
       <label
@@ -60,7 +59,11 @@ export default function TextInput(props: TextInputProps) {
           backgroundColor: hasContent ? "#eef9fa" : "",
           border: "0.71px solid #00000033",
         }}
-        className={`border border-l-0 pl-2 ${height ? height : "h-12"} pr-12 ${width} text-sm rounded-lg ${focused ? "focus:outline-none" : "focus:outline-none"}`}
+        className={`border border-l-0 pl-2 ${
+          height ? height : "h-12"
+        } pr-12 ${width} text-sm rounded-lg ${
+          focused ? "focus:outline-none" : "focus:outline-none"
+        }`}
         placeholder={placeholder ? placeholder : ""}
       />
       {validationError && (
@@ -70,11 +73,7 @@ export default function TextInput(props: TextInputProps) {
       )}
       {type === "password" && (
         <p onClick={togglePasswordVisibility} className="">
-          {showPassword ? (
-            <></>
-          ) : (
-            <></>
-          )}
+          {showPassword ? <></> : <></>}
         </p>
       )}
     </div>

@@ -1,48 +1,14 @@
-import { ChangeEvent, DragEvent, useState } from "react";
-import {
-  relationship,
-  residentialType,
-} from "../../../lib/Onboarding";
+import { relationship, residentialType } from "../../../lib/Onboarding";
 import BaseButton from "../../ui/base-button/BaseButton";
 import SelectInput from "../../ui/select-input/SelectInput";
 import TextInput from "../../ui/text-input/TextInput";
-import useAddTellerForm from "../admin/useAddTellerForm";
+
 import { title } from "../../../lib/Onboarding/signup";
 
 const AddressDetail = ({ callBack, setFormStep }: any) => {
-  const [isDragging, setIsDragging] = useState<boolean>(false);
-  const [files, setFiles] = useState<File[]>([]);
-
-  const handleDrop = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setIsDragging(false);
-    const droppedFiles = Array.from(e.dataTransfer.files);
-    setFiles((prevFiles) => [...prevFiles, ...droppedFiles]);
-  };
-
-  const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setIsDragging(true);
-  };
-
-  const handleDragLeave = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setIsDragging(false);
-  };
-
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      const selectedFiles = Array.from(e.target.files);
-      setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
-    }
-  };
-
-  const { formData, handleChange, isLoading } = useAddTellerForm();
-
   const handleSubmit = () => {
     setFormStep(4);
   };
-  console.log(files);
   return (
     <div className="md:w-[580px] w-[360px]">
       <div className="bg-primary-dark flex px-3 py-2 items-center justify-between">
@@ -59,9 +25,7 @@ const AddressDetail = ({ callBack, setFormStep }: any) => {
             <TextInput
               id="startDate"
               type="text"
-              name="startDate"
-              value={formData.password}
-              onChange={handleChange}
+              name="address"
               label="Address 1"
               width="md:w-[560px] w-[300px]"
               height="h-10"
@@ -77,9 +41,7 @@ const AddressDetail = ({ callBack, setFormStep }: any) => {
             <TextInput
               id="startDate"
               type="text"
-              name="startDate"
-              value={formData.password}
-              onChange={handleChange}
+              name="state"
               label="State"
               width="md:w-[560px] w-[300px]"
               height="h-10"
@@ -88,9 +50,7 @@ const AddressDetail = ({ callBack, setFormStep }: any) => {
             <TextInput
               id="startDate"
               type="text"
-              name="startDate"
-              value={formData.password}
-              onChange={handleChange}
+              name="city"
               label="City"
               width="md:w-[560px] w-[300px]"
               height="h-10"
@@ -99,9 +59,7 @@ const AddressDetail = ({ callBack, setFormStep }: any) => {
             <TextInput
               id="startDate"
               type="text"
-              name="startDate"
-              value={formData.password}
-              onChange={handleChange}
+              name="lga"
               label="L.G.A"
               width="md:w-[560px] w-[300px]"
               height="h-10"
@@ -110,9 +68,7 @@ const AddressDetail = ({ callBack, setFormStep }: any) => {
             <TextInput
               id="startDate"
               type="text"
-              name="startDate"
-              value={formData.password}
-              onChange={handleChange}
+              name="country"
               label="Country"
               width="md:w-[560px] w-[300px]"
               height="h-10"
@@ -120,10 +76,8 @@ const AddressDetail = ({ callBack, setFormStep }: any) => {
 
             <TextInput
               id="startDate"
-              type="phone"
-              name="startDate"
-              value={formData.password}
-              onChange={handleChange}
+              type="number"
+              name="homephone"
               label="Home Phone"
               width="md:w-[560px] w-[300px]"
               height="h-10"
@@ -132,9 +86,7 @@ const AddressDetail = ({ callBack, setFormStep }: any) => {
             <TextInput
               id="startDate"
               type="email"
-              name="startDate"
-              value={formData.password}
-              onChange={handleChange}
+              name="email"
               label="Email"
               width="md:w-[560px] w-[300px]"
               height="h-10"
@@ -151,16 +103,10 @@ const AddressDetail = ({ callBack, setFormStep }: any) => {
                     id="doc-upload"
                     hidden
                     multiple
-                    onChange={handleFileChange}
                   />
                   <div
                     id="drop-area"
-                    className={`border-2 border-primary md:w-64 bg-[#F9F9F9] border-dashed rounded-lg gap-6  flex flex-col items-center justify-center p-5 ${
-                      isDragging ? "bg-gray-200" : ""
-                    }`}
-                    onDragOver={handleDragOver}
-                    onDragLeave={handleDragLeave}
-                    onDrop={handleDrop}
+                    className={`border-2 border-primary md:w-64 bg-[#F9F9F9] border-dashed rounded-lg gap-6  flex flex-col items-center justify-center p-5 ${"bg-gray-200"}`}
                   >
                     <div className="flex flex-col gap-3 items-center justify-center">
                       <h1 className="text-primary text-center">
@@ -174,9 +120,7 @@ const AddressDetail = ({ callBack, setFormStep }: any) => {
                 </label>
               </div>
               <BaseButton type="button" className="mt-2 w-40 bg-primary-dark">
-                <p className="text-white">
-                  {isLoading ? "Validating..." : "Upload"}
-                </p>
+                <p className="text-white">Upload</p>
               </BaseButton>
             </div>
 
@@ -194,9 +138,7 @@ const AddressDetail = ({ callBack, setFormStep }: any) => {
             <TextInput
               id="startDate"
               type="text"
-              name="startDate"
-              value={formData.password}
-              onChange={handleChange}
+              name="firstName"
               label="First Name"
               width="md:w-[560px] w-[300px]"
               height="h-10"
@@ -205,9 +147,7 @@ const AddressDetail = ({ callBack, setFormStep }: any) => {
             <TextInput
               id="startDate"
               type="text"
-              name="startDate"
-              value={formData.password}
-              onChange={handleChange}
+              name="Last Name"
               label="Last Name"
               width="md:w-[560px] w-[300px]"
               height="h-10"
@@ -216,9 +156,7 @@ const AddressDetail = ({ callBack, setFormStep }: any) => {
             <TextInput
               id="startDate"
               type="text"
-              name="startDate"
-              value={formData.password}
-              onChange={handleChange}
+              name="st"
               label="Address"
               width="md:w-[560px] w-[300px]"
               height="h-10"
@@ -226,10 +164,8 @@ const AddressDetail = ({ callBack, setFormStep }: any) => {
 
             <TextInput
               id="startDate"
-              type="text"
-              name="startDate"
-              value={formData.password}
-              onChange={handleChange}
+              type="number"
+              name="phone"
               label="Phone"
               width="md:w-[560px] w-[300px]"
               height="h-10"
@@ -237,10 +173,8 @@ const AddressDetail = ({ callBack, setFormStep }: any) => {
 
             <TextInput
               id="startDate"
-              type="text"
-              name="startDate"
-              value={formData.password}
-              onChange={handleChange}
+              type="email"
+              name="email"
               label="Email"
               width="md:w-[560px] w-[300px]"
               height="h-10"
@@ -256,9 +190,7 @@ const AddressDetail = ({ callBack, setFormStep }: any) => {
               type="submit"
               className="mt-2 md:w-[560px] w-[300px] bg-primary"
             >
-              <p className="md:w-[560px] w-[300px]">
-                {isLoading ? "Submitting..." : "Next"}
-              </p>
+              <p className="md:w-[560px] w-[300px]">Next</p>
             </BaseButton>
           </div>
         </form>

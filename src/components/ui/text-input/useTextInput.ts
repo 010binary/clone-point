@@ -15,6 +15,7 @@ export default function useTextInput(props: TextInputProps) {
       field: props.name,
       value: event.currentTarget.value,
     });
+    setValidationError(null);
   }
 
   function validateTextField() {

@@ -1,44 +1,13 @@
-import { ChangeEvent, DragEvent, useState } from "react";
 import { employmentStatus, workSector } from "../../../lib/Onboarding";
 import BaseButton from "../../ui/base-button/BaseButton";
 import SelectInput from "../../ui/select-input/SelectInput";
 import TextInput from "../../ui/text-input/TextInput";
-import useAddTellerForm from "../admin/useAddTellerForm";
 
 const EmploymentDetails = ({ callBack, setFormStep }: any) => {
-  const [isDragging, setIsDragging] = useState<boolean>(false);
-  const [files, setFiles] = useState<File[]>([]);
-
-  const handleDrop = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setIsDragging(false);
-    const droppedFiles = Array.from(e.dataTransfer.files);
-    setFiles((prevFiles) => [...prevFiles, ...droppedFiles]);
-  };
-
-  const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setIsDragging(true);
-  };
-
-  const handleDragLeave = (e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    setIsDragging(false);
-  };
-
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      const selectedFiles = Array.from(e.target.files);
-      setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
-    }
-  };
-
-  const { formData, handleChange, isLoading } = useAddTellerForm();
-
   const handleSubmit = () => {
     setFormStep(4);
   };
-  console.log(files);
+
   return (
     <div className="md:w-[580px] w-[360px]">
       <div className="bg-primary-dark flex px-3 py-2 items-center justify-between">
@@ -61,10 +30,8 @@ const EmploymentDetails = ({ callBack, setFormStep }: any) => {
 
             <TextInput
               id="startDate"
-              type="text"
-              name="startDate"
-              value={formData.password}
-              onChange={handleChange}
+              type="number"
+              name="net monthly income "
               label="Net Monthly Income"
               placeholder="Enter Net monthly Income (NGN)"
               width="md:w-[560px] w-[300px]"
@@ -74,9 +41,7 @@ const EmploymentDetails = ({ callBack, setFormStep }: any) => {
             <TextInput
               id="startDate"
               type="text"
-              name="startDate"
-              value={formData.password}
-              onChange={handleChange}
+              name="Current Employer"
               label="Current Employer"
               width="md:w-[560px] w-[300px]"
               height="h-10"
@@ -91,10 +56,8 @@ const EmploymentDetails = ({ callBack, setFormStep }: any) => {
 
             <TextInput
               id="startDate"
-              type="text"
+              type="email"
               name="startDate"
-              value={formData.password}
-              onChange={handleChange}
               label="Office Email"
               width="md:w-[560px] w-[300px]"
               height="h-10"
@@ -102,10 +65,8 @@ const EmploymentDetails = ({ callBack, setFormStep }: any) => {
 
             <TextInput
               id="startDate"
-              type="text"
-              name="startDate"
-              value={formData.password}
-              onChange={handleChange}
+              type="number"
+              name="Tax Number"
               label="Tax Number"
               width="md:w-[560px] w-[300px]"
               height="h-10"
@@ -113,10 +74,8 @@ const EmploymentDetails = ({ callBack, setFormStep }: any) => {
 
             <TextInput
               id="startDate"
-              type="text"
+              type="number"
               name="startDate"
-              value={formData.password}
-              onChange={handleChange}
               label="Pension Number"
               width="md:w-[560px] w-[300px]"
               height="h-10"
@@ -125,9 +84,7 @@ const EmploymentDetails = ({ callBack, setFormStep }: any) => {
             <TextInput
               id="startDate"
               type="text"
-              name="startDate"
-              value={formData.password}
-              onChange={handleChange}
+              name="Office Address"
               label="Office Address"
               width="md:w-[560px] w-[300px]"
               height="h-10"
@@ -145,16 +102,10 @@ const EmploymentDetails = ({ callBack, setFormStep }: any) => {
                     id="doc-upload"
                     hidden
                     multiple
-                    onChange={handleFileChange}
                   />
                   <div
                     id="drop-area"
-                    className={`border-2 border-primary md:w-64 bg-[#F9F9F9] border-dashed rounded-lg gap-6  flex flex-col items-center justify-center p-5 ${
-                      isDragging ? "bg-gray-200" : ""
-                    }`}
-                    onDragOver={handleDragOver}
-                    onDragLeave={handleDragLeave}
-                    onDrop={handleDrop}
+                    className={`border-2 border-primary md:w-64 bg-[#F9F9F9] border-dashed rounded-lg gap-6  flex flex-col items-center justify-center p-5 ${"bg-gray-200"}`}
                   >
                     <div className="flex flex-col gap-3 items-center justify-center">
                       <h1 className="text-primary text-center">
@@ -168,9 +119,7 @@ const EmploymentDetails = ({ callBack, setFormStep }: any) => {
                 </label>
               </div>
               <BaseButton type="button" className="mt-2 w-40 bg-primary-dark">
-                <p className="text-white">
-                  {isLoading ? "Validating..." : "Upload"}
-                </p>
+                <p className="text-white">Upload</p>
               </BaseButton>
             </div>
 
@@ -188,16 +137,10 @@ const EmploymentDetails = ({ callBack, setFormStep }: any) => {
                     id="doc-upload"
                     hidden
                     multiple
-                    onChange={handleFileChange}
                   />
                   <div
                     id="drop-area"
-                    className={`border-2 border-primary md:w-64 bg-[#F9F9F9] border-dashed rounded-lg gap-6  flex flex-col items-center justify-center p-5 ${
-                      isDragging ? "bg-gray-200" : ""
-                    }`}
-                    onDragOver={handleDragOver}
-                    onDragLeave={handleDragLeave}
-                    onDrop={handleDrop}
+                    className={`border-2 border-primary md:w-64 bg-[#F9F9F9] border-dashed rounded-lg gap-6  flex flex-col items-center justify-center p-5 ${"bg-gray-200"}`}
                   >
                     <div className="flex flex-col gap-3 items-center justify-center">
                       <h1 className="text-primary text-center">
@@ -211,18 +154,14 @@ const EmploymentDetails = ({ callBack, setFormStep }: any) => {
                 </label>
               </div>
               <BaseButton type="button" className="mt-2 w-40 bg-primary-dark">
-                <p className="text-white">
-                  {isLoading ? "Validating..." : "Upload"}
-                </p>
+                <p className="text-white">Upload</p>
               </BaseButton>
             </div>
             <BaseButton
               type="submit"
               className="mt-2 md:w-[560px] w-[300px] bg-primary"
             >
-              <p className="md:w-[560px] w-[300px]">
-                {isLoading ? "Submitting..." : "Next"}
-              </p>
+              <p className="md:w-[560px] w-[300px]">Save</p>
             </BaseButton>
           </div>
         </form>

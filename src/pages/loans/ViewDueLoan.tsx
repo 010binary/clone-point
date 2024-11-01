@@ -1,5 +1,6 @@
 import DashboardLayout from "../dashboard/layout";
 
+
 const ViewDueLoan = () => {
   const details = [
     { label: "Amount (NGN)", value: "2000" },

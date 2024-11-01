@@ -13,7 +13,7 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = "f38fc73f-fdc9-4302-bfe0-801f4777cd92";
+    const token = "b8071494-9b66-41aa-a38a-0c2956d70a39";
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;

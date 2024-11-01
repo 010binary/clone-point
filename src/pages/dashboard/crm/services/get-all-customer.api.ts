@@ -2,7 +2,7 @@ import { AxiosResponse } from "axios";
 
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../../../../api/config/axios.config";
-import { ErrorCodes } from "../../../../types/constants";
+
 import { IApiResponse } from "../../../../types/types";
 
 export interface CustomerDetail {

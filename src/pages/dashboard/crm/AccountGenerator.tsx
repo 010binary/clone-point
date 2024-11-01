@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
+import { useState } from "react";
 
 import shareIcon from "../../../assets/icons/share.svg";
-import Action from "../../../assets/icons/action.svg";
+
 import CreateCustomerAccount from "./CustomerAccount";
 import DashboardLayout from "../layout";
 import GenericTable from "../../../components/ui/table/generic-table";
@@ -11,7 +11,6 @@ import useGetAllCustomerQuery from "./services/get-all-customer.api";
 import { Skeleton } from "../../../components/ui/skeleton";
 
 const AccountGenerator = () => {
-  const [activeAction, setActiveAction] = useState(null);
   // const [createCustomer, setCreateCustomer] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [customerType, setCustomerType] = useState("");
@@ -26,9 +25,9 @@ const AccountGenerator = () => {
     setCustomerType("");
   };
 
-  const handleActionClick = (index: any) => {
-    setActiveAction(activeAction === index ? null : index);
-  };
+  // const handleActionClick = (index: any) => {
+  //   setActiveAction(activeAction === index ? null : index);
+  // };
 
   // const handleShowCreateCustomer = () => {
   //   setCreateCustomer(!createCustomer);

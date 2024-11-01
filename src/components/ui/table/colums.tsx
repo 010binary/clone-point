@@ -1,8 +1,5 @@
 import { ColumnDef } from "@tanstack/react-table";
-import {
-  AllRolesData,
-  CustomerDetail,
-} from "../../../pages/dashboard/crm/services/get-all-customer.api";
+import { AllRolesData } from "../../../pages/dashboard/crm/services/get-all-customer.api";
 // types/entities.ts
 
 export interface Role {

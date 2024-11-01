@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import DashboardLayout from "../layout";
@@ -6,8 +7,16 @@ import BranchIcon from "../../../assets/icons/branch.png";
 import TellerIcon from "../../../assets/icons/tellers.png";
 import InterestIcon from "../../../assets/icons/interest.png";
 import UserIcon from "../../../assets/icons/users.png";
+import { useLocation } from "react-router-dom";
 
 const Dashboard = () => {
+  const location = useLocation();
+
+  const urlParams = new URLSearchParams(location.search);
+  const tokenFromUrl = urlParams.get("token");
+
+  localStorage.setItem("authToken", tokenFromUrl as string);
+
   const [activeAction, setActiveAction] = useState(null);
 
   const handleActionClick = (index: any) => {
@@ -63,39 +72,38 @@ const Dashboard = () => {
         </div>
 
         <div className="flex  flex-wrap gap-2 flex-row items-start justify-between py-10">
-        <div className="bg-gray-200 md:w-fit w-full border rounded-lg border-gray-300 flex gap-3 md:items-start items-center justify-center px-8 py-4">
-          <img src={BranchIcon} alt="" />
-          <div>
-            <p className="text-center">Total Branch</p>
-            <h6 className="text-center font-bold">57</h6>
+          <div className="bg-gray-200 md:w-fit w-full border rounded-lg border-gray-300 flex gap-3 md:items-start items-center justify-center px-8 py-4">
+            <img src={BranchIcon} alt="" />
+            <div>
+              <p className="text-center">Total Branch</p>
+              <h6 className="text-center font-bold">57</h6>
+            </div>
+          </div>
+
+          <div className="bg-gray-200 md:w-fit w-full border rounded-lg border-gray-300 flex gap-3 md:items-start items-center justify-center px-8 py-4">
+            <img src={TellerIcon} alt="" />
+            <div>
+              <p className="text-center">All tellers</p>
+              <h6 className="text-center font-bold">25</h6>
+            </div>
+          </div>
+
+          <div className="bg-gray-200 md:w-fit w-full border rounded-lg border-gray-300 flex gap-3 md:items-start items-center justify-center px-8 py-4">
+            <img src={InterestIcon} alt="" />
+            <div>
+              <p className="text-center">Total Interest</p>
+              <h6 className="text-center font-bold">49%</h6>
+            </div>
+          </div>
+
+          <div className="bg-gray-200 md:w-fit w-full border rounded-lg border-gray-300 flex gap-3 md:items-start items-center justify-center px-8 py-4">
+            <img src={UserIcon} alt="" />
+            <div>
+              <p className="text-center">All users</p>
+              <h6 className="text-center font-bold">250</h6>
+            </div>
           </div>
         </div>
-
-        <div className="bg-gray-200 md:w-fit w-full border rounded-lg border-gray-300 flex gap-3 md:items-start items-center justify-center px-8 py-4">
-          <img src={TellerIcon} alt="" />
-          <div>
-            <p className="text-center">All tellers</p>
-            <h6 className="text-center font-bold">25</h6>
-          </div>
-        </div>
-
-
-        <div className="bg-gray-200 md:w-fit w-full border rounded-lg border-gray-300 flex gap-3 md:items-start items-center justify-center px-8 py-4">
-          <img src={InterestIcon} alt="" />
-          <div>
-            <p className="text-center">Total Interest</p>
-            <h6 className="text-center font-bold">49%</h6>
-          </div>
-        </div>
-
-        <div className="bg-gray-200 md:w-fit w-full border rounded-lg border-gray-300 flex gap-3 md:items-start items-center justify-center px-8 py-4">
-          <img src={UserIcon} alt="" />
-          <div>
-            <p className="text-center">All users</p>
-            <h6 className="text-center font-bold">250</h6>
-          </div>
-        </div>
-      </div>
 
         <div className="flex items-center justify-between mt-5">
           <div>
@@ -108,7 +116,6 @@ const Dashboard = () => {
             </Link>
           </div>
         </div>
-
 
         <div className="flex">
           <div className="flex">

@@ -158,7 +158,7 @@ const UpdateInterest = ({
             </Button>
 
             <Button
-              onClick={setShowModal(false)}
+              onClick={() => setShowModal(false)}
               size={"lg"}
               className="mt-2 md:w-[560px] w-[300px] bg-primary-light"
             >

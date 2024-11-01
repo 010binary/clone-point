@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import DashboardLayout from "../layout";
 import plusIcon from "../../../assets/icons/plus.svg";
 import shareIcon from "../../../assets/icons/share.svg";
 import TextInput from "../../../components/ui/text-input/TextInput";
-import Action from "../../../assets/icons/action.svg";
+
 import AddInterest from "../../../components/templates/admin/AddInterest";
 import EditInterest from "../../../components/templates/admin/EditInterest";
+import GenericTable from "../../../components/ui/table/generic-table";
+import useGetAllInterest from "../../../components/templates/admin/services/get-all-interest.api";
+import { InterestUserColumns } from "../../../components/templates/admin/TableColums/interest-users-table";
 
 const InterestRate = () => {
-  const [activeAction, setActiveAction] = useState(null);
   const [showAddTeller, setShowAddTeller] = useState(false);
   const [showEditTeller, setShowEditTeller] = useState(false);
 
@@ -20,58 +22,8 @@ const InterestRate = () => {
     setShowEditTeller(!showEditTeller);
   };
 
-  const handleActionClick = (index: any) => {
-    setActiveAction(activeAction === index ? null : index);
-  };
-
-  const tnx = [
-    {
-      txId: "B02337",
-      startDate: "06/11/2023",
-      endDate: "06/11/2023",
-      accountNumber: "1022022820",
-      rate: "5%",
-      amount: "NGN 200,000",
-      type: "Credit",
-    },
-    {
-        txId: "B02337",
-        startDate: "06/11/2023",
-        endDate: "06/11/2023",
-        accountNumber: "1022022820",
-        rate: "5%",
-        amount: "NGN 200,000",
-        type: "Credit",
-      },
-      {
-        txId: "B02337",
-        startDate: "06/11/2023",
-        endDate: "06/11/2023",
-        accountNumber: "1022022820",
-        rate: "5%",
-        amount: "NGN 200,000",
-        type: "Credit",
-      },
-      {
-        txId: "B02337",
-        startDate: "06/11/2023",
-        endDate: "06/11/2023",
-        accountNumber: "1022022820",
-        rate: "5%",
-        amount: "NGN 200,000",
-        type: "Credit",
-      },
-      {
-        txId: "B02337",
-        startDate: "06/11/2023",
-        endDate: "06/11/2023",
-        accountNumber: "1022022820",
-        rate: "5%",
-        amount: "NGN 200,000",
-        type: "Credit",
-      },
-  ];
-
+  const { data } = useGetAllInterest();
+  console.log(data?.content);
   return (
     <DashboardLayout>
       <div className="w-full bg-white dashboard__body overflow-x-auto md:pl-[268px] px-5 md:pr-10 pt-2">
@@ -122,98 +74,10 @@ const InterestRate = () => {
         </div>
 
         <div className="mt-5 pb-20 overflow-x-scroll">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-[#E4F1FB]">
-              <tr className="border border-gray-200">
-                <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
-                  Transaction ID <i className="ri-arrow-drop-down-fill"></i>
-                </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
-                  Start Date <i className="ri-arrow-drop-down-fill"></i>
-                </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
-                  End Date <i className="ri-arrow-drop-down-fill"></i>
-                </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
-                  Account Number <i className="ri-arrow-drop-down-fill"></i>
-                </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
-                  Rate
-                  <i className="ri-arrow-drop-down-fill"></i>
-                </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
-                  Amount <i className="ri-arrow-drop-down-fill"></i>
-                </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
-                  Type <i className="ri-arrow-drop-down-fill"></i>
-                </th>
-                <th className="pl-6 py-4 text-left text-xs font-semiboldm textblack0 uppercase tracking-wider">
-                  <i className="ri-arrow-drop-down-fill text-3xl"></i>
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {tnx.map((tnx, index) => (
-                <React.Fragment key={index}>
-                  <tr className="h-6"></tr>
-                  <tr
-                    key={index}
-                    className="hover:bg-gray-50 border border-gray-200"
-                  >
-                    <td className="px-6 py-4 whitespace-nowrap text-xs font-semibold text-black">
-                      {tnx?.txId}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-xs font-semibold text-black">
-                      {tnx?.startDate}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-xs font-semibold text-black">
-                      {tnx?.endDate}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-xs font-semibold text-black">
-                      {tnx?.accountNumber}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-xs font-semibold text-black">
-                      {tnx?.rate}
-                    </td>
-                    <td className="px-6 py-4 text-green-700 whitespace-nowrap text-xs font-semibold">
-                      {tnx?.amount}
-                    </td>
-                    <td className="px-6 py-4 text-green-700 whitespace-nowrap text-xs font-semibold">
-                      {tnx?.type}
-                    </td>
-                    <td
-                      onClick={() => handleActionClick(index)}
-                      className="px-6 cursor-pointer py-4 whitespace-nowrap text-right text-sm font-medium"
-                    >
-                      <div className="text-blue-600 relative hover:text-blue-900">
-                        <img src={Action} alt="" />
-                        {activeAction === index && (
-                          <div className="absolute top-5 left-0 bg-gray-50 z-10 px-4 py-3 shadow-sm">
-                            <ul className="flex flex-col gap-2 text-black">
-                              <li className="font-bold text-sm">
-                                <a href="/admin/view-interest">View</a>
-                              </li>
-                              <li className="font-bold text-sm">
-                                <p
-                                  className="cursor-pointer"
-                                  onClick={handleShowEditTeller}
-                                >
-                                  Edit
-                                </p>
-                              </li>
-                              <li className="font-bold text-sm">
-                                <a href="">Delete</a>
-                              </li>
-                            </ul>
-                          </div>
-                        )}
-                      </div>
-                    </td>
-                  </tr>
-                </React.Fragment>
-              ))}
-            </tbody>
-          </table>
+          <GenericTable
+            data={data?.content || []}
+            columns={InterestUserColumns}
+          />
         </div>
       </div>
 

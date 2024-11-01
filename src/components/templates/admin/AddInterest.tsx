@@ -1,130 +1,147 @@
-import BaseButton from "../../ui/base-button/BaseButton";
-import TextInput from "../../ui/text-input/TextInput";
-import useAddTellerForm from "./useAddTellerForm";
+import { useForm } from "react-hook-form";
 
-const AddInterest = ({ callBack }: any) => {
-  const {
-    formData,
-    handleChange,
-    handleSubmit,
-    validationError,
-    validationSchema,
-    isLoading,
-  } = useAddTellerForm();
+import { zodResolver } from "@hookform/resolvers/zod";
+import moment from "moment";
+
+import { TellerCreation } from "./types/dto";
+import TransactionDetailsSchema from "./schemas/add-ser-schema";
+import { Input } from "../../ui/input";
+import { Label } from "../../ui/label";
+import useCreateNewTeller from "./services/create-teller.api";
+import { toast } from "react-toastify";
+import { Button } from "../../ui/button";
+import { useQueryClient } from "@tanstack/react-query";
+
+const AddTeller = ({ callBack }: any) => {
+  const { mutateAsync, isPending } = useCreateNewTeller();
+  const querryClient = useQueryClient();
+  const { register, setValue, handleSubmit } = useForm<TellerCreation>({
+    resolver: zodResolver(TransactionDetailsSchema),
+    defaultValues: {},
+    mode: "onChange",
+  });
+
+  const onSubmit = async (data: any) => {
+    try {
+      const response = await mutateAsync({
+        ...data,
+      });
+
+      if (response.statusCode === "OK") {
+        querryClient.invalidateQueries({
+          queryKey: ["GET_ALL_INTEREST"],
+        });
+        callBack();
+        toast.success(response?.message);
+      } else {
+        toast.error(response?.message);
+      }
+    } catch (error: any) {
+      toast.error("Customer Creation Failed");
+    }
+  };
+
   return (
-    <div className="md:w-[580px] w-[360px]">
+    <div className="md:w-[580px] w-[340px]">
       <div className="bg-primary-dark flex px-3 py-2 items-center justify-between">
-        <h1 className="text-white font-bold">Create Interest</h1>
+        <h1 className="text-white font-bold">Create New Interest</h1>
         <i
           className="ri-close-large-line text-white text-xl cursor-pointer"
           onClick={callBack}
         ></i>
       </div>
       <div className="bg-white px-3 -mt-2">
-        <h3 className="font-bold text-lg mt-2">Create a new interest</h3>
-        <form onSubmit={handleSubmit} className="mt-12 flex  gap-4 pb-10">
+        <h3 className="font-bold text-lg mt-2">Create a new teller</h3>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="mt-12 flex  gap-4 pb-10"
+        >
           <div className="flex flex-col gap-4">
-            <TextInput
-              id="txId"
-              type="text"
-              name="txId"
-              value={formData.email}
-              onChange={handleChange}
-              validation={validationSchema?.fields.email}
-              validationTrigger={validationError}
-              label="Transaction ID"
-              placeholder="Enter Transaction ID"
-              width="md:w-[560px] w-[300px]"
-              height="h-10"
-            />
+            <div>
+              <Label>Transaction</Label>
+              <Input
+                placeholder="Enter Transaction ID"
+                {...register("transactionId")}
+              />
+            </div>
+            <div>
+              <Label>Start Date</Label>
 
-            <TextInput
-              id="startDate"
-              type="date"
-              name="startDate"
-              value={formData.password}
-              onChange={handleChange}
-              validation={validationSchema?.fields.password}
-              validationTrigger={validationError}
-              label="Start Date"
-              placeholder="Enter payment date"
-              width="md:w-[560px] w-[300px]"
-              height="h-10"
-            />
+              <Input
+                onChange={(e) =>
+                  setValue(
+                    "startDate",
+                    moment(e.target.value.toString()).format("DD/MM/YYYY"),
+                  )
+                }
+                type="date"
+              />
+            </div>
+            <div>
+              <Label>End Date</Label>
 
-            <TextInput
-              id="endDate"
-              type="date"
-              name="endDate"
-              value={formData.password}
-              onChange={handleChange}
-              validation={validationSchema?.fields.password}
-              validationTrigger={validationError}
-              label="End Date"
-              placeholder="Enter payment date"
-              width="md:w-[560px] w-[300px]"
-              height="h-10"
-            />
+              <Input
+                onChange={(e) =>
+                  setValue(
+                    "endDate",
+                    moment(e.target.value.toString()).format("DD/MM/YYYY"),
+                  )
+                }
+                type="date"
+              />
+            </div>
+            <div>
+              <Label>Account Number</Label>
 
-            <TextInput
-              id="accountNumber"
-              type="text"
-              name="accountNumber"
-              value={formData.password}
-              onChange={handleChange}
-              validation={validationSchema?.fields.password}
-              validationTrigger={validationError}
-              label="Account Number"
-              placeholder="Enter Account Number"
-              width="md:w-[560px] w-[300px]"
-              height="h-10"
-            />
+              <Input
+                {...register("accountNumber")}
+                placeholder="Enter Account Number"
+              />
+            </div>
 
-            <TextInput
-              id="amount"
-              type="text"
-              name="amount"
-              value={formData.password}
-              onChange={handleChange}
-              validation={validationSchema?.fields.password}
-              validationTrigger={validationError}
-              label="Amount"
-              placeholder="Enter amount"
-              width="md:w-[560px] w-[300px]"
-              height="h-10"
-            />
+            <div>
+              <Label>Rate</Label>
 
-            <TextInput
-              id="type"
-              type="text"
-              name="type"
-              value={formData.password}
-              onChange={handleChange}
-              validation={validationSchema?.fields.password}
-              validationTrigger={validationError}
-              label="Type"
-              placeholder="Enter Type"
-              width="md:w-[560px] w-[300px]"
-              height="h-10"
-            />
+              <Input
+                {...register("rate", {
+                  valueAsNumber: true,
+                })}
+                placeholder="Enter Inputter"
+              />
+            </div>
+            <div>
+              <Label>Enter Amount</Label>
 
-            <BaseButton
+              <Input
+                {...register("amount", {
+                  valueAsNumber: true,
+                })}
+                placeholder="Enter amount"
+              />
+            </div>
+            <div>
+              <Label>Enter Type</Label>
+
+              <Input {...register("type")} placeholder="Enter Type" />
+            </div>
+
+            <Button
+              size={"lg"}
               type="submit"
               className="mt-2 md:w-[560px] w-[300px] bg-primary"
             >
               <p className="md:w-[560px] w-[300px]">
-                {isLoading ? "Submitting..." : "Save"}
+                {isPending ? "Please Wait!!!!" : "Save"}
               </p>
-            </BaseButton>
+            </Button>
 
-            <BaseButton
-              type="submit"
+            <Button
+              onClick={callBack}
+              size={"lg"}
               className="mt-2 md:w-[560px] w-[300px] bg-primary-light"
             >
-              <p className="md:w-[560px] w-[300px] text-primary-dark">
-                {isLoading ? "Submitting..." : "Cancel"}
-              </p>
-            </BaseButton>
+              <p className="md:w-[560px] w-[300px] text-primary-dark">Cancel</p>
+            </Button>
           </div>
         </form>
       </div>
@@ -132,4 +149,4 @@ const AddInterest = ({ callBack }: any) => {
   );
 };
 
-export default AddInterest;
+export default AddTeller;

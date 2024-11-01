@@ -9,23 +9,23 @@ export interface CustomerDetail {
   id: number;
   firstName: string;
   lastName: string;
-  middleName?: string; // Optional if middleName may be absent
+  middleName?: string;
   businessName: string;
   mobilePhone: string;
-  accountType: "Savings" | "Current" | "Checking" | string; // Can limit to specific values if known
-  gender: "Male" | "Female" | string; // Can specify specific gender values if known
+  accountType: "Savings" | "Current" | "Checking" | string;
+  gender: "Male" | "Female" | string;
   email: string;
   citizenship: string;
   levelOfEducation: string;
-  dateOfBirth: string; // Date in string format; consider using Date if working directly with dates
+  dateOfBirth: string;
   bvn: string;
-  created_at: string; // Consider Date if directly handling date values
-  updated_at: string; // Consider Date if directly handling date values
+  created_at: string;
+  updated_at: string;
 }
 
 export interface AllRolesData {
   id: number;
-  customerType: string; // Could narrow to specific types if known, e.g., "IC" | "OtherType"
+  customerType: string;
   orgKey: string;
   customerDetail: CustomerDetail;
 }

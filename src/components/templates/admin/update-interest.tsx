@@ -7,7 +7,7 @@ import { TellerCreation } from "./types/dto";
 import TransactionDetailsSchema from "./schemas/add-ser-schema";
 import { Input } from "../../ui/input";
 import { Label } from "../../ui/label";
-import useCreateNewTeller from "./services/create-teller.api";
+
 import { toast } from "react-toastify";
 import { Button } from "../../ui/button";
 import { useQueryClient } from "@tanstack/react-query";

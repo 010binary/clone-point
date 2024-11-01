@@ -19,6 +19,7 @@ import {
   DialogTrigger,
 } from "../../ui/dialog";
 import useUpdateInterest from "./services/update-interest";
+import { useState } from "react";
 
 const UpdateInterest = ({
   children,

@@ -1,13 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
+import { useState } from "react";
 
 import shareIcon from "../../../assets/icons/share.svg";
-import Action from "../../../assets/icons/action.svg";
+
 import CreateCustomerAccount from "./CustomerAccount";
 import DashboardLayout from "../layout";
+import GenericTable from "../../../components/ui/table/generic-table";
+import { userColumns } from "../../../components/ui/table/colums";
+import useGetAllCustomerQuery from "./services/get-all-customer.api";
+import { Skeleton } from "../../../components/ui/skeleton";
 
 const AccountGenerator = () => {
-  const [activeAction, setActiveAction] = useState(null);
   // const [createCustomer, setCreateCustomer] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [customerType, setCustomerType] = useState("");
@@ -22,9 +25,9 @@ const AccountGenerator = () => {
     setCustomerType("");
   };
 
-  const handleActionClick = (index: any) => {
-    setActiveAction(activeAction === index ? null : index);
-  };
+  // const handleActionClick = (index: any) => {
+  //   setActiveAction(activeAction === index ? null : index);
+  // };
 
   // const handleShowCreateCustomer = () => {
   //   setCreateCustomer(!createCustomer);
@@ -32,64 +35,7 @@ const AccountGenerator = () => {
   //   localStorage.setItem("customer_type", "ic");
   // };
 
-  const customer = [
-    {
-      customerType: "IC",
-      title: "Mr.",
-      firstName: "Blessed",
-      middleName: "Okonette",
-      lastName: "Okon",
-      businessName: "Captive Gloss",
-    },
-    {
-      customerType: "IC",
-      title: "Mr.",
-      firstName: "Blessed",
-      middleName: "Okonette",
-      lastName: "Okon",
-      businessName: "Captive Gloss",
-    },
-    {
-      customerType: "IC",
-      title: "Mr.",
-      firstName: "Blessed",
-      middleName: "Okonette",
-      lastName: "Okon",
-      businessName: "Captive Gloss",
-    },
-    {
-      customerType: "IC",
-      title: "Mr.",
-      firstName: "Blessed",
-      middleName: "Okonette",
-      lastName: "Okon",
-      businessName: "Captive Gloss",
-    },
-    {
-      customerType: "IC",
-      title: "Mr.",
-      firstName: "Blessed",
-      middleName: "Okonette",
-      lastName: "Okon",
-      businessName: "Captive Gloss",
-    },
-    {
-      customerType: "IC",
-      title: "Mr.",
-      firstName: "Blessed",
-      middleName: "Okonette",
-      lastName: "Okon",
-      businessName: "Captive Gloss",
-    },
-    {
-      customerType: "IC",
-      title: "Mr.",
-      firstName: "Blessed",
-      middleName: "Okonette",
-      lastName: "Okon",
-      businessName: "Captive Gloss",
-    },
-  ];
+  const { data, isLoading } = useGetAllCustomerQuery();
 
   return (
     <DashboardLayout>
@@ -146,86 +92,23 @@ const AccountGenerator = () => {
         </div>
 
         <div className="mt-5 pb-20 overflow-x-scroll">
-          <table className="min-w-full  divide-y divide-gray-200">
-            <thead className="bg-[#E4F1FB]">
-              <tr className="border border-gray-200">
-                <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
-                  Customer Type <i className="ri-arrow-drop-down-fill"></i>
-                </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
-                  Title <i className="ri-arrow-drop-down-fill"></i>
-                </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
-                  First Name <i className="ri-arrow-drop-down-fill"></i>
-                </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
-                  Middle Name <i className="ri-arrow-drop-down-fill"></i>
-                </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
-                  Last Name <i className="ri-arrow-drop-down-fill"></i>
-                </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">
-                  Business Name <i className="ri-arrow-drop-down-fill"></i>
-                </th>
-                <th className="pl-6 py-4 text-left text-xs font-semiboldm textblack0 uppercase tracking-wider">
-                  <i className="ri-arrow-drop-down-fill text-3xl"></i>
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {customer.map((item, index) => (
-                <React.Fragment key={index}>
-                  <tr className="h-6"></tr>
-                  <tr
-                    key={index}
-                    className="hover:bg-gray-50 border border-gray-200"
-                  >
-                    <td className="px-6 py-4 whitespace-nowrap text-xs font-semibold text-black">
-                      {item.customerType}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-xs font-semibold text-black">
-                      {item.title}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-xs font-semibold text-black">
-                      {item.firstName}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-xs font-semibold text-black">
-                      {item.middleName}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-xs font-semibold text-black">
-                      {item.lastName}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-xs font-semibold text-black">
-                      {item.businessName}
-                    </td>
-                    <td
-                      onClick={() => handleActionClick(index)}
-                      className="px-6 cursor-pointer py-4 whitespace-nowrap text-right text-sm font-medium"
-                    >
-                      <div className="text-blue-600 relative hover:text-blue-900">
-                        <img src={Action} alt="" />
-                        {activeAction === index && (
-                          <div className="absolute top-5 left-0 bg-gray-50 z-10 px-4 py-3 shadow-sm">
-                            <ul className="flex flex-col gap-2 text-black">
-                              <li className="font-bold text-sm">
-                                <a href="/admin/crm/view-details">View</a>
-                              </li>
-                              <li className="font-bold text-sm">
-                                <a href="">Edit</a>
-                              </li>
-                              <li className="font-bold text-sm">
-                                <a href="">Delete</a>
-                              </li>
-                            </ul>
-                          </div>
-                        )}
-                      </div>
-                    </td>
-                  </tr>
-                </React.Fragment>
-              ))}
-            </tbody>
-          </table>
+          {isLoading && (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-5">
+                {Array(3)
+                  .fill(1)
+                  .map((_, index) => {
+                    return (
+                      <Skeleton
+                        className="h-96 w-full bg-gray-300"
+                        key={index}
+                      />
+                    );
+                  })}
+              </div>
+            </>
+          )}
+          <GenericTable data={data?.data || []} columns={userColumns} />
         </div>
       </div>
 

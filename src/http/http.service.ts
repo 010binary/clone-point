@@ -35,15 +35,12 @@ export type HttpServiceResolverDTO<T> = Promise<{
 }>;
 
 export default class HttpService {
-   axiosInstance: AxiosInstance;
+  axiosInstance: AxiosInstance;
   constructor(private params: HttpServiceConstructorParams) {
     this.axiosInstance = axios.create(this.params);
   }
 
-   async resolver<T>(
-    fn: Promise<AxiosResponse>
-    // @ts-ignore
-  ): HttpServiceResolverDTO<T> {
+  async resolver<T>(fn: Promise<AxiosResponse>): HttpServiceResolverDTO<T> {
     let data: HttpServiceResolverData<T> | null = null;
     let error: null | HttpServiceResolverError = null;
     try {
@@ -58,17 +55,15 @@ export default class HttpService {
     return { data, error };
   }
 
-   async SendRequest<
-    DAO,
-    DTO = Record<any, any>,
-    DQO = Record<any, any>
-  >(params: HttpServiceParams<DTO, DQO>) {
+  async SendRequest<DAO, DTO = Record<any, any>, DQO = Record<any, any>>(
+    params: HttpServiceParams<DTO, DQO>,
+  ) {
     const response = await this.resolver<DAO>(
       this.axiosInstance[params.method](
         params.path,
         params.body ? params.body : ({ params: params.query || {} } as any),
-        params.body && params.query ? { params: params.query } : {}
-      )
+        params.body && params.query ? { params: params.query } : {},
+      ),
     );
     if (response.error && params.options?.throwError) {
       throw response.error;

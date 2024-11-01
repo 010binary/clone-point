@@ -11,10 +11,12 @@ const axiosInstance = axios.create({
   },
 });
 const savedToken = localStorage.getItem("authToken");
-console.log(savedToken);
+
 axiosInstance.interceptors.request.use(
   (config) => {
+
     const token = `${savedToken}`;
+
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -25,7 +27,7 @@ axiosInstance.interceptors.request.use(
 
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 
 axiosInstance.interceptors.response.use(
@@ -45,7 +47,7 @@ axiosInstance.interceptors.response.use(
     }
     // Return the error to be handled by the calling function
     return Promise.reject(error);
-  }
+  },
 );
 
 export default axiosInstance;

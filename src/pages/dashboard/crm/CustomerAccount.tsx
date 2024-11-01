@@ -22,6 +22,7 @@ import { useState } from "react";
 import { Input } from "../../../components/ui/input/input";
 import transformFormDataToApiPayload from "../../../api/crm/create-payload";
 import useCreateCustomer from "../../../api/crm/create-customer";
+import { useQueryClient } from "@tanstack/react-query";
 
 // const customerSchema = z.object({
 //   // title: z.string().min(1, { message: "Title is required" }),
@@ -45,19 +46,19 @@ import useCreateCustomer from "../../../api/crm/create-customer";
 const CreateCustomerAccount = ({ onClose, customerType }: any) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [previewFrontImage, setPreviewFrontImage] = useState<string | null>(
-    null
+    null,
   );
   const [previewBackImage, setPreviewBackImage] = useState<string | null>(null);
   const [previewUtilityBill, setPreviewUtilityBill] = useState<string | null>(
-    null
+    null,
   );
   const [previewCACDocument, setPreviewCACDocument] = useState<string | null>(
-    null
+    null,
   );
   const [previewPassport, setPreviewPassport] = useState<string | null>(null);
   const [previewSignature, setPreviewSignature] = useState<string | null>(null);
   const step = parseInt(searchParams.get("step") || "0");
-
+  const queryClient = useQueryClient();
   // const schema = step === 0 ? customerSchema : '';
   const { mutateAsync, isPending } = useCreateCustomer();
   const {
@@ -82,7 +83,7 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
   // Convert files to Base64
   const handleFileChange = async (
     e: React.ChangeEvent<HTMLInputElement>,
-    key: string
+    key: string,
   ) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -158,6 +159,9 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
       const response = await mutateAsync(apiPayload);
       console.log(response);
       if (response.statusCode === "CREATED") {
+        queryClient.invalidateQueries({
+          queryKey: ["GET_ALL_CUSTOMER"],
+        });
         toast.success(response?.message);
 
         reset();

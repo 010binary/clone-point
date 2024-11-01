@@ -13,7 +13,7 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = "b8071494-9b66-41aa-a38a-0c2956d70a39";
+    const token = "4fc74cb4-6808-4ac9-adb6-fdbf576666af";
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -24,7 +24,7 @@ axiosInstance.interceptors.request.use(
 
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 
 axiosInstance.interceptors.response.use(
@@ -44,7 +44,7 @@ axiosInstance.interceptors.response.use(
     }
     // Return the error to be handled by the calling function
     return Promise.reject(error);
-  }
+  },
 );
 
 export default axiosInstance;

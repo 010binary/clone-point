@@ -10,10 +10,11 @@ const axiosInstance = axios.create({
     "Content-Type": "application/json",
   },
 });
-
+const savedToken = localStorage.getItem("authToken");
+console.log(savedToken);
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = "b8071494-9b66-41aa-a38a-0c2956d70a39";
+    const token = `${savedToken}`;
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;

@@ -25,16 +25,6 @@ const AccountGenerator = () => {
     setCustomerType("");
   };
 
-  // const handleActionClick = (index: any) => {
-  //   setActiveAction(activeAction === index ? null : index);
-  // };
-
-  // const handleShowCreateCustomer = () => {
-  //   setCreateCustomer(!createCustomer);
-
-  //   localStorage.setItem("customer_type", "ic");
-  // };
-
   const { data, isLoading } = useGetAllCustomerQuery();
 
   return (

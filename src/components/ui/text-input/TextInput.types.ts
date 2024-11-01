@@ -1,6 +1,8 @@
 import { FormInputPayload } from "../../../utils/types/global.types";
 import { InputHTMLAttributes } from "react";
 
+// import { ChangeHandler } from "react-hook-form";
+
 export type TextInputProps = {
   label?: string;
   labelColor?: boolean;
@@ -9,5 +11,5 @@ export type TextInputProps = {
   validationTrigger?: string | null;
   type?: string;
   placeholder?: string;
-  height?:string;
+  height?: string;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, "className" | "onChange">;

@@ -5,7 +5,7 @@ import useSignInForm from "./useSignUpForm";
 import SelectInput from "../../../components/ui/select-input/SelectInput";
 import { gender, title } from "../../../lib/Onboarding/signup";
 
-const SignUp = () => {
+const SignUp = ({setActivePage}: any) => {
   const {
     formData,
     handleChange,
@@ -24,8 +24,28 @@ const SignUp = () => {
         <p className="md:w-[450px] text-[#6E6E6E] font-[Montserat-Medium] font-medium">
           Welcome, great to be here!
         </p>
+        <div className="flex w-64 pt-5 pb-1 mb-6">
+          <div className="">
+            <h1
+              className="font-bold text-lg cursor-pointer pl-14 pb-2"
+              onClick={() => setActivePage("sign-up")}
+            >
+              Signup
+            </h1>
+            <div className="border-b-[3px] max-w-1/2 rounded-full border-primary-dark"></div>
+          </div>
+          <div>
+            <h1
+              className="font-bold text-lg cursor-pointer pl-14 pb-2"
+              onClick={() => setActivePage("log-in")}
+            >
+              Log in
+            </h1>
+            <div className="border-b-[3px] max-w-1/2 rounded-full border-gray-300"></div>
+          </div>
+        </div>
 
-        <form onSubmit={handleSubmit} className="mt-12 flex flex-col gap-4">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <SelectInput label="Title" options={title} width="w-[600px]" />
 
           <TextInput
@@ -77,7 +97,7 @@ const SignUp = () => {
             onChange={handleChange}
             validation={validationSchema?.fields.userName}
             validationTrigger={validationError}
-            label="User Name"
+            label="Username"
             placeholder="Enter user name"
             width="w-[600px]"
           />
@@ -153,7 +173,7 @@ const SignUp = () => {
             width="w-[600px]"
           />
 
-          <BaseButton type="submit" className="mt-2 w-fit">
+          <BaseButton fit={true} type="submit" className="mt-2 w-[600px] bg-primary">
             <p className="w-[600px]">
               {isLoading ? "Submitting..." : "Sign Up"}
             </p>

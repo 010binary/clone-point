@@ -1,4 +1,4 @@
-import React, { useMemo, ChangeEvent } from "react";
+import React, { useMemo } from "react";
 import "./OtpInput.css";
 import { FormInputPayload } from "../../../utils/types/global.types";
 
@@ -17,8 +17,8 @@ export default function OtpInput({
   value,
   valueLength,
   onChange,
-  validation,
-  validationTrigger,
+  // validation,
+  // validationTrigger,
   name,
 }: Props) {
   const valueItems = useMemo(() => {

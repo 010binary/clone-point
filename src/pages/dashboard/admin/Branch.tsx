@@ -53,7 +53,7 @@ const Branch = () => {
 
   return (
     <DashboardLayout>
-      <div className="w-full bg-white dashboard__body overflow-x-auto pl-[268px] pr-10 pt-2">
+      <div className="w-full bg-white dashboard__body overflow-x-hidden md:pl-[268px] px-5 md:pr-10 pt-2">
         <div
           className="w-full bg-white flex justify-between py-5 mt-5"
           style={{ boxShadow: "0px 4px 30px 0px #1A88E14A inset" }}
@@ -62,13 +62,13 @@ const Branch = () => {
         </div>
 
         <div className="flex items-center justify-between mt-5">
-          <div>
+          <div className="hidden md:block">
             <p className="text-sm">
               Total: <span className="font-bold">250</span>
             </p>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex  items-center gap-4">
             <Link
               to="/admin/add-branch"
               className="flex items-center px-4 py-2 gap-2 border border-[#00000066]"
@@ -84,11 +84,11 @@ const Branch = () => {
           </div>
         </div>
 
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col md:flex-row items-center justify-between">
           <form action="">
             <div>
               <label>Branch</label>
-              <TextInput placeholder="Enter branch name" />
+              <TextInput width="w-full" placeholder="Enter branch name" />
             </div>
           </form>
 
@@ -104,8 +104,8 @@ const Branch = () => {
           </div>
         </div>
 
-        <div className="mt-5 pb-20">
-          <table className="min-w-full divide-y divide-gray-200">
+        <div className="mt-5 pb-20 overflow-x-scroll">
+          <table className="min-w-full  divide-y divide-gray-200">
             <thead className="bg-[#E4F1FB]">
               <tr className="border border-gray-200">
                 <th className="px-6 py-4 text-left text-xs font-semibold text-black uppercase tracking-wider">

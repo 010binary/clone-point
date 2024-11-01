@@ -10,5 +10,6 @@ export interface SelectInputProps {
   labelColor?: boolean
   options: Option[];
   width?: string;
+  height?: string;
   onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void; 
 }

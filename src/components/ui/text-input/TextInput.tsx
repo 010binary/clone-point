@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { TextInputProps } from "./TextInput.types";
 import useTextInput from "./useTextInput";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons/index";
 
 export default function TextInput(props: TextInputProps) {
   const {
@@ -61,7 +59,11 @@ export default function TextInput(props: TextInputProps) {
           backgroundColor: hasContent ? "#eef9fa" : "",
           border: "0.71px solid #00000033",
         }}
-        className={`border border-l-0 pl-2 ${height ? height : "h-12"} pr-12 ${width} text-sm rounded-lg focus:outline-none`}
+        className={`border border-l-0 pl-2 ${
+          height ? height : "h-12"
+        } pr-12 ${width} text-sm rounded-lg ${
+          focused ? "focus:outline-none" : "focus:outline-none"
+        }`}
         placeholder={placeholder ? placeholder : ""}
       />
       {validationError && (
@@ -69,15 +71,11 @@ export default function TextInput(props: TextInputProps) {
           {validationError}
         </p>
       )}
-      {/* {type === "password" && (
+      {type === "password" && (
         <p onClick={togglePasswordVisibility} className="">
-          {showPassword ? (
-            <FontAwesomeIcon icon={faEye} />
-          ) : (
-            <FontAwesomeIcon icon={faEyeSlash} />
-          )}
+          {showPassword ? <></> : <></>}
         </p>
-      )} */}
+      )}
     </div>
   );
 }

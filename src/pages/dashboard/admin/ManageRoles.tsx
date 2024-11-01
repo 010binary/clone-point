@@ -77,7 +77,7 @@ const ManageRoles = () => {
 
   return (
     <DashboardLayout>
-      <div className="w-full bg-white dashboard__body overflow-x-auto pl-[268px] pr-10 pt-2">
+      <div className="w-full bg-white dashboard__body overflow-x-auto md:pl-[268px] px-5 md:pr-10 pt-2">
         <div
           className="w-full bg-white flex justify-between py-5 mt-5"
           style={{ boxShadow: "0px 4px 30px 0px #1A88E14A inset" }}
@@ -104,11 +104,11 @@ const ManageRoles = () => {
           </div>
         </div>
 
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col md:flex-row gap-3 mt-4 items-center justify-between">
           <form action="">
             <div>
-              <label>Branch</label>
-              <TextInput placeholder="Enter branch name" />
+              <label>Roles</label>
+              <TextInput placeholder="Search role" />
             </div>
           </form>
 
@@ -124,7 +124,7 @@ const ManageRoles = () => {
           </div>
         </div>
 
-        <div className="mt-5 pb-20">
+        <div className="mt-5 pb-20 overflow-x-scroll">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-[#E4F1FB]">
               <tr className="border border-gray-200">

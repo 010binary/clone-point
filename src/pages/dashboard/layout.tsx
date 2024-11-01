@@ -1,6 +1,4 @@
 import { ReactNode } from "react";
-import FinMan from "../../assets/images/finman.png";
-import Ezone from "../../assets/images/ezone.png";
 import Sidebar from "../../components/templates/admin/Sidebar";
 import { adminRoutes } from "../../lib/Admin/routes";
 import HeaderColor from "../../assets/images/color-one.png";
@@ -13,15 +11,10 @@ type OnboardingLayoutProps = {
 export default function DashboardLayout({ children }: OnboardingLayoutProps) {
   return (
     <main className="w-full">
-      <Sidebar routes={adminRoutes} />
-      <div className="w-full fixed top-0 right-0 bg-white dashboard__body overflow-x-auto">
-        <div className="flex  w-full items-center justify-between py-2 border px-16">
-          <img src={Ezone} alt="" />
-          <img src={FinMan} alt="" />
-        </div>
-</div>
-<div className="mt-20">
-        <div className="pl-[268px] pr-10 relative">
+      <Sidebar title="Dashbord" routes={adminRoutes} />
+
+      <div className="mt-20">
+        <div className="md:pl-[268px] pl-5 pr-5 md:pr-10 relative">
           <div
             className="w-full header__user__account bg-[#1A88E1] relative h-12 gap-5 flex justify-end items-center px-10"
             style={{
@@ -35,10 +28,10 @@ export default function DashboardLayout({ children }: OnboardingLayoutProps) {
               <h6 className="font-bold text-white">Joy Essien</h6>
               <i className="ri-arrow-drop-down-fill text-white text-xl"></i>
             </div>
-            <div className="absolute top-0 z-[20]">
+            <div className="absolute hidden md:block top-0 z-[20]">
               <img src={HeaderColor} alt="" />
             </div>
-            <div className="absolute top-0 right-[340px] z-[20]">
+            <div className="absolute hidden md:block top-0 right-[340px] z-[20]">
               <img src={HeaderColorTwo} alt="" />
             </div>
           </div>

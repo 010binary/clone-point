@@ -28,6 +28,7 @@ const UpdateInterest = ({
   data: TellerCreation;
 }) => {
   const { mutateAsync, isPending } = useUpdateInterest();
+  const [showModal, setShowModal] = useState(false);
   const querryClient = useQueryClient();
   const { register, setValue, handleSubmit } = useForm<TellerCreation>({
     resolver: zodResolver(TransactionDetailsSchema),
@@ -55,6 +56,7 @@ const UpdateInterest = ({
         });
 
         toast.success(response?.message);
+        setShowModal(false);
       } else {
         toast.error(response?.message);
       }
@@ -64,7 +66,7 @@ const UpdateInterest = ({
   };
 
   return (
-    <Dialog>
+    <Dialog open={showModal} onOpenChange={setShowModal}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -155,7 +157,7 @@ const UpdateInterest = ({
             </Button>
 
             <Button
-              onClick={callBack}
+              onClick={setShowModal(false)}
               size={"lg"}
               className="mt-2 md:w-[560px] w-[300px] bg-primary-light"
             >

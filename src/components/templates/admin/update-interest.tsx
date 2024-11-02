@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 // import { zodResolver } from "@hookform/resolvers/zod";
 import moment from "moment";
 
-import { TellerCreation } from "./types/dto";
+// import { TellerCreation } from "./types/dto";
 // import TransactionDetailsSchema from "./schemas/add-ser-schema";
 import { Input } from "../../ui/input";
 import { Label } from "../../ui/label";

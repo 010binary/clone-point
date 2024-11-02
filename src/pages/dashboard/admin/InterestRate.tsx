@@ -9,6 +9,7 @@ import EditInterest from "../../../components/templates/admin/EditInterest";
 import GenericTable from "../../../components/ui/table/generic-table";
 import useGetAllInterest from "../../../components/templates/admin/services/get-all-interest.api";
 import { InterestUserColumns } from "../../../components/templates/admin/TableColums/interest-users-table";
+import { Skeleton } from "../../../components/ui/skeleton";
 
 const InterestRate = () => {
   const [showAddTeller, setShowAddTeller] = useState(false);
@@ -22,8 +23,8 @@ const InterestRate = () => {
     setShowEditTeller(!showEditTeller);
   };
 
-  const { data } = useGetAllInterest();
-  console.log(data?.content);
+  const { data, isLoading } = useGetAllInterest();
+
   return (
     <DashboardLayout>
       <div className="w-full bg-white dashboard__body overflow-x-auto md:pl-[268px] px-5 md:pr-10 pt-2">
@@ -74,10 +75,27 @@ const InterestRate = () => {
         </div>
 
         <div className="mt-5 pb-20 overflow-x-scroll">
-          <GenericTable
-            data={data?.content || []}
-            columns={InterestUserColumns}
-          />
+          {isLoading ? (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-5">
+                {Array(3)
+                  .fill(1)
+                  .map((_, index) => {
+                    return (
+                      <Skeleton
+                        className="h-96 w-full bg-gray-300"
+                        key={index}
+                      />
+                    );
+                  })}
+              </div>
+            </>
+          ) : (
+            <GenericTable
+              data={data?.content || []}
+              columns={InterestUserColumns}
+            />
+          )}
         </div>
       </div>
 

@@ -7,17 +7,41 @@ import { TellerCreation } from "./types/dto";
 import TransactionDetailsSchema from "./schemas/add-ser-schema";
 import { Input } from "../../ui/input";
 import { Label } from "../../ui/label";
-import useCreateNewTeller from "./services/create-teller.api";
+
 import { toast } from "react-toastify";
 import { Button } from "../../ui/button";
 import { useQueryClient } from "@tanstack/react-query";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../../ui/dialog";
+import useUpdateInterest from "./services/update-interest";
+import { useState } from "react";
 
-const AddInterest = ({ callBack }: any) => {
-  const { mutateAsync, isPending } = useCreateNewTeller();
+const UpdateInterest = ({
+  children,
+  data,
+}: {
+  children: React.ReactNode;
+  data: TellerCreation;
+}) => {
+  const { mutateAsync, isPending } = useUpdateInterest();
+  const [showModal, setShowModal] = useState(false);
   const querryClient = useQueryClient();
   const { register, setValue, handleSubmit } = useForm<TellerCreation>({
     resolver: zodResolver(TransactionDetailsSchema),
-    defaultValues: {},
+    defaultValues: {
+      accountNumber: data.accountNumber,
+      rate: data.rate,
+      amount: data.amount,
+      type: data.type,
+      transactionId: data.transactionId,
+      endDate: data.endDate,
+      startDate: data.startDate,
+    },
     mode: "onChange",
   });
 
@@ -31,8 +55,9 @@ const AddInterest = ({ callBack }: any) => {
         querryClient.invalidateQueries({
           queryKey: ["GET_ALL_INTEREST"],
         });
-        callBack();
+
         toast.success(response?.message);
+        setShowModal(false);
       } else {
         toast.error(response?.message);
       }
@@ -42,16 +67,13 @@ const AddInterest = ({ callBack }: any) => {
   };
 
   return (
-    <div className="md:w-[580px] w-[340px]">
-      <div className="bg-primary-dark flex px-3 py-2 items-center justify-between">
-        <h1 className="text-white font-bold">Create New Interest</h1>
-        <i
-          className="ri-close-large-line text-white text-xl cursor-pointer"
-          onClick={callBack}
-        ></i>
-      </div>
-      <div className="bg-white px-3 -mt-2">
-        <h3 className="font-bold text-lg mt-2">Create a new teller</h3>
+    <Dialog open={showModal} onOpenChange={setShowModal}>
+      <DialogTrigger asChild>{children}</DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Update Interest</DialogTitle>
+        </DialogHeader>
+
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="mt-12 flex  gap-4 pb-10"
@@ -106,7 +128,7 @@ const AddInterest = ({ callBack }: any) => {
                 {...register("rate", {
                   valueAsNumber: true,
                 })}
-                placeholder="Enter Rate"
+                placeholder="Enter Inputter"
               />
             </div>
             <div>
@@ -136,7 +158,7 @@ const AddInterest = ({ callBack }: any) => {
             </Button>
 
             <Button
-              onClick={callBack}
+              onClick={() => setShowModal(false)}
               size={"lg"}
               className="mt-2 md:w-[560px] w-[300px] bg-primary-light"
             >
@@ -144,9 +166,9 @@ const AddInterest = ({ callBack }: any) => {
             </Button>
           </div>
         </form>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 };
 
-export default AddInterest;
+export default UpdateInterest;

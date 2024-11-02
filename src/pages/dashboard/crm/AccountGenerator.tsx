@@ -82,7 +82,7 @@ const AccountGenerator = () => {
         </div>
 
         <div className="mt-5 pb-20 overflow-x-scroll">
-          {isLoading && (
+          {isLoading ? (
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-5">
                 {Array(3)
@@ -97,8 +97,9 @@ const AccountGenerator = () => {
                   })}
               </div>
             </>
+          ) : (
+            <GenericTable data={data?.data || []} columns={userColumns} />
           )}
-          <GenericTable data={data?.data || []} columns={userColumns} />
         </div>
       </div>
 

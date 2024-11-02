@@ -27,11 +27,11 @@ export const adminRoutes: AdminRoute[] = [
     route: "#",
     subRoutes: [
       {
-        page: "Account",
+        page: "Account Management",
         route: "/admin/crm/client-manger",
       },
       {
-        page: "Account Generator",
+        page: "Customer Management",
         route: "/admin/crm/account-generator",
       },
     ],
@@ -76,7 +76,7 @@ export const adminRoutes: AdminRoute[] = [
   {
     id: "operation",
     icon: RolesIcon,
-    page: "Operation",
+    page: "Operations",
     route: "#",
     subRoutes: [
       {
@@ -96,7 +96,7 @@ export const adminRoutes: AdminRoute[] = [
   {
     id: "loan",
     icon: LoanManager,
-    page: "Loan Manager",
+    page: "Loans",
     route: "#",
     subRoutes: [
       {
@@ -116,7 +116,7 @@ export const adminRoutes: AdminRoute[] = [
   {
     id: "report",
     icon: TransactionIconReport,
-    page: "Report",
+    page: "Reports",
     route: "#",
     subRoutes: [
       {

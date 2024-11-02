@@ -66,9 +66,14 @@ export const InterestUserColumns: ColumnDef<any>[] = [
     // accessorFn: (row) => formatDate(row.updated_at, "dd-MM-yyyy"),
     header: "Action",
     cell: ({ row }) => (
-      <div className="font-medium">
+      <div className="flex items-center justify-center">
         <UpdateInterest data={row.original}>
-          <Edit size={18} color="#FF8A65" />
+          <Edit
+            size={18}
+            color="#FF8A65"
+            className="cursor-pointer"
+            variant="Linear"
+          />
         </UpdateInterest>
       </div>
     ),

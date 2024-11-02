@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 
-import { zodResolver } from "@hookform/resolvers/zod";
+// import { zodResolver } from "@hookform/resolvers/zod";
 import moment from "moment";
 
-import { TellerCreation } from "./types/dto";
-import TransactionDetailsSchema from "./schemas/add-ser-schema";
+// import { TellerCreation } from "./types/dto";
+// import TransactionDetailsSchema from "./schemas/add-ser-schema";
 import { Input } from "../../ui/input";
 import { Label } from "../../ui/label";
 
@@ -26,16 +26,16 @@ const UpdateInterest = ({
   data,
 }: {
   children: React.ReactNode;
-  data: TellerCreation;
+  data: any;
 }) => {
   const { mutateAsync, isPending } = useUpdateInterest();
   const [showModal, setShowModal] = useState(false);
   const querryClient = useQueryClient();
-  const { register, setValue, handleSubmit } = useForm<TellerCreation>({
-    resolver: zodResolver(TransactionDetailsSchema),
+  const { register, setValue, handleSubmit } = useForm({
+    // resolver: zodResolver(TransactionDetailsSchema),
     defaultValues: {
       accountNumber: data.accountNumber,
-      rate: data.rate,
+      id: data.id,
       amount: data.amount,
       type: data.type,
       transactionId: data.transactionId,
@@ -69,15 +69,12 @@ const UpdateInterest = ({
   return (
     <Dialog open={showModal} onOpenChange={setShowModal}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent>
+      <DialogContent className="w-full">
         <DialogHeader>
           <DialogTitle>Update Interest</DialogTitle>
         </DialogHeader>
 
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="mt-12 flex  gap-4 pb-10"
-        >
+        <form onSubmit={handleSubmit(onSubmit)} className="">
           <div className="flex flex-col gap-4">
             <div>
               <Label>Transaction</Label>
@@ -121,11 +118,11 @@ const UpdateInterest = ({
               />
             </div>
 
-            <div>
+            <div className="hidden">
               <Label>Rate</Label>
 
               <Input
-                {...register("rate", {
+                {...register("id", {
                   valueAsNumber: true,
                 })}
                 placeholder="Enter Inputter"
@@ -147,11 +144,7 @@ const UpdateInterest = ({
               <Input {...register("type")} placeholder="Enter Type" />
             </div>
 
-            <Button
-              size={"lg"}
-              type="submit"
-              className="mt-2 md:w-[560px] w-[300px] bg-primary"
-            >
+            <Button size={"lg"} type="submit" className="mt-2 bg-primary">
               <p className="md:w-[560px] w-[300px]">
                 {isPending ? "Please Wait!!!!" : "Save"}
               </p>
@@ -160,7 +153,7 @@ const UpdateInterest = ({
             <Button
               onClick={() => setShowModal(false)}
               size={"lg"}
-              className="mt-2 md:w-[560px] w-[300px] bg-primary-light"
+              className="mt-2  bg-primary-light"
             >
               <p className="md:w-[560px] w-[300px] text-primary-dark">Cancel</p>
             </Button>

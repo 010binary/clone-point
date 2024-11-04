@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 
 import shareIcon from "../../../assets/icons/share.svg";
@@ -5,11 +6,22 @@ import Action from "../../../assets/icons/action.svg";
 import DashboardLayout from "../layout";
 import CreateNewAccount from "../../../components/templates/crm/CreateNewAccount";
 import EditAccount from "../../../components/templates/crm/EditAccount";
+import { Skeleton } from "../../../components/ui/skeleton";
+import GenericTable from "../../../components/ui/table/generic-table";
+
+// import { InterestUserColumns } from "../../../components/templates/admin/TableColums/interest-users-table";
+import { AccountUserColumns } from "../../../components/templates/admin/TableColums/create-account-table";
+import useGetAllAccount from "../../../api/crm/get-account";
+import useGetAllCustomerQuery from "./services/get-all-customer.api";
 
 const ManagerAccount = () => {
   const [activeAction, setActiveAction] = useState(null);
   const [createCustomer, setCreateCustomer] = useState(false);
   const [showEditAccount, setShowEditAccount] = useState(false);
+
+  const { data, isLoading } = useGetAllAccount();
+  const { data: datar } = useGetAllCustomerQuery();
+  console.log(datar?.data);
 
   const handleActionClick = (index: any) => {
     setActiveAction(activeAction === index ? null : index);
@@ -125,7 +137,30 @@ const ManagerAccount = () => {
           </div>
         </div>
 
-        <div className="mt-5 pb-20 overflow-x-scroll">
+        <div className="mt-5 pb-20 ">
+          {isLoading ? (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-5">
+                {Array(3)
+                  .fill(1)
+                  .map((_, index) => {
+                    return (
+                      <Skeleton
+                        className="h-96 w-full bg-gray-300"
+                        key={index}
+                      />
+                    );
+                  })}
+              </div>
+            </>
+          ) : (
+            <GenericTable
+              data={data?.content || []}
+              columns={AccountUserColumns}
+            />
+          )}
+        </div>
+        <div className="hidden mt-5 pb-20 overflow-x-scroll">
           <table className="min-w-full  divide-y divide-gray-200">
             <thead className="bg-[#E4F1FB]">
               <tr className="border border-gray-200">
@@ -217,7 +252,10 @@ const ManagerAccount = () => {
           <>
             <div className="w-full h-full bg-opacity-70 z-0 bg-black fixed top-0"></div>
             <div className="z-50 absolute top-24">
-              <CreateNewAccount callBack={handleShowCreateCustomer} />
+              <CreateNewAccount
+                callBack={handleShowCreateCustomer}
+                customerData={datar?.data}
+              />
             </div>
           </>
         )}

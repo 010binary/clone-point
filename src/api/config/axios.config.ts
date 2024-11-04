@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
 //   import { sonner } from "@/components/ui/sonner";
 import { toast } from "react-toastify";
@@ -12,8 +13,9 @@ const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use(
-  (config) => {
-    const savedToken = localStorage.getItem("authToken");
+  (config: any) => {
+    // const savedToken = localStorage.getItem("authToken");
+    const savedToken = "008a1ff3-dc8f-4633-ad18-7c38407940d3";
     if (savedToken) {
       config.headers.Authorization = `Bearer ${savedToken}`;
     }
@@ -21,17 +23,17 @@ axiosInstance.interceptors.request.use(
     return config;
   },
 
-  (error) => {
+  (error: any) => {
     return Promise.reject(error);
-  },
+  }
 );
 
 axiosInstance.interceptors.response.use(
-  (response) => {
+  (response: any) => {
     // Return the response if it's successful
     return response;
   },
-  (error) => {
+  (error: any) => {
     // Check if the error is due to unauthorized access (status code 401)
     if (error.response && error.response.status === 401) {
       // Handle unauthorized access here, such as redirecting to login page or showing a message
@@ -43,7 +45,7 @@ axiosInstance.interceptors.response.use(
     }
     // Return the error to be handled by the calling function
     return Promise.reject(error);
-  },
+  }
 );
 
 export default axiosInstance;

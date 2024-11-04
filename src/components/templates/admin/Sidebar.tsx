@@ -19,8 +19,8 @@ const Sidebar: React.FC<SidebarProps> = ({ routes, title }) => {
   useEffect(() => {
     const activeRoute = routes.find((route) =>
       route.subRoutes?.some(
-        (subRoute: any) => subRoute.route === location.pathname,
-      ),
+        (subRoute: any) => subRoute.route === location.pathname
+      )
     );
     if (activeRoute) {
       setOpenMenu(activeRoute.id);
@@ -93,7 +93,7 @@ const Sidebar: React.FC<SidebarProps> = ({ routes, title }) => {
                         to={subItem.route}
                         className={`${
                           location.pathname === subItem.route
-                            ? "bg-white text-primary pr-5 pl-2 font-bold py-1"
+                            ? "bg-white text-primary pr-1 pl-1 font-bold py-1"
                             : "text-white"
                         }`}
                       >

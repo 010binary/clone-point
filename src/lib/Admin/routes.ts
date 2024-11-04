@@ -32,7 +32,7 @@ export const adminRoutes: AdminRoute[] = [
       },
       {
         page: "Customer Management",
-        route: "/admin/crm/account-generator",
+        route: "/admin/crm/customer-creation",
       },
     ],
   },

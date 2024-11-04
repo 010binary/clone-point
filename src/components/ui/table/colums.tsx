@@ -9,16 +9,16 @@ export interface Role {
 
 export const userColumns: ColumnDef<AllRolesData>[] = [
   {
-    id: "name",
+    id: "CustomerType",
     header: " Customer Type",
     cell: ({ row }) => (
       <p className="font-medium">{row.original?.customerType}</p>
     ),
   },
   {
-    id: "email",
+    id: "BusinessName",
 
-    header: "Title",
+    header: "Business Name",
     cell: ({ row }) => (
       <p className="font-medium">
         {row.original?.customerDetail.gender === "Male" ? "Mr" : "Mis"}
@@ -34,15 +34,7 @@ export const userColumns: ColumnDef<AllRolesData>[] = [
       <p className="font-medium">{row.original?.customerDetail.firstName}</p>
     ),
   },
-  {
-    id: "mname",
-    // accessorKey: 'updatedAt',
-    // accessorFn: (row) => formatDate(row.updated_at, "dd-MM-yyyy"),
-    header: "Middle Name",
-    cell: ({ row }) => (
-      <p className="font-medium">{row.original?.customerDetail.middleName}</p>
-    ),
-  },
+
   {
     id: "lname",
     // accessorKey: 'updatedAt',
@@ -53,12 +45,39 @@ export const userColumns: ColumnDef<AllRolesData>[] = [
     ),
   },
   {
-    id: "bname",
+    id: "CustomerCode",
     // accessorKey: 'updatedAt',
     // accessorFn: (row) => formatDate(row.updated_at, "dd-MM-yyyy"),
-    header: "Business Name",
+    header: "Customer Code",
     cell: ({ row }) => (
       <p className="font-medium">{row.original?.customerDetail.businessName}</p>
     ),
+  },
+
+  {
+    id: "PhoneNumber",
+    // accessorKey: 'updatedAt',
+    // accessorFn: (row) => formatDate(row.updated_at, "dd-MM-yyyy"),
+    header: "Phone Number",
+    cell: ({ row }) => (
+      <p className="font-medium">{row.original?.customerDetail.middleName}</p>
+    ),
+  },
+
+  {
+    accessorKey: "info", // Using 'id' as the accessor for linking purposes
+    header: "Actions",
+    // cell: ({ row }) => (
+    //   <div className="flex ">
+    //     <NewClear userData={row.original as unknown as SingleClearContent}>
+    //       <Button
+    //         type="button"
+    //         className="bg-transparent hover:bg-transparent text-black hover:text-black"
+    //       >
+    //         <FaEye />
+    //       </Button>
+    //     </NewClear>
+    //   </div>
+    // ),
   },
 ];

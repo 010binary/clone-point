@@ -41,15 +41,15 @@ const GenericTable = <T,>({ data, columns }: GenericTableProps<T>) => {
                   key={header.id}
                   colSpan={header.colSpan}
                   className={`border border-gray-300 px-3 py-2 text-center text-sm font-semibold ${
-                    header.column.id === "email"
+                    header.column.id === "CustomerType"
                       ? "w-[30%]"
-                      : header.column.id === "organization"
+                      : header.column.id === "PhoneNumber"
                       ? "w-[30%]"
-                      : header.column.id === "orgemail"
+                      : header.column.id === "CustomerCode"
                       ? "w-[30%]"
-                      : header.column.id === "teamMember"
-                      ? "w-[20%]"
-                      : "w-[12%]"
+                      : header.column.id === "BusinessName"
+                      ? "w-[30%]"
+                      : "w-[20%]"
                   }`}
                 >
                   {header.isPlaceholder

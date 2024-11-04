@@ -49,6 +49,7 @@ import AccountGenerator from "./pages/dashboard/crm/AccountGenerator";
 import OfficeData from "./pages/dashboard/crm/OfficeData";
 import ViewDetails from "./pages/dashboard/crm/ViewDetails";
 import ManagerAccount from "./pages/dashboard/crm/ManagerAccount";
+import CreationOfaNewAccount from "./pages/dashboard/crm/CreateNewAccount";
 import PostTransaction from "./pages/dashboard/operations/PostTransaction";
 import AuthorizeTransaction from "./pages/dashboard/operations/AuthorizeTransactions";
 import ViewAuthorizedTransaction from "./pages/dashboard/operations/ViewAuthorizedTransaction";
@@ -213,6 +214,10 @@ export const router: Router = createBrowserRouter([
       {
         path: "/admin/crm/client-manger",
         element: <ManagerAccount />,
+      },
+      {
+        path: "/admin/crm/create-new-account",
+        element: <CreationOfaNewAccount />,
       },
       {
         path: "/admin/operation/post-transactions",

@@ -46,7 +46,7 @@ const CreateCoperaterAccount = ({ onClose }: any) => {
                 <h3 className="font-bold text-lg mt-2">Customer Details</h3>
                 <div className="mt-6 flex  gap-4 pb-10">
                   <div className="flex flex-col gap-4">
-                    <div className="hidden flex w-[80%] items-center pl-2 border border-gray-300 rounded-md overflow-hidden">
+                    <div className="hidden  w-[80%] items-center pl-2 border border-gray-300 rounded-md overflow-hidden">
                       <div className="w-[50%]  border-r border-gray-300">
                         <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold">
                           Title

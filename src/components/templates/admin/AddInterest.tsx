@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useForm } from "react-hook-form";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -37,7 +38,7 @@ const AddInterest = ({ callBack }: any) => {
         toast.error(response?.message);
       }
     } catch (error: any) {
-      toast.error("Customer Creation Failed");
+      toast.error("Customer Interest Failed");
     }
   };
 
@@ -71,7 +72,7 @@ const AddInterest = ({ callBack }: any) => {
                 onChange={(e) =>
                   setValue(
                     "startDate",
-                    moment(e.target.value.toString()).format("DD/MM/YYYY"),
+                    moment(e.target.value.toString()).format("DD/MM/YYYY")
                   )
                 }
                 type="date"
@@ -84,7 +85,7 @@ const AddInterest = ({ callBack }: any) => {
                 onChange={(e) =>
                   setValue(
                     "endDate",
-                    moment(e.target.value.toString()).format("DD/MM/YYYY"),
+                    moment(e.target.value.toString()).format("DD/MM/YYYY")
                   )
                 }
                 type="date"

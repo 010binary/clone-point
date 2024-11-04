@@ -1,28 +1,33 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Stepper } from "../../../components/ui/stepper/stepper";
-import { relationship, residentialType } from "../../../lib/Onboarding";
-import { employmentStatus, workSector } from "../../../lib/Onboarding";
-import {
-  accountType,
-  education,
-  maritalStatus,
-  citizenShip,
-} from "../../../lib/Onboarding";
-import { gender, title } from "../../../lib/Onboarding/signup";
-import BaseButton from "../../../components/ui/base-button/BaseButton";
-import SelectInput from "../../../components/ui/select-input/SelectInput";
+// import { relationship } from "../../../lib/Onboarding";
+// import { employmentStatus, workSector } from "../../../lib/Onboarding";
+import { Label } from "../../../components/ui/label";
+import { Button } from "../../../components/ui/button";
+import { Input } from "../../../components/ui/input";
+
+// import { title } from "../../../lib/Onboarding/signup";
+// import BaseButton from "../../../components/ui/base-button/BaseButton";
+// import SelectInput from "../../../components/ui/select-input/SelectInput";
 import { toast } from "react-toastify";
 // import TextInput from "../../../components/ui/text-input/TextInput";
-import { identification } from "../../../lib/Onboarding";
+// import { identification } from "../../../lib/Onboarding";
 import { useForm } from "react-hook-form";
 // import { z } from "zod";
 // import { zodResolver } from "@hookform/resolvers/zod";
 import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
-import { Input } from "../../../components/ui/input/input";
+// import { Input } from "../../../components/ui/input/input";
 import transformFormDataToApiPayload from "../../../api/crm/create-payload";
 import useCreateCustomer from "../../../api/crm/create-customer";
 import { useQueryClient } from "@tanstack/react-query";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "../../../components/ui/select";
 
 // const customerSchema = z.object({
 //   // title: z.string().min(1, { message: "Title is required" }),
@@ -46,14 +51,14 @@ import { useQueryClient } from "@tanstack/react-query";
 const CreateCustomerAccount = ({ onClose, customerType }: any) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [previewFrontImage, setPreviewFrontImage] = useState<string | null>(
-    null,
+    null
   );
   const [previewBackImage, setPreviewBackImage] = useState<string | null>(null);
   const [previewUtilityBill, setPreviewUtilityBill] = useState<string | null>(
-    null,
+    null
   );
   const [previewCACDocument, setPreviewCACDocument] = useState<string | null>(
-    null,
+    null
   );
   const [previewPassport, setPreviewPassport] = useState<string | null>(null);
   const [previewSignature, setPreviewSignature] = useState<string | null>(null);
@@ -83,7 +88,7 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
   // Convert files to Base64
   const handleFileChange = async (
     e: React.ChangeEvent<HTMLInputElement>,
-    key: string,
+    key: string
   ) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -179,8 +184,8 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stepper active={step}>
           <Stepper.Step>
-            <div className="md:w-[580px] w-[360px]">
-              <div className="bg-primary-dark flex px-3 py-2 items-center justify-between">
+            <div className="md:w-[580px]  w-[360px]">
+              <div className="bg-primary-dark flex px-3 py-4 items-center justify-between">
                 <h1 className="text-white font-bold">
                   CREATE INDIVIDUAL CUSTOMER
                 </h1>
@@ -189,36 +194,52 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                   onClick={onClose}
                 ></i>
               </div>
-              <div className="bg-white px-3 -mt-2">
+              <div className="bg-white px-6 py-2 -mt-2">
                 <h3 className="font-bold text-lg mt-2">Customer Details</h3>
-                <div className="mt-12 flex  gap-4 pb-10">
+                <div className="mt-6 flex  gap-4 pb-10">
                   <div className="flex flex-col gap-4">
-                    <SelectInput
+                    {/* <SelectInput
                       label="Title"
                       options={[{ label: "Select One", value: "" }, ...title]}
                       width="md:w-[560px] w-[300px]"
                       height="h-10"
                       onChange={(e) => setValue("title", e.target.value)}
-                    />
-
-                    <div className="w-full">
-                      <label
-                        className="font-semibold mb-2"
-                        style={{
-                          color: "#1C1A1A",
-                          borderRight: "none",
-                        }}
+                    /> */}
+                    <div className="flex w-[80%] items-center pl-2 border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[50%]  border-r border-gray-300">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold">
+                          Title
+                        </Label>
+                      </div>
+                      <Select
+                        onValueChange={(value) => setValue("title", value)}
                       >
-                        FirstName
-                      </label>
+                        <SelectTrigger
+                          style={{ outline: "none", boxShadow: "none" }}
+                          className="w-full border-none bg-transparent focus:outline-none px-2 py-2"
+                        >
+                          <SelectValue placeholder="Select your title" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="mr">Mr</SelectItem>
+                          <SelectItem value="ms">Mrs</SelectItem>
+                          <SelectItem value="dr">Dr</SelectItem>
+                          <SelectItem value="prof">Prof</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[50%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          First Name
+                        </Label>
+                      </div>
                       <Input
-                        id="firstName"
                         type="text"
-                        // value={formData.password}
-                        className="mt-[6px]"
-                        placeholder="Enter first name"
                         {...register("firstName")}
-                        // onChange={watch("firstName")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
                       {errors.firstName && (
                         <p className="text-red-500">
@@ -227,7 +248,26 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       )}
                     </div>
 
-                    <div className="w-full">
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[50%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          Middle Name
+                        </Label>
+                      </div>
+                      <Input
+                        type="text"
+                        {...register("middle Name")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
+                      {errors.middleName && (
+                        <p className="text-red-500">
+                          {errors.middleName.message as string}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* <div className="w-full">
                       <label
                         className="font-semibold mb-2"
                         style={{
@@ -251,9 +291,28 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                           {errors.middleName.message as string}
                         </p>
                       )}
+                    </div> */}
+
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[50%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          Last Name
+                        </Label>
+                      </div>
+                      <Input
+                        type="text"
+                        {...register("lastName")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
+                      {errors.lastName && (
+                        <p className="text-red-500">
+                          {errors.lastName.message as string}
+                        </p>
+                      )}
                     </div>
 
-                    <div className="w-full">
+                    {/* <div className="w-full">
                       <label
                         className="font-semibold mb-2"
                         style={{
@@ -277,9 +336,28 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                           {errors.lastName.message as string}
                         </p>
                       )}
+                    </div> */}
+
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[50%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          Mobile Phone
+                        </Label>
+                      </div>
+                      <Input
+                        type="number"
+                        {...register("phone")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
+                      {errors.phone && (
+                        <p className="text-red-500">
+                          {errors.phone.message as string}
+                        </p>
+                      )}
                     </div>
 
-                    <div className="w-full">
+                    {/* <div className="w-full">
                       <label
                         className="font-semibold mb-2"
                         style={{
@@ -303,9 +381,28 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                           {errors.phone.message as string}
                         </p>
                       )}
+                    </div> */}
+
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[50%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          Date of Birth
+                        </Label>
+                      </div>
+                      <Input
+                        type="date"
+                        {...register("dob")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
+                      {errors.dob && (
+                        <p className="text-red-500">
+                          {errors.dob.message as string}
+                        </p>
+                      )}
                     </div>
 
-                    <div className="w-full">
+                    {/* <div className="w-full">
                       <label
                         className="font-semibold mb-2"
                         style={{
@@ -329,9 +426,28 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                           {errors.dob.message as string}
                         </p>
                       )}
+                    </div> */}
+
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[50%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          Bvn
+                        </Label>
+                      </div>
+                      <Input
+                        type="number"
+                        {...register("bvn")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
+                      {errors.bvn && (
+                        <p className="text-red-500">
+                          {errors.bvn.message as string}
+                        </p>
+                      )}
                     </div>
 
-                    <div className="w-full">
+                    {/* <div className="w-full">
                       <label
                         className="font-semibold mb-2"
                         style={{
@@ -355,13 +471,57 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                           {errors.bvn.message as string}
                         </p>
                       )}
+                    </div> */}
+
+                    {/* <BaseButton className="hidden mt-2 w-40 bg-primary-dark">
+                      <p className="text-white">Validate BVN</p>
+                    </BaseButton> */}
+
+                    <div className="flex w-[80%] items-center pl-2 border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[50%]  border-r border-gray-300">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold">
+                          Account Type
+                        </Label>
+                      </div>
+                      <Select
+                        onValueChange={(value) => setValue("title", value)}
+                      >
+                        <SelectTrigger
+                          style={{ outline: "none", boxShadow: "none" }}
+                          className="w-full border-none bg-transparent focus:outline-none px-2 py-2"
+                        >
+                          <SelectValue placeholder="Select account type " />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="saving">Saving</SelectItem>
+                          <SelectItem value="current">Current</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
 
-                    <BaseButton className="hidden mt-2 w-40 bg-primary-dark">
-                      <p className="text-white">Validate BVN</p>
-                    </BaseButton>
+                    <div className="flex w-[80%] items-center pl-2 border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[50%]  border-r border-gray-300">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold">
+                          Gender
+                        </Label>
+                      </div>
+                      <Select
+                        onValueChange={(value) => setValue("title", value)}
+                      >
+                        <SelectTrigger
+                          style={{ outline: "none", boxShadow: "none" }}
+                          className="w-full border-none bg-transparent focus:outline-none px-2 py-2"
+                        >
+                          <SelectValue placeholder="Select  Gender" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="male">Male</SelectItem>
+                          <SelectItem value="female">Female</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
 
-                    <SelectInput
+                    {/* <SelectInput
                       label="Acount Type"
                       options={[
                         { label: "Select One", value: "" },
@@ -370,17 +530,40 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       width="md:w-[560px] w-[300px]"
                       height="h-10"
                       onChange={(e) => setValue("AcountType", e.target.value)}
-                    />
+                    /> */}
 
-                    <SelectInput
+                    {/* <SelectInput
                       label="Gender"
                       options={[{ label: "Select One", value: "" }, ...gender]}
                       width="md:w-[560px] w-[300px]"
                       height="h-10"
                       onChange={(e) => setValue("Gender", e.target.value)}
-                    />
+                    /> */}
 
-                    <SelectInput
+                    <div className="flex w-[80%] items-center pl-2 border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[50%]  border-r border-gray-300">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold">
+                          Martial Status
+                        </Label>
+                      </div>
+                      <Select
+                        onValueChange={(value) => setValue("title", value)}
+                      >
+                        <SelectTrigger
+                          style={{ outline: "none", boxShadow: "none" }}
+                          className="w-full border-none bg-transparent focus:outline-none px-2 py-2"
+                        >
+                          <SelectValue placeholder="Select martial status" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="single">Single</SelectItem>
+                          <SelectItem value="married">Married</SelectItem>
+                          <SelectItem value="divorce">Divorced</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* <SelectInput
                       label="Marital Status"
                       options={[
                         { label: "Select One", value: "" },
@@ -392,9 +575,31 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       onChange={(e) =>
                         setValue("maritalStatus", e.target.value)
                       }
-                    />
+                    /> */}
 
-                    <SelectInput
+                    <div className="flex w-[80%] items-center pl-2 border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[50%]  border-r border-gray-300">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold">
+                          Citizenship
+                        </Label>
+                      </div>
+                      <Select
+                        onValueChange={(value) => setValue("title", value)}
+                      >
+                        <SelectTrigger
+                          style={{ outline: "none", boxShadow: "none" }}
+                          className="w-full border-none bg-transparent focus:outline-none px-2 py-2"
+                        >
+                          <SelectValue placeholder="Select your title" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Nigeria">Nigeria</SelectItem>
+                          <SelectItem value="America">America</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* <SelectInput
                       label="Citizenship"
                       options={[
                         { label: "Select One", value: "" },
@@ -404,9 +609,29 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       height="h-10"
                       // {...register("Citizenship")}
                       onChange={(e) => setValue("citizenShip", e.target.value)}
-                    />
+                    /> */}
+                    <div className="flex w-[80%] items-center pl-2 border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[80%]  border-r border-gray-300">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold">
+                          Level of Education
+                        </Label>
+                      </div>
+                      <Select
+                        onValueChange={(value) => setValue("title", value)}
+                      >
+                        <SelectTrigger
+                          style={{ outline: "none", boxShadow: "none" }}
+                          className="w-full border-none bg-transparent focus:outline-none px-2 py-2"
+                        >
+                          <SelectValue placeholder="Select your title" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Bsc">BSC</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
 
-                    <SelectInput
+                    {/* <SelectInput
                       label="Level of Education"
                       width="md:w-[560px] w-[300px]"
                       height="h-10"
@@ -416,15 +641,24 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         { label: "Select One", value: "" },
                         ...education,
                       ]}
-                    />
+                    /> */}
 
-                    <BaseButton
-                      // type="submit"
+                    {/* <div style={{ border: "2px solid red" }} className="pr-4">
+                      <BaseButton
+                        // type="submit"
+                        onClick={nextStep}
+                        className="mt-2 md:w-full w-[300px] bg-primary"
+                      >
+                        <p className="md:w-[560px] w-[300px]">Next</p>
+                      </BaseButton>
+                    </div> */}
+
+                    <Button
                       onClick={nextStep}
-                      className="mt-2 md:w-[560px] w-[300px] bg-primary"
+                      className="mt-8 md:w-[530px] text-[1.2rem] w-[300px] bg-[#1A88E1]"
                     >
-                      <p className="md:w-[560px] w-[300px]">Next</p>
-                    </BaseButton>
+                      Next
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -432,7 +666,7 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
           </Stepper.Step>
           <Stepper.Step>
             <div className="md:w-[580px] w-[360px]">
-              <div className="bg-primary-dark flex px-3 py-2 items-center justify-between">
+              <div className="bg-primary-dark flex px-3 py-4 items-center justify-between">
                 <h1 className="text-white font-bold">
                   CREATE INDIVIDUAL CUSTOMER
                 </h1>
@@ -441,11 +675,34 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                   onClick={onClose}
                 ></i>
               </div>
-              <div className="bg-white px-3 -mt-2">
+              <div className="bg-white px-6 py-2 -mt-2">
                 <h3 className="font-bold text-lg mt-2">Identification</h3>
-                <div className="mt-12 flex  gap-4 pb-10">
+                <div className="mt-6 flex  gap-4 pb-10">
                   <div className="flex flex-col gap-4">
-                    <SelectInput
+                    <div className="flex w-[80%] items-center pl-2 border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[100%]  border-r border-gray-300">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold">
+                          Identification
+                        </Label>
+                      </div>
+                      <Select
+                        onValueChange={(value) => setValue("title", value)}
+                      >
+                        <SelectTrigger
+                          style={{ outline: "none", boxShadow: "none" }}
+                          className="w-full border-none bg-transparent focus:outline-none px-2 py-2"
+                        >
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="International_Passport">
+                            International_Passport
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* <SelectInput
                       label="Identification"
                       options={[
                         { label: "Select One", value: "" },
@@ -457,9 +714,23 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       onChange={(e) =>
                         setValue("indentification", e.target.value)
                       }
-                    />
+                    /> */}
 
-                    <div className="w-full">
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[100%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          Other
+                        </Label>
+                      </div>
+                      <Input
+                        type="text"
+                        {...register("others")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
+                    </div>
+
+                    {/* <div className="w-full">
                       <label
                         className="font-semibold mb-2"
                         style={{
@@ -478,9 +749,28 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         {...register("others")}
                         // onChange={watch("firstName")}
                       />
+                    </div> */}
+
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[100%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          Identification Number
+                        </Label>
+                      </div>
+                      <Input
+                        type="number"
+                        {...register("identificationNumber")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
+                      {errors.identificationNumber && (
+                        <p className="text-red-500">
+                          {errors.identificationNumber.message as string}
+                        </p>
+                      )}
                     </div>
 
-                    <div className="w-full">
+                    {/* <div className="w-full">
                       <label
                         className="font-semibold mb-2"
                         style={{
@@ -502,9 +792,28 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                           {errors.identificationNumber.message as string}
                         </p>
                       )}
+                    </div> */}
+
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[100%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          Issue Date
+                        </Label>
+                      </div>
+                      <Input
+                        type="date"
+                        {...register("issueDate")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
+                      {errors.issueDate && (
+                        <p className="text-red-500">
+                          {errors.issueDate.message as string}
+                        </p>
+                      )}
                     </div>
 
-                    <div className="w-full">
+                    {/* <div className="w-full">
                       <label
                         className="font-semibold mb-2"
                         style={{
@@ -525,9 +834,28 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                           {errors.issueDate.message as string}
                         </p>
                       )}
+                    </div> */}
+
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[100%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          Expiration Date
+                        </Label>
+                      </div>
+                      <Input
+                        type="date"
+                        {...register("ExpirationDate")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
+                      {errors.expirationDate && (
+                        <p className="text-red-500">
+                          {errors.expirationDate.message as string}
+                        </p>
+                      )}
                     </div>
 
-                    <div className="w-full">
+                    {/* <div className="w-full">
                       <label
                         className="font-semibold mb-2"
                         style={{
@@ -543,12 +871,12 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         {...register("ExpirationDate")}
                         className="mt-[6px]"
                       />
-                      {/* {errors.expirationDate && (
+                      {errors.expirationDate && (
                         <p className="text-red-500">
                           {errors.expirationDate.message as string}
                         </p>
-                      )} */}
-                    </div>
+                      )}
+                    </div> */}
                     <h4 className="text-[#404B7C] font-semibold">
                       Upload identification Card
                     </h4>
@@ -634,12 +962,18 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         )}
                       </div>
                     </div>
-                    <BaseButton
+                    {/* <BaseButton
                       onClick={nextStep}
                       className="mt-2 md:w-[560px] w-[300px] bg-primary"
                     >
                       <p className="md:w-[560px] w-[300px]">Next</p>
-                    </BaseButton>
+                    </BaseButton> */}
+                    <Button
+                      onClick={nextStep}
+                      className="mt-8 md:w-[530px] text-[1.2rem] w-[300px] bg-[#1A88E1]"
+                    >
+                      Next
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -647,7 +981,7 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
           </Stepper.Step>
           <Stepper.Step>
             <div className="md:w-[580px] w-[360px]">
-              <div className="bg-primary-dark flex px-3 py-2 items-center justify-between">
+              <div className="bg-primary-dark flex px-3 py-4 items-center justify-between">
                 <h1 className="text-white font-bold">
                   CREATE INDIVIDUAL CUSTOMER
                 </h1>
@@ -656,11 +990,24 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                   onClick={onClose}
                 ></i>
               </div>
-              <div className="bg-white px-3 -mt-2">
+              <div className="bg-white px-6 py-2 -mt-2">
                 <h3 className="font-bold text-lg mt-2">Address Details</h3>
-                <div className="mt-12 flex  gap-4 pb-10">
+                <div className="mt-6 flex  gap-4 pb-10">
                   <div className="flex flex-col gap-4">
-                    <div className="w-full">
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[80%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          Address 1
+                        </Label>
+                      </div>
+                      <Input
+                        type="text"
+                        {...register("Address 1")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
+                    </div>
+                    {/* <div className="w-full">
                       <label
                         className="font-semibold mb-2"
                         style={{
@@ -677,9 +1024,30 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         className="mt-[6px]"
                         placeholder="Enter address"
                       />
+                    </div> */}
+                    <div className="flex w-[80%] items-center pl-2 border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[80%]  border-r border-gray-300">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold">
+                          Residential Status
+                        </Label>
+                      </div>
+                      <Select
+                        onValueChange={(value) => setValue("title", value)}
+                      >
+                        <SelectTrigger
+                          style={{ outline: "none", boxShadow: "none" }}
+                          className="w-full border-none bg-transparent focus:outline-none px-2 py-2"
+                        >
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Provided_by_Employer">
+                            Provided_by_Employer
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
-
-                    <SelectInput
+                    {/* <SelectInput
                       label="Residential Status"
                       options={[
                         { label: "Select One", value: "" },
@@ -690,9 +1058,9 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       onChange={(e) =>
                         setValue("ResidentialStatus", e.target.value)
                       }
-                    />
+                    /> */}
 
-                    <div className="w-full">
+                    {/* <div className="w-full">
                       <label
                         className="font-semibold mb-2"
                         style={{
@@ -709,9 +1077,23 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         className="mt-[6px]"
                         placeholder="Enter state"
                       />
+                    </div> */}
+
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[80%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          State
+                        </Label>
+                      </div>
+                      <Input
+                        type="text"
+                        {...register("State")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
                     </div>
 
-                    <div className="w-full">
+                    {/* <div className="w-full">
                       <label
                         className="font-semibold mb-2"
                         style={{
@@ -728,9 +1110,22 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         className="mt-[6px]"
                         placeholder="Enter City"
                       />
-                    </div>
+                    </div> */}
 
-                    <div className="w-full">
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[80%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          L.G.A
+                        </Label>
+                      </div>
+                      <Input
+                        type="text"
+                        {...register("lga")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
+                    </div>
+                    {/* <div className="w-full">
                       <label
                         className="font-semibold mb-2"
                         style={{
@@ -747,9 +1142,23 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         className="mt-[6px]"
                         placeholder="Enter LGA"
                       />
+                    </div> */}
+
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[80%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          Country
+                        </Label>
+                      </div>
+                      <Input
+                        type="text"
+                        {...register("Country")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
                     </div>
 
-                    <div className="w-full">
+                    {/* <div className="w-full">
                       <label
                         className="font-semibold mb-2"
                         style={{
@@ -766,9 +1175,21 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         className="mt-[6px]"
                         placeholder="Enter Country"
                       />
+                    </div> */}
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[80%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          Home Phone
+                        </Label>
+                      </div>
+                      <Input
+                        type="number"
+                        {...register("HomePhone")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
                     </div>
-
-                    <div className="w-full">
+                    {/* <div className="w-full">
                       <label
                         className="font-semibold mb-2"
                         style={{
@@ -785,9 +1206,23 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         className="mt-[6px]"
                         placeholder="Enter Home Phone"
                       />
+                    </div> */}
+
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[80%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          Email
+                        </Label>
+                      </div>
+                      <Input
+                        type="email"
+                        {...register("email")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
                     </div>
 
-                    <div className="w-full">
+                    {/* <div className="w-full">
                       <label
                         className="font-semibold mb-2"
                         style={{
@@ -804,8 +1239,8 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         className="mt-[6px]"
                         placeholder="Enter email"
                       />
-                    </div>
-                    <h4 className="text-[#404B7C] font-semibold">
+                    </div> */}
+                    <h4 className=" mt-2 text-[#404B7C] font-semibold">
                       Upload Utility Bill
                     </h4>
                     <div className="flex items-end gap-3">
@@ -853,11 +1288,37 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       </BaseButton> */}
                     </div>
 
-                    <h4 className="text-[#404B7C] text-lg font-semibold">
+                    <h4 className="mt-2 text-[#404B7C] text-lg font-semibold">
                       Next of Kin
                     </h4>
 
-                    <SelectInput
+                    <div className="flex w-[80%] items-center pl-2 border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[80%]  border-r border-gray-300">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold">
+                          Title
+                        </Label>
+                      </div>
+                      <Select
+                        onValueChange={(value) =>
+                          setValue("nextofkintitle", value)
+                        }
+                      >
+                        <SelectTrigger
+                          style={{ outline: "none", boxShadow: "none" }}
+                          className="w-full border-none bg-transparent focus:outline-none px-2 py-2"
+                        >
+                          <SelectValue placeholder="Select your title" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="mr">Mr</SelectItem>
+                          <SelectItem value="ms">Mrs</SelectItem>
+                          <SelectItem value="dr">Dr</SelectItem>
+                          <SelectItem value="prof">Prof</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* <SelectInput
                       label="Title"
                       options={[{ label: "Select One", value: "" }, ...title]}
                       width="md:w-[560px] w-[300px]"
@@ -865,9 +1326,23 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       onChange={(e) =>
                         setValue("nextofkintitle", e.target.value)
                       }
-                    />
+                    /> */}
 
-                    <div className="w-full">
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[80%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          firstName
+                        </Label>
+                      </div>
+                      <Input
+                        type="text"
+                        {...register("nextofkinfirstname")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
+                    </div>
+
+                    {/* <div className="w-full">
                       <label
                         className="font-semibold mb-2"
                         style={{
@@ -884,9 +1359,23 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         className="mt-[6px]"
                         placeholder="Enter firstName"
                       />
+                    </div> */}
+
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[80%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          LastName
+                        </Label>
+                      </div>
+                      <Input
+                        type="text"
+                        {...register("nextofkinlastname")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
                     </div>
 
-                    <div className="w-full">
+                    {/* <div className="w-full">
                       <label
                         className="font-semibold mb-2"
                         style={{
@@ -903,9 +1392,23 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         className="mt-[6px]"
                         placeholder="Enter lastName"
                       />
+                    </div> */}
+
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[80%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          address
+                        </Label>
+                      </div>
+                      <Input
+                        type="text"
+                        {...register("nextofkinaddress")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
                     </div>
 
-                    <div className="w-full">
+                    {/* <div className="w-full">
                       <label
                         className="font-semibold mb-2"
                         style={{
@@ -922,9 +1425,23 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         className="mt-[6px]"
                         placeholder="Enter address"
                       />
+                    </div> */}
+
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[80%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          Phone
+                        </Label>
+                      </div>
+                      <Input
+                        type="number"
+                        {...register("nextofkinphonenumber")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
                     </div>
 
-                    <div className="w-full">
+                    {/* <div className="w-full">
                       <label
                         className="font-semibold mb-2"
                         style={{
@@ -941,9 +1458,23 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         className="mt-[6px]"
                         placeholder="Enter phone number"
                       />
+                    </div> */}
+
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[80%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          Email
+                        </Label>
+                      </div>
+                      <Input
+                        type="email"
+                        {...register("nextofkinemail")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
                     </div>
 
-                    <div className="w-full">
+                    {/* <div className="w-full">
                       <label
                         className="font-semibold mb-2"
                         style={{
@@ -960,9 +1491,34 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         className="mt-[6px]"
                         placeholder="Enter email"
                       />
+                    </div> */}
+                    <div className="flex w-[80%] items-center pl-2 border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[80%]  border-r border-gray-300">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold">
+                          Relationship
+                        </Label>
+                      </div>
+                      <Select
+                        onValueChange={(value) =>
+                          setValue("nextofkinrelationship", value)
+                        }
+                      >
+                        <SelectTrigger
+                          style={{ outline: "none", boxShadow: "none" }}
+                          className="w-full border-none bg-transparent focus:outline-none px-2 py-2"
+                        >
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Father">Father</SelectItem>
+                          <SelectItem value="Mother">Mother</SelectItem>
+                          <SelectItem value="Brother">Brother</SelectItem>
+                          <SelectItem value="Sister">Sister</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
 
-                    <SelectInput
+                    {/* <SelectInput
                       label="Relationship"
                       options={[
                         { label: "Select One", value: "" },
@@ -973,13 +1529,20 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       onChange={(e) =>
                         setValue("nextofkinrelationship", e.target.value)
                       }
-                    />
-                    <BaseButton
+                    /> */}
+
+                    <Button
                       onClick={nextStep}
-                      className="mt-2 md:w-[560px] w-[300px] bg-primary"
+                      className="mt-8 md:w-[530px] text-[1.2rem] w-[300px] bg-[#1A88E1]"
+                    >
+                      Next
+                    </Button>
+                    {/* <BaseButton
+                      onClick={nextStep}
+                      className="mt-2 md:w-[560px] w-[300px] bg-[#1A88E1]"
                     >
                       <p className="md:w-[560px] w-[300px]">Next</p>
-                    </BaseButton>
+                    </BaseButton> */}
                   </div>
                 </div>
               </div>
@@ -987,7 +1550,7 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
           </Stepper.Step>
           <Stepper.Step>
             <div className="md:w-[580px] w-[360px]">
-              <div className="bg-primary-dark flex px-3 py-2 items-center justify-between">
+              <div className="bg-primary-dark flex px-3 py-4 items-center justify-between">
                 <h1 className="text-white font-bold">
                   CREATE INDIVIDUAL CUSTOMER
                 </h1>
@@ -996,11 +1559,79 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                   onClick={onClose}
                 ></i>
               </div>
-              <div className="bg-white px-3 -mt-2">
+              <div className="bg-white px-6 py-2 -mt-2">
                 <h3 className="font-bold text-lg mt-2">Employment Details</h3>
-                <div className="mt-12 flex  gap-4 pb-10">
+                <div className="mt-6 flex  gap-4 pb-10">
                   <div className="flex flex-col gap-4">
-                    <SelectInput
+                    <div className="flex w-[80%] items-center pl-2 border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[80%]  border-r border-gray-300">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold">
+                          Employment Status
+                        </Label>
+                      </div>
+                      <Select
+                        onValueChange={(value) =>
+                          setValue("EmploymentStatus", value)
+                        }
+                      >
+                        <SelectTrigger
+                          style={{ outline: "none", boxShadow: "none" }}
+                          className="w-full border-none bg-transparent focus:outline-none px-2 py-2"
+                        >
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value=" Employed">Employed</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    {/* <SelectInput
+                      label="Residential Status"
+                      options={[
+                        { label: "Select One", value: "" },
+                        ...residentialType,
+                      ]}
+                      width="md:w-[560px] w-[300px]"
+                      height="h-10"
+                      onChange={(e) =>
+                        setValue("ResidentialStatus", e.target.value)
+                      }
+                    /> */}
+
+                    {/* <div className="w-full">
+                      <label
+                        className="font-semibold mb-2"
+                        style={{
+                          color: "#1C1A1A",
+                          borderRight: "none",
+                        }}
+                      >
+                        State
+                      </label>
+                      <Input
+                        id="state"
+                        type="text"
+                        {...register("State")}
+                        className="mt-[6px]"
+                        placeholder="Enter state"
+                      />
+                    </div> */}
+
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[80%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          State
+                        </Label>
+                      </div>
+                      <Input
+                        type="text"
+                        {...register("State")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
+                    </div>
+
+                    {/* <SelectInput
                       label="Employment Status"
                       options={[
                         { label: "Select One", value: "" },
@@ -1011,9 +1642,23 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       onChange={(e) =>
                         setValue("EmploymentStatus", e.target.value)
                       }
-                    />
+                    /> */}
 
-                    <div className="w-full">
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[80%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          Net Montly Income
+                        </Label>
+                      </div>
+                      <Input
+                        type="number"
+                        {...register("netmonthlyincome")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
+                    </div>
+
+                    {/* <div className="w-full">
                       <label
                         className="font-semibold mb-2"
                         style={{
@@ -1030,9 +1675,23 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         className="mt-[6px]"
                         placeholder="Enter net monthly income"
                       />
+                    </div> */}
+
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[80%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          Current Employee
+                        </Label>
+                      </div>
+                      <Input
+                        type="text"
+                        {...register("currentEmployee")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
                     </div>
 
-                    <div className="w-full">
+                    {/* <div className="w-full">
                       <label
                         className="font-semibold mb-2"
                         style={{
@@ -1049,9 +1708,30 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         className="mt-[6px]"
                         placeholder="Enter current Employee"
                       />
+                    </div> */}
+
+                    <div className="flex w-[80%] items-center pl-2 border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[80%]  border-r border-gray-300">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold">
+                          Sector
+                        </Label>
+                      </div>
+                      <Select
+                        onValueChange={(value) => setValue("workSector", value)}
+                      >
+                        <SelectTrigger
+                          style={{ outline: "none", boxShadow: "none" }}
+                          className="w-full border-none bg-transparent focus:outline-none px-2 py-2"
+                        >
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value=" Banking">Banking</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
 
-                    <SelectInput
+                    {/* <SelectInput
                       label="Sector"
                       options={[
                         { label: "Select One", value: "" },
@@ -1060,9 +1740,21 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       width="md:w-[560px] w-[300px]"
                       height="h-10"
                       onChange={(e) => setValue("workSector", e.target.value)}
-                    />
-
-                    <div className="w-full">
+                    /> */}
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[80%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          Office Email
+                        </Label>
+                      </div>
+                      <Input
+                        type="email"
+                        {...register("officeEmail")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
+                    </div>
+                    {/* <div className="w-full">
                       <label
                         className="font-semibold mb-2"
                         style={{
@@ -1079,9 +1771,23 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         className="mt-[6px]"
                         placeholder="Enter email"
                       />
+                    </div> */}
+
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[80%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          Tax Number
+                        </Label>
+                      </div>
+                      <Input
+                        type="number"
+                        {...register("TaxNumber")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
                     </div>
 
-                    <div className="w-full">
+                    {/* <div className="w-full">
                       <label
                         className="font-semibold mb-2"
                         style={{
@@ -1098,9 +1804,23 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         className="mt-[6px]"
                         placeholder="Enter Tax Number"
                       />
+                    </div> */}
+
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[80%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          Pension Number
+                        </Label>
+                      </div>
+                      <Input
+                        type="number"
+                        {...register("PensionNumber")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
                     </div>
 
-                    <div className="w-full">
+                    {/* <div className="w-full">
                       <label
                         className="font-semibold mb-2"
                         style={{
@@ -1117,9 +1837,23 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         className="mt-[6px]"
                         placeholder="Enter Pension Number"
                       />
+                    </div> */}
+
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[80%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          Office Address
+                        </Label>
+                      </div>
+                      <Input
+                        type="text"
+                        {...register("OfficeAddress")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
                     </div>
 
-                    <div className="w-full">
+                    {/* <div className="w-full">
                       <label
                         className="font-semibold mb-2"
                         style={{
@@ -1136,9 +1870,9 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         className="mt-[6px]"
                         placeholder="Enter Office Address"
                       />
-                    </div>
+                    </div> */}
 
-                    <h4 className="text-[#404B7C] font-semibold">
+                    <h4 className=" mt-4 text-[#404B7C] font-semibold">
                       Upload CAC Document (For business owner)
                     </h4>
                     <div className=" flex items-end gap-4">
@@ -1289,7 +2023,7 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         <p className="text-white">Upload</p>
                       </BaseButton> */}
                     </div>
-                    <BaseButton
+                    {/* <BaseButton
                       type="submit"
                       disabled={isPending}
                       className="mt-2 md:w-[560px] w-[300px] bg-primary flex items-center justify-center"
@@ -1305,7 +2039,25 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       ) : (
                         "Save"
                       )}
-                    </BaseButton>
+                    </BaseButton> */}
+
+                    <Button
+                      type="submit"
+                      disabled={isPending}
+                      className="mt-8 md:w-[530px] text-[1.2rem] w-[300px] bg-[#1A88E1]"
+                    >
+                      {isPending ? (
+                        <>
+                          <span
+                            className="w-4 h-4 border-4 border-t-4 border-t-white border-gray-300 rounded-full animate-spin mr-2"
+                            aria-hidden="true"
+                          />
+                          <span>Submitting...</span>
+                        </>
+                      ) : (
+                        "Save"
+                      )}
+                    </Button>
                   </div>
                 </div>
               </div>

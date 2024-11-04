@@ -195,7 +195,7 @@ export const router: Router = createBrowserRouter([
         element: <CRMDashboard />,
       },
       {
-        path: "/admin/crm/account-generator",
+        path: "/admin/crm/customer-creation",
         element: <AccountGenerator />,
       },
       {

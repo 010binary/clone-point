@@ -33,6 +33,8 @@ import {
 // Define the validation schema without using enums and without deprecated methods
 const accountSchema = z.object({
   accountNumber: z.string(),
+  accountName: z.string(),
+  accountManager: z.string(),
   accountOwner: z.string(), // Assuming this value is a constant string
   accountType: z.string(), // Assuming this value is a constant string
   customerId: z.number().nonnegative(),
@@ -42,6 +44,8 @@ const accountSchema = z.object({
   notes: z.string(),
   pndStatus: z.string(), // Assuming this value is a constant string
   status: z.string(), // Assuming this value is a constant string
+  branch: z.string(),
+  balance: z.string(),
 });
 type AccountFormValues = z.infer<typeof accountSchema>;
 const options = [
@@ -176,9 +180,9 @@ const CreateNewAccount = ({ callBack, customerData }: any) => {
         <h3 className="font-bold text-lg mb-4">Account Details</h3>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {/* Account Number */}
-          <div className="flex items-center justify-start pl-2 rounded-md border border-gray-300">
-            <div className="w-[10%] border-r border-gray-300 ">
-              <Label>Account Number</Label>
+          <div className="flex w-[70%] items-center justify-start pl-2 rounded-md border border-gray-300">
+            <div className="w-[25%] border-r  border-gray-300 ">
+              <Label className="font-semibold">Account Number</Label>
             </div>
             <div className="w-[90%]">
               <Input
@@ -194,9 +198,9 @@ const CreateNewAccount = ({ callBack, customerData }: any) => {
 
           {/* Account Owner */}
 
-          <div className="flex items-center justify-start pl-2 rounded-md border border-gray-300">
-            <div className="w-[10%] border-r border-gray-300 ">
-              <Label>Account Owner</Label>
+          <div className="flex w-[70%] items-center justify-start pl-2 rounded-md border border-gray-300">
+            <div className="w-[25%] border-r border-gray-300 ">
+              <Label className="font-semibold">Account Owner</Label>
             </div>
             <div className="w-[90%]">
               <Select
@@ -223,9 +227,9 @@ const CreateNewAccount = ({ callBack, customerData }: any) => {
           </div>
           {/* Account Type */}
 
-          <div className="flex items-center justify-start pl-2 rounded-md border border-gray-300">
-            <div className="w-[10%] border-r border-gray-300 ">
-              <Label>Account Type</Label>
+          <div className="flex w-[70%] items-center justify-start pl-2 rounded-md border border-gray-300">
+            <div className="w-[25%] border-r border-gray-300 ">
+              <Label className="font-semibold">Account Type</Label>
             </div>
             <div className="w-[90%]">
               <Select
@@ -251,9 +255,9 @@ const CreateNewAccount = ({ callBack, customerData }: any) => {
           </div>
 
           {/* Customer */}
-          <div className="flex items-center justify-start pl-2 rounded-md border border-gray-300">
-            <div className="w-[10%] border-r border-gray-300 ">
-              <Label>Customer</Label>
+          <div className="flex w-[70%] items-center justify-start pl-2 rounded-md border border-gray-300">
+            <div className="w-[25%] border-r border-gray-300 ">
+              <Label className="font-semibold">Customer</Label>
             </div>
             <div className="w-[90%]">
               <Select
@@ -285,7 +289,33 @@ const CreateNewAccount = ({ callBack, customerData }: any) => {
           </div>
 
           {/* Account Status */}
-          <div>
+          <div className="flex w-[70%] items-center justify-start pl-2 rounded-md border border-gray-300">
+            <div className="w-[25%] border-r border-gray-300 ">
+              <Label className="font-semibold">Account Status</Label>
+            </div>
+            <div className="w-[90%]">
+              <Select
+                onValueChange={(value) => setValue("status", value)}
+                value={watch("status")}
+              >
+                <SelectTrigger
+                  className="border-none outline-none focus:outline-none px-2 py-2"
+                  style={{ outline: "none", boxShadow: "none" }}
+                >
+                  <SelectValue placeholder="Select Account Status" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Active">Active</SelectItem>
+                  <SelectItem value="Inactive">Inactive</SelectItem>
+                </SelectContent>
+              </Select>
+              {errors.status && (
+                <p className="text-red-500">{errors.status.message}</p>
+              )}
+            </div>
+          </div>
+
+          {/* <div>
             <Label>Account Status</Label>
             <Select
               onValueChange={(value) => setValue("status", value)}
@@ -302,10 +332,35 @@ const CreateNewAccount = ({ callBack, customerData }: any) => {
             {errors.status && (
               <p className="text-red-500">{errors.status.message}</p>
             )}
-          </div>
+          </div> */}
 
           {/* PND Status */}
-          <div>
+
+          <div className="flex w-[70%] items-center justify-start pl-2 rounded-md border border-gray-300">
+            <div className="w-[25%] border-r border-gray-300 ">
+              <Label className="font-semibold">PND Status</Label>
+            </div>
+            <div className="w-[90%]">
+              <Select
+                onValueChange={(value) => setValue("pndStatus", value)}
+                value={watch("pndStatus")}
+              >
+                <SelectTrigger
+                  className="border-none outline-none focus:outline-none px-2 py-2"
+                  style={{ outline: "none", boxShadow: "none" }}
+                >
+                  <SelectValue placeholder="Select PND Status" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="yes">Yes</SelectItem>
+                </SelectContent>
+              </Select>
+              {errors.pndStatus && (
+                <p className="text-red-500">{errors.pndStatus.message}</p>
+              )}
+            </div>
+          </div>
+          {/* <div>
             <Label>PND Status</Label>
             <Select
               onValueChange={(value) => setValue("pndStatus", value)}
@@ -321,78 +376,112 @@ const CreateNewAccount = ({ callBack, customerData }: any) => {
             {errors.pndStatus && (
               <p className="text-red-500">{errors.pndStatus.message}</p>
             )}
-          </div>
-          <div>
-            <Label>Account Name</Label>
-            <Input className="w-full" placeholder="Enter Account Name" />
-            {/* {errors.netMonthlyIncome && (
-              <p className="text-red-500">{errors.netMonthlyIncome.message}</p>
-            )} */}
+          </div> */}
+
+          <div className="flex w-[70%] items-center justify-start pl-2 rounded-md border border-gray-300">
+            <div className="w-[25%] border-r  border-gray-300 ">
+              <Label className="font-semibold">Account Name</Label>
+            </div>
+            <div className="w-[90%]">
+              <Input
+                className="w-full outline-none border-none"
+                placeholder="Enter account number"
+                {...register("accountName")}
+              />
+            </div>
+            {errors.accountName && (
+              <p className="text-red-500">{errors.accountName.message}</p>
+            )}
           </div>
 
           {/* Bank Branch */}
-          <div className="hiddem">
-            <Label> Branch</Label>
-            <Select
-            // onValueChange={(value) => setValue("pndStatus", value)}
-            // value={watch("pndStatus")}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Select Bank Branch" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="branch1">Branch 1</SelectItem>
-                <SelectItem value="branch2">Branch 2</SelectItem>
-              </SelectContent>
-            </Select>
-            {/* {errors.bankBranch && (
-              <p className="text-red-500">{errors.bankBranch.message}</p>
-            )} */}
+          <div className="flex w-[70%] items-center justify-start pl-2 rounded-md border border-gray-300">
+            <div className="w-[25%] border-r border-gray-300 ">
+              <Label className="font-semibold">Account Status</Label>
+            </div>
+            <div className="w-[90%]">
+              <Select
+                onValueChange={(value) => setValue("branch", value)}
+                value={watch("branch")}
+              >
+                <SelectTrigger
+                  className="border-none outline-none focus:outline-none px-2 py-2"
+                  style={{ outline: "none", boxShadow: "none" }}
+                >
+                  <SelectValue placeholder="Select Branch" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Branch 1">Branch 1</SelectItem>
+                  <SelectItem value="Branch 2">Branch 2</SelectItem>
+                </SelectContent>
+              </Select>
+              {errors.branch && (
+                <p className="text-red-500">{errors.branch.message}</p>
+              )}
+            </div>
           </div>
 
           {/* Account Manager */}
-          <div>
-            <Label>Account Manager</Label>
-            <Select>
-              <SelectTrigger>
-                <SelectValue placeholder="Select Account Manager" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="manager1">Manager 1</SelectItem>
-                <SelectItem value="manager2">Manager 2</SelectItem>
-              </SelectContent>
-            </Select>
-            {/* {errors.accountManager && (
-              <p className="text-red-500">{errors.accountManager.message}</p>
-            )} */}
+
+          <div className="flex w-[70%] items-center justify-start pl-2 rounded-md border border-gray-300">
+            <div className="w-[25%] border-r border-gray-300 ">
+              <Label className="font-semibold">Account Manager</Label>
+            </div>
+            <div className="w-[90%]">
+              <Select
+                onValueChange={(value) => setValue("accountManager", value)}
+                value={watch("accountManager")}
+              >
+                <SelectTrigger
+                  className="border-none outline-none focus:outline-none px-2 py-2"
+                  style={{ outline: "none", boxShadow: "none" }}
+                >
+                  <SelectValue placeholder="Select Account Manager" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Manager 1">Manager 1</SelectItem>
+                  <SelectItem value="Manager 2">Manager 2</SelectItem>
+                </SelectContent>
+              </Select>
+              {errors.accountManager && (
+                <p className="text-red-500">{errors.accountManager.message}</p>
+              )}
+            </div>
           </div>
 
           {/* Notes */}
-          <div>
-            <Label>Notes</Label>
-            <textarea
-              className="w-full"
-              placeholder="Enter Note"
-              {...register("notes")}
-            />
+          <div className="flex w-[70%] items-center justify-start pl-2 rounded-md border border-gray-300">
+            <div className="w-[25%] border-r  border-gray-300 ">
+              <Label className="font-semibold">Notes</Label>
+            </div>
+            <div className="w-[90%]">
+              <Input
+                className="w-full outline-none border-none"
+                placeholder="Enter account number"
+                {...register("notes")}
+              />
+            </div>
             {errors.notes && (
               <p className="text-red-500">{errors.notes.message}</p>
             )}
           </div>
 
           {/* Balance */}
-          <div>
-            <Label>Balance</Label>
-            <Input
-              className="w-full"
-              placeholder="Enter Balance"
-              {...register("netMonthlyIncome", {
-                valueAsNumber: true,
-              })}
-              type="number"
-            />
-            {errors.netMonthlyIncome && (
-              <p className="text-red-500">{errors.netMonthlyIncome.message}</p>
+
+          <div className="flex w-[70%] items-center justify-start pl-2 rounded-md border border-gray-300 ">
+            <div className="w-[25%] border-r  border-gray-300 ">
+              <Label className="font-semibold">Balance</Label>
+            </div>
+            <div className="w-[90%]">
+              <Input
+                type="number"
+                className="w-full outline-none border-none"
+                placeholder="Enter account number"
+                {...register("balance")}
+              />
+            </div>
+            {errors.balance && (
+              <p className="text-red-500">{errors.balance.message}</p>
             )}
           </div>
 

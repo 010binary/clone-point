@@ -11,6 +11,13 @@ import useCreateNewTeller from "./services/create-teller.api";
 import { toast } from "react-toastify";
 import { Button } from "../../ui/button";
 import { useQueryClient } from "@tanstack/react-query";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectItem,
+  SelectContent,
+} from "../../ui/select";
 
 const AddInterest = ({ callBack }: any) => {
   const { mutateAsync, isPending } = useCreateNewTeller();
@@ -149,6 +156,34 @@ const AddInterest = ({ callBack }: any) => {
               </div>
             </div>
             {/* Disscription end */}
+
+            <div className="flex w-[70%] items-center justify-start pl-2 rounded-md border border-gray-300 w-full">
+              <div className="w-[30%] border-r border-gray-300 ">
+                <Label className="font-semibold">Account Manager</Label>
+              </div>
+              <div className="w-[70%]">
+                <Select
+                // onValueChange={(value) => setValue("accountManager", value)}
+                // value={watch("accountManager")}
+                >
+                  <SelectTrigger
+                    className="border-none outline-none focus:outline-none px-2 py-2"
+                    style={{ outline: "none", boxShadow: "none" }}
+                  >
+                    <SelectValue placeholder="Select Office Account" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Manager 1">Account 1</SelectItem>
+                    <SelectItem value="Manager 2">Account 2</SelectItem>
+                  </SelectContent>
+                </Select>
+                {/* {errors.accountManager && (
+                  <p className="text-red-500">
+                    {errors.accountManager.message}
+                  </p>
+                )} */}
+              </div>
+            </div>
 
             <Button
               size={"lg"}

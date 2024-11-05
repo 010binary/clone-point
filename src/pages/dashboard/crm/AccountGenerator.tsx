@@ -70,17 +70,8 @@ const AccountGenerator = () => {
           <h6 className="font-bold text-black px-6">Customer’s Data</h6>
         </div>
 
-        <div className="flex items-center justify-between mt-5">
-          <div className="flex w-full items-center justify-end gap-4">
-            <button className="flex items-center px-4 py-2 gap-2 border border-[#1A88E1]">
-              <img src={shareIcon} alt="" />
-              <p className="text-[#1A88E1] font-medium">Export as Pdf</p>
-            </button>
-          </div>
-        </div>
-
-        <div className="flex mt-6 flex-col md:flex-row items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="w-full flex items-center justify-between  mt-12">
+          <div className="w-[80%] flex items-center gap-4">
             <button
               onClick={() => openModal("ic")}
               className="flex items-center gap-4 border rounded-lg px-4 py-2"
@@ -102,19 +93,15 @@ const AccountGenerator = () => {
             </button>
           </div>
 
-          <div className="flex items-center gap-4">
-            <p className="font-semibold text-sm">
-              <span className="text-primary-dark">1 - 10</span> of 200
-            </p>
-
-            <div className="">
-              <i className="ri-arrow-drop-left-line text-3xl bg-white border rounded-full mr-2"></i>
-              <i className="ri-arrow-drop-right-line text-3xl bg-white border rounded-full"></i>
-            </div>
+          <div>
+            <button className="flex items-center px-4 py-2 gap-2 border border-[#1A88E1]">
+              <img src={shareIcon} alt="" />
+              <p className="text-[#1A88E1] font-medium">Export as Pdf</p>
+            </button>
           </div>
         </div>
 
-        <div className="flex items-center space-x-4 mb-8 mt-8">
+        <div className="flex items-center space-x-4 mb-3 mt-10">
           {/* Filter by Customer Type */}
           <div className="flex items-center space-x-2">
             <label className="text-gray-600 font-semibold">
@@ -138,7 +125,7 @@ const AccountGenerator = () => {
               placeholder="Search by Code, Name, or Business"
               // value={searchQuery}
               // onChange={(e) => setSearchQuery(e.target.value)}
-              className="border border-gray-300 rounded-md shadow-sm pl-10 pr-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent"
+              className="border border-gray-300 rounded-md shadow-sm pl-10 pr-4 py-1.5 w-full focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent"
             />
 
             <button className="p-2 text-gray-500 absolute left-1.5 top-0.5">
@@ -147,7 +134,18 @@ const AccountGenerator = () => {
           </div>
         </div>
 
-        <div className="mt-5 pb-20 overflow-x-scroll">
+        {/* <div className="flex items-center gap-4">
+            <p className="font-semibold text-sm">
+              <span className="text-primary-dark">1 - 10</span> of 200
+            </p>
+
+            <div className="">
+              <i className="ri-arrow-drop-left-line text-3xl bg-white border rounded-full mr-2"></i>
+              <i className="ri-arrow-drop-right-line text-3xl bg-white border rounded-full"></i>
+            </div>
+          </div> */}
+
+        <div className="mt-12 pb-20 overflow-x-scroll">
           {isLoading ? (
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-5">

@@ -2,14 +2,17 @@ import axiosInstance from "../config/axios.config";
 import { AxiosResponse } from "axios";
 import { useMutation } from "@tanstack/react-query";
 
-import { CustomerPayload, ApiResponse } from "../types";
+import { ApiResponse } from "../types";
+import { payloadSchema } from "./create-payload";
+import { z } from "zod";
+type FormData = z.infer<typeof payloadSchema>;
 
 const createCustomer = async (
-  Payload: CustomerPayload
+  Payload: FormData
 ): Promise<AxiosResponse<ApiResponse>["data"]> => {
   try {
     const request = await axiosInstance.post<
-      CustomerPayload,
+      FormData,
       AxiosResponse<ApiResponse>
     >("/api/v1/customers", Payload);
     const response = request;

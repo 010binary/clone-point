@@ -3,18 +3,18 @@ import BaseButton from "../../ui/base-button/BaseButton";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { TellerCreation } from "./types/dto";
-import TransactionDetailsSchema from "./schemas/add-ser-schema";
+import { NewInterestCreation } from "../../../types/dto";
+import TransactionDetailsSchema from "../../../schemas/add-ser-schema";
 import { Input } from "../../ui/input";
 import { Label } from "../../ui/label";
 
 const AddTeller = ({ callBack }: any) => {
   const {
-    register,
+    // register,
     // getValues,
     watch,
     // formState: { errors, isDirty, isValid },
-  } = useForm<TellerCreation>({
+  } = useForm<NewInterestCreation>({
     resolver: zodResolver(TransactionDetailsSchema),
     defaultValues: {},
     mode: "onChange",
@@ -39,14 +39,14 @@ const AddTeller = ({ callBack }: any) => {
               <Label>Transaction</Label>
               <Input
                 placeholder="Enter Transaction ID"
-                {...register("transactionId")}
+                // {...register("transactionId")}
               />
             </div>
             <div>
               <Label>Payment Date</Label>
 
               <Input
-                {...register("endDate")}
+                // {...register("endDate")}
                 placeholder="Enter payment date"
                 type="date"
               />
@@ -55,7 +55,7 @@ const AddTeller = ({ callBack }: any) => {
               <Label>Account Number</Label>
 
               <Input
-                {...register("accountNumber")}
+                // {...register("accountNumber")}
                 placeholder="Enter Account Number"
               />
             </div>
@@ -63,17 +63,17 @@ const AddTeller = ({ callBack }: any) => {
             <div>
               <Label>Inputer</Label>
 
-              <Input {...register("type")} placeholder="Enter Inputter" />
+              <Input placeholder="Enter Inputter" />
             </div>
             <div>
               <Label>Enter Amount</Label>
 
-              <Input {...register("amount")} placeholder="Enter amount" />
+              <Input placeholder="Enter amount" />
             </div>
             <div>
               <Label>Enter Type</Label>
 
-              <Input {...register("type")} placeholder="Enter Type" />
+              <Input placeholder="Enter Type" />
             </div>
 
             <BaseButton

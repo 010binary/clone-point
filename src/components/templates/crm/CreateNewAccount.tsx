@@ -385,7 +385,7 @@ const CreateNewAccount = ({ callBack, customerData }: any) => {
             <div className="w-[90%]">
               <Input
                 className="w-full outline-none border-none"
-                placeholder="Enter account number"
+                placeholder="Enter Account Name"
                 {...register("accountName")}
               />
             </div>
@@ -397,7 +397,7 @@ const CreateNewAccount = ({ callBack, customerData }: any) => {
           {/* Bank Branch */}
           <div className="flex w-[70%] items-center justify-start pl-2 rounded-md border border-gray-300">
             <div className="w-[25%] border-r border-gray-300 ">
-              <Label className="font-semibold">Account Status</Label>
+              <Label className="font-semibold">Branch</Label>
             </div>
             <div className="w-[90%]">
               <Select
@@ -455,9 +455,9 @@ const CreateNewAccount = ({ callBack, customerData }: any) => {
               <Label className="font-semibold">Notes</Label>
             </div>
             <div className="w-[90%]">
-              <Input
-                className="w-full outline-none border-none"
-                placeholder="Enter account number"
+              <textarea
+                className="w-full outline-none border-none flex items-center justify-center p-2"
+                placeholder="Enter Note"
                 {...register("notes")}
               />
             </div>
@@ -476,7 +476,7 @@ const CreateNewAccount = ({ callBack, customerData }: any) => {
               <Input
                 type="number"
                 className="w-full outline-none border-none"
-                placeholder="Enter account number"
+                placeholder="Balance"
                 {...register("balance")}
               />
             </div>
@@ -512,6 +512,21 @@ const CreateNewAccount = ({ callBack, customerData }: any) => {
               </div>
               <div>
                 <h4 className="text-[#404B7C] font-semibold">Mandate</h4>
+                <div className="mb-2 flex w-[70%] items-center justify-start pl-2 rounded-md border border-gray-300">
+                  <div className="w-[30%] border-r  border-gray-300 ">
+                    <Label className="font-semibold">Document Name</Label>
+                  </div>
+                  <div className="w-[70%]">
+                    <Input
+                      className="w-full outline-none border-none"
+                      placeholder="Enter Document Name"
+                      {...register("accountName")}
+                    />
+                  </div>
+                  {errors.accountName && (
+                    <p className="text-red-500">{errors.accountName.message}</p>
+                  )}
+                </div>
                 <div className="flex items-end gap-3">
                   <div className="">
                     <label htmlFor="Mandate-upload" className="cursor-pointer">

@@ -5,7 +5,7 @@ import { Stepper } from "../../../components/ui/stepper/stepper";
 import { Label } from "../../../components/ui/label";
 import { Button } from "../../../components/ui/button";
 import { Input } from "../../../components/ui/input";
-
+import moment from "moment";
 // import { title } from "../../../lib/Onboarding/signup";
 // import BaseButton from "../../../components/ui/base-button/BaseButton";
 // import SelectInput from "../../../components/ui/select-input/SelectInput";
@@ -13,12 +13,12 @@ import { toast } from "react-toastify";
 // import TextInput from "../../../components/ui/text-input/TextInput";
 // import { identification } from "../../../lib/Onboarding";
 import { useForm } from "react-hook-form";
-// import { z } from "zod";
-// import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 // import { Input } from "../../../components/ui/input/input";
-import transformFormDataToApiPayload from "../../../api/crm/create-payload";
+
 import useCreateCustomer from "../../../api/crm/create-customer";
 import { useQueryClient } from "@tanstack/react-query";
 import {
@@ -28,27 +28,12 @@ import {
   SelectContent,
   SelectItem,
 } from "../../../components/ui/select";
+import { payloadSchema } from "../../../api/crm/create-payload";
 
-// const customerSchema = z.object({
-//   // title: z.string().min(1, { message: "Title is required" }),
-//   firstName: z.string().min(1, { message: "First name is required" }),
-//   middleName: z.string().min(1, { message: "Middle name is required" }),
-//   lastName: z.string().min(1, { message: "Last name is required" }),
-//   phone: z.string().min(1, { message: "Phone number is required" }),
-//   dob: z.string().min(1, { message: "Date of birth is required" }),
-//   bvn: z.string().min(1, { message: "BVN is required" }),
-// });
+//
 
-// Updated Schema
-// const identificationSchema = z.object({
-//   identificationNumber: z
-//     .string()
-//     .min(1, { message: "Identification number is required" }),
-//   issueDate: z.string().min(1, { message: "Issue date is required" }),
-//   expirationDate: z.string().min(1, { message: "Expiration date is required" }),
-// });
-
-const CreateCustomerAccount = ({ onClose, customerType }: any) => {
+//
+const CreateCustomerAccount = ({ onClose }: any) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [previewFrontImage, setPreviewFrontImage] = useState<string | null>(
     null
@@ -66,20 +51,121 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
   const queryClient = useQueryClient();
   // const schema = step === 0 ? customerSchema : '';
   const { mutateAsync, isPending } = useCreateCustomer();
+
+  type FormData = z.infer<typeof payloadSchema>;
   const {
     register,
-    reset,
-    // watch,
-    setValue,
     handleSubmit,
-    // getValues,
-    formState: { errors, isValid },
-  } = useForm();
+    setValue,
+    reset,
+    watch,
+
+    // formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(payloadSchema),
+    mode: "onChange",
+  });
 
   const maxValue = 4;
+  const values = watch();
 
+  const canProceed = () => {
+    const {
+      firstName,
+      lastName,
+      middleName,
+      bvn,
+      accountType,
+      gender,
+      maritalStatus,
+      mobilePhone,
+      citizenship,
+      levelOfEducation,
+    } = values.customerDetail || {};
+    const {
+      expirationDate,
+      identificationNumber,
+      identificationType,
+      issueDate,
+      other,
+      backOfIdCardLinkBase64String,
+      frontOfIdCardImageBase64String,
+    } = values.identification || {};
+
+    const {
+      address1,
+      city,
+      country,
+      email,
+      homePhone,
+      lga,
+
+      proofOfAddressBase64String,
+      residentialStatus,
+      state,
+    } = values.address || {};
+    const {
+      address,
+      email: nextkinemail,
+      firstName: nextkinfirstName,
+      lastName: nextkinlastName,
+      phone,
+      relationship,
+      title,
+    } = values.nextOfKin || {};
+
+    if (
+      step === 0 &&
+      (firstName ||
+        lastName ||
+        middleName ||
+        mobilePhone ||
+        bvn ||
+        accountType ||
+        gender ||
+        maritalStatus ||
+        citizenship ||
+        levelOfEducation)
+    )
+      return true;
+    if (
+      step === 1 &&
+      (expirationDate ||
+        identificationNumber ||
+        identificationType ||
+        issueDate ||
+        other ||
+        backOfIdCardLinkBase64String ||
+        frontOfIdCardImageBase64String)
+    )
+      return true;
+
+    if (
+      step === 2 &&
+      (address1 ||
+        city ||
+        country ||
+        email ||
+        homePhone ||
+        lga ||
+        proofOfAddressBase64String ||
+        residentialStatus ||
+        state ||
+        address ||
+        nextkinemail ||
+        nextkinfirstName ||
+        nextkinlastName ||
+        phone ||
+        relationship ||
+        title)
+    )
+      return true;
+  };
   const nextStep = () => {
-    if (!isNaN(step) && step < maxValue && isValid) {
+    console.log("Current step:", step);
+    console.log("Can proceed:", canProceed());
+
+    if (!isNaN(step) && step < maxValue && canProceed()) {
       setSearchParams({ step: (step + 1).toString() });
       return;
     }
@@ -97,27 +183,39 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
       switch (key) {
         case "frontFile":
           setPreviewFrontImage(base64Image as string);
-          setValue("frontImage", base64Image);
+          setValue(
+            "identification.frontOfIdCardImageBase64String",
+            base64Image as string
+          );
           break;
         case "backFile":
           setPreviewBackImage(base64Image as string);
-          setValue("backImage", base64Image);
+          setValue(
+            "identification.backOfIdCardLinkBase64String",
+            base64Image as string
+          );
           break;
         case "utilityBill":
           setPreviewUtilityBill(base64Image as string);
-          setValue("utilityBill", base64Image);
+          setValue("address.proofOfAddressBase64String", base64Image as string);
           break;
         case "cacDocument":
           setPreviewCACDocument(base64Image as string);
-          setValue("cacDocument", base64Image);
+          setValue("employment.cacDocumentBase64String", base64Image as string);
           break;
         case "passport":
           setPreviewPassport(base64Image as string);
-          setValue("passport", base64Image);
+          setValue(
+            "employment.passportPhotographBase64String",
+            base64Image as string
+          );
           break;
         case "signature":
           setPreviewSignature(base64Image as string);
-          setValue("signature", base64Image);
+          setValue(
+            "employment.signDocumentBase64String",
+            base64Image as string
+          );
           break;
         default:
           break;
@@ -145,23 +243,25 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
       reader.readAsDataURL(file);
     });
   }
+  const formatAndSetDate = (dateValue: any, setValue: any, fieldName: any) => {
+    const formattedDate = moment(dateValue).format("DD-MM-YYYY");
+    setValue(fieldName, formattedDate); // Store the formatted date in the specified field
+  };
+  const handleDateChange = (e: any) => {
+    formatAndSetDate(e.target.value, setValue, "customerDetail.dateOfBirth");
+  };
+
+  const handleDateChange1 = (e: any) => {
+    formatAndSetDate(e.target.value, setValue, "identification.issueDate");
+  };
+  const handleDateChange2 = (e: any) => {
+    formatAndSetDate(e.target.value, setValue, "identification.expirationDate");
+  };
 
   const onSubmit = async (data: any) => {
-    const [year, month, day] = data.dob.split("-");
-    const formattedDate = `${day}-${month}-${year}`;
-    const [years, months, days] = data.issueDate.split("-");
-    const issueformattedDate = `${days}-${months}-${years}`;
-    const [yearss, monthss, dayss] = data.ExpirationDate.split("-");
-    const expiredformattedDate = `${dayss}-${monthss}-${yearss}`;
-    data.dob = formattedDate; // Replace with formatted date
-    data.ExpirationDate = expiredformattedDate;
-    data.issueDate = issueformattedDate;
-    console.log(formattedDate);
-    const apiPayload = transformFormDataToApiPayload({ ...data, customerType });
-    console.log(apiPayload);
-
+    console.log(data);
     try {
-      const response = await mutateAsync(apiPayload);
+      const response = await mutateAsync(data);
       console.log(response);
       if (response.statusCode === "CREATED") {
         queryClient.invalidateQueries({
@@ -212,7 +312,9 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         </Label>
                       </div>
                       <Select
-                        onValueChange={(value) => setValue("title", value)}
+                        onValueChange={(value) =>
+                          setValue("customerDetail.title", value)
+                        }
                       >
                         <SelectTrigger
                           style={{ outline: "none", boxShadow: "none" }}
@@ -221,10 +323,10 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                           <SelectValue placeholder="Select your title" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="mr">Mr</SelectItem>
-                          <SelectItem value="ms">Mrs</SelectItem>
-                          <SelectItem value="dr">Dr</SelectItem>
-                          <SelectItem value="prof">Prof</SelectItem>
+                          <SelectItem value="Mr">Mr</SelectItem>
+                          <SelectItem value="Ms">Mrs</SelectItem>
+                          <SelectItem value="Dr">Dr</SelectItem>
+                          <SelectItem value="Prof">Prof</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -237,15 +339,10 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       </div>
                       <Input
                         type="text"
-                        {...register("firstName")}
+                        {...register("customerDetail.firstName")}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
-                      {errors.firstName && (
-                        <p className="text-red-500">
-                          {errors.firstName.message as string}
-                        </p>
-                      )}
                     </div>
 
                     <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
@@ -256,15 +353,10 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       </div>
                       <Input
                         type="text"
-                        {...register("middle Name")}
+                        {...register("customerDetail.middleName")}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
-                      {errors.middleName && (
-                        <p className="text-red-500">
-                          {errors.middleName.message as string}
-                        </p>
-                      )}
                     </div>
 
                     {/* <div className="w-full">
@@ -301,15 +393,10 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       </div>
                       <Input
                         type="text"
-                        {...register("lastName")}
+                        {...register("customerDetail.lastName")}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
-                      {errors.lastName && (
-                        <p className="text-red-500">
-                          {errors.lastName.message as string}
-                        </p>
-                      )}
                     </div>
 
                     {/* <div className="w-full">
@@ -346,15 +433,10 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       </div>
                       <Input
                         type="number"
-                        {...register("phone")}
+                        {...register("customerDetail.mobilePhone")}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
-                      {errors.phone && (
-                        <p className="text-red-500">
-                          {errors.phone.message as string}
-                        </p>
-                      )}
                     </div>
 
                     {/* <div className="w-full">
@@ -391,15 +473,11 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       </div>
                       <Input
                         type="date"
-                        {...register("dob")}
+                        // {...register("customerDetail.dateOfBirth")}
+                        onChange={handleDateChange}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
-                      {errors.dob && (
-                        <p className="text-red-500">
-                          {errors.dob.message as string}
-                        </p>
-                      )}
                     </div>
 
                     {/* <div className="w-full">
@@ -436,15 +514,10 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       </div>
                       <Input
                         type="number"
-                        {...register("bvn")}
+                        {...register("customerDetail.bvn")}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
-                      {errors.bvn && (
-                        <p className="text-red-500">
-                          {errors.bvn.message as string}
-                        </p>
-                      )}
                     </div>
 
                     {/* <div className="w-full">
@@ -484,7 +557,9 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         </Label>
                       </div>
                       <Select
-                        onValueChange={(value) => setValue("title", value)}
+                        onValueChange={(value) =>
+                          setValue("customerDetail.accountType", value)
+                        }
                       >
                         <SelectTrigger
                           style={{ outline: "none", boxShadow: "none" }}
@@ -493,8 +568,8 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                           <SelectValue placeholder="Select account type " />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="saving">Saving</SelectItem>
-                          <SelectItem value="current">Current</SelectItem>
+                          {/* <SelectItem value="Saving">Saving</SelectItem> */}
+                          <SelectItem value="Current">Current</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -506,7 +581,9 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         </Label>
                       </div>
                       <Select
-                        onValueChange={(value) => setValue("title", value)}
+                        onValueChange={(value) =>
+                          setValue("customerDetail.gender", value)
+                        }
                       >
                         <SelectTrigger
                           style={{ outline: "none", boxShadow: "none" }}
@@ -515,39 +592,22 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                           <SelectValue placeholder="Select  Gender" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="male">Male</SelectItem>
-                          <SelectItem value="female">Female</SelectItem>
+                          <SelectItem value="Male">Male</SelectItem>
+                          <SelectItem value="Female">Female</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
 
-                    {/* <SelectInput
-                      label="Acount Type"
-                      options={[
-                        { label: "Select One", value: "" },
-                        ...accountType,
-                      ]}
-                      width="md:w-[560px] w-[300px]"
-                      height="h-10"
-                      onChange={(e) => setValue("AcountType", e.target.value)}
-                    /> */}
-
-                    {/* <SelectInput
-                      label="Gender"
-                      options={[{ label: "Select One", value: "" }, ...gender]}
-                      width="md:w-[560px] w-[300px]"
-                      height="h-10"
-                      onChange={(e) => setValue("Gender", e.target.value)}
-                    /> */}
-
                     <div className="flex w-[80%] items-center pl-2 border border-gray-300 rounded-md overflow-hidden">
                       <div className="w-[50%]  border-r border-gray-300">
                         <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold">
-                          Martial Status
+                          Marital Status
                         </Label>
                       </div>
                       <Select
-                        onValueChange={(value) => setValue("title", value)}
+                        onValueChange={(value) =>
+                          setValue("customerDetail.maritalStatus", value)
+                        }
                       >
                         <SelectTrigger
                           style={{ outline: "none", boxShadow: "none" }}
@@ -556,26 +616,12 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                           <SelectValue placeholder="Select martial status" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="single">Single</SelectItem>
-                          <SelectItem value="married">Married</SelectItem>
-                          <SelectItem value="divorce">Divorced</SelectItem>
+                          <SelectItem value="Single">Single</SelectItem>
+                          <SelectItem value="Married">Married</SelectItem>
+                          <SelectItem value="Divorce">Divorced</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
-
-                    {/* <SelectInput
-                      label="Marital Status"
-                      options={[
-                        { label: "Select One", value: "" },
-                        ...maritalStatus,
-                      ]}
-                      width="md:w-[560px] w-[300px]"
-                      height="h-10"
-                      // {...register("MaritalStatus")}
-                      onChange={(e) =>
-                        setValue("maritalStatus", e.target.value)
-                      }
-                    /> */}
 
                     <div className="flex w-[80%] items-center pl-2 border border-gray-300 rounded-md overflow-hidden">
                       <div className="w-[50%]  border-r border-gray-300">
@@ -584,13 +630,15 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         </Label>
                       </div>
                       <Select
-                        onValueChange={(value) => setValue("title", value)}
+                        onValueChange={(value) =>
+                          setValue("customerDetail.citizenship", value)
+                        }
                       >
                         <SelectTrigger
                           style={{ outline: "none", boxShadow: "none" }}
                           className="w-full border-none bg-transparent focus:outline-none px-2 py-2"
                         >
-                          <SelectValue placeholder="Select your title" />
+                          <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="Nigeria">Nigeria</SelectItem>
@@ -617,41 +665,21 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         </Label>
                       </div>
                       <Select
-                        onValueChange={(value) => setValue("title", value)}
+                        onValueChange={(value) =>
+                          setValue("customerDetail.levelOfEducation", value)
+                        }
                       >
                         <SelectTrigger
                           style={{ outline: "none", boxShadow: "none" }}
                           className="w-full border-none bg-transparent focus:outline-none px-2 py-2"
                         >
-                          <SelectValue placeholder="Select your title" />
+                          <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="Bsc">BSC</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
-
-                    {/* <SelectInput
-                      label="Level of Education"
-                      width="md:w-[560px] w-[300px]"
-                      height="h-10"
-                      // {...register("LevelOfEducation")}
-                      onChange={(e) => setValue("education", e.target.value)}
-                      options={[
-                        { label: "Select One", value: "" },
-                        ...education,
-                      ]}
-                    /> */}
-
-                    {/* <div style={{ border: "2px solid red" }} className="pr-4">
-                      <BaseButton
-                        // type="submit"
-                        onClick={nextStep}
-                        className="mt-2 md:w-full w-[300px] bg-primary"
-                      >
-                        <p className="md:w-[560px] w-[300px]">Next</p>
-                      </BaseButton>
-                    </div> */}
 
                     <Button
                       onClick={nextStep}
@@ -686,7 +714,9 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         </Label>
                       </div>
                       <Select
-                        onValueChange={(value) => setValue("title", value)}
+                        onValueChange={(value) =>
+                          setValue("identification.identificationType", value)
+                        }
                       >
                         <SelectTrigger
                           style={{ outline: "none", boxShadow: "none" }}
@@ -724,7 +754,7 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       </div>
                       <Input
                         type="text"
-                        {...register("others")}
+                        {...register("identification.other")}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
@@ -759,15 +789,10 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       </div>
                       <Input
                         type="number"
-                        {...register("identificationNumber")}
+                        {...register("identification.identificationNumber")}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
-                      {errors.identificationNumber && (
-                        <p className="text-red-500">
-                          {errors.identificationNumber.message as string}
-                        </p>
-                      )}
                     </div>
 
                     {/* <div className="w-full">
@@ -802,15 +827,11 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       </div>
                       <Input
                         type="date"
-                        {...register("issueDate")}
+                        // {...register("identification.issueDate")}
+                        onChange={handleDateChange1}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
-                      {errors.issueDate && (
-                        <p className="text-red-500">
-                          {errors.issueDate.message as string}
-                        </p>
-                      )}
                     </div>
 
                     {/* <div className="w-full">
@@ -844,15 +865,11 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       </div>
                       <Input
                         type="date"
-                        {...register("ExpirationDate")}
+                        // {...register("identification.expirationDate")}
+                        onChange={handleDateChange2}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
-                      {errors.expirationDate && (
-                        <p className="text-red-500">
-                          {errors.expirationDate.message as string}
-                        </p>
-                      )}
                     </div>
 
                     {/* <div className="w-full">
@@ -997,12 +1014,12 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                     <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
                       <div className="w-[80%] border-r border-gray-300 ">
                         <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
-                          Address 1
+                          Address
                         </Label>
                       </div>
                       <Input
                         type="text"
-                        {...register("Address 1")}
+                        {...register("address.address1")}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
@@ -1032,7 +1049,9 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         </Label>
                       </div>
                       <Select
-                        onValueChange={(value) => setValue("title", value)}
+                        onValueChange={(value) =>
+                          setValue("address.residentialStatus", value)
+                        }
                       >
                         <SelectTrigger
                           style={{ outline: "none", boxShadow: "none" }}
@@ -1087,7 +1106,21 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       </div>
                       <Input
                         type="text"
-                        {...register("State")}
+                        {...register("address.state")}
+                        style={{ outline: "none", boxShadow: "none" }}
+                        className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
+                      />
+                    </div>
+
+                    <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
+                      <div className="w-[80%] border-r border-gray-300 ">
+                        <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
+                          City
+                        </Label>
+                      </div>
+                      <Input
+                        type="text"
+                        {...register("address.city")}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
@@ -1120,7 +1153,7 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       </div>
                       <Input
                         type="text"
-                        {...register("lga")}
+                        {...register("address.lga")}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
@@ -1152,7 +1185,7 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       </div>
                       <Input
                         type="text"
-                        {...register("Country")}
+                        {...register("address.country")}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
@@ -1184,7 +1217,7 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       </div>
                       <Input
                         type="number"
-                        {...register("HomePhone")}
+                        {...register("address.homePhone")}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
@@ -1216,7 +1249,7 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       </div>
                       <Input
                         type="email"
-                        {...register("email")}
+                        {...register("address.email")}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
@@ -1300,7 +1333,7 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       </div>
                       <Select
                         onValueChange={(value) =>
-                          setValue("nextofkintitle", value)
+                          setValue("nextOfKin.title", value)
                         }
                       >
                         <SelectTrigger
@@ -1310,10 +1343,10 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                           <SelectValue placeholder="Select your title" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="mr">Mr</SelectItem>
-                          <SelectItem value="ms">Mrs</SelectItem>
-                          <SelectItem value="dr">Dr</SelectItem>
-                          <SelectItem value="prof">Prof</SelectItem>
+                          <SelectItem value="Mr">Mr</SelectItem>
+                          <SelectItem value="Mrs">Mrs</SelectItem>
+                          <SelectItem value="Dr">Dr</SelectItem>
+                          <SelectItem value="Prof">Prof</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -1331,12 +1364,12 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                     <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
                       <div className="w-[80%] border-r border-gray-300 ">
                         <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
-                          firstName
+                          First Name
                         </Label>
                       </div>
                       <Input
                         type="text"
-                        {...register("nextofkinfirstname")}
+                        {...register("nextOfKin.firstName")}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
@@ -1364,12 +1397,12 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                     <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
                       <div className="w-[80%] border-r border-gray-300 ">
                         <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
-                          LastName
+                          Last Name
                         </Label>
                       </div>
                       <Input
                         type="text"
-                        {...register("nextofkinlastname")}
+                        {...register("nextOfKin.lastName")}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
@@ -1397,12 +1430,12 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                     <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
                       <div className="w-[80%] border-r border-gray-300 ">
                         <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
-                          address
+                          Address
                         </Label>
                       </div>
                       <Input
                         type="text"
-                        {...register("nextofkinaddress")}
+                        {...register("nextOfKin.address")}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
@@ -1435,7 +1468,7 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       </div>
                       <Input
                         type="number"
-                        {...register("nextofkinphonenumber")}
+                        {...register("nextOfKin.phone")}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
@@ -1468,7 +1501,7 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       </div>
                       <Input
                         type="email"
-                        {...register("nextofkinemail")}
+                        {...register("nextOfKin.email")}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
@@ -1500,7 +1533,7 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       </div>
                       <Select
                         onValueChange={(value) =>
-                          setValue("nextofkinrelationship", value)
+                          setValue("nextOfKin.relationship", value)
                         }
                       >
                         <SelectTrigger
@@ -1571,7 +1604,7 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       </div>
                       <Select
                         onValueChange={(value) =>
-                          setValue("EmploymentStatus", value)
+                          setValue("employment.employmentStatus", value)
                         }
                       >
                         <SelectTrigger
@@ -1581,7 +1614,7 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value=" Employed">Employed</SelectItem>
+                          <SelectItem value="Employed">Employed</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -1625,7 +1658,7 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       </div>
                       <Input
                         type="text"
-                        {...register("State")}
+                        {...register("employment.state")}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
@@ -1647,12 +1680,14 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                     <div className="flex w-[80%] items-center pl-2  border border-gray-300 rounded-md overflow-hidden">
                       <div className="w-[80%] border-r border-gray-300 ">
                         <Label className="px-2 text-[#575757] text-[1rem] w-32 font-semibold ">
-                          Net Montly Income
+                          Net Monthly Income
                         </Label>
                       </div>
                       <Input
                         type="number"
-                        {...register("netmonthlyincome")}
+                        {...register("employment.netMonthlyIncome", {
+                          valueAsNumber: true,
+                        })}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
@@ -1685,7 +1720,7 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       </div>
                       <Input
                         type="text"
-                        {...register("currentEmployee")}
+                        {...register("employment.currentEmployer")}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
@@ -1717,7 +1752,9 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                         </Label>
                       </div>
                       <Select
-                        onValueChange={(value) => setValue("workSector", value)}
+                        onValueChange={(value) =>
+                          setValue("employment.sector", value)
+                        }
                       >
                         <SelectTrigger
                           style={{ outline: "none", boxShadow: "none" }}
@@ -1726,7 +1763,7 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value=" Banking">Banking</SelectItem>
+                          <SelectItem value="Banking">Banking</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -1749,7 +1786,7 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       </div>
                       <Input
                         type="email"
-                        {...register("officeEmail")}
+                        {...register("employment.officeEmail")}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
@@ -1781,7 +1818,7 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       </div>
                       <Input
                         type="number"
-                        {...register("TaxNumber")}
+                        {...register("employment.taxNumber")}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
@@ -1814,7 +1851,7 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       </div>
                       <Input
                         type="number"
-                        {...register("PensionNumber")}
+                        {...register("employment.pensionNumber")}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
@@ -1847,7 +1884,7 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       </div>
                       <Input
                         type="text"
-                        {...register("OfficeAddress")}
+                        {...register("employment.officeAddress")}
                         style={{ outline: "none", boxShadow: "none" }}
                         className="w-full border-none text-[1rem] outline:none ring-0 focus:ring-0 bg-transparent focus:outline-none px-2 py-2 no-outline "
                       />
@@ -1872,7 +1909,7 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       />
                     </div> */}
 
-                    <h4 className=" mt-4 text-[#404B7C] font-semibold">
+                    <h4 className=" mt-2 text-[#404B7C] font-semibold">
                       Upload CAC Document (For business owner)
                     </h4>
                     <div className=" flex items-end gap-4">
@@ -1912,7 +1949,7 @@ const CreateCustomerAccount = ({ onClose, customerType }: any) => {
                       )}
                     </div>
 
-                    <h4 className="text-[#404B7C] text-lg font-semibold">
+                    <h4 className="mt-2 text-[#404B7C] text-lg font-semibold">
                       Images
                     </h4>
 

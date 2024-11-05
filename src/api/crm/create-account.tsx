@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import { useMutation } from "@tanstack/react-query";
-import { AccountSchema } from "../../components/templates/admin/types/dto";
+import { AccountSchema } from "../../types/dto";
 import { ApiResponse } from "../types";
 import axiosInstance from "../config/axios.config";
 

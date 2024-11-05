@@ -24,7 +24,7 @@ const InterestRate = () => {
   };
 
   const { data, isLoading } = useGetAllInterest();
-
+  console.log(data, "this is data");
   return (
     <DashboardLayout>
       <div className="w-full bg-white dashboard__body overflow-x-auto md:pl-[268px] px-5 md:pr-10 pt-2">
@@ -91,10 +91,7 @@ const InterestRate = () => {
               </div>
             </>
           ) : (
-            <GenericTable
-              data={data?.content || []}
-              columns={InterestUserColumns}
-            />
+            <GenericTable data={data || []} columns={InterestUserColumns} />
           )}
         </div>
       </div>

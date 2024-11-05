@@ -13,6 +13,8 @@ import GenericTable from "../../../components/ui/table/generic-table";
 import { AccountUserColumns } from "../../../components/templates/admin/TableColums/create-account-table";
 import useGetAllAccount from "../../../api/crm/get-account";
 import useGetAllCustomerQuery from "./services/get-all-customer.api";
+import { Link } from "react-router-dom";
+import { buttonVariants } from "../../../components/ui/button";
 
 const ManagerAccount = () => {
   const [activeAction, setActiveAction] = useState(null);
@@ -114,7 +116,16 @@ const ManagerAccount = () => {
 
         <div className="flex mt-6 flex-col md:flex-row items-center justify-between">
           <div className="flex items-center gap-4">
-            <button
+            <Link
+              className={buttonVariants({ variant: "outline", size: "lg" })}
+              to="/admin/crm/create-new-account"
+            >
+              Create Account
+              <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
+                <i className="ri-add-line text-white"></i>
+              </div>
+            </Link>
+            {/* <button
               onClick={handleShowCreateCustomer}
               className="flex items-center gap-4 border rounded-lg px-4 py-2"
             >
@@ -122,7 +133,7 @@ const ManagerAccount = () => {
               <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
                 <i className="ri-add-line text-white"></i>
               </div>
-            </button>
+            </button> */}
           </div>
 
           <div className="flex items-center gap-4">

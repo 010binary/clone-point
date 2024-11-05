@@ -1,19 +1,19 @@
 import { AxiosResponse } from "axios";
 import { useMutation } from "@tanstack/react-query";
-import { TellerCreation } from "../types/dto";
+import { NewInterestCreation } from "../../../../types/dto";
 import { ApiResponse } from "../../../../api/types";
 import axiosInstance from "../../../../api/config/axios.config";
 
 const updateInterest = async (
-  Payload: TellerCreation,
+  Payload: NewInterestCreation
 ): Promise<AxiosResponse<ApiResponse>["data"]> => {
   try {
     const request = await axiosInstance.put<
-      TellerCreation,
+      NewInterestCreation,
       AxiosResponse<ApiResponse>
     >(
       "/api/v1/admin/interest?credentials=%7B%7D&details=%7B%7D&principal=%7B%7D",
-      Payload,
+      Payload
     );
     const response = request;
     return response?.data;

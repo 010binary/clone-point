@@ -1,13 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { TellerCreation } from "./types/dto";
-import TransactionDetailsSchema from "./schemas/add-ser-schema";
 import { Input } from "../../ui/input";
 import { Label } from "../../ui/label";
-import useCreateNewTeller from "./services/create-teller.api";
+import createNewInterestRate from "../../../api/admin/interest/create-new-interest-rate.api";
 import { toast } from "react-toastify";
 import { Button } from "../../ui/button";
 import { useQueryClient } from "@tanstack/react-query";
@@ -18,30 +16,40 @@ import {
   SelectItem,
   SelectContent,
 } from "../../ui/select";
+import { NewInterestCreation } from "../../../types/dto";
+import { interestSchema } from "../../../schemas/interest/create-interest-schema";
+import useGetAllOfficeAccount from "../../../api/admin/interest/get-all-office-account.api";
 
 const AddInterest = ({ callBack }: any) => {
-  const { mutateAsync, isPending } = useCreateNewTeller();
+  const { mutateAsync, isPending } = createNewInterestRate();
+  const { data, isLoading } = useGetAllOfficeAccount();
+
   const querryClient = useQueryClient();
-  const { register, handleSubmit } = useForm<TellerCreation>({
-    resolver: zodResolver(TransactionDetailsSchema),
-    defaultValues: {},
-    mode: "onChange",
-  });
+  const { register, handleSubmit, getValues, control, reset } =
+    useForm<NewInterestCreation>({
+      resolver: zodResolver(interestSchema),
+      defaultValues: {
+        accountId: "1",
+      },
+      mode: "onChange",
+    });
+  const value = getValues();
 
   const onSubmit = async (data: any) => {
     try {
       const response = await mutateAsync({
         ...data,
+        accountId: Number(value.accountId),
       });
-
-      if (response.statusCode === "OK") {
+      if (response.status === 200) {
         querryClient.invalidateQueries({
           queryKey: ["GET_ALL_INTEREST"],
         });
         callBack();
-        toast.success(response?.message);
+        toast.success(response.data);
+        reset();
       } else {
-        toast.error(response?.message);
+        toast.error(response.data);
       }
     } catch (error: any) {
       toast.error("Customer Interest Failed");
@@ -72,8 +80,8 @@ const AddInterest = ({ callBack }: any) => {
               </div>
               <div className="w-[70%] border-r border-gray-300 ">
                 <Input
-                  placeholder="Enter Transaction ID"
-                  {...register("transactionId")}
+                  placeholder="Enter Name"
+                  {...register("name")}
                   className="border-none outline-none text-sm focus:ring-0 focus:border-none w-full"
                 />
               </div>
@@ -90,7 +98,7 @@ const AddInterest = ({ callBack }: any) => {
               <div className="w-[70%] border-r border-gray-300 ">
                 <Input
                   placeholder="Enter Description"
-                  {...register("transactionId")}
+                  {...register("description")}
                   className="border-none outline-none text-sm focus:ring-0 focus:border-none w-full"
                 />
               </div>
@@ -106,7 +114,7 @@ const AddInterest = ({ callBack }: any) => {
               </div>
               <div className="w-[70%] border-r border-gray-300 ">
                 <Input
-                  {...register("rate", {
+                  {...register("minimumTenure", {
                     valueAsNumber: true,
                   })}
                   type="number"
@@ -126,7 +134,7 @@ const AddInterest = ({ callBack }: any) => {
               </div>
               <div className="w-[70%] border-r border-gray-300 ">
                 <Input
-                  {...register("rate", {
+                  {...register("maximumTenure", {
                     valueAsNumber: true,
                   })}
                   type="number"
@@ -146,7 +154,7 @@ const AddInterest = ({ callBack }: any) => {
               </div>
               <div className="w-[70%] border-r border-gray-300 ">
                 <Input
-                  {...register("rate", {
+                  {...register("interestRate", {
                     valueAsNumber: true,
                   })}
                   type="number"
@@ -162,21 +170,34 @@ const AddInterest = ({ callBack }: any) => {
                 <Label className="font-semibold">Account Manager</Label>
               </div>
               <div className="w-[70%]">
-                <Select
-                // onValueChange={(value) => setValue("accountManager", value)}
-                // value={watch("accountManager")}
-                >
-                  <SelectTrigger
-                    className="border-none outline-none focus:outline-none px-2 py-2"
-                    style={{ outline: "none", boxShadow: "none" }}
-                  >
-                    <SelectValue placeholder="Select Office Account" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Manager 1">Account 1</SelectItem>
-                    <SelectItem value="Manager 2">Account 2</SelectItem>
-                  </SelectContent>
-                </Select>
+                <Controller
+                  control={control}
+                  name="accountId"
+                  render={({ field: { onChange, value } }) => (
+                    <Select value={value} onValueChange={onChange}>
+                      <SelectTrigger
+                        className="border-none outline-none focus:outline-none px-2 py-2"
+                        style={{ outline: "none", boxShadow: "none" }}
+                      >
+                        <SelectValue
+                          placeholder={`${
+                            isLoading ? "Please Wait" : "Select Account Manager"
+                          }`}
+                        />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {data?.map((item) => (
+                          <SelectItem key={item.id} value={item.id + ""}>
+                            {item?.customer?.customerDetail?.firstName +
+                              "  " +
+                              item?.customer?.customerDetail?.lastName}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  )}
+                />
+
                 {/* {errors.accountManager && (
                   <p className="text-red-500">
                     {errors.accountManager.message}

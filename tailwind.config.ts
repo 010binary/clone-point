@@ -9,8 +9,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        pryColor: "#1A88E1",
+        darkText: "#575757",
       },
     },
   },

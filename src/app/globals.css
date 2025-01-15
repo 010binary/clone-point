@@ -9,20 +9,42 @@
 .links {
   @apply text-white md:text-sm xl:text-base;
   font-weight: 400;
-  /* font-size: 16px; */
   line-height: 12.5px;
 }
 
 .linkFocus {
   @apply py-2.5 bg-white text-[#1A88E1] md:text-sm xl:text-base;
   font-weight: 500;
-  /* font-size: 16px; */
   line-height: 12.5px;
 }
 
 .subLinkFocus {
   @apply py-2.5 ml-6 lg:ml-10 bg-white text-[#1A88E1] md:text-sm xl:text-base;
   font-weight: 500;
-  /* font-size: 16px; */
   line-height: 12.5px;
+}
+
+.top-section-container {
+  @apply lg:h-[60px];
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: inset 0px 4px 30px rgba(26, 136, 225, 0.29);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+/* customer form styles */
+.container {
+  @apply border rounded-lg;
+}
+.innerContainer {
+  @apply flex items-center px-2 h-full w-full;
+}
+.formLabel {
+  @apply text-darkText py-1.5 w-[35%] border-r h-full;
+}
+.formInput {
+  @apply w-[70%] py-1.5 h-full pl-2 outline-none;
 }

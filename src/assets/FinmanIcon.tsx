@@ -1,6 +1,6 @@
 import React from "react";
 type Props = {
-  className: string;
+  className?: string;
 };
 const FinmanIcon = ({ className }: Props) => {
   return (

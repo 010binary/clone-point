@@ -29,7 +29,7 @@ const SideBar = () => {
   }, [pathname]);
 
   return (
-    <div className="hidden md:block lg:w-[280px] xl:w-[300px] h-full sidebarStyle relative overflow-y-auto">
+    <div className="hidden md:block lg:w-[280px] xl:w-[350px] h-full sidebarStyle relative overflow-y-auto">
       <div className="absolute z-0">
         <Image
           src={"/wave.png"}

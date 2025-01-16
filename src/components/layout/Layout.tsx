@@ -5,7 +5,6 @@ import { RiMessage2Line } from "react-icons/ri";
 import { MdHelp } from "react-icons/md";
 import { FaCircleUser } from "react-icons/fa6";
 import { GoTriangleDown } from "react-icons/go";
-import Image from "next/image";
 import Color2 from "@/assets/header/Color2";
 import Color1 from "@/assets/header/Color1";
 

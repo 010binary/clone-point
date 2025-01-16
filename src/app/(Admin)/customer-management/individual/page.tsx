@@ -37,7 +37,7 @@ const IndividualCustomerPage = () => {
                   <input
                     type="text"
                     placeholder="Search"
-                    className="px-3 py-2 md:py-2 pl-2 outline-none w-full"
+                    className="px-3 py-2 md:py-2 pl-2 bg-transparent outline-none w-full"
                   />
                   <IoSearchSharp size={20} color="#737373" className="mr-2" />
                 </div>
@@ -59,7 +59,6 @@ const IndividualCustomerPage = () => {
             <p>New Individual Customer</p>
             <MdAddCircle size={24} color="#1A88E1" />
           </button>
-          {/* pag */}
         </div>
         {/* table */}
         <div className="lg:pl-6 overflow-x-auto">

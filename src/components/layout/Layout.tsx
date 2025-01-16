@@ -25,7 +25,7 @@ const Layout = ({
                 borderTopLeftRadius: "32px",
                 borderBottomRightRadius: "32px",
               }}
-              className="h-[49px] lg:w-[97%] bg-[#1a88e1] flex items-center justify-end relative overflow-hidden"
+              className="h-[49px] lg:w-[97%] bg-[#1a88e1] flex items-center justify-end relative overflow-hidden flex-shrink-0"
             >
               <div className="h-full hidden lg:block absolute lg:right-[33.5rem]">
                 <Color1 />

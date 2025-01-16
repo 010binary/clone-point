@@ -40,7 +40,7 @@ const SideBar = () => {
         />
       </div>
       {/* links */}
-      <div className="flex flex-col gap-7 pl-1 pr-0.5 mt-28 z-10">
+      <div className="flex flex-col gap-7 pl-1 pr-0.5 mt-28 pb-10 z-10 overflow-y-auto">
         <Link
           href={"/"}
           className={`${pathname === "/" ? "linkFocus" : "links"} z-10`}

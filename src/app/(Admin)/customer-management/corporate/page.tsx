@@ -38,7 +38,7 @@ const CorporateCustomerPage = () => {
                   <input
                     type="text"
                     placeholder="Search"
-                    className="px-3 py-2 md:py-2 pl-2 outline-none w-full"
+                    className="px-3 py-2 md:py-2 pl-2 outline-none bg-transparent w-full"
                   />
                   <IoSearchSharp size={20} color="#737373" className="mr-2" />
                 </div>

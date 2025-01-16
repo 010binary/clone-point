@@ -16,7 +16,7 @@ const FormTwo = () => {
       <form className="border border-[#C4C4C4] rounded-b-md w-full">
         <div className="px-2 md:px-3 lg:px-4 py-4 flex flex-col gap-4">
           <p>Identification</p>
-          <div className="flex flex-col gap-3 text-xs md:text-sm lg:w-[80%]">
+          <div className="flex flex-col gap-3 text-xs md:text-sm lg:w-[85%]">
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Identification</label>
@@ -53,9 +53,23 @@ const FormTwo = () => {
             </div>
             {/* upload */}
             <div className="flex flex-col gap-2">
-              <p>Upload Front and Back Copy of The ID card</p>
+              <p className="text-sm font-medium text-[#404B7C]">
+                Upload Front and Back Copy of The ID card
+              </p>
               <div className="flex items-center gap-3">
-                <div className="border border-dashed rounded-lg border-pryColor"></div>
+                <div className="border border-dashed rounded-lg border-pryColor">
+                  <div className="py-5 px-3 flex flex-col gap-1">
+                    <p className="text-xs md:text-sm text-pryColor">
+                      Drag or click to upload file
+                    </p>
+                    <p className="text-xs text-[#575757]">
+                      Supported formats: JPEG, JPG or PNG
+                    </p>
+                  </div>
+                </div>
+                <button className="bg-[#6699FF] py-1.5 px-4 text-white text-xs md:text-sm">
+                  Upload
+                </button>
               </div>
             </div>
           </div>

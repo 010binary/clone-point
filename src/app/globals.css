@@ -2,24 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --font-montserrat: "Montserrat", sans-serif;
+}
+
+body {
+  font-family: var(--font-montserrat);
+}
+
 .sidebarStyle {
   background: linear-gradient(359.88deg, #250943 55.29%, #1702ff 127.12%);
 }
 
 .links {
-  @apply text-white md:text-sm xl:text-base;
+  @apply text-white md:text-sm 2xl:text-base;
   font-weight: 400;
   line-height: 12.5px;
 }
 
 .linkFocus {
-  @apply py-2.5 bg-white text-[#1A88E1] md:text-sm xl:text-base;
+  @apply py-2.5 bg-white text-[#1A88E1] md:text-sm 2xl:text-base;
   font-weight: 500;
   line-height: 12.5px;
 }
 
 .subLinkFocus {
-  @apply py-2.5 ml-6 lg:ml-10 bg-white text-[#1A88E1] md:text-sm xl:text-base;
+  @apply py-2.5 ml-6 lg:ml-10 bg-white text-[#1A88E1] md:text-sm 2xl:text-base;
   font-weight: 500;
   line-height: 12.5px;
 }

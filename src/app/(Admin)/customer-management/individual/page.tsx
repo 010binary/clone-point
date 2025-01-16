@@ -62,7 +62,7 @@ const IndividualCustomerPage = () => {
           {/* pag */}
         </div>
         {/* table */}
-        <div className="lg:pl-6">
+        <div className="lg:pl-6 overflow-x-auto">
           <Table
             headers={[
               // { key: "index", label: "S/N" },

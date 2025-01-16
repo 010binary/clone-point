@@ -17,7 +17,7 @@ type Props = {
 
 const Table = ({ headers, data, click }: Props) => {
   return (
-    <div className="">
+    <div className="w-full">
       <table className="w-full border-separate border-spacing-y-4">
         <thead className="border bg-[#1A88E11F]">
           <tr>
@@ -37,7 +37,10 @@ const Table = ({ headers, data, click }: Props) => {
         </thead>
         <tbody className="">
           {data?.map((dt, idx) => (
-            <tr key={dt?.id ? dt?.id : idx} className="bg-white">
+            <tr
+              key={dt?.id ? dt?.id : idx}
+              className="bg-white text-xs md:text-sm lg:text-base"
+            >
               {headers?.map((hd, i) => (
                 <td key={i} className="px-4 py-3 border-y">
                   {dt[hd.key]}

@@ -34,7 +34,7 @@ const CorporateCustomerPage = () => {
             <div className="w-full flex items-center flex-wrap justify-between px-3 lg:px-6 py-1 text-xs md:text-sm lg:text-base">
               <p className="font-semibold">Customer’s Data</p>
               <div className="flex items-center gap-4">
-                <div className="lg:w-96 md:w-60 flex items-center border rounded-md">
+                <div className="lg:w-96 md:w-60 flex items-center">
                   <input
                     type="text"
                     placeholder="Search"

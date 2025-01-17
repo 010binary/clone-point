@@ -33,11 +33,11 @@ const IndividualCustomerPage = () => {
             <div className="w-full flex items-center flex-wrap justify-between px-3 lg:px-6 py-1 text-xs md:text-sm lg:text-base">
               <p className="font-semibold">Customer’s Data</p>
               <div className="flex items-center gap-4">
-                <div className="lg:w-96 md:w-60 flex items-center border rounded-md">
+                <div className="lg:w-96 md:w-60 flex items-center">
                   <input
                     type="text"
                     placeholder="Search"
-                    className="px-3 py-2 md:py-2 pl-2 outline-none w-full"
+                    className="px-3 py-2 md:py-2 pl-2 bg-transparent outline-none w-full"
                   />
                   <IoSearchSharp size={20} color="#737373" className="mr-2" />
                 </div>
@@ -59,7 +59,6 @@ const IndividualCustomerPage = () => {
             <p>New Individual Customer</p>
             <MdAddCircle size={24} color="#1A88E1" />
           </button>
-          {/* pag */}
         </div>
         {/* table */}
         <div className="lg:pl-6 overflow-x-auto">

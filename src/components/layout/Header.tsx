@@ -16,7 +16,7 @@ const Header = () => {
         </div>
         {/* mobile */}
         <div className="block md:hidden">
-          <GiHamburgerMenu size={26} color="#1702FF" />
+          <GiHamburgerMenu size={26} color="#1A88E1" />
         </div>
       </div>
     </div>

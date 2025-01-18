@@ -22,7 +22,7 @@ const Table = ({ headers, data, click }: Props) => {
   const [dropdownUserId, setDropdownUserId] = useState<number | null>(null);
   const dropDownRef = useRef<HTMLDivElement | null>(null);
   const pathname = usePathname();
-  console.log("data table==", data);
+  // console.log("data table==", data);
 
   const handleDrop = (id: number) => {
     setDropdownUserId(dropdownUserId === id ? null : id);
@@ -52,7 +52,7 @@ const Table = ({ headers, data, click }: Props) => {
             {headers?.map((header) => (
               <th
                 key={header?.key}
-                className="text-left text-black font-normal px-4 py-3 text-sm lg:text-base"
+                className="text-left text-black font-medium px-4 py-3 text-sm lg:text-base"
               >
                 <span className="flex items-center gap-3">
                   {header.label}
@@ -67,19 +67,21 @@ const Table = ({ headers, data, click }: Props) => {
           {data?.map((dt, idx) => (
             <tr
               key={dt?.id ? dt?.id : idx}
-              className="bg-white text-xs md:text-sm lg:text-base relative"
+              className="bg-white text-xs md:text-sm relative"
             >
               {headers?.map((hd, i) => (
                 <td key={i} className="px-4 py-3 border-y">
                   {dt[hd.key]}
                 </td>
               ))}
-              <td
-                onClick={() => handleDrop(dt?.id)}
-                className="border-y cursor-pointer"
-              >
-                <MdMoreVert />
-              </td>
+              {click && (
+                <td
+                  onClick={() => handleDrop(dt?.id)}
+                  className="border-y cursor-pointer"
+                >
+                  <MdMoreVert />
+                </td>
+              )}
               {dropdownUserId === dt?.id && (
                 <td className="absolute shadow bg-white rounded-md top-[2rem] right-1 z-50">
                   <div

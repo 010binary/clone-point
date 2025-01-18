@@ -1,6 +1,8 @@
 "use client";
 
 import TotalIcon from "@/assets/dashboard/Total";
+import Table from "@/components/tables/Table";
+import { recentBranches } from "@/lib/dashboard/branches";
 import { cardDetails } from "@/lib/dashboard/cards";
 import { IoSearchSharp } from "react-icons/io5";
 import { RiCalendar2Fill } from "react-icons/ri";
@@ -53,6 +55,30 @@ export default function Home() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* recent branches */}
+        <div className="flex flex-col gap-4">
+          <div className="flex items-center justify-between">
+            <h1 className="text-sm md:text-base">Recent Branches</h1>
+            <button className="text-pryColor text-xs lg:text-sm">
+              View all
+            </button>
+          </div>
+
+          <div className="overflow-x-auto">
+            <Table
+              headers={[
+                { key: "name", label: "Branch  name" },
+                { key: "address", label: "Branch address" },
+                { key: "city", label: "City" },
+                { key: "manager", label: "Customer service Manager" },
+                { key: "operationManager", label: "Operation manager" },
+              ]}
+              click={true}
+              data={recentBranches}
+            />
+          </div>
         </div>
       </div>
     </>

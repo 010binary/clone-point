@@ -12,7 +12,7 @@ import FinmanIcon from "@/assets/FinmanIcon";
 import { customerLinks } from "@/lib/links";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { GoTriangleDown } from "react-icons/go";
@@ -22,6 +22,7 @@ const Header = () => {
   const [menu, setMenu] = useState(false);
   const [openCustomer, setOpenCustomer] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const isCustomerPath = customerLinks.some((link) => link.path === pathname);
@@ -29,6 +30,13 @@ const Header = () => {
       setOpenCustomer(false);
     }
   }, [pathname]);
+
+  const handleNavigate = (url: string) => {
+    router.push(url);
+    setTimeout(() => {
+      setMenu(false);
+    }, 1000);
+  };
 
   return (
     <div className="bg-white h-14 lg:h-14 w-full flex items-center fixed z-[1000]">
@@ -52,15 +60,15 @@ const Header = () => {
             </button>
             {/* links */}
             <div className="flex flex-col gap-6 text-xs">
-              <Link
-                href={"/"}
+              <button
+                onClick={() => handleNavigate("/")}
                 className={`${pathname === "/" ? "linkFocus" : "links"} z-10`}
               >
                 <div className="flex items-center gap-2 pl-2">
                   <DashIcon fill={pathname === "/" ? "#1A88E1" : "white"} />
                   <p>Dashboard</p>
                 </div>
-              </Link>
+              </button>
 
               <div className="z-10 flex flex-col gap-4 cursor-pointer">
                 <div
@@ -74,9 +82,9 @@ const Header = () => {
                 {openCustomer && (
                   <div className="flex flex-col gap-4 text-xs lg:text-sm">
                     {customerLinks?.map((link) => (
-                      <Link
+                      <button
                         key={link?.id}
-                        href={link?.path}
+                        onClick={() => handleNavigate(link?.path)}
                         className={`${
                           pathname === link?.path
                             ? "subLinkFocus"
@@ -93,14 +101,14 @@ const Header = () => {
                           }
                           <p>{link?.name}</p>
                         </div>
-                      </Link>
+                      </button>
                     ))}
                   </div>
                 )}
               </div>
 
-              <Link
-                href={"/account-management"}
+              <button
+                onClick={() => handleNavigate("/account-management")}
                 className={`${
                   pathname === "/account-management" ? "linkFocus" : "links"
                 }`}
@@ -113,7 +121,7 @@ const Header = () => {
                   />
                   <p>Account Management</p>
                 </div>
-              </Link>
+              </button>
 
               <div className="">
                 <div className="links flex items-center gap-2 pl-2">
@@ -139,8 +147,8 @@ const Header = () => {
                 </div>
               </div>
 
-              <Link
-                href={"/settings"}
+              <button
+                onClick={() => handleNavigate("/settings")}
                 className={`${
                   pathname === "/settings" ? "linkFocus" : "links"
                 }`}
@@ -151,7 +159,7 @@ const Header = () => {
                   />
                   <p>Settings</p>
                 </div>
-              </Link>
+              </button>
             </div>
           </div>
         </div>

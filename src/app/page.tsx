@@ -28,7 +28,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-3 text-xs md:text-sm lg:text-base items-center justify-center md:justify-between">
+        <div className="flex flex-wrap gap-3 text-xs lg:text-sm items-center justify-center md:justify-between">
           {cardDetails?.map((card) => (
             <div
               key={card.id}

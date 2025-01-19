@@ -52,7 +52,7 @@ const Table = ({ headers, data, click }: Props) => {
             {headers?.map((header) => (
               <th
                 key={header?.key}
-                className="text-left text-black font-medium px-4 py-3 text-sm lg:text-base"
+                className="text-left text-black font-medium px-4 py-3 text-xs lg:text-sm"
               >
                 <span className="flex items-center gap-3">
                   {header.label}
@@ -67,7 +67,7 @@ const Table = ({ headers, data, click }: Props) => {
           {data?.map((dt, idx) => (
             <tr
               key={dt?.id ? dt?.id : idx}
-              className="bg-white text-xs md:text-sm relative"
+              className="bg-white text-xs lg:text-sm relative"
             >
               {headers?.map((hd, i) => (
                 <td key={i} className="px-4 py-3 border-y">

@@ -19,7 +19,7 @@ const Layout = ({
         <Header />
         <div className="h-screen flex bg-[#FFF] w-full pt-14">
           <SideBar />
-          <div className="flex flex-col w-full">
+          <div className="flex flex-col w-full overflow-x-auto">
             <div
               style={{
                 borderTopLeftRadius: "32px",

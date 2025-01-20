@@ -1,5 +1,6 @@
 "use client";
 
+import { countries } from "@/lib/customer-management/countries";
 import { setCorporateForm } from "@/redux/features/customerSlice";
 import { useAppDispatch } from "@/redux/hooks";
 
@@ -29,7 +30,7 @@ const Form2 = () => {
                 <label className="formLabel">Residential Status</label>
                 <select name="" id="" className="formInput">
                   <option value="Rented">Rented</option>
-                  <option value="Owed">Owed</option>
+                  <option value="Owed">Owned</option>
                   <option value="Living">Living with Family</option>
                   <option value="provided">Provided by Employer</option>
                 </select>
@@ -56,13 +57,20 @@ const Form2 = () => {
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Country</label>
-                <input type="text" className="formInput" />
+                <select name="" id="" className="formInput">
+                  <option value="">select</option>
+                  {countries?.map((country) => (
+                    <option key={country} value={country}>
+                      {country}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Office phone</label>
-                <input type="text" className="formInput" />
+                <input type="number" className="formInput spin-button-none" />
               </div>
             </div>
             <div className="container">

@@ -1,4 +1,5 @@
 "use client";
+import { countries } from "@/lib/customer-management/countries";
 import { setPickForm } from "@/redux/features/customerSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import React from "react";
@@ -28,7 +29,7 @@ const FormThree = () => {
                 <label className="formLabel">Residential Status</label>
                 <select name="" id="" className="formInput">
                   <option value="Rented">Rented</option>
-                  <option value="Owed">Owed</option>
+                  <option value="Owed">Owned</option>
                   <option value="Living">Living with Family</option>
                   <option value="provided">Provided by Employer</option>
                 </select>
@@ -55,13 +56,20 @@ const FormThree = () => {
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Country</label>
-                <input type="text" className="formInput" />
+                <select name="" id="" className="formInput">
+                  <option value="">select</option>
+                  {countries?.map((country) => (
+                    <option key={country} value={country}>
+                      {country}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Home phone</label>
-                <input type="text" className="formInput" />
+                <input type="number" className="formInput spin-button-none" />
               </div>
             </div>
             <div className="container">
@@ -128,7 +136,10 @@ const FormThree = () => {
                   <div className="container">
                     <div className="innerContainer">
                       <label className="formLabel">Phone</label>
-                      <input type="text" className="formInput" />
+                      <input
+                        type="number"
+                        className="formInput spin-button-none"
+                      />
                     </div>
                   </div>
                   <div className="container">

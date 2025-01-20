@@ -59,7 +59,7 @@ const FormFour = () => {
 
             <div className="container">
               <div className="innerContainer">
-                <label className="formLabel">Pension Numberr</label>
+                <label className="formLabel">Pension Number</label>
                 <input type="text" className="formInput" />
               </div>
             </div>

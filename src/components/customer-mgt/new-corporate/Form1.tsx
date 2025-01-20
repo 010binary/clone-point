@@ -19,7 +19,7 @@ const Form1 = () => {
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Mobile Phone</label>
-                <input type="text" className="formInput" />
+                <input type="number" className="formInput spin-button-none" />
               </div>
             </div>
 
@@ -33,7 +33,7 @@ const Form1 = () => {
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Registration year</label>
-                <input type="text" className="formInput" />
+                <input type="date" className="formInput" />
               </div>
             </div>
 
@@ -54,7 +54,13 @@ const Form1 = () => {
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel h-full">Note</label>
-                <textarea name="" id="" rows={4} cols={20} />
+                <textarea
+                  name=""
+                  id=""
+                  rows={4}
+                  cols={20}
+                  className="w-full pl-3 py-2 outline-none h-full border-l"
+                />
                 {/* <input type="text" className="formInput" /> */}
               </div>
             </div>

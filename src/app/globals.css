@@ -57,3 +57,8 @@ body {
 .formInput {
   @apply w-[70%] py-1.5 h-full pl-2 outline-none;
 }
+
+.spin-button-none::-webkit-outer-spin-button,
+.spin-button-none::-webkit-inner-spin-button {
+  appearance: none;
+}

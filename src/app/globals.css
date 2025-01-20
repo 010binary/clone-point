@@ -8,6 +8,7 @@
 
 body {
   font-family: var(--font-montserrat);
+  @apply text-xs lg:text-sm 2xl:text-base;
 }
 
 .sidebarStyle {
@@ -15,19 +16,19 @@ body {
 }
 
 .links {
-  @apply text-white md:text-sm 2xl:text-base;
+  @apply text-white text-xs lg:text-sm 2xl:text-base;
   font-weight: 400;
   line-height: 12.5px;
 }
 
 .linkFocus {
-  @apply py-2.5 bg-white text-[#1A88E1] md:text-sm 2xl:text-base;
+  @apply py-2.5 bg-white text-[#1A88E1] text-xs lg:text-sm 2xl:text-base;
   font-weight: 500;
   line-height: 12.5px;
 }
 
 .subLinkFocus {
-  @apply py-2.5 ml-6 lg:ml-10 bg-white text-[#1A88E1] md:text-sm 2xl:text-base;
+  @apply py-2.5 ml-6 lg:ml-10 bg-white text-[#1A88E1] text-xs lg:text-sm 2xl:text-base;
   font-weight: 500;
   line-height: 12.5px;
 }

@@ -20,12 +20,22 @@ type Props = {
 
 const Table = ({ headers, data, click }: Props) => {
   const [dropdownUserId, setDropdownUserId] = useState<number | null>(null);
+  const [acctMgtId, setAcctMgtId] = useState<number | null>(null);
   const dropDownRef = useRef<HTMLDivElement | null>(null);
+  const acctDetailsref = useRef<HTMLDivElement | null>(null);
   const pathname = usePathname();
-  console.log("data table==", data);
+  // console.log("data table==", data);
 
   const handleDrop = (id: number) => {
-    setDropdownUserId(dropdownUserId === id ? null : id);
+    if (pathname.includes("individual") || pathname.includes("corporate")) {
+      setDropdownUserId(dropdownUserId === id ? null : id);
+    }
+  };
+
+  const handleAccMgtView = (id: number) => {
+    if (pathname.includes("account-management")) {
+      setAcctMgtId(acctMgtId === id ? null : id);
+    }
   };
 
   useEffect(() => {
@@ -35,6 +45,12 @@ const Table = ({ headers, data, click }: Props) => {
         !dropDownRef.current.contains(e.target as Node)
       ) {
         setDropdownUserId(null);
+      }
+      if (
+        acctDetailsref.current &&
+        !acctDetailsref.current.contains(e.target as Node)
+      ) {
+        setAcctMgtId(null);
       }
     };
     document.addEventListener("click", hideOnClickOutside, true);
@@ -52,7 +68,7 @@ const Table = ({ headers, data, click }: Props) => {
             {headers?.map((header) => (
               <th
                 key={header?.key}
-                className="text-left text-black font-normal px-4 py-3 text-sm lg:text-base"
+                className="text-left text-black font-medium px-4 py-3 text-xs lg:text-sm"
               >
                 <span className="flex items-center gap-3">
                   {header.label}
@@ -67,19 +83,24 @@ const Table = ({ headers, data, click }: Props) => {
           {data?.map((dt, idx) => (
             <tr
               key={dt?.id ? dt?.id : idx}
-              className="bg-white text-xs md:text-sm lg:text-base relative"
+              className="bg-white text-xs lg:text-sm relative"
             >
               {headers?.map((hd, i) => (
                 <td key={i} className="px-4 py-3 border-y">
                   {dt[hd.key]}
                 </td>
               ))}
-              <td
-                onClick={() => handleDrop(dt?.id)}
-                className="border-y cursor-pointer"
-              >
-                <MdMoreVert />
-              </td>
+              {click && (
+                <td
+                  onClick={() => {
+                    return handleDrop(dt?.id), handleAccMgtView(dt?.id);
+                  }}
+                  className="border-y cursor-pointer"
+                >
+                  <MdMoreVert />
+                </td>
+              )}
+              {/* for customer mgt */}
               {dropdownUserId === dt?.id && (
                 <td className="absolute shadow bg-white rounded-md top-[2rem] right-1 z-50">
                   <div
@@ -103,6 +124,26 @@ const Table = ({ headers, data, click }: Props) => {
                     <p className="hover:bg-[#f4f1f1] w-full py-1.5 px-6">
                       Delete
                     </p>
+                  </div>
+                </td>
+              )}
+              {/* for account mgt page */}
+              {acctMgtId === dt?.id && (
+                <td className="absolute shadow bg-white rounded-md top-[2rem] right-1 z-50">
+                  <div
+                    ref={acctDetailsref}
+                    style={{ boxShadow: "0px 0px 5px -2px gray" }}
+                    className="flex flex-col items-center gap-1.5"
+                  >
+                    <Link
+                      href={`${
+                        pathname.includes("account-management") &&
+                        `/account-management/${dt?.id}`
+                      }`}
+                      className="hover:bg-[#f4f1f1] w-full py-1.5 px-6"
+                    >
+                      View
+                    </Link>
                   </div>
                 </td>
               )}

@@ -61,7 +61,6 @@ const Form1 = () => {
                   cols={20}
                   className="w-full pl-3 py-2 outline-none h-full border-l"
                 />
-                {/* <input type="text" className="formInput" /> */}
               </div>
             </div>
           </div>

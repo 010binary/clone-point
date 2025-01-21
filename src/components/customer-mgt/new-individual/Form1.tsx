@@ -1,4 +1,5 @@
 "use client";
+import { countries } from "@/lib/customer-management/countries";
 import { setPickForm } from "@/redux/features/customerSlice";
 import { useAppDispatch } from "@/redux/hooks";
 
@@ -47,19 +48,19 @@ const FormOne = () => {
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Mobile Phone</label>
-                <input type="text" className="formInput" />
+                <input type="number" className="formInput spin-button-none" />
               </div>
             </div>
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Date of Birth</label>
-                <input type="text" className="formInput" />
+                <input type="date" className="formInput" />
               </div>
             </div>
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">BVN</label>
-                <input type="text" className="formInput" />
+                <input type="number" className="formInput spin-button-none" />
               </div>
             </div>
             <button className="bg-[#6699FF] text-white px-2.5 py-1.5 w-fit">
@@ -101,9 +102,12 @@ const FormOne = () => {
               <div className="innerContainer">
                 <label className="formLabel">Citizenship</label>
                 <select name="" id="" className="formInput">
-                  <option value="Mr">Mr</option>
-                  <option value="Ms">Ms</option>
-                  <option value="Mrs">Mrs</option>
+                  <option value="">select</option>
+                  {countries?.map((country) => (
+                    <option key={country} value={country}>
+                      {country}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>

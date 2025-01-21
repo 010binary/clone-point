@@ -29,7 +29,7 @@ const SideBar = () => {
   }, [pathname]);
 
   return (
-    <div className="hidden md:block md:w-[200px] xl:w-[280px] 2xl:w-[350px] h-full sidebarStyle flex-shrink-0 relative overflow-y-auto">
+    <div className="hidden md:block md:w-[200px] xl:w-[250px] 2xl:w-[280px] h-full sidebarStyle flex-shrink-0 relative overflow-y-auto">
       <div className="absolute z-0">
         <Image
           src={"/wave.png"}
@@ -88,7 +88,7 @@ const SideBar = () => {
           href={"/account-management"}
           className={`${
             pathname === "/account-management" ? "linkFocus" : "links"
-          }`}
+          } z-20`}
         >
           <div className="flex items-center gap-2 pl-2">
             <AccountIcon

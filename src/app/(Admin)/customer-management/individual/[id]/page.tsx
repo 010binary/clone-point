@@ -4,10 +4,9 @@ import CustomerDetails from "@/components/customer-mgt/individual/CustomerDetail
 import Identification from "@/components/customer-mgt/individual/Identification";
 import ImageSection from "@/components/customer-mgt/individual/ImageSection";
 import NextKin from "@/components/customer-mgt/individual/NextKin";
-import Nextkin2 from "@/components/customer-mgt/individual/Nextkin2";
+import EmployentDetails from "@/components/customer-mgt/individual/EmployentDetails";
 import { IoSearchSharp } from "react-icons/io5";
 import { MdOutlineEdit } from "react-icons/md";
-import { RiCalendar2Fill } from "react-icons/ri";
 
 const IndividualCustomerDetails = () => {
   return (
@@ -25,7 +24,6 @@ const IndividualCustomerDetails = () => {
                 />
                 <IoSearchSharp size={20} color="#737373" className="mr-2" />
               </div>
-              {/* <RiCalendar2Fill size={24} color="#737373" /> */}
             </div>
           </div>
         </div>
@@ -58,7 +56,7 @@ const IndividualCustomerDetails = () => {
           <NextKin />
 
           {/* next of kin 2 */}
-          <Nextkin2 />
+          <EmployentDetails />
 
           {/* image section */}
           <ImageSection />

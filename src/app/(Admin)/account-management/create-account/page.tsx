@@ -19,12 +19,12 @@ const CreateAccount = () => {
   return (
     <>
       <div className="lg:p-4 w-full">
-        <div className="border rounded-md h-screen flex flex-col gap-5 lg:w-[60%] xl:w-[55%] 2xl:w-[50%]">
+        <div className="border rounded-md flex flex-col gap-5 lg:w-[60%] xl:w-[55%] 2xl:w-[50%]">
           <div className="p-2 md:p-3 flex flex-col gap-6">
             <h1 className="font-medium lg:text-lg">Account Details</h1>
             <form className="flex flex-col gap-10">
               {/* inputs */}
-              <div className="flex flex-col gap-4 lg:w-[70%]">
+              <div className="flex flex-col gap-4 lg:w-[70%] xl:w-[80%] 2xl:w-[70%]">
                 <div className="container">
                   <div className="innerContainer">
                     <label className="formLabel">Account Number</label>
@@ -39,7 +39,12 @@ const CreateAccount = () => {
                   <div className="innerContainer">
                     <label className="formLabel">Account Type</label>
                     <select name="" id="" className="formInput">
-                      <option value="">select</option>
+                      <option value=""></option>
+                      <option value="">Current</option>
+                      <option value="">Savings</option>
+                      <option value="">Fixed deposit</option>
+                      <option value="">Dollar account</option>
+                      <option value="">My pikin savings</option>
                     </select>
                   </div>
                 </div>
@@ -48,7 +53,9 @@ const CreateAccount = () => {
                   <div className="innerContainer">
                     <label className="formLabel">Customer</label>
                     <select name="" id="" className="formInput">
-                      <option value="">select</option>
+                      <option value=""></option>
+                      <option value="">Customer 1</option>
+                      <option value="">Customer 2</option>
                     </select>
                   </div>
                 </div>
@@ -57,7 +64,9 @@ const CreateAccount = () => {
                   <div className="innerContainer">
                     <label className="formLabel">Account Status</label>
                     <select name="" id="" className="formInput">
-                      <option value="">select</option>
+                      <option value=""></option>
+                      <option value="">Active</option>
+                      <option value="">Inactive</option>
                     </select>
                   </div>
                 </div>
@@ -66,7 +75,9 @@ const CreateAccount = () => {
                   <div className="innerContainer">
                     <label className="formLabel">PND Status</label>
                     <select name="" id="" className="formInput">
-                      <option value="">select</option>
+                      <option value=""></option>
+                      <option value="">Yes</option>
+                      <option value="">No</option>
                     </select>
                   </div>
                 </div>
@@ -75,7 +86,9 @@ const CreateAccount = () => {
                   <div className="innerContainer">
                     <label className="formLabel">Account Owner</label>
                     <select name="" id="" className="formInput">
-                      <option value="">select</option>
+                      <option value=""></option>
+                      <option value="">Adewale Ojo</option>
+                      <option value="">Chibuzor Okere</option>
                     </select>
                   </div>
                 </div>
@@ -130,7 +143,7 @@ const CreateAccount = () => {
 
                 {/* signatories / mandate */}
                 <div className="flex flex-col gap-4">
-                  <div className="flex items-center justify-center font-medium gap-6">
+                  <div className="flex items-center justify-center text-xs lg:text-sm font-medium gap-6">
                     <button
                       onClick={(e) => handleChangeTab("signatory", e)}
                       className={`${

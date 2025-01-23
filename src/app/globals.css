@@ -19,7 +19,7 @@ button,
 select,
 td,
 div {
-  @apply text-xs 2xl:text-sm;
+  @apply text-xs xl:text-sm;
 }
 
 .sidebarStyle {

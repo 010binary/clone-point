@@ -3,6 +3,7 @@
 import CorporateForm from "@/components/customer-mgt/new-corporate/CorporateForm";
 import { Modal } from "@/components/modal/Modal";
 import Table from "@/components/tables/Table";
+import { corporateTableData } from "@/lib/customer-management/corporateTable";
 import { individualTableData } from "@/lib/customer-management/individual";
 import { setCorporateForm } from "@/redux/features/customerSlice";
 import { useAppDispatch } from "@/redux/hooks";
@@ -66,16 +67,15 @@ const CorporateCustomerPage = () => {
         <div className="lg:pl-6 overflow-x-auto">
           <Table
             headers={[
-              // { key: "index", label: "S/N" },
-              { key: "customerType", label: "Customer Type" },
               { key: "title", label: "Title" },
               { key: "firstName", label: "First Name" },
               { key: "middleName", label: "Middle Name" },
               { key: "lastName", label: "Last Name" },
+              { key: "phone", label: "Phone Number" },
               { key: "bizName", label: "Business Name" },
             ]}
             click={true}
-            data={individualTableData}
+            data={corporateTableData}
           />
         </div>
       </div>

@@ -1,32 +1,16 @@
 "use client";
 
-import TotalIcon from "@/assets/dashboard/Total";
+// import TotalIcon from "@/assets/dashboard/Total";
 import Table from "@/components/tables/Table";
 import { recentBranches } from "@/lib/dashboard/branches";
 import { cardDetails } from "@/lib/dashboard/cards";
-import { IoSearchSharp } from "react-icons/io5";
-import { RiCalendar2Fill } from "react-icons/ri";
+// import { IoSearchSharp } from "react-icons/io5";
+// import { RiCalendar2Fill } from "react-icons/ri";
 
 export default function Home() {
   return (
     <>
       <div className="flex flex-col gap-6 lg:pt-4">
-        <div className="w-full top-section-container">
-          <div className="w-full flex items-center flex-wrap justify-between px-3 lg:px-6 py-1 text-xs md:text-sm lg:text-base">
-            <p className="font-semibold">Today</p>
-            <div className="flex items-center gap-4">
-              <div className="lg:w-96 md:w-60 flex items-center">
-                <input
-                  type="text"
-                  placeholder="Search"
-                  className="px-3 py-2 md:py-2 pl-2 bg-transparent outline-none w-full"
-                />
-                <IoSearchSharp size={20} color="#737373" className="mr-2" />
-              </div>
-              <RiCalendar2Fill size={24} color="#737373" />
-            </div>
-          </div>
-        </div>
 
         <div className="flex flex-wrap gap-3 text-xs lg:text-sm items-center justify-center md:justify-between">
           {cardDetails?.map((card) => (

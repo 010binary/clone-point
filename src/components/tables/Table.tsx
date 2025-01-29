@@ -20,8 +20,10 @@ type Props = {
   onView?: () => void;
 };
 
-const title = 'Edit'
+const title = 'EDIT'
 const description = 'Edit Branch'
+const deleteTitle = 'DELETE'
+const deleteDescription = 'Are you sure you want to delete this BRANCH?'
 
 const Table = ({ headers, data, click }: Props) => {
   const [dropdownUserId, setDropdownUserId] = useState<number | null>(null);
@@ -68,6 +70,7 @@ const Table = ({ headers, data, click }: Props) => {
 
   const [editModal, seteditModal] = useState(false)
   const [deleteModal, setdeleteModal] = useState(false)
+  const [viewModal, setviewModal] = useState(false)
 
   return (
     <div className="w-full">
@@ -150,30 +153,41 @@ const Table = ({ headers, data, click }: Props) => {
 
                 </section>
             </Modal>
-      {/* WEEEEE sjds*/}
+      {/* delete sjds*/}
        <Modal show={deleteModal} onClose={setdeleteModal}>
                 <section className="w-screen max-w-[600px]  mx-5  pb-10  bg-white">
                     <header className=' px-5 py-3 flex justify-between items-center  bg-pryColor font-semibold text-white'>
-                        <h1 className=' text-lg'>{title}</h1>
+                        <h1 className=' text-lg'>{deleteTitle}</h1>
                         <FaXmark onClick={()=>setdeleteModal(false)} className=' size-7' />
                     </header>
                     <main className=' px-2'>
-                        <h4 className=' font-medium py-3 text-lg'>{description}</h4>
-                        <div className="flex flex-wrap gap-3 items-center justify-between  text-xs md:text-sm lg:text-base">
-                            <div className="border rounded-lg shadow flex items-center lg:w-96 md:w-60">
-                                <p className="px-3 py-2 md:py-2 border-r">Search</p>
-                                <div className="flex items-center w-full">
-                                    <input
-                                        type="text"
-                                        placeholder="Search here"
-                                        className="px-3 py-2 md:py-2 pl-2 outline-none bg-transparent w-full"
-                                    />
-                                </div>
-                            </div>
-                        </div>
+                        <h4 className=' font-medium py-3 text-lg'>{deleteDescription}</h4>
 
-                        <div className="cta space-y-5">
-                            <button className=' w-full bg-pryColor font-medium text-white rounded py-3'>Create</button>
+                        <div className="cta space-y-5 pt-20">
+                            <button className=' w-full bg-red-600 font-medium text-white rounded py-3'>Create</button>
+                            <button className=' w-full text-pryColor font-medium border border-pryColor rounded py-3'>Create</button>
+                        </div>
+                    </main>
+
+                </section>
+            </Modal>
+      {/* view sjds*/}
+       <Modal show={viewModal} onClose={setviewModal}>
+                <section className="w-screen max-w-[600px]  mx-5  pb-10  bg-white">
+                    <header className=' px-5 py-3 flex justify-between items-center  bg-pryColor font-semibold text-white'>
+                        <h1 className=' text-lg'>{deleteTitle}</h1>
+                        <FaXmark onClick={()=>setdeleteModal(false)} className=' size-7' />
+                    </header>
+                    <main className=' px-2'>
+                        <h4 className=' font-medium py-3 text-lg'>{deleteDescription}</h4>
+                        <div className="grid">
+                          <p className="">
+                            <strong> Branch Name:</strong>
+                            <span> Kingstone Bank</span>
+                          </p>
+                        </div>
+                        <div className="cta space-y-5 pt-20">
+                            <button className=' w-full bg-red-600 font-medium text-white rounded py-3'>Create</button>
                             <button className=' w-full text-pryColor font-medium border border-pryColor rounded py-3'>Create</button>
                         </div>
                     </main>
@@ -252,7 +266,7 @@ const Table = ({ headers, data, click }: Props) => {
                       //   ? `/customer-management/individual/${dt?.id}`
                       //   : `/customer-management/corporate/${dt?.id}`
                       //   }`}
-                      
+                      onClick={()=>setviewModal(true)}
                       className="hover:bg-[#f4f1f1] w-full py-1.5 px-6"
                     >
                       View

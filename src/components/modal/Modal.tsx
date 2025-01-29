@@ -2,8 +2,8 @@ import { useState, useEffect, useRef } from "react";
 
 type ModalProps = {
   children?: React.ReactNode;
-  show?: boolean;
-  onClose?: React.Dispatch<React.SetStateAction<boolean>>;
+  show: boolean;
+  onClose: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const Modal = ({ show, onClose, children }: ModalProps) => {
@@ -12,12 +12,26 @@ export const Modal = ({ show, onClose, children }: ModalProps) => {
 
   const handleClose = () => {
     setIsOpen(false);
-    onClose && onClose(true);
+    onClose(false);
   };
 
   useEffect(() => {
     setIsOpen(show);
   }, [show]);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
+
+ 
 
   return (
     <>
@@ -31,7 +45,7 @@ export const Modal = ({ show, onClose, children }: ModalProps) => {
           <div
             ref={modalRef}
             // className="p-3 z-20 md:w-[80%] xl:w-[65%] overflow-y-auto max-h-full scrollbar-hide flex justify-center"
-            className="p-3 z-20 md:w-auto overflow-y-auto max-h-full scrollbar-hide"
+            className="p-3 z-20 md:w-auto overflow-hidden max-h-full s"
           >
             {children}
           </div>

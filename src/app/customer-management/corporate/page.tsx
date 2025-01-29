@@ -4,7 +4,7 @@ import CorporateForm from "@/components/customer-mgt/new-corporate/CorporateForm
 import { Modal } from "@/components/modal/Modal";
 import Table from "@/components/tables/Table";
 import { corporateTableData } from "@/lib/customer-management/corporateTable";
-import { individualTableData } from "@/lib/customer-management/individual";
+// import { individualTableData } from "@/lib/customer-management/individual";
 import { setCorporateForm } from "@/redux/features/customerSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import { useState } from "react";

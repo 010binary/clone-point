@@ -61,3 +61,42 @@ export const customerLinks = [
     icon: CorporateIcon,
   },
 ];
+
+export const operationLinks = [
+  {
+    id: 1,
+    name: "Branch",
+    path: "/administration/branch",
+    icon: AccountIcon,
+  }, {
+    id: 2,
+    name: "Teller",
+    path: "/administration/teller",
+    icon: AccountIcon,
+  }, {
+    id: 3,
+    name: "Interest rate",
+    path: "/administration/interest-rate",
+    icon: AccountIcon,
+  }, {
+    id: 4,
+    name: "Manage users",
+    path: "/administratio/manage-users",
+    icon: AccountIcon,
+  }, {
+    id: 5,
+    name: "Manage roles",
+    path: "/administration/manage-roles",
+    icon: AccountIcon,
+  }, {
+    id: 6,
+    name: "License",
+    path: "/administration/license",
+    icon: AccountIcon,
+  }, {
+    id: 7,
+    name: "Report",
+    path: "/administration/report",
+    icon: AccountIcon,
+  }
+]

@@ -8,7 +8,7 @@ import {
   OperationIcon,
   SettingsIcon,
 } from "@/assets";
-import { customerLinks } from "@/lib/links";
+import { customerLinks, operationLinks } from "@/lib/links";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -20,6 +20,8 @@ import { GoTriangleDown } from "react-icons/go";
 const SideBar = () => {
   const pathname = usePathname();
   const [openCustomer, setOpenCustomer] = useState(false);
+  const [openOperation, setopenOperation] = useState(false);
+  // const [openCredit, setOpenCredit] = useState(false);
 
   useEffect(() => {
     const isCustomerPath = customerLinks.some((link) => link.path === pathname);
@@ -112,11 +114,38 @@ const SideBar = () => {
           </div>
         </div>
         <div className="">
-          <div className="links flex items-center gap-2 pl-2">
+          <div
+            className="links flex items-center gap-2 pl-2"
+            onClick={() => setopenOperation(!openOperation)}
+          >
             <AdministrationIcon />
             <p>Administration</p>
             <GoTriangleDown />
           </div>
+          {openOperation && (
+            <div className="pt-3 flex flex-col gap-4 text-xs lg:text-sm">
+              {operationLinks?.map((link) => (
+                <Link
+                  key={link?.id}
+                  href={link?.path}
+                  className={`${
+                    pathname === link?.path
+                      ? "subLinkFocus"
+                      : "links ml-6 lg:ml-10"
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    {
+                      <link.icon
+                        fill={pathname === link?.path ? "#1A88E1" : "white"}
+                      />
+                    }
+                    <p>{link?.name}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
         <Link
           href={"/settings"}

@@ -24,6 +24,8 @@ const title = 'EDIT'
 const description = 'Edit Branch'
 const deleteTitle = 'DELETE'
 const deleteDescription = 'Are you sure you want to delete this BRANCH?'
+const viewTitle = 'View'
+const viewDescription = 'View Branch'
 
 const Table = ({ headers, data, click }: Props) => {
   const [dropdownUserId, setDropdownUserId] = useState<number | null>(null);
@@ -164,7 +166,7 @@ const Table = ({ headers, data, click }: Props) => {
                         <h4 className=' font-medium py-3 text-lg'>{deleteDescription}</h4>
 
                         <div className="cta space-y-5 pt-20">
-                            <button className=' w-full bg-red-600 font-medium text-white rounded py-3'>Create</button>
+                            <button className=' w-full bg-red-600 font-medium text-white rounded py-3'>Delete</button>
                             <button className=' w-full text-pryColor font-medium border border-pryColor rounded py-3'>Create</button>
                         </div>
                     </main>
@@ -175,20 +177,32 @@ const Table = ({ headers, data, click }: Props) => {
        <Modal show={viewModal} onClose={setviewModal}>
                 <section className="w-screen max-w-[600px]  mx-5  pb-10  bg-white">
                     <header className=' px-5 py-3 flex justify-between items-center  bg-pryColor font-semibold text-white'>
-                        <h1 className=' text-lg'>{deleteTitle}</h1>
+                        <h1 className=' text-lg'>{viewTitle}</h1>
                         <FaXmark onClick={()=>setdeleteModal(false)} className=' size-7' />
                     </header>
-                    <main className=' px-2'>
-                        <h4 className=' font-medium py-3 text-lg'>{deleteDescription}</h4>
-                        <div className="grid">
+                    <main className=' px-2 pb-10'>
+                        <h4 className=' font-medium py-3 pb-5 text-lg'>{viewDescription}</h4>
+                        <div className="grid grid-cols-2 gap-5">
                           <p className="">
-                            <strong> Branch Name:</strong>
-                            <span> Kingstone Bank</span>
+                            <strong> Branch Name:</strong> <br />
+                            <span className=" opacity-70"> Kingstone Bank</span>
                           </p>
-                        </div>
-                        <div className="cta space-y-5 pt-20">
-                            <button className=' w-full bg-red-600 font-medium text-white rounded py-3'>Create</button>
-                            <button className=' w-full text-pryColor font-medium border border-pryColor rounded py-3'>Create</button>
+                          <p className="">
+                            <strong> Branch Name:</strong> <br />
+                            <span className=" opacity-70"> Kingstone Bank</span>
+                          </p>
+                          <p className="">
+                            <strong> Branch Name:</strong> <br />
+                            <span className=" opacity-70"> Kingstone Bank</span>
+                          </p>
+                          <p className="">
+                            <strong> Branch Name:</strong> <br />
+                            <span className=" opacity-70"> Kingstone Bank</span>
+                          </p>
+                          <p className="">
+                            <strong> Branch Name:</strong> <br />
+                            <span className=" opacity-70"> Kingstone Bank</span>
+                          </p>
                         </div>
                     </main>
 

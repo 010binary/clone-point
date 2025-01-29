@@ -178,7 +178,7 @@ const Table = ({ headers, data, click }: Props) => {
                 <section className="w-screen max-w-[600px]  mx-5  pb-10  bg-white">
                     <header className=' px-5 py-3 flex justify-between items-center  bg-pryColor font-semibold text-white'>
                         <h1 className=' text-lg'>{viewTitle}</h1>
-                        <FaXmark onClick={()=>setdeleteModal(false)} className=' size-7' />
+                        <FaXmark onClick={()=>setviewModal(false)} className=' size-7' />
                     </header>
                     <main className=' px-2 pb-10'>
                         <h4 className=' font-medium py-3 pb-5 text-lg'>{viewDescription}</h4>

@@ -1,14 +1,9 @@
 import React from 'react'
 import DashboardCards from './DashboardCards'
 import AllBranchesHeader from './AllBranchesHeader'
-import { Modal } from '@/components/modal/Modal'
-import { IoSearchSharp } from 'react-icons/io5'
-import { RiCalendar2Fill } from 'react-icons/ri'
-import { FaXmark } from 'react-icons/fa6'
 
-const DashboardHeader = () => {
-    const title = 'Edit'
-    const description = 'Edit Branch'
+const DashboardHeader = ({ viewMore }) => {
+ 
     return (
         <>
             {/* <Modal show>
@@ -40,8 +35,14 @@ const DashboardHeader = () => {
 
                 </section>
             </Modal> */}
-            <DashboardCards />
-            <AllBranchesHeader />
+            {
+                viewMore?(
+                    <AllBranchesHeader />
+                ):(
+                    <DashboardCards />
+                )
+            }
+            
         </>
     )
 }

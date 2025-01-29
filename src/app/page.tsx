@@ -2,10 +2,14 @@
 import Container from "@/components/layout/Container";
 import RecentBranch from "@/components/Dashboard/RecentBranch";
 import DashboardHeader from "@/components/Dashboard/DashboardHeader/DashboardHeader";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 
 
 export default function Home() {
+  const [viewMore, setviewMore] = useState(false)
+  const handleViewMore =()=>{
+    setviewMore(prev=>!prev)
+  }
   return (
     <Container>
       <HomeLayout>
@@ -25,8 +29,8 @@ export default function Home() {
             </div>
           </div>
         </div> */}
-      <DashboardHeader/>
-      <RecentBranch/>
+      <DashboardHeader viewMore={viewMore}/>
+      <RecentBranch viewMore={viewMore} handleViewMore={handleViewMore}/>
       </HomeLayout>
     </Container>
   );

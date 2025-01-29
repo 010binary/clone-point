@@ -1,18 +1,17 @@
 import React from 'react'
 import Table from '../tables/Table'
 import { recentBranches } from '@/lib/dashboard/branches'
-import { FaXmark } from 'react-icons/fa6'
-import { Modal } from '../modal/Modal'
 
-const RecentBranch = () => {
+
+const RecentBranch = ({ viewMore,handleViewMore }) => {
   return (
    <>
     {/* recent branches */}
     <div className="flex flex-col gap-4">
           <div className="flex items-center justify-between">
             <h1 className="text-sm md:text-base">Recent Branches</h1>
-            <button className="text-pryColor text-xs lg:text-sm">
-              View all
+            <button className="text-pryColor text-xs lg:text-sm" onClick={handleViewMore}>
+              {viewMore? 'View less':'View all'}
             </button>
           </div>
 

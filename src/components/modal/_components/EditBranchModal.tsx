@@ -6,7 +6,7 @@ const title = 'EDIT'
 const description = 'Edit Branch'
 
 // eslint-disable-next-line
-const EditBranchModel = ({ modalOpen, modalData, closeModal}:{ modalOpen: boolean,modalData: any, closeModal:()=>void}) => {
+const EditBranchModal = ({ modalOpen, modalData, closeModal}:{ modalOpen: boolean,modalData: any, closeModal:()=>void}) => {
     return (
         <Modal show={modalOpen} onClose={closeModal} >
             <section className="w-screen max-w-[600px]  mx-5  pb-10  bg-white">
@@ -80,7 +80,7 @@ const EditBranchModel = ({ modalOpen, modalData, closeModal}:{ modalOpen: boolea
                     </div>
                     <div className="cta space-y-5 pt-20">
                         <button className=' w-full bg-pryColor font-medium text-white rounded-xl py-3'>Create</button>
-                        <button className=' w-full text-pryColor font-medium border border-pryColor rounded-xl py-3'>Delete</button>
+                        <button onClick={closeModal} className=' w-full text-pryColor font-medium border border-pryColor rounded-xl py-3'>Close</button>
                     </div>
                 </main>
 
@@ -89,4 +89,4 @@ const EditBranchModel = ({ modalOpen, modalData, closeModal}:{ modalOpen: boolea
     )
 }
 
-export default EditBranchModel
+export default EditBranchModal

@@ -6,7 +6,7 @@ const deleteTitle = 'DELETE'
 const deleteDescription = 'Are you sure you want to delete this BRANCH?'
 
 // eslint-disable-next-line
-const DeleteBranchModel = ({ modalOpen, modalData, closeModal }: { modalOpen: boolean, modalData: any, closeModal: () => void }) => {
+const DeleteBranchModal = ({ modalOpen, modalData, closeModal }: { modalOpen: boolean, modalData: any, closeModal: () => void }) => {
     return (
         <Modal show={modalOpen} onClose={closeModal} >
             <section className="w-screen max-w-[600px]  mx-5  pb-10  bg-white">
@@ -27,4 +27,4 @@ const DeleteBranchModel = ({ modalOpen, modalData, closeModal }: { modalOpen: bo
     )
 }
 
-export default DeleteBranchModel
+export default DeleteBranchModal

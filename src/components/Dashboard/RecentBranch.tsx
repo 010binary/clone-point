@@ -3,7 +3,6 @@ import { Branch, columns } from './columns'
 import { DataTable } from '@/app/payments/data-table'
 import { useSearchParams } from 'next/navigation'
 
-
 const initialData: Branch[] = [
   {
     branchName: "Keystone Bank",
@@ -74,6 +73,8 @@ const RecentBranch = ({ viewMore,handleViewMore }) => {
   const searchParams = useSearchParams();
   const [data, setData] = useState(initialData)
   const filterValue= searchParams.get('q')?.toString() 
+
+
   useEffect(()=>{
    
     if (filterValue) {
@@ -88,7 +89,9 @@ const RecentBranch = ({ viewMore,handleViewMore }) => {
       });
       setData(filteredData)
     }
+
   },[filterValue])
+
 
 
   return (

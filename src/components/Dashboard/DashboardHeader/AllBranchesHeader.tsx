@@ -1,4 +1,7 @@
-import React from 'react'
+'use client'
+import { useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
+import React, { useEffect, useState } from 'react'
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi'
 import { IoSearchSharp } from 'react-icons/io5'
 import { RiCalendar2Fill } from 'react-icons/ri'
@@ -7,6 +10,23 @@ import { RiCalendar2Fill } from 'react-icons/ri'
 const title = "All Branches"
 
 const AllBranchesHeader = () => {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const [query, setQuery] = useState(searchParams.get("q") || "")
+
+    useEffect(() => {
+        const params = new URLSearchParams();
+        console.log(!!query)
+        console.log(query?.trim())
+        if (query) {
+            params.set("q", query);
+            
+        }else{
+            params.delete("q")
+        }
+        router.push(`?${params.toString()}`, { scroll: false })
+    }, [query, router])
+
     return (
         <div className=" space-y-5">
             <h1 className="text-sm md:text-base"> {title}</h1>
@@ -18,6 +38,8 @@ const AllBranchesHeader = () => {
                             <input
                                 type="text"
                                 placeholder="Search here"
+                                value={query}
+                                onChange={(e) => setQuery(e.target.value)}
                                 className="px-3 py-2 md:py-2 pl-2 outline-none bg-transparent w-full"
                             />
                             <IoSearchSharp size={18} color="#737373" className="mx-2" />

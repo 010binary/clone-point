@@ -2,8 +2,8 @@
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { RootState } from '@/redux/store'
 import React, { ReactNode } from 'react'
-import EditBranchModal from './_components/EditBranchModal'
 import { closeModal } from '@/redux/features/modalSlice'
+import EditBranchModal from './_components/EditBranchModal'
 import DeleteBranchModal from './_components/DeleteBranchModal'
 import ViewBranchModal from './_components/ViewBranchModal'
 

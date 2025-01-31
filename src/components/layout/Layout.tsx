@@ -7,6 +7,7 @@ import { FaCircleUser } from "react-icons/fa6";
 import { GoTriangleDown } from "react-icons/go";
 import Color2 from "@/assets/header/Color2";
 import Color1 from "@/assets/header/Color1";
+import DesktopHeader from "../common/DesktopHeader";
 
 const Layout = ({
   children,
@@ -20,7 +21,8 @@ const Layout = ({
         <div className="h-screen flex bg-[#FFF] w-full pt-14">
           <SideBar />
           <div className="flex flex-col w-full overflow-x-auto">
-            <div
+          <DesktopHeader/>
+            {/* <div
               style={{
                 borderTopLeftRadius: "32px",
                 borderBottomRightRadius: "32px",
@@ -44,7 +46,7 @@ const Layout = ({
                   <GoTriangleDown color="white" />
                 </button>
               </div>
-            </div>
+            </div> */}
             <div className="flex-grow p-2 md:p-4 overflow-y-auto lg:pr-8">
               {children}
             </div>

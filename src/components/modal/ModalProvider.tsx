@@ -22,6 +22,7 @@ const Modalclose =()=>{
       {modalType === 'EDITBRANCHMODAL' && (<EditBranchModal modalOpen={modalType === 'EDITBRANCHMODAL'} modalData={modalData} closeModal={Modalclose}/>)}
       {modalType === 'DELETEBRANCHMODAL' && (<DeleteBranchModal modalOpen={modalType === 'DELETEBRANCHMODAL'} modalData={modalData} closeModal={Modalclose}/>)}
       {modalType === 'VIEWBRANCHMODAL' && (<ViewBranchModal modalOpen={modalType === 'VIEWBRANCHMODAL'} modalData={modalData} closeModal={Modalclose}/>)}
+      {modalType === 'CHANGEPASSWORDMODAL' && (<CHANGEPASSWORDMODAL modalOpen={modalType === 'CHANGEPASSWORDMODAL'} modalData={modalData} closeModal={Modalclose}/>)}
 
 
 

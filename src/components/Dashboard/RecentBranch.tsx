@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Branch, columns } from './columns'
-import { DataTable } from '@/app/payments/data-table'
+import { DataTable } from '@/components/tables/data-table'
 import { useSearchParams } from 'next/navigation'
 
 const initialData: Branch[] = [

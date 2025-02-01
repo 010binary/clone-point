@@ -18,17 +18,15 @@ const ManageUserHeader = () => {
 
     useEffect(() => {
         const params = new URLSearchParams();
-        console.log(!!query)
-        console.log(query?.trim())
         if (query) {
             params.set("q", query);
-            
-        }else{
+        } else {
             params.delete("q")
         }
         router.push(`?${params.toString()}`, { scroll: false })
     }, [query, router])
 
+    
     return (
         <div className=" space-y-10 mb-10">
             <h1 className="text-sm md:text-base font-semibold"> {title}</h1>

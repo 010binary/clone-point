@@ -6,6 +6,7 @@ import { closeModal } from '@/redux/features/modalSlice'
 import EditBranchModal from './_components/EditBranchModal'
 import DeleteBranchModal from './_components/DeleteBranchModal'
 import ViewBranchModal from './_components/ViewBranchModal'
+import ChangePasswordModal from './_components/ChangePasswordModal'
 
 const ModalProvider = ({ children }:{ children: ReactNode }) => {
 const dispatch = useAppDispatch()
@@ -22,7 +23,7 @@ const Modalclose =()=>{
       {modalType === 'EDITBRANCHMODAL' && (<EditBranchModal modalOpen={modalType === 'EDITBRANCHMODAL'} modalData={modalData} closeModal={Modalclose}/>)}
       {modalType === 'DELETEBRANCHMODAL' && (<DeleteBranchModal modalOpen={modalType === 'DELETEBRANCHMODAL'} modalData={modalData} closeModal={Modalclose}/>)}
       {modalType === 'VIEWBRANCHMODAL' && (<ViewBranchModal modalOpen={modalType === 'VIEWBRANCHMODAL'} modalData={modalData} closeModal={Modalclose}/>)}
-      {modalType === 'CHANGEPASSWORDMODAL' && (<CHANGEPASSWORDMODAL modalOpen={modalType === 'CHANGEPASSWORDMODAL'} modalData={modalData} closeModal={Modalclose}/>)}
+      {modalType === 'CHANGEPASSWORDMODAL' && (<ChangePasswordModal modalOpen={modalType === 'CHANGEPASSWORDMODAL'} modalData={modalData} closeModal={Modalclose}/>)}
 
 
 

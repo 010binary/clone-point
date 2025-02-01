@@ -18,12 +18,9 @@ const InterestRateHeader = () => {
 
     useEffect(() => {
         const params = new URLSearchParams();
-        console.log(!!query)
-        console.log(query?.trim())
         if (query) {
             params.set("q", query);
-            
-        }else{
+        } else {
             params.delete("q")
         }
         router.push(`?${params.toString()}`, { scroll: false })

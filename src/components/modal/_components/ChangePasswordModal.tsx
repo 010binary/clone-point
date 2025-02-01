@@ -2,8 +2,7 @@ import React from 'react'
 import { Modal } from '../Modal'
 import { FaXmark } from 'react-icons/fa6'
 
-const deleteTitle = 'DELETE'
-const deleteDescription = 'Are you sure you want to delete this BRANCH?'
+const deleteTitle = 'Change Password'
 
 // eslint-disable-next-line
 const ChangePasswordModal = ({ modalOpen, modalData, closeModal }: { modalOpen: boolean, modalData: any, closeModal: () => void }) => {
@@ -14,16 +13,61 @@ const ChangePasswordModal = ({ modalOpen, modalData, closeModal }: { modalOpen: 
                     <h1 className=' text-lg'>{deleteTitle}</h1>
                     <FaXmark onClick={closeModal} className=' size-7' />
                 </header>
-                <main className=' px-2'>
-                    <h4 className=' font-medium py-3 text-lg'>{deleteDescription}</h4>
+                <main className=' p-2 py-5'>
+
+                    <InputForm />
 
                     <div className="cta space-y-5 pt-20">
-                        <button className=' w-full bg-red-600 font-medium text-white rounded py-3'>Delete</button>
+                        <button className=' w-full bg-pryColor font-medium text-white rounded py-3'>Change</button>
                         <button onClick={closeModal} className=' w-full text-pryColor font-medium border border-pryColor rounded py-3'>Close</button>
                     </div>
                 </main>
             </section>
         </Modal>
+    )
+}
+
+
+const InputForm = () => {
+    return (
+        <form className=' space-y-5'>
+            <div className="flex flex-wrap gap-3 items-center justify-between  text-xs md:text-sm lg:text-base">
+                <div className="border rounded-lg shadow flex items-center w-[400px] lg:w-[400px] md:w-[400px]">
+                    <p className="px-3 py-3  border-r min-w-[150px] text-xs md:min-w-[150px]">Branch Address</p>
+                    <div className="flex items-center w-full">
+                        <input
+                            type="text"
+                            placeholder="Search here"
+                            className="px-3 py-3 pl-2 outline-none bg-transparent w-full"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div className="flex flex-wrap gap-3 items-center justify-between  text-xs md:text-sm lg:text-base">
+                <div className="border rounded-lg shadow flex items-center w-[400px] lg:w-[400px] md:w-[400px]">
+                    <p className="px-3 py-3  border-r min-w-[150px] text-xs md:min-w-[150px]">Branch Address</p>
+                    <div className="flex items-center w-full">
+                        <input
+                            type="text"
+                            placeholder="Search here"
+                            className="px-3 py-3 pl-2 outline-none bg-transparent w-full"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div className="flex flex-wrap gap-3 items-center justify-between  text-xs md:text-sm lg:text-base">
+                <div className="border rounded-lg shadow flex items-center w-[400px] lg:w-[400px] md:w-[400px]">
+                    <p className="px-3 py-3  border-r min-w-[150px] text-xs md:min-w-[150px]">Branch Address</p>
+                    <div className="flex items-center w-full">
+                        <input
+                            type="text"
+                            placeholder="Search here"
+                            className="px-3 py-3 pl-2 outline-none bg-transparent w-full"
+                        />
+                    </div>
+                </div>
+            </div>
+        </form>
     )
 }
 

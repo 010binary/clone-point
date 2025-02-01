@@ -7,9 +7,9 @@ import ManageUserHeader from './_components/header'
 const page = () => {
   return (
     <div className="">
-      <ManageUserHeader/>
-<div>
-          <DataTable columns={columns} data={manageUsersData} />
+      <ManageUserHeader />
+      <div>
+        <DataTable columns={columns} data={manageUsersData} />
       </div>
     </div>
   )

@@ -7,12 +7,10 @@ import InterestRateHeader from './_components/header'
 const page = () => {
   return (
     <div className="">
-
-<InterestRateHeader/>
-
-<div>
-      <DataTable columns={columns} data={interestRateData} />
-    </div>
+      <InterestRateHeader />
+      <div>
+        <DataTable columns={columns} data={interestRateData} />
+      </div>
     </div>
   )
 }

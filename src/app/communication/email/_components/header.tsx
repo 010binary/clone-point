@@ -1,35 +1,36 @@
 'use client'
+import { Plus } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi'
 import { IoSearchSharp } from 'react-icons/io5'
 import { RiCalendar2Fill } from 'react-icons/ri'
+import { TiArrowForwardOutline } from 'react-icons/ti'
 
 
-const title = "All Branches"
+const title = "EMail"
 
-const AllBranchesHeader = () => {
+const EmailHeader = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [query, setQuery] = useState(searchParams.get("q") || "")
 
     useEffect(() => {
         const params = new URLSearchParams();
-        console.log(!!query)
-        console.log(query?.trim())
         if (query) {
             params.set("q", query);
-            
-        }else{
+        } else {
             params.delete("q")
         }
         router.push(`?${params.toString()}`, { scroll: false })
     }, [query, router])
 
+    
     return (
-        <div className=" space-y-5">
-            <h1 className="text-sm md:text-base"> {title}</h1>
+        <div className=" space-y-10 mb-10">
+            <h1 className="text-sm md:text-base font-semibold"> {title}</h1>
+            <HeaderActions/>
             <div className="filter  flex justify-between items-center">
                 <div className="flex flex-wrap gap-3 items-center justify-between  text-xs md:text-sm lg:text-base">
                     <div className="border rounded-lg shadow flex items-center lg:w-96 md:w-60">
@@ -57,8 +58,8 @@ const AllBranchesHeader = () => {
                     </select>
                     <p className="text gap-1  flex items-center font-medium"> <span className=' text-pryColor pl-1'> 1-10 {" "} </span>of 200</p>
                     <div className="paginationArrows flex gap-5 items-center">
-                        <BiChevronLeft className=' size-7 rounded-full bg-green-200' />
-                        <BiChevronRight className=' size-7 rounded-full bg-green-200' />
+                        <BiChevronLeft className=' size-7 rounded-full bg-slate-200' />
+                        <BiChevronRight className=' size-7 rounded-full bg-slate-200' />
                     </div>
                 </div>
             </div>
@@ -66,4 +67,16 @@ const AllBranchesHeader = () => {
     )
 }
 
-export default AllBranchesHeader
+
+const HeaderActions = () => {
+    return (
+        <div className=" flex justify-end items-center gap-10">
+            <button className="text-white w-[180px] bg-[#1A88E1] self-end px-2 py-1 min-w-fit flex items-center gap-1 text-xs md:text-sm lg:text-base">
+                <Plus />
+                <p>Create Email Message</p>
+            </button>
+        </div>
+    )
+}
+
+export default EmailHeader

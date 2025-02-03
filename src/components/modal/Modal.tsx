@@ -1,9 +1,10 @@
+'use client'
 import { useState, useEffect, useRef } from "react";
 
 type ModalProps = {
   children?: React.ReactNode;
   show: boolean;
-  onClose: React.Dispatch<React.SetStateAction<boolean>>;
+  onClose: ()=>void;
 };
 
 export const Modal = ({ show, onClose, children }: ModalProps) => {
@@ -12,7 +13,7 @@ export const Modal = ({ show, onClose, children }: ModalProps) => {
 
   const handleClose = () => {
     setIsOpen(false);
-    onClose(false);
+    onClose();
   };
 
   useEffect(() => {

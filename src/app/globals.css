@@ -73,3 +73,9 @@ div {
 .spin-button-none::-webkit-inner-spin-button {
   appearance: none;
 }
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}

@@ -1,35 +1,35 @@
 'use client'
+import { Plus } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi'
 import { IoSearchSharp } from 'react-icons/io5'
 import { RiCalendar2Fill } from 'react-icons/ri'
+import { TiArrowForwardOutline } from 'react-icons/ti'
 
 
-const title = "All Branches"
+const title = "Interest rate"
 
-const AllBranchesHeader = () => {
+const InterestRateHeader = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [query, setQuery] = useState(searchParams.get("q") || "")
 
     useEffect(() => {
         const params = new URLSearchParams();
-        console.log(!!query)
-        console.log(query?.trim())
         if (query) {
             params.set("q", query);
-            
-        }else{
+        } else {
             params.delete("q")
         }
         router.push(`?${params.toString()}`, { scroll: false })
     }, [query, router])
 
     return (
-        <div className=" space-y-5">
-            <h1 className="text-sm md:text-base"> {title}</h1>
+        <div className=" space-y-10 mb-10">
+            <h1 className="text-sm md:text-base font-semibold"> {title}</h1>
+            <HeaderActions/>
             <div className="filter  flex justify-between items-center">
                 <div className="flex flex-wrap gap-3 items-center justify-between  text-xs md:text-sm lg:text-base">
                     <div className="border rounded-lg shadow flex items-center lg:w-96 md:w-60">
@@ -66,4 +66,20 @@ const AllBranchesHeader = () => {
     )
 }
 
-export default AllBranchesHeader
+
+const HeaderActions = () => {
+    return (
+        <div className=" flex justify-end items-center gap-10">
+            <button className="text-white w-[180px] bg-[#1A88E1] self-end px-2 py-1 min-w-fit flex items-center gap-1 text-xs md:text-sm lg:text-base">
+                <Plus />
+                <p>Create Interest Rate</p>
+            </button>
+            <button className="text-[#1A88E1] w-[180px] justify-center border border-[#1A88E1] self-end px-2 py-1 min-w-fit flex items-center gap-1 text-xs md:text-sm lg:text-base">
+                <TiArrowForwardOutline size={22} />
+                <p>Export as Pdf</p>
+            </button>
+        </div>
+    )
+}
+
+export default InterestRateHeader

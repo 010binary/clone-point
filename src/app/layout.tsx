@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Layout from "@/components/layout/Layout";
-import ClientProviders from "@/provider/ClientProviders";
 import ModalProvider from "@/components/modal/ModalProvider";
+import ReduxProvider from "./redux-provider";
+import Devlogin from "./dev-login";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -24,13 +25,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${montserrat.variable}`}>
-        <ClientProviders>
+        <ReduxProvider>
           <Layout>
+            <Devlogin>
             <ModalProvider>
               {children}
             </ModalProvider>
+            </Devlogin>
           </Layout>
-        </ClientProviders>
+        </ReduxProvider>
       </body>
     </html>
   );

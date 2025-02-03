@@ -1,16 +1,15 @@
 "use client";
-import { useAppSelector } from "@/redux/hooks";
 import { IoCloseSharp } from "react-icons/io5";
-import Form1 from "./Form1";
-import Form2 from "./Form2";
-import Form3 from "./Form3";
+// import Form1 from "./Form1";
+// import Form2 from "./Form2";
+// import Form3 from "./Form3";
+// import { useAppSelector } from "@/components/set-up/redux/hooks";
 
 type Props = {
   onClose: () => void;
 };
 
 const CorporateForm = ({ onClose }: Props) => {
-  const { corporateForm } = useAppSelector((state) => state.customerSlice);
 
   return (
     <div className="bg-white p- rounded-xl w-[95vw] md:w-[70vw] lg:w-[38rem]">
@@ -25,9 +24,9 @@ const CorporateForm = ({ onClose }: Props) => {
             className="cursor-pointer"
           />
         </div>
-        {corporateForm === 1 && <Form1 />}
+        {/* {corporateForm === 1 && <Form1 />}
         {corporateForm === 2 && <Form2 />}
-        {corporateForm === 3 && <Form3 />}
+        {corporateForm === 3 && <Form3 />} */}
       </div>
     </div>
   );

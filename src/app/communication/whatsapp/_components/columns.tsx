@@ -1,52 +1,56 @@
 "use client"
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { openModal } from "@/redux/features/modalSlice"
+import { useAppDispatch } from "@/redux/hooks"
 import { ColumnDef } from "@tanstack/react-table"
 import { Eye, Pen, Trash2 } from "lucide-react"
 import { BiChevronDown } from "react-icons/bi"
 import { MdMoreVert } from "react-icons/md"
-import { openModal } from "../Redux/modal"
-import { useAppDispatch } from "../set-up/redux/hooks"
+import { smsType } from "./data"
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
-export type Branch = {
-  branchName: string,
-  branchAddress: string,
-  city: string,
-  customerServiceManager: string,
-  operationManager: string,
-}
+// date: string;
+// name: string;
+// phoneNumber: string;
+// messageContent: string;
+// messageID: string;
+// status: string;
 
-export const columns: ColumnDef<Branch>[] = [
+export const columns: ColumnDef<smsType>[] = [
   {
-    accessorKey: "branchName",
+    accessorKey: "date",
     header: ()=>(
-     <HeaderStyle title="Branch Name"/>
+     <HeaderStyle title="Date Created"/>
     ),
   },
   {
-    accessorKey: "branchAddress",
+    accessorKey: "name",
     header: ()=>(
-      <HeaderStyle title="Branch address"/>
+      <HeaderStyle title="Recipient Name"/>
      ),
   },
   {
-    accessorKey: "city",
+    accessorKey: "phoneNumber",
      header: ()=>(
-     <HeaderStyle title="City"/>
+     <HeaderStyle title="Phone Number"/>
     ),
   },
   {
-    accessorKey: "customerServiceManager",
+    accessorKey: "messageContent",
      header: ()=>(
-     <HeaderStyle title="Customer service Manager"/>
+     <HeaderStyle title="Message Content"/>
     ),
   },
   {
-    accessorKey: "operationManager",
+    accessorKey: "messageID",
      header: ()=>(
-     <HeaderStyle title="Operation manager"/>
+     <HeaderStyle title="Message ID"/>
+    ),
+  },
+  {
+    accessorKey: "status",
+     header: ()=>(
+     <HeaderStyle title="Status"/>
     ),
   },
   {

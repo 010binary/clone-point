@@ -12,4 +12,10 @@ import { ApiRoutes } from "./routes"
 
 
 export const getAllCustomers=async()=>axios.get(`${API_URL}${ApiRoutes.CUSTOMER}`)
+export const getPaginatedCustomers=async(
+    pageNumber=0,
+    pageSize=10,
+    customerType='IC'
+)=>axios.get(`${API_URL}${ApiRoutes.PAGINATED_CUSTOMER}?pageNumber=${pageNumber}
+    &pageSize=${pageSize}&customerType=${customerType}`)
 

@@ -16,5 +16,6 @@ const apiPrefix = '/ezone-api-finman/api/v1/'
  * All API routes 
  */
 export const enum ApiRoutes {
-    CUSTOMER = `${apiPrefix}customers`  
+    CUSTOMER = `${apiPrefix}customers`,
+    PAGINATED_CUSTOMER= `${apiPrefix}paginated-customers`
 }

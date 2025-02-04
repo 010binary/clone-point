@@ -5,7 +5,6 @@ import LoadingBar, { LoadingBarRef } from "react-top-loading-bar";
 import * as _redux from "../components/set-up";
 import axios from "axios";
 import React from "react";
-// import { QueryClient, QueryClientProvider } from "react-query";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "sonner";
 

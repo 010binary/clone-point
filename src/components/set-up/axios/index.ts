@@ -12,8 +12,8 @@ export default function setupAxios(axios: AxiosStatic, store: any) {
 			if (auth && auth.token) {
 				// Check if auth and auth.token are defined
 				if (config.headers && config.url.includes(ezoneFinmansAPI)) {
-					// config.headers.Authorization = `Bearer ${auth.token}`;
-					config.headers.Authorization = `Bearer ${'89d02c00-18be-4add-8039-67399e3ab412'}`;
+					config.headers.Authorization = `Bearer ${auth.token}`;
+					// config.headers.Authorization = `Bearer ${'89d02c00-18be-4add-8039-67399e3ab412'}`;
 				}
 			}
 			return config;

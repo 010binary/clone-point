@@ -4,7 +4,7 @@ import { columns } from './columns'
 import React, { useEffect, useState } from "react";
 import { APICall } from "@/utils/apicall";
 import { useQuery } from "@tanstack/react-query";
-import { getAllCustomers } from '../../../../../services';
+import { getAllCustomers, getPaginatedCustomers } from '../../../../../services';
 import { useSearchParams } from 'next/navigation';
 
 
@@ -64,12 +64,20 @@ class IndividualCustomer {
 const IndividualCustomerTable = () => {
     const searchParams = useSearchParams();
     const filterValue = searchParams.get('q')?.toString();
+    const pageValue = searchParams.get('pageNumber')?.toString();
     const [debouncedQueryTrigger, setDebouncedQueryTrigger] = useState(0);
+    // const [pageNumber, setpageNumber] = useState(pageValue || 0)
+    const [pageSize, setpageSize] = useState(10)
+    const [customerType, setcustomerType] = useState('IC')
 
 const { data, isLoading } = useQuery({
     queryKey: ["auth", debouncedQueryTrigger],
     queryFn: async () => {
-        const response = await APICall(getAllCustomers);
+        const response = await APICall(getPaginatedCustomers, [
+          pageValue || 0,
+          pageSize,
+          customerType
+        ]);
         const data:customerResponse[]= response?.data
         const transformedRes= data?.map(res=> new IndividualCustomer(
           res.customerDetail.firstName ?? 'Unidentified',

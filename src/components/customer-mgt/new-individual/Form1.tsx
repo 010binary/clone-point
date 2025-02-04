@@ -71,7 +71,7 @@ const FormOne = ({changePage}:{changePage:(prop:number)=>void}) => {
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Account Type</label>
-                <select name="" id="" className="formInput">
+                <select name="accountType" id="" className="formInput">
                   <option value="Savings">Savings</option>
                   <option value="Current">Current</option>
                   <option value="Fixed Deposit">Fixed Deposit</option>

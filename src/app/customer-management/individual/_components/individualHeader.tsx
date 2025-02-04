@@ -17,19 +17,22 @@ const IndividualHeader = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [query, setQuery] = useState(searchParams.get("q") || "")
+    const [pageNumber, setpageNumber] = useState(Number(searchParams.get("pageNumber")) || 0)
 
     useEffect(() => {
         const params = new URLSearchParams();
-        console.log(!!query)
+        console.log(pageNumber)
         console.log(query?.trim())
-        if (query) {
+        if ( query ) {
             params.set("q", query);
+            params.set("pageNumber", pageNumber.toString());
             
         }else{
             params.delete("q")
+            params.delete("pageNumber")
         }
         router.push(`?${params.toString()}`, { scroll: false })
-    }, [query, router])
+    }, [query, router, pageNumber])
 
     return (
         <div className=" space-y-10 px-2 lg:pl-6">
@@ -77,7 +80,7 @@ const IndividualHeader = () => {
                     <p className="text gap-1  flex items-center font-medium"> <span className=' text-pryColor pl-1'> 1-10 {" "} </span>of 200</p>
                     <div className="paginationArrows flex gap-5 items-center">
                         <BiChevronLeft className=' size-7 rounded-full bg-green-200' />
-                        <BiChevronRight className=' size-7 rounded-full bg-green-200' />
+                        <BiChevronRight className=' size-7 rounded-full bg-green-200' onClick={()=>setQuery(prev=>prev + 1)} />
                     </div>
                 </div>
             </div>

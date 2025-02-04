@@ -1,6 +1,6 @@
 'use client'
 import { useQuery } from '@tanstack/react-query'
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import React, { useEffect } from 'react'
 import { getAllCustomers } from '../../../services'
 import { APICall } from '@/utils/apicall'
@@ -14,6 +14,7 @@ const Page = () => {
     const { token:stateToken } = useAppSelector((state: RootState) => state.auth)
     const dispatch= useAppDispatch()
     const token = searchParams.get('key')
+    const router = useRouter()
     console.log(token)
 
 
@@ -22,6 +23,7 @@ const Page = () => {
      queryFn: async () => {
          const response = await APICall(getAllCustomers);
          Cookies.set('tkn', JSON.stringify(token))
+         router.replace('/')
          return response;
      },
      staleTime: Infinity,

@@ -5,8 +5,7 @@ import { Modal } from "@/components/modal/Modal";
 import Table from "@/components/tables/Table";
 import { corporateTableData } from "@/lib/customer-management/corporateTable";
 // import { individualTableData } from "@/lib/customer-management/individual";
-import { setCorporateForm } from "@/redux/features/customerSlice";
-import { useAppDispatch } from "@/redux/hooks";
+
 import { useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import { MdAddCircle } from "react-icons/md";
@@ -14,16 +13,16 @@ import { RiCalendar2Fill } from "react-icons/ri";
 import { TiArrowForwardOutline } from "react-icons/ti";
 
 const CorporateCustomerPage = () => {
-  const [openForm, setOpenForm] = useState(false);
-  const dispatch = useAppDispatch();
+  const [openForm, setOpenForm] = useState(true);
+  // const dispatch = useAppDispatch();
 
-  const resetForm = () => {
-    dispatch(setCorporateForm(1));
-  };
+  // const resetForm = () => {
+  //   dispatch(setCorporateForm(1));
+  // };
 
   const handleCloseModal = () => {
     setOpenForm(false);
-    resetForm();
+    // resetForm();
   };
 
   return (

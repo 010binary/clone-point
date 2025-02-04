@@ -20,12 +20,15 @@ export const APICall = async (
 			!(typeof args == "string")
 				? await fn(...args)
 				: await fn(args);
-		if (showSuccessToast) toast.success(response.data.message, { duration: TOASTDURATION});
+		if (showSuccessToast) toast.success(response.data.message, { duration: TOASTDURATION
+			,
+			className:'bg-green-500'
+		});
 		showLoadingBar && loadingBarRef.current?.complete();
 		return response;
 	} catch (error: any) {
 		if (error.response) {
-			toast.error(error.response.data.message, { duration: TOASTDURATION});
+			toast.error(error.response.data.message, { duration: TOASTDURATION,className:'bg-red-500 !text-white', descriptionClassName:'text-white'});
 
 			if (error.response.status == 401) {
 				resetState();

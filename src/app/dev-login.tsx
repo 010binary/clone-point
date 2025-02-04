@@ -22,17 +22,17 @@ interface DevLoginProps {
 }
 
 const Devlogin = ({ children }: DevLoginProps) => {
-        const { data, error } = useQuery({
-            queryKey: ["auth"],
-            queryFn: async () => {
-                const response = await APICall(authSIgnin, [dummyFormData]);
-                return response;
-            },
-            staleTime: Infinity,
-        })
+//         const { data, error } = useQuery({
+//             queryKey: ["auth"],
+//             queryFn: async () => {
+//                 const response = await APICall(authSIgnin, [dummyFormData]);
+//                 return response;
+//             },
+//             staleTime: Infinity,
+//         })
 
-console.log(data)
-console.log(error)
+// console.log(data)
+// console.log(error)
   return (
     <>
     {children}

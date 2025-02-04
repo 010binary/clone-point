@@ -1,14 +1,11 @@
 "use client";
-import { setPickForm } from "@/redux/features/customerSlice";
-import { useAppDispatch } from "@/redux/hooks";
 import React from "react";
 
-const FormTwo = () => {
-  const dispatch = useAppDispatch();
+const FormTwo = ({changePage}:{changePage:(prop:number)=>void}) => {
 
   const handleForm = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    dispatch(setPickForm(3));
+    changePage(3)
   };
 
   return (

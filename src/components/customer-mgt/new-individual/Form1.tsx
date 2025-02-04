@@ -1,14 +1,15 @@
 "use client";
 import { countries } from "@/lib/customer-management/countries";
-import { setPickForm } from "@/redux/features/customerSlice";
-import { useAppDispatch } from "@/redux/hooks";
+// import { setPickForm } from "@/redux/features/customerSlice";
+// import { useAppDispatch } from "@/redux/hooks";
 
-const FormOne = () => {
-  const dispatch = useAppDispatch();
+const FormOne = ({changePage}:{changePage:(prop:number)=>void}) => {
+  // const dispatch = useAppDispatch();
 
   const handleForm = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    dispatch(setPickForm(2));
+    changePage(2)
+    // dispatch(setPickForm(2));
   };
 
   return (

@@ -18,13 +18,16 @@ import {
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
-  // eslint-
+  // eslint-disable-next-line
   data: any
+  loading?: boolean
+
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  loading
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
@@ -34,7 +37,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="rounded-md ">
-      <Table className=" border-b">
+      <Table className="border-b">
         <TableHeader className=" bg-pryColor/20 my-5  ">
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
@@ -54,7 +57,7 @@ export function DataTable<TData, TValue>({
           ))}
         </TableHeader>
         <TableBody className=" ">
-          {table.getRowModel().rows?.length ? (
+          {table.getRowModel().rows?.length && !loading ? (
             table.getRowModel().rows.map((row) => (
                 <TableRow
                 key={row.id}
@@ -68,15 +71,32 @@ export function DataTable<TData, TValue>({
                 ))}
                 </TableRow>
             ))
-          ) : (
+          ) : !table.getRowModel().rows?.length && !loading ? (
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
                 No results.
               </TableCell>
             </TableRow>
-          )}
+          ): table.getRowModel().rows?.length === 0 && loading ?(
+              <DataTableSkeleton/>
+          ):(<></>)}
         </TableBody>
       </Table>
     </div>
+  )
+}
+export function DataTableSkeleton() {
+  return (
+    <>
+      {[1, 2, 3, 4].map((row) => (
+        <TableRow key={row} className="">
+          {[1, 2, 3, 4].map((cell) => (
+            <TableCell key={cell} className="py-5">
+              <div className="h-4 w-[80%] bg-gray-200 animate-pulse rounded" />
+            </TableCell>
+          ))}
+        </TableRow>
+      ))}
+    </>
   )
 }

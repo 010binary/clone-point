@@ -7,6 +7,7 @@ import ChangePasswordModal from './_components/ChangePasswordModal'
 import { closeModal } from '../Redux/modal'
 import { RootState } from '../set-up'
 import { useAppDispatch, useAppSelector } from '../set-up/redux/hooks'
+import ICFormCreateModal from './_components/ICFormCreateModal'
 
 const ModalProvider = ({ children }:{ children: ReactNode }) => {
 const dispatch = useAppDispatch()
@@ -24,6 +25,7 @@ const Modalclose =()=>{
       {modalType === 'DELETEBRANCHMODAL' && (<DeleteBranchModal modalOpen={modalType === 'DELETEBRANCHMODAL'} modalData={modalData} closeModal={Modalclose}/>)}
       {modalType === 'VIEWBRANCHMODAL' && (<ViewBranchModal modalOpen={modalType === 'VIEWBRANCHMODAL'} modalData={modalData} closeModal={Modalclose}/>)}
       {modalType === 'CHANGEPASSWORDMODAL' && (<ChangePasswordModal modalOpen={modalType === 'CHANGEPASSWORDMODAL'} modalData={modalData} closeModal={Modalclose}/>)}
+      {modalType === 'ICFORMCREATEMODAL' && (<ICFormCreateModal modalOpen={modalType === 'ICFORMCREATEMODAL'} modalData={modalData} closeModal={Modalclose}/>)}
 
 
 

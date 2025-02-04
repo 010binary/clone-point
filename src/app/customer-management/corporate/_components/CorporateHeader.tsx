@@ -10,9 +10,9 @@ import { RiCalendar2Fill } from 'react-icons/ri'
 import { TiArrowForwardOutline } from 'react-icons/ti'
 
 
-const title = "Individual Customer"
+const title = "Corporate Customer"
 
-const IndividualHeader = () => {
+const CorporateHeader = () => {
     const dispatch = useAppDispatch()
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -24,7 +24,6 @@ const IndividualHeader = () => {
         console.log(query?.trim())
         if (query) {
             params.set("q", query);
-            
         }else{
             params.delete("q")
         }
@@ -45,7 +44,7 @@ const IndividualHeader = () => {
                           className="bg-pryColor text-white px-1 py-1 flex items-center gap-1"
                         >
                           <IoAddSharp size={18} />
-                          <p>Create Individual Customer</p>
+                          <p>Create Corporate Customer</p>
                         </button>
                       </div>
                     </div>
@@ -85,4 +84,4 @@ const IndividualHeader = () => {
     )
 }
 
-export default IndividualHeader
+export default CorporateHeader

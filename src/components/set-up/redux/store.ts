@@ -17,7 +17,7 @@ import logger from "redux-logger";
 import storage from "./custom-storage";
 
 const persistConfig = {
-	key: "firstbank-collections-system",
+	key: "e-zone",
 	storage: storage,
 	blacklist: [],
 };

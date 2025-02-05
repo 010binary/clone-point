@@ -4,7 +4,7 @@ import { columns } from './columns'
 import React, { useEffect, useState } from "react";
 import { APICall } from "@/utils/apicall";
 import { useQuery } from "@tanstack/react-query";
-import { getAllCustomers, getPaginatedCustomers } from '../../../../../services';
+import { getPaginatedCustomers } from '../../../../../services';
 import { useSearchParams } from 'next/navigation';
 
 
@@ -65,18 +65,18 @@ const IndividualCustomerTable = () => {
     const searchParams = useSearchParams();
     const filterValue = searchParams.get('q')?.toString();
     const pageValue = searchParams.get('pageNumber')?.toString();
+    const pageSize = searchParams.get('pageSize')?.toString();
+    const customerType = searchParams.get('customerType')?.toString();
     const [debouncedQueryTrigger, setDebouncedQueryTrigger] = useState(0);
-    // const [pageNumber, setpageNumber] = useState(pageValue || 0)
-    const [pageSize, setpageSize] = useState(10)
-    const [customerType, setcustomerType] = useState('IC')
+    
 
 const { data, isLoading } = useQuery({
-    queryKey: ["auth", debouncedQueryTrigger],
+    queryKey: ["ICTABLE", debouncedQueryTrigger, pageValue],
     queryFn: async () => {
         const response = await APICall(getPaginatedCustomers, [
           pageValue || 0,
-          pageSize,
-          customerType
+          pageSize || 10,
+          customerType || 'IC'
         ]);
         const data:customerResponse[]= response?.data
         const transformedRes= data?.map(res=> new IndividualCustomer(

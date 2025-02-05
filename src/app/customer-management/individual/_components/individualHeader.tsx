@@ -80,7 +80,7 @@ const IndividualHeader = () => {
                     <p className="text gap-1  flex items-center font-medium"> <span className=' text-pryColor pl-1'> 1-10 {" "} </span>of 200</p>
                     <div className="paginationArrows flex gap-5 items-center">
                         <BiChevronLeft className=' size-7 rounded-full bg-green-200' />
-                        <BiChevronRight className=' size-7 rounded-full bg-green-200' onClick={()=>setQuery(prev=>prev + 1)} />
+                        <BiChevronRight className=' size-7 rounded-full bg-green-200' onClick={()=>setpageNumber(prev=>prev + 1)} />
                     </div>
                 </div>
             </div>

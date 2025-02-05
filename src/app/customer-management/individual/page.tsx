@@ -9,7 +9,9 @@ const IndividualCustomerPage = () => {
   return (
     <>
       <div className="flex flex-col gap-6 pt-4">
+        <Suspense>
         <IndividualHeader/>
+        </Suspense>
         <Suspense fallback={<div className="w-full text-center">LOADING...</div>}>
         <IndividualCustomerTable/>
         </Suspense>

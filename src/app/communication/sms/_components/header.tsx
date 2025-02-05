@@ -6,7 +6,6 @@ import React, { useEffect, useState } from 'react'
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi'
 import { IoSearchSharp } from 'react-icons/io5'
 import { RiCalendar2Fill } from 'react-icons/ri'
-import { TiArrowForwardOutline } from 'react-icons/ti'
 
 
 const title = "EMail"

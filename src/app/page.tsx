@@ -2,13 +2,13 @@
 import Container from "@/components/layout/Container";
 import RecentBranch from "@/components/Dashboard/RecentBranch";
 import DashboardHeader from "@/components/Dashboard/DashboardHeader/DashboardHeader";
-import { ReactNode, useState } from "react";
+import { ReactNode, Suspense, useState } from "react";
 
 
 export default function Home() {
   const [viewMore, setviewMore] = useState(false)
-  const handleViewMore =()=>{
-    setviewMore(prev=>!prev)
+  const handleViewMore = () => {
+    setviewMore(prev => !prev)
   }
   return (
     <Container>
@@ -29,15 +29,18 @@ export default function Home() {
             </div>
           </div>
         </div> */}
-      <DashboardHeader viewMore={viewMore}/>
-      <RecentBranch viewMore={viewMore} handleViewMore={handleViewMore}/>
+        <Suspense>
+          <DashboardHeader viewMore={viewMore} />
+
+          <RecentBranch viewMore={viewMore} handleViewMore={handleViewMore} />
+        </Suspense>
       </HomeLayout>
     </Container>
   );
 }
 
-const HomeLayout =({ children }: { children: ReactNode })=>{
-  return(
+const HomeLayout = ({ children }: { children: ReactNode }) => {
+  return (
     <div className="flex flex-col gap-10 pt-4">
       {children}
     </div>

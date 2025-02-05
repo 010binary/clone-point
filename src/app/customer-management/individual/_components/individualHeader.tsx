@@ -14,7 +14,7 @@ import { IndividualCustomerType } from './IndividualCustomerTable'
 
 const title = "Individual Customer"
 
-const IndividualHeader = ({ data }:{ data:IndividualCustomerType[]| undefined }) => {
+const IndividualHeader = ({ data }: { data: IndividualCustomerType[] | undefined }) => {
     const dispatch = useAppDispatch()
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -22,23 +22,29 @@ const IndividualHeader = ({ data }:{ data:IndividualCustomerType[]| undefined })
     const [pageNumber, setpageNumber] = useState(Number(searchParams.get("pageNumber")) || 0)
     const [pageSize, setpageSize] = useState(Number(searchParams.get("pageSize")) || 0)
 
+
     useEffect(() => {
         const params = new URLSearchParams();
-        if ( query || pageNumber || pageSize ) {
+        if (query || pageNumber || pageSize) {
             params.set("q", query);
             params.set("pageNumber", pageNumber.toString());
             params.set("pageSize", pageSize.toString());
-            
-        }else{
+
+        } else {
             params.delete("q")
             params.delete("pageNumber")
+            params.delete("pageSize")
         }
         router.push(`?${params.toString()}`, { scroll: false })
     }, [query, router, pageNumber, pageSize])
 
-      const exportPDF = () => {
+
+    /**
+    *  export Pdf func
+    */
+    const exportPDF = () => {
         const doc = new jsPDF();
-        const cols =[
+        const cols = [
             'First Name',
             'Middle Name',
             'Last Name',
@@ -47,35 +53,35 @@ const IndividualHeader = ({ data }:{ data:IndividualCustomerType[]| undefined })
         doc.text('Individual Customers', 14, 16);
         const tableColumn = cols.map(col => col);
         const tableRows = data?.map(row => Object.values(row));
-    
+
         autoTable(doc, {
-          head: [tableColumn],
-          body: tableRows,
-          startY: 20,
+            head: [tableColumn],
+            body: tableRows,
+            startY: 20,
         });
-    
+
         doc.save('individual_customers.pdf');
-      };
-    
+    };
+
 
     return (
         <div className=" space-y-10 px-2 lg:pl-6">
-               <div className="flex items-center justify-between gap-4">
-               <h1 className="text-sm md:text-base font-semibold"> {title}</h1>
-                      <div className="flex flex-wrap items-center gap-3">
-                        <button onClick={exportPDF} className="text-[#1A88E1] border border-[#1A88E1] self-end px-2 py-1 w-fit flex items-center gap-1 text-xs md:text-sm lg:text-base">
-                          <TiArrowForwardOutline />
-                          <p>Export as Pdf</p>
-                        </button>
-                        <button
-                          onClick={() =>dispatch(openModal({ modalType:'ICFORMCREATEMODAL',modalData:{}}))}
-                          className="bg-pryColor text-white px-1 py-1 flex items-center gap-1"
-                        >
-                          <IoAddSharp size={18} />
-                          <p>Create Individual Customer</p>
-                        </button>
-                      </div>
-                    </div>
+            <div className="flex items-center justify-between gap-4">
+                <h1 className="text-sm md:text-base font-semibold"> {title}</h1>
+                <div className="flex flex-wrap items-center gap-3">
+                    <button onClick={exportPDF} className="text-[#1A88E1] border border-[#1A88E1] self-end px-2 py-1 w-fit flex items-center gap-1 text-xs md:text-sm lg:text-base">
+                        <TiArrowForwardOutline />
+                        <p>Export as Pdf</p>
+                    </button>
+                    <button
+                        onClick={() => dispatch(openModal({ modalType: 'ICFORMCREATEMODAL', modalData: {} }))}
+                        className="bg-pryColor text-white px-1 py-1 flex items-center gap-1"
+                    >
+                        <IoAddSharp size={18} />
+                        <p>Create Individual Customer</p>
+                    </button>
+                </div>
+            </div>
             <div className="filter  flex justify-between items-center">
                 <div className="flex flex-wrap gap-3 items-center justify-between  text-xs md:text-sm lg:text-base">
                     <div className="border rounded-lg shadow flex items-center lg:w-96 md:w-60">
@@ -94,8 +100,8 @@ const IndividualHeader = ({ data }:{ data:IndividualCustomerType[]| undefined })
                     <RiCalendar2Fill size={24} color="#737373" />
                 </div>
                 <div className="flex items-center gap-5">
-                    <select 
-                        id="branch-select" 
+                    <select
+                        id="branch-select"
                         className="border rounded border-black px-1 py-1 font-semibold text-black"
                         value={pageSize}
                         onChange={(e) => setpageSize(Number(e.target.value))}
@@ -108,8 +114,8 @@ const IndividualHeader = ({ data }:{ data:IndividualCustomerType[]| undefined })
                     </select>
                     <p className="text gap-1  flex items-center font-medium"> <span className=' text-pryColor pl-1'> 1-10 {" "} </span>of 200</p>
                     <div className="paginationArrows flex gap-5 items-center">
-                        <BiChevronLeft className=' size-7 rounded-full bg-green-200' onClick={()=>setpageNumber(prev=>prev - 1)}/>
-                        <BiChevronRight className=' size-7 rounded-full bg-green-200' onClick={()=>setpageNumber(prev=>prev + 1)} />
+                        <BiChevronLeft className=' size-7 rounded-full bg-gray-200' onClick={() => setpageNumber(prev => prev - 1)} />
+                        <BiChevronRight className=' size-7 rounded-full bg-gray-200' onClick={() => setpageNumber(prev => prev + 1)} />
                     </div>
                 </div>
             </div>

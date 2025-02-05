@@ -78,7 +78,8 @@ const { data, isLoading } = useQuery({
           pageSize || 10,
           customerType || 'IC'
         ]);
-        const data:customerResponse[]= response?.data
+        console.log(response)
+        const data:customerResponse[]= response?.data?.content
         const transformedRes= data?.map(res=> new IndividualCustomer(
           res.customerDetail.firstName ?? 'Unidentified',
           res.customerDetail.middleName ?? 'Unidentified',

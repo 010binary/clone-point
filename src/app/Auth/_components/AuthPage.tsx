@@ -13,16 +13,17 @@ const AuthPage = () => {
     const searchParams = useSearchParams()
     const { token:stateToken } = useAppSelector((state: RootState) => state.auth)
     const dispatch= useAppDispatch()
-    const token = searchParams.get('key')
+    const token = searchParams.get('token')
+    const orgId = searchParams.get('orgId')
     const router = useRouter()
-    console.log(token)
 
 
  const { data } = useQuery({
      queryKey: ["authee"],
      queryFn: async () => {
          const response = await APICall(getAllCustomers);
-         Cookies.set('tkn', JSON.stringify(token))
+         Cookies.set('token', JSON.stringify(token))
+         Cookies.set('orgId', JSON.stringify(orgId))
          router.replace('/')
          return response;
      },

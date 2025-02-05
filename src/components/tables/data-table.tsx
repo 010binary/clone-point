@@ -78,20 +78,21 @@ export function DataTable<TData, TValue>({
               </TableCell>
             </TableRow>
           ): table.getRowModel().rows?.length === 0 && loading ?(
-              <DataTableSkeleton/>
+              // <DataTableSkeleton arr={table.getRowModel().rows?.length as number}/>
+            <DataTableSkeleton arr={table.getHeaderGroups()[0]?.headers.length || 0} />
           ):(<></>)}
         </TableBody>
       </Table>
     </div>
   )
 }
-export function DataTableSkeleton() {
+export function DataTableSkeleton({ arr }:{ arr: number}) {
   return (
     <>
-      {[1, 2, 3, 4].map((row) => (
-        <TableRow key={row} className="">
-          {[1, 2, 3, 4].map((cell) => (
-            <TableCell key={cell} className="py-5">
+      {Array.from({length:arr}).map((_,index) => (
+        <TableRow key={index} className="">
+          {Array.from({length:arr}).map((_,index) => (
+            <TableCell key={index} className="py-5">
               <div className="h-4 w-[80%] bg-gray-200 animate-pulse rounded" />
             </TableCell>
           ))}

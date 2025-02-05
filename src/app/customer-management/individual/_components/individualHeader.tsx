@@ -8,38 +8,62 @@ import { BiChevronLeft, BiChevronRight } from 'react-icons/bi'
 import { IoAddSharp, IoSearchSharp } from 'react-icons/io5'
 import { RiCalendar2Fill } from 'react-icons/ri'
 import { TiArrowForwardOutline } from 'react-icons/ti'
-
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
+import { IndividualCustomerType } from './IndividualCustomerTable'
 
 const title = "Individual Customer"
 
-const IndividualHeader = () => {
+const IndividualHeader = ({ data }:{ data:IndividualCustomerType[]| undefined }) => {
     const dispatch = useAppDispatch()
     const router = useRouter();
     const searchParams = useSearchParams();
     const [query, setQuery] = useState(searchParams.get("q") || "")
     const [pageNumber, setpageNumber] = useState(Number(searchParams.get("pageNumber")) || 0)
+    const [pageSize, setpageSize] = useState(Number(searchParams.get("pageSize")) || 0)
 
     useEffect(() => {
         const params = new URLSearchParams();
-        console.log(pageNumber)
-        console.log(query?.trim())
-        if ( query ) {
+        if ( query || pageNumber || pageSize ) {
             params.set("q", query);
             params.set("pageNumber", pageNumber.toString());
+            params.set("pageSize", pageSize.toString());
             
         }else{
             params.delete("q")
             params.delete("pageNumber")
         }
         router.push(`?${params.toString()}`, { scroll: false })
-    }, [query, router, pageNumber])
+    }, [query, router, pageNumber, pageSize])
+
+      const exportPDF = () => {
+        const doc = new jsPDF();
+        const cols =[
+            'First Name',
+            'Middle Name',
+            'Last Name',
+            'Phone Number'
+        ]
+        doc.text('Individual Customers', 14, 16);
+        const tableColumn = cols.map(col => col);
+        const tableRows = data?.map(row => Object.values(row));
+    
+        autoTable(doc, {
+          head: [tableColumn],
+          body: tableRows,
+          startY: 20,
+        });
+    
+        doc.save('individual_customers.pdf');
+      };
+    
 
     return (
         <div className=" space-y-10 px-2 lg:pl-6">
                <div className="flex items-center justify-between gap-4">
                <h1 className="text-sm md:text-base font-semibold"> {title}</h1>
                       <div className="flex flex-wrap items-center gap-3">
-                        <button className="text-[#1A88E1] border border-[#1A88E1] self-end px-2 py-1 w-fit flex items-center gap-1 text-xs md:text-sm lg:text-base">
+                        <button onClick={exportPDF} className="text-[#1A88E1] border border-[#1A88E1] self-end px-2 py-1 w-fit flex items-center gap-1 text-xs md:text-sm lg:text-base">
                           <TiArrowForwardOutline />
                           <p>Export as Pdf</p>
                         </button>
@@ -70,16 +94,21 @@ const IndividualHeader = () => {
                     <RiCalendar2Fill size={24} color="#737373" />
                 </div>
                 <div className="flex items-center gap-5">
-                    <select id="branch-select" className="border rounded border-black px-1 py-1 font-semibold text-black">
+                    <select 
+                        id="branch-select" 
+                        className="border rounded border-black px-1 py-1 font-semibold text-black"
+                        value={pageSize}
+                        onChange={(e) => setpageSize(Number(e.target.value))}
+                    >
                         {Array.from({ length: 10 }, (_, i) => (
-                            <option key={i + 1} value={i + 1} className=' font-semibold text-black'>
+                            <option key={i + 1} value={i + 1} className='font-semibold text-black'>
                                 {i + 1}
                             </option>
                         ))}
                     </select>
                     <p className="text gap-1  flex items-center font-medium"> <span className=' text-pryColor pl-1'> 1-10 {" "} </span>of 200</p>
                     <div className="paginationArrows flex gap-5 items-center">
-                        <BiChevronLeft className=' size-7 rounded-full bg-green-200' />
+                        <BiChevronLeft className=' size-7 rounded-full bg-green-200' onClick={()=>setpageNumber(prev=>prev - 1)}/>
                         <BiChevronRight className=' size-7 rounded-full bg-green-200' onClick={()=>setpageNumber(prev=>prev + 1)} />
                     </div>
                 </div>

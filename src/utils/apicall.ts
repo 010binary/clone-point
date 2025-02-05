@@ -22,13 +22,13 @@ export const APICall = async (
 				: await fn(args);
 		if (showSuccessToast) toast.success(response.data.message, { duration: TOASTDURATION
 			,
-			className:'bg-green-500'
+			className:'bg-green-500 !text-white !border-0', descriptionClassName:'text-white'
 		});
 		showLoadingBar && loadingBarRef.current?.complete();
 		return response;
 	} catch (error: any) {
 		if (error.response) {
-			toast.error(error.response.data.message, { duration: TOASTDURATION,className:'bg-red-500 !text-white', descriptionClassName:'text-white'});
+			toast.error(error.response.data.message || 'Something went wrong', { duration: TOASTDURATION,className:'bg-red-500 !text-white !border-0', descriptionClassName:'text-white'});
 
 			if (error.response.status == 401) {
 				resetState();

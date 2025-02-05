@@ -7,22 +7,21 @@ import { useQuery } from "@tanstack/react-query";
 import { getPaginatedCustomers } from '../../../../../services';
 import { useSearchParams } from 'next/navigation';
 
-
 interface address {
-    address1: string;
-    city: string;
-    country: string;
-    created_at: string;
-    email: string | null;
-    homePhone: string | null;
-    id: number;
-    lga: string;
-    officePhone: string | null;
-    proofOfAddressBase64String: string | null;
-    residentialStatus: string;
-    state: string;
-    updated_at: string;
-  }
+  address1: string;
+  city: string;
+  country: string;
+  created_at: string;
+  email: string | null;
+  homePhone: string | null;
+  id: number;
+  lga: string;
+  officePhone: string | null;
+  proofOfAddressBase64String: string | null;
+  residentialStatus: string;
+  state: string;
+  updated_at: string;
+}
 interface customerDetailType {
   accountType: string | null;
   businessName: string;
@@ -49,7 +48,14 @@ interface customerDetailType {
 
 interface customerResponse {
   customerDetail: customerDetailType;
-  address:address
+  address: address
+}
+
+export interface IndividualCustomerType {
+  firstName: string,
+  middleName: string,
+  lastName: string,
+  phoneNumber: string
 }
 
 class IndividualCustomer {
@@ -58,52 +64,66 @@ class IndividualCustomer {
     public middleName: string,
     public lastName: string,
     public phoneNumber: string
-  ) {}
+  ) { }
+
 }
 
-const IndividualCustomerTable = () => {
-    const searchParams = useSearchParams();
-    const filterValue = searchParams.get('q')?.toString();
-    const pageValue = searchParams.get('pageNumber')?.toString();
-    const pageSize = searchParams.get('pageSize')?.toString();
-    const customerType = searchParams.get('customerType')?.toString();
-    const [debouncedQueryTrigger, setDebouncedQueryTrigger] = useState(0);
-    
 
-const { data, isLoading } = useQuery({
-    queryKey: ["ICTABLE", debouncedQueryTrigger, pageValue],
+
+/**
+ * Handles search params and fetching of table data
+ * 
+ * @returns Indiviual customers tabel
+ */
+
+const IndividualCustomerTable = ({setdata}:{ setdata: (prop:IndividualCustomerType[])=>void}) => {
+  const searchParams = useSearchParams();
+  const filterValue = searchParams.get('q')?.toString();
+  const pageValue = searchParams.get('pageNumber')?.toString();
+  const pageSize = searchParams.get('pageSize')?.toString();
+  const customerType = searchParams.get('customerType')?.toString();
+  const [debouncedQueryTrigger, setDebouncedQueryTrigger] = useState(0);
+
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["ICTABLE", debouncedQueryTrigger, pageValue, pageSize],
     queryFn: async () => {
-        const response = await APICall(getPaginatedCustomers, [
-          pageValue || 0,
-          pageSize || 10,
-          customerType || 'IC'
-        ]);
-        console.log(response)
-        const data:customerResponse[]= response?.data?.content
-        const transformedRes= data?.map(res=> new IndividualCustomer(
-          res.customerDetail.firstName ?? 'Unidentified',
-          res.customerDetail.middleName ?? 'Unidentified',
-          res.customerDetail.lastName ?? 'Unidentified',
-          res.customerDetail.mobilePhone 
-        ))
-        return transformedRes;
+      const response = await APICall(getPaginatedCustomers, [
+        pageValue || 0,
+        pageSize || 10,
+        customerType || 'IC'
+      ]);
+
+      const data: customerResponse[] = response?.data?.content
+      const transformedRes = data?.map(res => new IndividualCustomer(
+        res.customerDetail.firstName ?? 'Unidentified',
+        res.customerDetail.middleName ?? 'Unidentified',
+        res.customerDetail.lastName ?? 'Unidentified',
+        res.customerDetail.mobilePhone
+      ))
+      setdata(transformedRes)
+      return transformedRes;
     },
     staleTime: Infinity,
-});
+  });
 
 
-useEffect(() => {
+
+
+  useEffect(() => {
     if (filterValue) {
-        const timer = setTimeout(() => {
-            setDebouncedQueryTrigger(prev => prev + 1);
-        }, 500); // 500ms debounce delay
-    return () => clearTimeout(timer);
+      const timer = setTimeout(() => {
+        setDebouncedQueryTrigger(prev => prev + 1);
+      }, 500); // 500ms debounce delay
+      return () => clearTimeout(timer);
     }
-}, [filterValue]);
+  }, [filterValue]);
+
+
 
   return (
-       <div className="lg:pl-6 overflow-x-auto">
-            <DataTable columns={columns} data={data ?data : []} loading={isLoading}/>
+    <div className="lg:pl-6 overflow-x-auto">
+      <DataTable columns={columns} data={data ? data : []} loading={isLoading} />
     </div>
   )
 }

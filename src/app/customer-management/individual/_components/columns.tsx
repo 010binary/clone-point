@@ -8,6 +8,7 @@ import { MdMoreVert } from "react-icons/md"
 import { individualCustomerType } from "./data"
 import { openModal } from "@/components/Redux/modal"
 import { useAppDispatch } from "@/components/set-up/redux/hooks"
+import { useRouter } from "next/navigation"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -53,15 +54,16 @@ export const columns: ColumnDef<individualCustomerType>[] = [
 
 const ActionsComponent = () => {
   const dispatch = useAppDispatch()
+  const router = useRouter()
 
   const handleView = () => { 
     console.log('View clicked')
-    dispatch(openModal({ modalType: 'VIEWBRANCHMODAL', modalData: {} }))
+    router.push('/customer-management/individual/view')
   }
 
   const handleEdit = () => { 
     console.log('Edit clicked')
-    dispatch(openModal({ modalType: 'EDITBRANCHMODAL', modalData: {} }))
+    router.push('/customer-management/individual/edit')
   }
 
   const handleDelete = () => { 

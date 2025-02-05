@@ -1,13 +1,13 @@
 "use client"
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { openModal } from "@/redux/features/modalSlice"
-import { useAppDispatch } from "@/redux/hooks"
 import { ColumnDef } from "@tanstack/react-table"
 import { Eye, Pen, Trash2 } from "lucide-react"
 import { BiChevronDown } from "react-icons/bi"
 import { MdMoreVert } from "react-icons/md"
 import { Transaction } from "../data"
+import { openModal } from "@/components/Redux/modal"
+import { useAppDispatch } from "@/components/set-up/redux/hooks"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.

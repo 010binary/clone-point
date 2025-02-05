@@ -1,0 +1,1 @@
+export const API_URL= 'https://gateway.ezoneapps.com:30002'

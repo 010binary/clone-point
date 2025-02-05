@@ -1,27 +1,28 @@
+'use client'
 import React from "react";
 import Header from "./Header";
 import SideBar from "./SideBar";
-import { RiMessage2Line } from "react-icons/ri";
-import { MdHelp } from "react-icons/md";
-import { FaCircleUser } from "react-icons/fa6";
-import { GoTriangleDown } from "react-icons/go";
-import Color2 from "@/assets/header/Color2";
-import Color1 from "@/assets/header/Color1";
 import DesktopHeader from "../common/DesktopHeader";
+import { usePathname } from "next/navigation";
 
 const Layout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
+
+  const pathname =  usePathname()
+  const cludedPaths =['/Auth']
+  const isCludedPath = cludedPaths.includes(pathname)
+
   return (
     <>
-      <div className="flex flex-col gap-0.5 bg-white overflow-hidden">
-        <Header />
+      {!isCludedPath ? (<div className="flex flex-col gap-0.5 bg-white overflow-hidden">
+        {!isCludedPath &&  <Header /> }
         <div className="h-screen flex bg-[#FFF] w-full pt-14">
-          <SideBar />
+          {!isCludedPath && <SideBar /> }
           <div className="flex flex-col w-full overflow-x-auto">
-          <DesktopHeader/>
+          {!isCludedPath && <DesktopHeader/> }
             {/* <div
               style={{
                 borderTopLeftRadius: "32px",
@@ -52,7 +53,8 @@ const Layout = ({
             </div>
           </div>
         </div>
-      </div>
+      </div>):
+      (<>{children}</>)}
     </>
   );
 };

@@ -9,9 +9,9 @@ import Color1 from "@/assets/header/Color1";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
 import { KeyRoundIcon, User2 } from 'lucide-react';
 import { GiExitDoor } from 'react-icons/gi';
-import { useAppDispatch } from '@/redux/hooks';
-import { openModal } from '@/redux/features/modalSlice';
 import { useRouter } from 'next/navigation';
+import { openModal } from '../Redux/modal';
+import { useAppDispatch } from '../set-up/redux/hooks';
 
 
 const DesktopHeader = () => {

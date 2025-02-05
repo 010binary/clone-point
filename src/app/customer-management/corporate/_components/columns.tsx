@@ -1,33 +1,50 @@
 "use client"
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { openModal } from "@/redux/features/modalSlice"
-import { useAppDispatch } from "@/redux/hooks"
 import { ColumnDef } from "@tanstack/react-table"
 import { Eye, Pen, Trash2 } from "lucide-react"
 import { BiChevronDown } from "react-icons/bi"
 import { MdMoreVert } from "react-icons/md"
-import { smsType } from "./data"
+import { individualCustomerType } from "./data"
+import { openModal } from "@/components/Redux/modal"
+import { useAppDispatch } from "@/components/set-up/redux/hooks"
 
-// date: string;
-// name: string;
-// phoneNumber: string;
-// messageContent: string;
-// messageID: string;
-// status: string;
+// This type is used to define the shape of our data.
+// You can use a Zod schema here if you want.
 
-export const columns: ColumnDef<smsType>[] = [
+
+// public title: string,
+// public firstName: string,
+// public middleName: string,
+// public lastName: string,
+// public phoneNumber: string,
+// public bussinessName: string
+
+
+export const columns: ColumnDef<individualCustomerType>[] = [
   {
-    accessorKey: "date",
+    accessorKey: "title",
     header: ()=>(
-     <HeaderStyle title="Date Created"/>
+     <HeaderStyle title="Title"/>
     ),
   },
   {
-    accessorKey: "name",
+    accessorKey: "firstName",
     header: ()=>(
-      <HeaderStyle title="Recipient Name"/>
+     <HeaderStyle title="First Name"/>
+    ),
+  },
+  {
+    accessorKey: "middleName",
+    header: ()=>(
+      <HeaderStyle title="Middle Name"/>
      ),
+  },
+  {
+    accessorKey: "lastName",
+     header: ()=>(
+     <HeaderStyle title="Last Name"/>
+    ),
   },
   {
     accessorKey: "phoneNumber",
@@ -36,21 +53,9 @@ export const columns: ColumnDef<smsType>[] = [
     ),
   },
   {
-    accessorKey: "messageContent",
+    accessorKey: "bussinessName",
      header: ()=>(
-     <HeaderStyle title="Message Content"/>
-    ),
-  },
-  {
-    accessorKey: "messageID",
-     header: ()=>(
-     <HeaderStyle title="Message ID"/>
-    ),
-  },
-  {
-    accessorKey: "status",
-     header: ()=>(
-     <HeaderStyle title="Status"/>
+     <HeaderStyle title="Bussiness Name"/>
     ),
   },
   {

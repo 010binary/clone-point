@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { APICall } from "@/utils/apicall";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from 'next/navigation';
-import { getPaginatedCustomers } from '../../../../services';
+import { getPaginatedAccounts } from '../../../../services';
 import { accounts } from './data';
 
 interface address {
@@ -89,12 +89,12 @@ const ListAccountsTable = ({setdata}:{ setdata: (prop:IndividualCustomerType[])=
   const { data, isLoading } = useQuery({
     queryKey: ["ICTABLE", debouncedQueryTrigger, pageValue, pageSize],
     queryFn: async () => {
-      const response = await APICall(getPaginatedCustomers, [
+      const response = await APICall(getPaginatedAccounts, [
         pageValue || 0,
         pageSize || 10,
         customerType || 'IC'
       ]);
-
+      
       const data: customerResponse[] = response?.data?.content
       const transformedRes = data?.map(res => new IndividualCustomer(
         res.customerDetail.firstName ?? 'Unidentified',

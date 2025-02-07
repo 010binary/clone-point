@@ -17,4 +17,9 @@ export const getPaginatedCustomers=async(
     pageSize=10,
     customerType='IC'
 )=>axios.get(`${API_URL}${ApiRoutes.PAGINATED_CUSTOMER}?pageNumber=${pageNumber}&pageSize=${pageSize}&customerType=${customerType}`)
+export const getPaginatedAccounts=async(
+    pageNumber=0,
+    pageSize=10,
+    customerType='IC'
+)=>axios.get(`${API_URL}${ApiRoutes.PAGINATED_ACCOUNTS}?pageNumber=${pageNumber}&pageSize=${pageSize}&customerType=${customerType}`)
 

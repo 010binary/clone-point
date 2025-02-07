@@ -10,7 +10,7 @@ const FormTwo = ({changePage}:{changePage:(prop:number)=>void}) => {
 
   return (
     <>
-      <form className="border border-[#C4C4C4] rounded-b-md w-full">
+      <div className="border border-[#C4C4C4] rounded-b-md w-full">
         <div className="px-2 md:px-3 lg:px-4 py-4 flex flex-col gap-4">
           <p>Identification</p>
           <div className="flex flex-col gap-3 text-xs md:text-sm lg:w-[85%]">
@@ -77,7 +77,7 @@ const FormTwo = ({changePage}:{changePage:(prop:number)=>void}) => {
             Next
           </button>
         </div>
-      </form>
+      </div>
     </>
   );
 };

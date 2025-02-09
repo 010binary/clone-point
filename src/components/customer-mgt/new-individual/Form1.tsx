@@ -1,13 +1,10 @@
 "use client";
+import { ChildComponentProps } from "@/components/modal/_components/ICFormCreateModal";
 import { countries } from "@/lib/customer-management/countries";
-import { FormikProps } from "formik";
 // import { setPickForm } from "@/redux/features/customerSlice";
 // import { useAppDispatch } from "@/redux/hooks";
 
-interface ChildComponentProps<T> {
-  formik: FormikProps<T>;
-  changePage:(prop:number)=>void
-}
+
 
 
 const FormOne = <T,>({ formik, changePage }: ChildComponentProps<T>) => {
@@ -38,6 +35,12 @@ const FormOne = <T,>({ formik, changePage }: ChildComponentProps<T>) => {
                   <option value="Ms">Ms</option>
                   <option value="Mrs">Mrs</option>
                 </select>
+              </div>
+            </div>
+            <div className="container">
+              <div className="innerContainer">
+                <label className="formLabel">email</label>
+                <input type="text" name="customerDetail.email" className="formInput" onChange={formik.handleChange} />
               </div>
             </div>
             <div className="container">
@@ -127,7 +130,7 @@ const FormOne = <T,>({ formik, changePage }: ChildComponentProps<T>) => {
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Level of Education</label>
-                <select name="" id="" onChange={formik.handleChange}  className="formInput">
+                <select name="customerDetail.levelOfEducation" id="" onChange={formik.handleChange}  className="formInput">
                   <option value="SSCE">SSCE</option>
                   <option value="B.Sc">B.Sc</option>
                   <option value="FSLC">First school Leaving Certificate</option>

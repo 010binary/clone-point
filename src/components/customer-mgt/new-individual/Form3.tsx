@@ -1,8 +1,9 @@
 "use client";
+import { ChildComponentProps } from "@/components/modal/_components/ICFormCreateModal";
 import { countries } from "@/lib/customer-management/countries";
 import React from "react";
 
-const FormThree = ({changePage}:{changePage:(prop:number)=>void}) => {
+const FormThree =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
 
   const handleForm = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -169,6 +170,12 @@ const FormThree = ({changePage}:{changePage:(prop:number)=>void}) => {
             className="bg-pryColor text-white py-1.5 lg:py-2 px-3 w-full rounded-lg"
           >
             Next
+          </button>
+          <button
+            onClick={()=>changePage(2)}
+            className="border-pryColor border hover:scale-[0.98] transition-all ease-linear text-pryColor py-1.5 lg:py-2 px-3 w-full rounded-lg"
+          >
+            Back
           </button>
         </div>
       </div>

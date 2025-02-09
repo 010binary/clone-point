@@ -82,7 +82,6 @@ const ListAccountsTable = ({setdata}:{ setdata: (prop:IndividualCustomerType[])=
   const filterValue = searchParams.get('q')?.toString();
   const pageValue = searchParams.get('pageNumber')?.toString();
   const pageSize = searchParams.get('pageSize')?.toString();
-  const customerType = searchParams.get('customerType')?.toString();
   const [debouncedQueryTrigger, setDebouncedQueryTrigger] = useState(0);
 
 
@@ -92,9 +91,8 @@ const ListAccountsTable = ({setdata}:{ setdata: (prop:IndividualCustomerType[])=
       const response = await APICall(getPaginatedAccounts, [
         pageValue || 0,
         pageSize || 10,
-        customerType || 'IC'
       ]);
-      
+
       const data: customerResponse[] = response?.data?.content
       const transformedRes = data?.map(res => new IndividualCustomer(
         res.customerDetail.firstName ?? 'Unidentified',

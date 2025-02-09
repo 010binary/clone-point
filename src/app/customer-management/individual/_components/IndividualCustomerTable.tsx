@@ -104,6 +104,7 @@ const IndividualCustomerTable = ({setdata}:{ setdata: (prop:IndividualCustomerTy
       setdata(transformedRes)
       return transformedRes;
     },
+    refetchOnWindowFocus:false,
     staleTime: Infinity,
   });
 

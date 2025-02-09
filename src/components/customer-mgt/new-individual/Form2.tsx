@@ -128,7 +128,7 @@ const ImageInputCard = <T,>({
           {({ getRootProps, getInputProps }) => (
             <div className="border border-dashed rounded-lg border-pryColor h-24" {...getRootProps()}>
               <input {...getInputProps({ accept: 'image/*' })} />
-              {placeHolder ?
+              {/* {placeHolder ?
               (
                 <>{placeHolder}</>
               )
@@ -143,7 +143,8 @@ const ImageInputCard = <T,>({
                 </p>
                 <Circleloader/>
               </div>
-            )}
+            )} */}
+              <Placeholder data={placeHolder ? placeHolder : ''} isLoading={isLoading} />
             </div>
           )}
         </Dropzone>
@@ -161,9 +162,11 @@ const ImageInputCard = <T,>({
 
 const Placeholder=({
   data,
+  isLoading
 }:
 {
-
+  data:string,
+  isLoading:boolean
 })=>{
 
   const UploadPlaceholder=()=>{
@@ -182,7 +185,11 @@ const Placeholder=({
   return(
     <div className="py-5 px-3 flex flex-col gap-1">
       {
-          (data && ) ?:
+          (data && !isLoading ) ?
+          <>{data}</>
+          :(!data && !isLoading )?(
+            <UploadPlaceholder/>
+          ):<Circleloader/>
       }
     </div>
   )

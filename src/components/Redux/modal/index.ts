@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type modals ='EDITBRANCHMODAL' | 'CREATEBRANCHMODAL' | 'CHANGEPASSWORDMODAL' | 'ICFORMCREATEMODAL' | string
+type modals ='EDITBRANCHMODAL' | 'CREATEBRANCHMODAL' | 'CHANGEPASSWORDMODAL' | 'ICFORMCREATEMODAL' | 'CCFORMCREATEMODAL' | string
 
 interface ModalState {
   modalType: modals | null;

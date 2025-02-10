@@ -142,6 +142,7 @@ const FormOne = <T,>({ formik, changePage }: ChildComponentProps<T>) => {
           </div>
           <button
             onClick={handleForm}
+            disabled={formik.isSubmitting}
             className="bg-pryColor text-white py-1.5 lg:py-2 px-3 w-full rounded-lg"
           >
             Next

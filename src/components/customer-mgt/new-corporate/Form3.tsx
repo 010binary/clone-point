@@ -1,6 +1,9 @@
 "use client";
 
-const Form3 = () => {
+import { CCFormTypes } from "@/app/customer-management/corporate/_components/data";
+import { ChildComponentProps } from "@/components/modal/_components/ICFormCreateModal";
+
+const Form3 = ({ formik, changePage }: ChildComponentProps<CCFormTypes>) => {
   return (
     <>
       <div className="border border-[#C4C4C4] rounded-b-md w-full">

@@ -75,7 +75,7 @@ const CorporateHeader = ({ data }:{ data:CorporateCustomerType[]| undefined }) =
                           <p>Export as Pdf</p>
                         </button>
                         <button
-                          onClick={() =>dispatch(openModal({ modalType:'ICFORMCREATEMODAL',modalData:{}}))}
+                          onClick={() =>dispatch(openModal({ modalType:'CCFORMCREATEMODAL',modalData:{}}))}
                           className="bg-pryColor text-white px-1 py-1 flex items-center gap-1"
                         >
                           <IoAddSharp size={18} />

@@ -20,7 +20,7 @@ const FormThree =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
 
             <div className="container">
               <div className="innerContainer">
-                <label className="formLabel">Address 1</label>
+                <label className="formLabel">Address</label>
                 <input type="text" onChange={formik.handleChange} name='address.address1' className="formInput" />
               </div>
             </div>

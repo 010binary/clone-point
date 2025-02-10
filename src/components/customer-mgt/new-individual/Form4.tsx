@@ -98,6 +98,12 @@ const FormFour =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
           <button className="bg-pryColor text-white py-1.5 lg:py-2 px-3 w-full rounded-lg">
             Save
           </button>
+          <button
+            onClick={()=>changePage(3)}
+            className="border-pryColor border hover:scale-[0.98] transition-all ease-linear text-pryColor py-1.5 lg:py-2 px-3 w-full rounded-lg"
+          >
+            Back
+          </button>
         </div>
       </div>
     </>

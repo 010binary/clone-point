@@ -1,10 +1,7 @@
 "use client";
 import { ChildComponentProps } from "@/components/modal/_components/ICFormCreateModal";
-import  Dropzone  from "react-dropzone";
-import React, { useEffect, useState } from "react";
-import { useImageTobase64 } from "@/hooks/useImageTOBase64";
-import { FormikProps } from "formik";
-import Circleloader from "@/components/common/Circleloader";
+import React from "react";
+import { ImageInputCard } from "@/components/ui/Inputs/ImageInputOutline";
 
 
 const FormTwo =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
@@ -87,112 +84,5 @@ const FormTwo =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
 
 
 
-const ImageInputCard = <T,>({
-  formik,
-  name,
-  title,
-}: {
-  formik: FormikProps<T>,
-  name: string,
-  title: string,
-}) => {
-  const { base64Image, cancelConversion, convertImageToBase64, isLoading } = useImageTobase64();
-  const [placeHolder, setplaceHolder] = useState<string>()
-
-  const handleImageUpload = async (File: File) => {
-    if (File) {
-      setplaceHolder(File.name)
-      convertImageToBase64(File)
-    }
-  }
-
-  useEffect(() => {
-    if (base64Image) {
-      formik.setFieldValue(name, base64Image)
-    }
-    //eslint-disable-next-line
-  }, [base64Image])
-
-  return (
-    <div className="flex flex-col gap-2 mt-1">
-      <p className="text-sm font-medium text-[#404B7C]">
-        {title}
-      </p>
-      <div className="flex items-center gap-3 w-full ">
-        <Dropzone onDrop={
-          (acceptedFiles) => {
-            // setIdCard([...idCard, ...acceptedFiles])
-            handleImageUpload(acceptedFiles[0])
-          }
-        } maxFiles={1}>
-          {({ getRootProps, getInputProps }) => (
-            <div className="border border-dashed rounded-lg border-pryColor h-24" {...getRootProps()}>
-              <input {...getInputProps({ accept: 'image/*' })} />
-              {/* {placeHolder ?
-              (
-                <>{placeHolder}</>
-              )
-              : (
-              
-              <div className="py-5 px-3 flex flex-col gap-1">
-                <p className="text-xs md:text-sm text-pryColor">
-                  Drag or click to upload file
-                </p>
-                <p className="text-xs text-[#575757]">
-                  Supported formats: JPEG, JPG or PNG
-                </p>
-                <Circleloader/>
-              </div>
-            )} */}
-              <Placeholder data={placeHolder ? placeHolder : ''} isLoading={isLoading} />
-            </div>
-          )}
-        </Dropzone>
-
-        {/* I dont thik this btn is important */}
-        {/* <button className="bg-[#6699FF] py-1.5 px-4 text-white text-xs md:text-sm">
-        Upload
-      </button> */}
-      </div>
-      <aside className=" text-[10px] opacity-45">** Upload a <strong>CLEAR</strong> copy to avoid errors **</aside>
-    </div>
-  )
-}
-
-
-const Placeholder=({
-  data,
-  isLoading
-}:
-{
-  data:string,
-  isLoading:boolean
-})=>{
-
-  const UploadPlaceholder=()=>{
-    return(
-      <>
-       <p className="text-xs md:text-sm text-pryColor">
-          Drag or click to upload file
-        </p>
-        <p className="text-xs text-[#575757]">
-          Supported formats: JPEG, JPG or PNG
-        </p>
-      </>
-    )
-  }
-
-  return(
-    <div className="py-5 px-3 flex flex-col gap-1">
-      {
-          (data && !isLoading ) ?
-          <>{data}</>
-          :(!data && !isLoading )?(
-            <UploadPlaceholder/>
-          ):<Circleloader/>
-      }
-    </div>
-  )
-}
 
 export default FormTwo;

@@ -1,5 +1,6 @@
 "use client";
 import { ChildComponentProps } from "@/components/modal/_components/ICFormCreateModal";
+import { ImageInputCard } from "@/components/ui/Inputs/ImageInputOutline";
 import { countries } from "@/lib/customer-management/countries";
 import React from "react";
 
@@ -16,16 +17,18 @@ const FormThree =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
         <div className="px-2 md:px-3 lg:px-4 py-4 flex flex-col gap-4">
           <p>Address Details</p>
           <div className="flex flex-col gap-3 text-xs md:text-sm lg:w-[85%]">
+
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Address 1</label>
-                <input type="text" className="formInput" />
+                <input type="text" onChange={formik.handleChange} name='address.address1' className="formInput" />
               </div>
             </div>
+
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Residential Status</label>
-                <select name="" id="" className="formInput">
+                <select name="address1.residentialStatus" onChange={formik.handleChange} id="" className="formInput">
                   <option value="Rented">Rented</option>
                   <option value="Owed">Owned</option>
                   <option value="Living">Living with Family</option>
@@ -33,28 +36,29 @@ const FormThree =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
                 </select>
               </div>
             </div>
+
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">State</label>
-                <input type="text" className="formInput" />
+                <input type="text" onChange={formik.handleChange} name='address.state' className="formInput" />
               </div>
             </div>
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">City</label>
-                <input type="text" className="formInput" />
+                <input type="text" onChange={formik.handleChange} name='address.city' className="formInput" />
               </div>
             </div>
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">LGA</label>
-                <input type="text" className="formInput" />
+                <input type="text" onChange={formik.handleChange} name='address.lga' className="formInput" />
               </div>
             </div>
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Country</label>
-                <select name="" id="" className="formInput">
+                <select name="address.country" id="" className="formInput">
                   <option value="">select</option>
                   {countries?.map((country) => (
                     <option key={country} value={country}>
@@ -66,19 +70,25 @@ const FormThree =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
             </div>
             <div className="container">
               <div className="innerContainer">
-                <label className="formLabel">Home phone</label>
-                <input type="number" className="formInput spin-button-none" />
+                <label className="formLabel" >Home phone</label>
+                <input type="number" onChange={formik.handleChange} name="address.homePhone" className="formInput spin-button-none" />
               </div>
             </div>
-            <div className="container">
+            {/* <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Email</label>
-                <input type="email" className="formInput" />
+                <input type="email" onChange={formik.handleChange} name="address" className="formInput" />
               </div>
-            </div>
+            </div> */}
             {/* upload */}
-            <div className="flex flex-col gap-2">
-              <p className="text-sm font-medium text-[#404B7C]">
+           
+             <div className="flex flex-col gap-2">
+              <ImageInputCard
+                formik={formik}
+                name="address.proofOfAddressBase64String"
+                title="Upload Proof of Address (Utility bill)"
+              />
+              {/* <p className="text-sm font-medium text-[#404B7C]">
                 Upload Proof of Address{" "}
                 <span className="font-light text-[#404B7C99]">
                   (Utility bill)
@@ -98,15 +108,15 @@ const FormThree =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
                 <button className="bg-[#6699FF] py-1.5 px-4 text-white text-xs md:text-sm">
                   Upload
                 </button>
-              </div>
-              <div className="flex flex-col gap-4 pt-2">
+              </div> */}
+              <div className="flex flex-col gap-4 pt-2"> 
                 {/* next of kin */}
                 <p className="font-semibold lg:text-lg">Next of Kin</p>
                 <div className="flex flex-col gap-3">
                   <div className="container">
                     <div className="innerContainer">
                       <label className="formLabel">Title</label>
-                      <select name="" id="" className="formInput">
+                      <select name="nextOfKin.title" id="" className="formInput">
                         <option value="Mr">Mr</option>
                         <option value="Ms">Ms</option>
                         <option value="Mrs">Mrs</option>
@@ -116,19 +126,19 @@ const FormThree =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
                   <div className="container">
                     <div className="innerContainer">
                       <label className="formLabel">First Name</label>
-                      <input type="text" className="formInput" />
+                      <input type="text" name='nextOfKin.firstName' onChange={formik.handleChange}  className="formInput" />
                     </div>
                   </div>
                   <div className="container">
                     <div className="innerContainer">
                       <label className="formLabel">Last Name</label>
-                      <input type="text" className="formInput" />
+                      <input type="text" name='nextOfKin.lastName' onChange={formik.handleChange}  className="formInput" />
                     </div>
                   </div>
                   <div className="container">
                     <div className="innerContainer">
                       <label className="formLabel">Address</label>
-                      <input type="text" className="formInput" />
+                      <input type="text" name="nextOfKin.address" onChange={formik.handleChange}  className="formInput" />
                     </div>
                   </div>
                   <div className="container">
@@ -137,19 +147,27 @@ const FormThree =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
                       <input
                         type="number"
                         className="formInput spin-button-none"
+                        onChange={formik.handleChange}
+                        name="nextOfKin.phone"
                       />
                     </div>
                   </div>
                   <div className="container">
                     <div className="innerContainer">
                       <label className="formLabel">Email</label>
-                      <input type="email" className="formInput" />
+                      <input type="email"
+                       onChange={formik.handleChange}
+                        name="nextOfKin.email"
+                      className="formInput" />
                     </div>
                   </div>
                   <div className="container">
                     <div className="innerContainer">
                       <label className="formLabel">Relationship</label>
-                      <select name="" id="" className="formInput">
+                      <select id=""
+                       onChange={formik.handleChange}
+                        name="nextOfKin.relationship"
+                      className="formInput">
                         <option value="">Select one</option>
                         <option value="Father">Father</option>
                         <option value="Mother">Mother</option>
@@ -163,7 +181,7 @@ const FormThree =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> 
           </div>
           <button
             onClick={handleForm}

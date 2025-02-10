@@ -43,7 +43,7 @@ const ICFormCreateModal = ({ modalOpen, modalData, closeModal }: { modalOpen: bo
                                 {pickForm === 1 && <FormOne formik={formik} changePage={setPickForm} />}
                                 {pickForm === 2 && <FormTwo formik={formik} changePage={setPickForm} />}
                                 {pickForm === 3 && <FormThree formik={formik} changePage={setPickForm} />}
-                                {pickForm === 4 && <FormFour />}
+                                {pickForm === 4 && <FormFour formik={formik} changePage={setPickForm} />}
                 </main>
             </section>
         </Modal>

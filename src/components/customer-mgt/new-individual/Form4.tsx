@@ -1,8 +1,85 @@
 "use client";
 import { ChildComponentProps } from "@/components/modal/_components/ICFormCreateModal";
 import { ImageInputCard } from "@/components/ui/Inputs/ImageInputOutline";
+import { useMutation } from "@tanstack/react-query";
+import { createICAccounts } from "../../../../services";
+import { APICall } from "@/utils/apicall";
+import { ICInitialValuesType } from "@/app/customer-management/individual/_components/data";
 
 const FormFour =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
+  const { data, mutate } = useMutation({
+    mutationFn: async (formData:ICInitialValuesType) => {
+      const response = await APICall(createICAccounts, formData , true);
+      return response;
+    },
+  })
+console.log(data)
+
+  const handleSumit=()=>{
+    // mutate(
+    //   {
+    //     "address": {
+    //         "address1": "Lagos",
+    //         "city": "Lagos",
+    //         "country": "Lagos",
+    //         "homePhone": "07030490674",
+    //         "lga": "Ejigbo",
+    //         "proofOfAddressBase64String": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAgAB/CH8QAAAAABJRU5ErkJggg==",
+    //         "residentialStatus": "Provided_by_Employer",
+    //         "state": "string"
+    //     },
+    //     "customerDetail": {
+    //         "accountType": "SAVINGs",
+    //         "title": "Mr",
+    //         "bvn": "string",
+    //         "citizenship": "nigeria",
+    //         "dateOfBirth": "06-12-2020",
+    //         "email": "643@gmail.com",
+    //         "firstName": "Damilare",
+    //         "gender": "MALe",
+    //         "lastName": "jeffstone",
+    //         "levelOfEducation": "BSC",
+    //         "middleName": "Stephen",
+    //         "mobilePhone": "07030490674",
+    //         // 'maritalStatus':'single'
+    //     },
+    //     "customerType": "IC",
+    //     "employment": {
+    //         "cacDocumentBase64String": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAgAB/CH8QAAAAABJRU5ErkJggg==",
+    //         "currentEmployer": "string",
+    //         "employmentStatus": "Employed",
+    //         "netMonthlyIncome": '90',
+    //         "officeAddress": "string",
+    //         "officeEmail": "string",
+    //         "passportPhotographBase64String": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAgAB/CH8QAAAAABJRU5ErkJggg==",
+    //         "pensionNumber": "string",
+    //         "sector": "Banking",
+    //         "taxNumber": "string",
+    //         "signature": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAgAB/CH8QAAAAABJRU5ErkJggg=="
+    //     },
+    //     "identification": {
+    //         "backOfIdCardLinkBase64String": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAgAB/CH8QAAAAABJRU5ErkJggg==",
+    //         "expirationDate": "12-12-2004",
+    //         "frontOfIdCardImageBase64String": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAgAB/CH8QAAAAABJRU5ErkJggg==",
+    //         "identificationNumber": "string",
+    //         "identificationType": "International_Passport",
+    //         "issueDate": "01-12-2003",
+    //         "other": "fd"
+    //     },
+    //     "nextOfKin": {
+    //         "address": "dsfd",
+    //         "email": "string",
+    //         "firstName": "string",
+    //         "lastName": "string",
+    //         "phone": "string",
+    //         "relationship": "BROTHER",
+    //         "title": "mR"
+    //     }
+    // }
+    // )
+    console.log('data')
+    formik.submitForm()
+  }
   
   return (
     <>
@@ -52,7 +129,7 @@ const FormFour =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Office Email</label>
-                <input name='employment.officeEmail' type="email" className="formInput" />
+                <input name='employment.officeEmail' type="email" onChange={formik.handleChange} className="formInput" />
               </div>
             </div>
              {/* //// */}
@@ -95,7 +172,7 @@ const FormFour =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
               title="Upload Signature"
             />
           </div>
-          <button className="bg-pryColor text-white py-1.5 lg:py-2 px-3 w-full rounded-lg">
+          <button className="bg-pryColor text-white py-1.5 lg:py-2 px-3 w-full rounded-lg" type="button" onClick={handleSumit}>
             Save
           </button>
           <button

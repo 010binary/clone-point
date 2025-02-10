@@ -9,7 +9,7 @@ let resetState: voidFn = () => {};
 export const APICall = async (
 	fn: (...args: any) => Promise<any>,
 	args?: any,
-	showSuccessToast?: boolean,
+	showSuccessToast?: boolean ,
 	showLoadingBar: boolean = true,
 ) => {
 	try {
@@ -20,10 +20,13 @@ export const APICall = async (
 			!(typeof args == "string")
 				? await fn(...args)
 				: await fn(args);
-		if (showSuccessToast) toast.success(response.data.message, { duration: TOASTDURATION
-			,
-			className:'bg-green-500 !text-white !border-0', descriptionClassName:'text-white'
-		});
+		if (showSuccessToast){
+			toast.success(response.data.message, {
+				duration: TOASTDURATION,
+				className: "bg-green-500 !text-white !border-0",
+				descriptionClassName: "text-white",
+			  });
+		}
 		showLoadingBar && loadingBarRef.current?.complete();
 		return response;
 	} catch (error: any) {

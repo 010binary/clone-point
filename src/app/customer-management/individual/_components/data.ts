@@ -58,7 +58,76 @@ export const individualCustomerData: individualCustomerType[] = [
     }  
 ];
 
-export const ICInitialValues = {
+export interface AddressType {
+  address1: string;
+  city: string;
+  country: string;
+  homePhone: string;
+  lga: string;
+  proofOfAddressBase64String: string;
+  residentialStatus: string;
+  state: string;
+}
+
+export interface CustomerDetailType {
+  accountType: string;
+  title: string;
+  bvn: string;
+  citizenship: string;
+  dateOfBirth: string;
+  email: string;
+  firstName: string;
+  gender: string;
+  lastName: string;
+  levelOfEducation: string;
+  middleName: string;
+  mobilePhone: string;
+}
+
+export interface EmploymentType {
+  cacDocumentBase64String: string;
+  currentEmployer: string;
+  employmentStatus: string;
+  netMonthlyIncome: string;
+  officeAddress: string;
+  officeEmail: string;
+  passportPhotographBase64String: string;
+  pensionNumber: string;
+  sector: string;
+  taxNumber: string;
+  signature: string;
+}
+
+export interface IdentificationType {
+  backOfIdCardLinkBase64String: string;
+  expirationDate: string;
+  frontOfIdCardImageBase64String: string;
+  identificationNumber: string;
+  identificationType: string;
+  issueDate: string;
+  other: string;
+}
+
+export interface NextOfKinType {
+  address: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  relationship: string;
+  title: string;
+}
+
+export interface ICInitialValuesType {
+  address: AddressType;
+  customerDetail: CustomerDetailType;
+  customerType: string;
+  employment: EmploymentType;
+  identification: IdentificationType;
+  nextOfKin: NextOfKinType;
+}
+
+export const ICInitialValues: ICInitialValuesType = {
   address: {
     address1: '',
     city: '',
@@ -82,20 +151,19 @@ export const ICInitialValues = {
     levelOfEducation: '',
     middleName: '',
     mobilePhone: '',
-    maritalStatus: '',
   },
-  customerType: '',
+  customerType: 'IC',
   employment: {
     cacDocumentBase64String: '',
-    // currentEmployer: '',
-    // employmentStatus: '',
-    // netMonthlyIncome: '',
-    // officeAddress: '',
-    // officeEmail: '',
+    currentEmployer: '',
+    employmentStatus: '',
+    netMonthlyIncome: '',
+    officeAddress: '',
+    officeEmail: '',
     passportPhotographBase64String: '',
-    // pensionNumber: '',
-    // sector: '',
-    // taxNumber: '',
+    pensionNumber: '',
+    sector: '',
+    taxNumber: '',
     signature: '',
   },
   identification: {

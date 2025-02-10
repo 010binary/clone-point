@@ -1,6 +1,7 @@
 "use client";
 import { ChildComponentProps } from "@/components/modal/_components/ICFormCreateModal";
 import { countries } from "@/lib/customer-management/countries";
+import { formatDateDDMMYYYY } from "@/utility";
 // import { setPickForm } from "@/redux/features/customerSlice";
 // import { useAppDispatch } from "@/redux/hooks";
 
@@ -31,6 +32,7 @@ const FormOne = <T,>({ formik, changePage }: ChildComponentProps<T>) => {
                 className="formInput"
                 onChange={formik.handleChange}
                 >
+                  <option value="">slect</option>
                   <option value="Mr">Mr</option>
                   <option value="Ms">Ms</option>
                   <option value="Mrs">Mrs</option>
@@ -68,9 +70,9 @@ const FormOne = <T,>({ formik, changePage }: ChildComponentProps<T>) => {
               </div>
             </div>
             <div className="container">
-              <div className="innerContainer">
+                <div className="innerContainer">
                 <label className="formLabel">Date of Birth</label>
-                <input type="date" onChange={formik.handleChange}  className="formInput" />
+                <input type="date" name="customerDetail.dateOfBirth" onChange={(e)=>formik.setFieldValue('customerDetail.dateOfBirth',formatDateDDMMYYYY(e.target.value))}  className="formInput" />
               </div>
             </div>
             <div className="container">
@@ -79,14 +81,12 @@ const FormOne = <T,>({ formik, changePage }: ChildComponentProps<T>) => {
                 <input type="number" name="customerDetail.bvn" onChange={formik.handleChange}  className="formInput spin-button-none" />
               </div>
             </div>
-            <button className="bg-[#6699FF] text-white px-2.5 py-1.5 w-fit">
-              Validate BVN
-            </button>
             {/* bottom */}
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Account Type</label>
                 <select name="customerDetail.accountType" id="" onChange={formik.handleChange}  className="formInput">
+                  <option value="">Select</option>
                   <option value="Savings">Savings</option>
                   <option value="Current">Current</option>
                   <option value="Fixed Deposit">Fixed Deposit</option>
@@ -104,7 +104,7 @@ const FormOne = <T,>({ formik, changePage }: ChildComponentProps<T>) => {
                 </select>
               </div>
             </div>
-            <div className="container">
+            {/* <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Marital Status</label>
                 <select name="customerDetail.maritalStatus" id="" onChange={formik.handleChange}  className="formInput">
@@ -113,7 +113,7 @@ const FormOne = <T,>({ formik, changePage }: ChildComponentProps<T>) => {
                   <option value="Divorced">Divorced</option>
                 </select>
               </div>
-            </div>
+            </div> */}
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Citizenship</label>

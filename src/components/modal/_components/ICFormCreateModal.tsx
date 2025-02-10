@@ -7,7 +7,10 @@ import FormTwo from '@/components/customer-mgt/new-individual/Form2'
 import FormThree from '@/components/customer-mgt/new-individual/Form3'
 import FormFour from '@/components/customer-mgt/new-individual/Form4'
 import { FormikProps, useFormik } from 'formik'
-import { ICInitialValues, ICvalidationSchema } from '@/app/customer-management/individual/_components/data'
+import { ICInitialValues, ICInitialValuesType, ICvalidationSchema } from '@/app/customer-management/individual/_components/data'
+import { APICall } from '@/utils/apicall'
+import { useMutation } from '@tanstack/react-query'
+import { createICAccounts } from '../../../../services'
 
 
 export interface ChildComponentProps<T> {
@@ -26,11 +29,27 @@ const ICFormCreateModal = ({ modalOpen, modalData, closeModal }: { modalOpen: bo
         validationSchema: ICvalidationSchema,
         enableReinitialize: true,
         onSubmit: (values) => {
-            console.log('Form Data:', values);
+            if (Object.keys(formik.errors).length > 0) {
+                console.log('Validation Errors:', formik.errors);
+            } else {
+                mutate(values);
+                console.log('Form Data:', values);
+            }
         }
     })
 
+    const { mutate } = useMutation({
+        mutationFn: async (formData:ICInitialValuesType) => {
+          const response = await APICall(createICAccounts, formData , true);
+          return response;
+        },
+      })
+    
+
     console.log('Form Data:', formik.values);
+    console.log('Form Data:', formik.dirty);
+    console.log('Form Data:', formik.isValid);
+    console.log('Form Data:', formik.errors);
     
     return (
         <Modal show={modalOpen} onClose={closeModal} >

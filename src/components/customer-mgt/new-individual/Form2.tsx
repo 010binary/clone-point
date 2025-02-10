@@ -2,6 +2,7 @@
 import { ChildComponentProps } from "@/components/modal/_components/ICFormCreateModal";
 import React from "react";
 import { ImageInputCard } from "@/components/ui/Inputs/ImageInputOutline";
+import { formatDateDDMMYYYY } from "@/utility";
 
 
 const FormTwo =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
@@ -31,25 +32,25 @@ const FormTwo =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Other (Specify)</label>
-                <input type="text" name="identification.other" className="formInput" />
+                <input type="text" name="identification.other" onChange={formik.handleChange} className="formInput" />
               </div>
             </div>
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Identification Number</label>
-                <input type="text" name="identification.identificationNumber" className="formInput" />
+                <input type="text" name="identification.identificationNumber" onChange={formik.handleChange} className="formInput" />
               </div>
             </div>
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Issue Date</label>
-                <input type="text" name="identification.issueDate" className="formInput" />
+                <input type="date" name="identification.issueDate" onChange={(e)=>formik.setFieldValue('identification.issueDate',formatDateDDMMYYYY(e.target.value))} className="formInput" />
               </div>
             </div>
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Expiration Date</label>
-                <input type="text" name="identification.expirationDate" className="formInput" />
+                <input type="date" name="identification.expirationDate" onChange={(e)=>formik.setFieldValue('identification.expirationDate',formatDateDDMMYYYY(e.target.value))} className="formInput" />
               </div>
             </div>
 
@@ -60,7 +61,7 @@ const FormTwo =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
             />
             <ImageInputCard
             formik={formik}
-            name="identification.backOfIdCardImageBase64String"
+            name="identification.backOfIdCardLinkBase64String"
             title="Upload Back Copy of The ID card"
             />
           </div>

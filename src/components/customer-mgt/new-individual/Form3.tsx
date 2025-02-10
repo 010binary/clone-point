@@ -28,7 +28,7 @@ const FormThree =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Residential Status</label>
-                <select name="address1.residentialStatus" onChange={formik.handleChange} id="" className="formInput">
+                <select name="address.residentialStatus" onChange={formik.handleChange} id="" className="formInput">
                   <option value="Rented">Rented</option>
                   <option value="Owed">Owned</option>
                   <option value="Living">Living with Family</option>
@@ -58,7 +58,7 @@ const FormThree =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Country</label>
-                <select name="address.country" id="" className="formInput">
+                <select name="address.country" onChange={formik.handleChange} id="" className="formInput">
                   <option value="">select</option>
                   {countries?.map((country) => (
                     <option key={country} value={country}>
@@ -116,7 +116,7 @@ const FormThree =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
                   <div className="container">
                     <div className="innerContainer">
                       <label className="formLabel">Title</label>
-                      <select name="nextOfKin.title" id="" className="formInput">
+                      <select name="nextOfKin.title" onChange={formik.handleChange} id="" className="formInput">
                         <option value="Mr">Mr</option>
                         <option value="Ms">Ms</option>
                         <option value="Mrs">Mrs</option>

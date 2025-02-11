@@ -114,7 +114,7 @@ export const CCvalidationSchema = Yup.object({
       .matches(/^\d{11}$/, "BVN must be 11 digits")
       .required("BVN is required"),
     citizenship: Yup.string().required("Citizenship is required"),
-    dateOfBirth: Yup.date().required("Date of birth is required"),
+    dateOfBirth: Yup.string().required("Date of birth is required"),
     email: Yup.string().email("Invalid email").required("Email is required"),
     firstName: Yup.string().required("First name is required"),
     gender: Yup.string().oneOf(["Male", "Female"], "Invalid gender"),
@@ -127,14 +127,14 @@ export const CCvalidationSchema = Yup.object({
       .required("Mobile phone is required"),
     notes: Yup.string(),
     numberOfEmployees: Yup.number()
-      .min(1, "Must have at least 1 employee")
+      .min(0, "Must have at least 1 employee")
       .required("Number of employees is required"),
     registrationYear: Yup.string().required("Registration year is required"),
     title: Yup.string().required("Title is required"),
   }),
 
   directorsIds: Yup.array()
-    .of(Yup.number().min(1, "Director ID must be a valid number"))
+    .of(Yup.number().min(0, "Director ID must be a valid number"))
     .required("At least one director ID is required"),
 });
 

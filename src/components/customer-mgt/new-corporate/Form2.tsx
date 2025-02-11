@@ -2,6 +2,7 @@
 
 import { CCFormTypes } from "@/app/customer-management/corporate/_components/data";
 import { ChildComponentProps } from "@/components/modal/_components/ICFormCreateModal";
+import { ImageInputCard } from "@/components/ui/Inputs/ImageInputOutline";
 import { countries } from "@/lib/customer-management/countries";
 
 
@@ -84,10 +85,24 @@ const Form2 = ({ formik, changePage }: ChildComponentProps<CCFormTypes>) => {
              {/* // */}
             <div className="container">
               <div className="innerContainer">
+                <label className="formLabel">Home phone</label>
+                <input onChange={formik.handleChange} value={formik.values.address.homePhone} name={'address.homePhone'} type="number" className="formInput spin-button-none" />
+              </div>
+            </div>
+             {/* // */}
+            <div className="container">
+              <div className="innerContainer">
                 <label className="formLabel">Email</label>
                 <input onChange={formik.handleChange} value={formik.values.address.email} name={'address.email'} type="email" className="formInput" />
               </div>
             </div>
+
+            <ImageInputCard
+              formik={formik}
+              value={formik.values.address.proofOfAddressBase64String}
+              name="address.proofOfAddressBase64String"
+              title="Upload proof of Address"
+            />
           </div>
 
           <button
@@ -95,6 +110,13 @@ const Form2 = ({ formik, changePage }: ChildComponentProps<CCFormTypes>) => {
             className="bg-pryColor text-white py-1.5 lg:py-2 px-3 w-full rounded-lg"
           >
             Next
+          </button>
+          <button
+          disabled={formik.isSubmitting}
+            onClick={()=>changePage(1)}
+            className="border-pryColor border hover:scale-[0.98] transition-all ease-linear text-pryColor py-1.5 lg:py-2 px-3 w-full rounded-lg"
+          >
+            Back
           </button>
         </div>
       </form>

@@ -21,7 +21,7 @@ const Form3 = ({ formik, changePage }: ChildComponentProps<CCFormTypes>) => {
 
             <div className="border border-[#C4C4C4] rounded-lg w-full h-10">
               <div className="flex justify-between items-center h-full px-3">
-                <input type="checkbox" />
+                <input type="checkbox" value={formik.values.directorsIds[0]} />
                 <span className="px-6 border-s h-full flex items-center">
                   Name
                 </span>
@@ -36,8 +36,15 @@ const Form3 = ({ formik, changePage }: ChildComponentProps<CCFormTypes>) => {
 
             <div className="rounded-lg bg-[#F8F8F8] w-full h-60"></div>
           </div>
-          <button className="bg-pryColor text-white py-1.5 lg:py-2 px-3 w-full rounded-lg">
+          <button className="bg-pryColor text-white py-1.5 lg:py-2 px-3 w-full rounded-lg" type="button" onClick={formik.submitForm}>
             Save
+          </button>
+          <button
+          disabled={formik.isSubmitting}
+            onClick={()=>changePage(2)}
+            className="border-pryColor border hover:scale-[0.98] transition-all ease-linear text-pryColor py-1.5 lg:py-2 px-3 w-full rounded-lg"
+          >
+            Back
           </button>
         </div>
       </div>

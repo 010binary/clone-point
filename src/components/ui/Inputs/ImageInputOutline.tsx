@@ -8,10 +8,12 @@ export const ImageInputCard = <T,>({
     formik,
     name,
     title,
+    value,
   }: {
     formik: FormikProps<T>,
     name: string,
     title: string,
+    value?: string
   }) => {
     ///this eslint disble is for cancelconversion, it is not being used yet
     //eslint-disable-next-line

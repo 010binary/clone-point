@@ -35,4 +35,7 @@ export const getPaginatedAccounts = async (
 export const createICAccounts = async (body:ICInitialValuesType) => {
     return axios.post(`${API_URL}${ApiRoutes.CUSTOMER}`,body);
 }
+export const createCCAccounts = async (body:ICInitialValuesType) => {
+    return axios.post(`${API_URL}${ApiRoutes.COPORATE_ACCOUNTS}`,body);
+}
 

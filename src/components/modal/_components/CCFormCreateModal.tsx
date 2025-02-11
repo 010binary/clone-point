@@ -5,7 +5,7 @@ import { FaXmark } from 'react-icons/fa6'
 import { FormikProps, useFormik } from 'formik'
 import { APICall } from '@/utils/apicall'
 import { useMutation } from '@tanstack/react-query'
-import { createICAccounts } from '../../../../services'
+import { createCCAccounts } from '../../../../services'
 import Form1 from '@/components/customer-mgt/new-corporate/Form1'
 import Form2 from '@/components/customer-mgt/new-corporate/Form2'
 import Form3 from '@/components/customer-mgt/new-corporate/Form3'
@@ -39,7 +39,7 @@ const CCFormCreateModal = ({ modalOpen, modalData, closeModal }: { modalOpen: bo
 
     const { mutate } = useMutation({
         mutationFn: async (formData:CCFormTypes) => {
-          const response = await APICall(createICAccounts, formData , true);
+          const response = await APICall(createCCAccounts, formData , true);
           return response;
         },
       })

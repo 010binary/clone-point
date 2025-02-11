@@ -11,6 +11,7 @@ import { TiArrowForwardOutline } from 'react-icons/ti'
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { IndividualCustomerType } from './IndividualCustomerTable'
+import Link from 'next/link'
 
 const title = "List Account"
 
@@ -73,13 +74,11 @@ const ListHeader = ({ data }: { data: IndividualCustomerType[] | undefined }) =>
                         <TiArrowForwardOutline />
                         <p>Export as Pdf</p>
                     </button>
-                    <button
-                        onClick={() => dispatch(openModal({ modalType: 'ICFORMCREATEMODAL', modalData: {} }))}
-                        className="bg-pryColor text-white px-2 py-1 flex items-center gap-1"
-                    >
+                    <Link type='button' href={'account-management/create-account'}  className="bg-pryColor text-white px-2 py-1 flex items-center gap-1">
                         <IoAddSharp size={18} />
                         <p>Create Account</p>
-                    </button>
+                    </Link>
+                   
                 </div>
             </div>
             <div className="text-xs lg:text-sm 2xl:text-base md:w-[50%] lg:w-[45%] xl:w-[40%]">

@@ -1,8 +1,39 @@
 "use client";
+import { APICall } from "@/utils/apicall";
+import { useMutation } from "@tanstack/react-query";
+import { useFormik } from "formik";
 import { useState } from "react";
+import { createICAccounts } from "../../../../services";
+import { AccountDetailsinitialValues, AccountDetailsType, AccountDetailsValidationSchema } from "./data";
 
 const CreateAccount = () => {
   const [changeTab, setChangeTab] = useState("signatory");
+  const formik = useFormik({
+    initialValues: AccountDetailsinitialValues,
+    validationSchema: AccountDetailsValidationSchema,
+    enableReinitialize: true,
+    onSubmit: (values) => {
+      if (Object.keys(formik.errors).length > 0) {
+        console.log('Validation Errors:', formik.errors);
+      } else {
+        mutate(values);
+        console.log('Form Data:', values);
+      }
+    }
+  })
+
+  const { mutate } = useMutation({
+    mutationFn: async (formData: AccountDetailsType) => {
+      const response = await APICall(createICAccounts, formData, true);
+      return response;
+    },
+  })
+
+
+console.log('Form Data:', formik.values);
+console.log('Form Data:', formik.dirty);
+console.log('Form Data:', formik.isValid);
+console.log('Form Data:', formik.errors);
 
   const handleChangeTab = (
     str: string,
@@ -30,6 +61,9 @@ const CreateAccount = () => {
                     <label className="formLabel">Account Number</label>
                     <input
                       type="number"
+                      name="accountNumber"
+                      value={formik.values.accountNumber}
+                      onChange={formik.handleChange}
                       className="formInput spin-button-none"
                     />
                   </div>
@@ -38,7 +72,8 @@ const CreateAccount = () => {
                 <div className="container">
                   <div className="innerContainer">
                     <label className="formLabel">Account Type</label>
-                    <select name="" id="" className="formInput">
+                    <select name="accountType" id="" className="formInput" value={formik.values.accountType} onChange={formik.handleChange}
+                    >
                       <option value=""></option>
                       <option value="">Current</option>
                       <option value="">Savings</option>
@@ -52,7 +87,7 @@ const CreateAccount = () => {
                 <div className="container">
                   <div className="innerContainer">
                     <label className="formLabel">Customer</label>
-                    <select name="" id="" className="formInput">
+                    <select name="" id="" className="formInput" value={formik.values.c}>
                       <option value=""></option>
                       <option value="">Customer 1</option>
                       <option value="">Customer 2</option>
@@ -63,7 +98,7 @@ const CreateAccount = () => {
                 <div className="container">
                   <div className="innerContainer">
                     <label className="formLabel">Account Status</label>
-                    <select name="" id="" className="formInput">
+                    <select name="" id="" className="formInput" value={formik.values.acc}>
                       <option value=""></option>
                       <option value="">Active</option>
                       <option value="">Inactive</option>

@@ -3,8 +3,9 @@ import { APICall } from "@/utils/apicall";
 import { useMutation } from "@tanstack/react-query";
 import { useFormik } from "formik";
 import { useState } from "react";
-import { createICAccounts } from "../../../../services";
+import { createAccount } from "../../../../services";
 import { AccountDetailsinitialValues, AccountDetailsType, AccountDetailsValidationSchema } from "./data";
+import { ImageInputCard } from "@/components/ui/Inputs/ImageInputOutline";
 
 const CreateAccount = () => {
   const [changeTab, setChangeTab] = useState("signatory");
@@ -24,7 +25,7 @@ const CreateAccount = () => {
 
   const { mutate } = useMutation({
     mutationFn: async (formData: AccountDetailsType) => {
-      const response = await APICall(createICAccounts, formData, true);
+      const response = await APICall(createAccount, formData, true);
       return response;
     },
   })
@@ -68,6 +69,18 @@ console.log('Form Data:', formik.errors);
                     />
                   </div>
                 </div>
+                <div className="container">
+                  <div className="innerContainer">
+                    <label className="formLabel">Net Monthly Income</label>
+                    <input
+                      type="number"
+                      name="netMonthlyIncome"
+                      value={formik.values.netMonthlyIncome}
+                      onChange={formik.handleChange}
+                      className="formInput spin-button-none"
+                    />
+                  </div>
+                </div>
 
                 <div className="container">
                   <div className="innerContainer">
@@ -75,11 +88,11 @@ console.log('Form Data:', formik.errors);
                     <select name="accountType" id="" className="formInput" value={formik.values.accountType} onChange={formik.handleChange}
                     >
                       <option value=""></option>
-                      <option value="">Current</option>
-                      <option value="">Savings</option>
-                      <option value="">Fixed deposit</option>
-                      <option value="">Dollar account</option>
-                      <option value="">My pikin savings</option>
+                      <option value="Current">Current</option>
+                      <option value="Savings">Savings</option>
+                      <option value="Fixed deposit">Fixed deposit</option>
+                      <option value="Dollar account">Dollar account</option>
+                      <option value="My pikin savings">My pikin savings</option>
                     </select>
                   </div>
                 </div>
@@ -98,10 +111,10 @@ console.log('Form Data:', formik.errors);
                 <div className="container">
                   <div className="innerContainer">
                     <label className="formLabel">Account Status</label>
-                    <select name="" id="" className="formInput" value={formik.values.acc}>
+                    <select name="status" id="" className="formInput" value={formik.values.status} onChange={formik.handleChange}>
                       <option value=""></option>
-                      <option value="">Active</option>
-                      <option value="">Inactive</option>
+                      <option value="Active">Active</option>
+                      <option value="Inactive">Inactive</option>
                     </select>
                   </div>
                 </div>
@@ -109,10 +122,10 @@ console.log('Form Data:', formik.errors);
                 <div className="container">
                   <div className="innerContainer">
                     <label className="formLabel">PND Status</label>
-                    <select name="" id="" className="formInput">
+                    <select name="pndStatus" id="" className="formInput" value={formik.values.pndStatus} onChange={formik.handleChange}>
                       <option value=""></option>
-                      <option value="">Yes</option>
-                      <option value="">No</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
                     </select>
                   </div>
                 </div>
@@ -120,15 +133,15 @@ console.log('Form Data:', formik.errors);
                 <div className="container">
                   <div className="innerContainer">
                     <label className="formLabel">Account Owner</label>
-                    <select name="" id="" className="formInput">
+                    <select name="accountOwner" id="" value={formik.values.accountOwner} onChange={formik.handleChange} className="formInput">
                       <option value=""></option>
-                      <option value="">Adewale Ojo</option>
-                      <option value="">Chibuzor Okere</option>
+                      <option value="Adewale Ojo">Adewale Ojo</option>
+                      <option value="Chibuzor Okere">Chibuzor Okere</option>
                     </select>
                   </div>
                 </div>
 
-                <div className="container">
+                {/* <div className="container">
                   <div className="innerContainer">
                     <label className="formLabel">Account Name</label>
                     <input type="text" className="formInput" />
@@ -147,7 +160,12 @@ console.log('Form Data:', formik.errors);
                     <label className="formLabel">Account manager </label>
                     <input type="text" className="formInput" />
                   </div>
-                </div>
+                </div> */}
+                <ImageInputCard
+                           formik={formik}
+                           name="mandateBase64String"
+                           title="Upload Mandate"
+                           />
 
                 <div className="container">
                   <div className="innerContainer">
@@ -155,7 +173,9 @@ console.log('Form Data:', formik.errors);
                       Note
                     </label>
                     <textarea
-                      name=""
+                      name="notes"
+                      value={formik.values.notes}
+                      onChange={formik.handleChange}
                       id=""
                       rows={3}
                       cols={20}
@@ -204,7 +224,7 @@ console.log('Form Data:', formik.errors);
                 </div>
               </div>
               {/* btn */}
-              <button className="bg-pryColor text-white py-1.5 lg:py-2 px-3 w-full rounded-lg">
+              <button type="button" onClick={formik.submitForm} className="bg-pryColor text-white py-1.5 lg:py-2 px-3 w-full rounded-lg">
                 Save
               </button>
             </form>

@@ -22,10 +22,10 @@ export type CustomerSignatory = {
     accountNumber: "",
     accountOwner: "Customer_Account",
     accountType: "Fixed_Deposit",
-    customerId: 0,
+    customerId: 1,
     mandateBase64String: "",
     customerSignatories: [],
-    netMonthlyIncome: 0,
+    netMonthlyIncome: 1,
     notes: "",
     pndStatus: "Yes",
     status: "Active",
@@ -38,27 +38,28 @@ export const AccountDetailsValidationSchema = Yup.object({
     .required("Account number is required"),
   
   accountOwner: Yup.string()
-    .oneOf(["Customer_Account"], "Invalid account owner")
+    // .oneOf(["Customer_Account"], "Invalid account owner")
     .required("Account owner is required"),
   
   accountType: Yup.string()
-    .oneOf(["Fixed_Deposit", "Savings", "Current"], "Invalid account type")
+    // .oneOf(["Fixed_Deposit", "Savings", "Current"], "Invalid account type")
     .required("Account type is required"),
   
   customerId: Yup.number()
-    .min(1, "Customer ID must be greater than 0")
+    // .min(1, "Customer ID must be greater than 0")
     .required("Customer ID is required"),
   
   mandateBase64String: Yup.string()
-    .required("Mandate is required")
-    .matches(/^data:image\/(png|jpeg|jpg);base64,/, "Invalid base64 image format"),
+    .required("Mandate is required"),
+    // .matches(/^data:image\/(png|jpeg|jpg);base64,/, "Invalid base64 image format"),
   
   customerSignatories: Yup.array()
     .of(Yup.object().shape({
-      id: Yup.number().min(1, "Signatory ID must be greater than 0").required("Signatory ID is required"),
+      id: Yup.number().min(0, "Signatory ID must be greater than 0").required("Signatory ID is required"),
     }))
-    .min(1, "At least one signatory is required")
-    .required("Signatories are required"),
+    // .min(1, "At least one signatory is required")
+    // .required("Signatories are required")
+    ,
   
   netMonthlyIncome: Yup.number()
     .min(0, "Net monthly income must be a positive number")

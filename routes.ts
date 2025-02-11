@@ -19,5 +19,6 @@ export const enum ApiRoutes {
     CUSTOMER = `${apiPrefix}customers`,
     PAGINATED_CUSTOMER= `${apiPrefix}paginated-customers`,
     PAGINATED_ACCOUNTS= `${apiPrefix}accounts`,
+    ACCOUNT= `${apiPrefix}account`,
     COPORATE_ACCOUNTS= `${apiPrefix}customers/corporate`
 }

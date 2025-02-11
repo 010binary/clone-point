@@ -10,6 +10,7 @@ import { API_URL } from "@/utils/varaibles"
 import axios from "axios"
 import { ApiRoutes } from "./routes"
 import { ICInitialValuesType } from "@/app/customer-management/individual/_components/data"
+import { AccountDetailsType } from "@/app/account-management/create-account/data"
 
 
 export const getAllCustomers=async()=>axios.get(`${API_URL}${ApiRoutes.CUSTOMER}`)
@@ -32,6 +33,9 @@ export const getPaginatedAccounts = async (
     return axios.get(`${API_URL}${ApiRoutes.PAGINATED_ACCOUNTS}?${params.toString()}`);
 }
 
+export const createAccount = async (body:AccountDetailsType) => {
+    return axios.post(`${API_URL}${ApiRoutes.ACCOUNT}`,body);
+}
 export const createICAccounts = async (body:ICInitialValuesType) => {
     return axios.post(`${API_URL}${ApiRoutes.CUSTOMER}`,body);
 }

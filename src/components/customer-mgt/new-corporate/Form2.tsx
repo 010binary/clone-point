@@ -33,6 +33,7 @@ const Form2 = ({ formik, changePage }: ChildComponentProps<CCFormTypes>) => {
               <div className="innerContainer">
                 <label className="formLabel">Residential Status</label>
                 <select  id="" className="formInput" onChange={formik.handleChange} value={formik.values.address.residentialStatus} name={'address.residentialStatus'}>
+                  <option value="">Select</option>
                   <option value="Rented">Rented</option>
                   <option value="Owed">Owned</option>
                   <option value="Living">Living with Family</option>

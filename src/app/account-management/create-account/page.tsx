@@ -30,12 +30,6 @@ const CreateAccount = () => {
     },
   })
 
-
-console.log('Form Data:', formik.values);
-console.log('Form Data:', formik.dirty);
-console.log('Form Data:', formik.isValid);
-console.log('Form Data:', formik.errors);
-
   const handleChangeTab = (
     str: string,
     e: React.MouseEvent<HTMLButtonElement>
@@ -54,7 +48,7 @@ console.log('Form Data:', formik.errors);
         <div className="border rounded-md flex flex-col gap-5 lg:w-[60%] xl:w-[55%] 2xl:w-[50%]">
           <div className="p-2 md:p-3 flex flex-col gap-6">
             <h1 className="font-medium lg:text-lg">Account Details</h1>
-            <form className="flex flex-col gap-10">
+            <form className="flex flex-col gap-10" onSubmit={formik.handleSubmit}>
               {/* inputs */}
               <div className="flex flex-col gap-4 lg:w-[70%] xl:w-[80%] 2xl:w-[70%]">
                 <div className="container">
@@ -67,6 +61,9 @@ console.log('Form Data:', formik.errors);
                       onChange={formik.handleChange}
                       className="formInput spin-button-none"
                     />
+                    {formik.errors.accountNumber && formik.touched.accountNumber && (
+                      <div className="text-red-500 text-sm">{formik.errors.accountNumber}</div>
+                    )}
                   </div>
                 </div>
                 <div className="container">
@@ -79,14 +76,16 @@ console.log('Form Data:', formik.errors);
                       onChange={formik.handleChange}
                       className="formInput spin-button-none"
                     />
+                    {formik.errors.netMonthlyIncome && formik.touched.netMonthlyIncome && (
+                      <div className="text-red-500 text-sm">{formik.errors.netMonthlyIncome}</div>
+                    )}
                   </div>
                 </div>
 
                 <div className="container">
                   <div className="innerContainer">
                     <label className="formLabel">Account Type</label>
-                    <select name="accountType" id="" className="formInput" value={formik.values.accountType} onChange={formik.handleChange}
-                    >
+                    <select name="accountType" id="" className="formInput" value={formik.values.accountType} onChange={formik.handleChange}>
                       <option value=""></option>
                       <option value="Current">Current</option>
                       <option value="Savings">Savings</option>
@@ -94,17 +93,9 @@ console.log('Form Data:', formik.errors);
                       <option value="Dollar account">Dollar account</option>
                       <option value="My pikin savings">My pikin savings</option>
                     </select>
-                  </div>
-                </div>
-
-                <div className="container">
-                  <div className="innerContainer">
-                    <label className="formLabel">Customer</label>
-                    <select name="" id="" className="formInput" value={formik.values.c}>
-                      <option value=""></option>
-                      <option value="">Customer 1</option>
-                      <option value="">Customer 2</option>
-                    </select>
+                    {formik.errors.accountType && formik.touched.accountType && (
+                      <div className="text-red-500 text-sm">{formik.errors.accountType}</div>
+                    )}
                   </div>
                 </div>
 
@@ -116,6 +107,9 @@ console.log('Form Data:', formik.errors);
                       <option value="Active">Active</option>
                       <option value="Inactive">Inactive</option>
                     </select>
+                    {formik.errors.status && formik.touched.status && (
+                      <div className="text-red-500 text-sm">{formik.errors.status}</div>
+                    )}
                   </div>
                 </div>
 
@@ -127,6 +121,9 @@ console.log('Form Data:', formik.errors);
                       <option value="Yes">Yes</option>
                       <option value="No">No</option>
                     </select>
+                    {formik.errors.pndStatus && formik.touched.pndStatus && (
+                      <div className="text-red-500 text-sm">{formik.errors.pndStatus}</div>
+                    )}
                   </div>
                 </div>
 
@@ -138,34 +135,20 @@ console.log('Form Data:', formik.errors);
                       <option value="Adewale Ojo">Adewale Ojo</option>
                       <option value="Chibuzor Okere">Chibuzor Okere</option>
                     </select>
+                    {formik.errors.accountOwner && formik.touched.accountOwner && (
+                      <div className="text-red-500 text-sm">{formik.errors.accountOwner}</div>
+                    )}
                   </div>
                 </div>
 
-                {/* <div className="container">
-                  <div className="innerContainer">
-                    <label className="formLabel">Account Name</label>
-                    <input type="text" className="formInput" />
-                  </div>
-                </div>
-
-                <div className="container">
-                  <div className="innerContainer">
-                    <label className="formLabel">Bank branch </label>
-                    <input type="text" className="formInput" />
-                  </div>
-                </div>
-
-                <div className="container">
-                  <div className="innerContainer">
-                    <label className="formLabel">Account manager </label>
-                    <input type="text" className="formInput" />
-                  </div>
-                </div> */}
                 <ImageInputCard
-                           formik={formik}
-                           name="mandateBase64String"
-                           title="Upload Mandate"
-                           />
+                  formik={formik}
+                  name="mandateBase64String"
+                  title="Upload Mandate"
+                />
+                {formik.errors.mandateBase64String && formik.touched.mandateBase64String && (
+                  <div className="text-red-500 text-sm">{formik.errors.mandateBase64String}</div>
+                )}
 
                 <div className="container">
                   <div className="innerContainer">
@@ -181,6 +164,9 @@ console.log('Form Data:', formik.errors);
                       cols={20}
                       className="w-full pl-3 py-2 outline-none h-full border-l"
                     />
+                    {formik.errors.notes && formik.touched.notes && (
+                      <div className="text-red-500 text-sm">{formik.errors.notes}</div>
+                    )}
                   </div>
                 </div>
 

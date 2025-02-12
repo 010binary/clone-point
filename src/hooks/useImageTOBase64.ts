@@ -33,7 +33,9 @@ export const useImageTobase64 = () => {
           reader.abort();
         });
       });
-      setBase64Image(base64String);
+      const splitBase64String = base64String.split(',')[1];
+
+      setBase64Image(splitBase64String);
     } catch (error) {
       if (error instanceof Error && error.name !== "AbortError") {
         console.error("Error converting image to Base64", error);

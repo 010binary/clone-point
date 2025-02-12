@@ -1,10 +1,11 @@
 "use client";
+import { ICInitialValuesType } from "@/app/customer-management/individual/_components/data";
 import { ChildComponentProps } from "@/components/modal/_components/ICFormCreateModal";
 import { ImageInputCard } from "@/components/ui/Inputs/ImageInputOutline";
 import { countries } from "@/lib/customer-management/countries";
 import React from "react";
 
-const FormThree =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
+const FormThree = ({ formik, changePage }: ChildComponentProps<ICInitialValuesType>) => {
 
   const handleForm = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -21,66 +22,67 @@ const FormThree =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Address</label>
-                <input type="text" onChange={formik.handleChange} name='address.address1' className="formInput" />
+                <input type="text" onChange={formik.handleChange} name='address.address1' value={formik.values.address.address1} className="formInput" />
+                {formik.errors.address?.address1 && <div className="text-red-500">{formik.errors.address.address1}</div>}
               </div>
             </div>
 
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Residential Status</label>
-                <select name="address.residentialStatus" onChange={formik.handleChange} id="" className="formInput">
+                <select name="address.residentialStatus" onChange={formik.handleChange} value={formik.values.address.residentialStatus} id="" className="formInput">
+                  <option value="">Select</option>
                   <option value="Rented">Rented</option>
                   <option value="Owed">Owned</option>
                   <option value="Living">Living with Family</option>
                   <option value="provided">Provided by Employer</option>
                 </select>
+                {formik.errors.address?.residentialStatus && <div className="text-red-500">{formik.errors.address.residentialStatus}</div>}
               </div>
             </div>
 
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">State</label>
-                <input type="text" onChange={formik.handleChange} name='address.state' className="formInput" />
+                <input type="text" onChange={formik.handleChange} name='address.state' value={formik.values.address.state} className="formInput" />
+                {formik.errors.address?.state && <div className="text-red-500">{formik.errors.address.state}</div>}
               </div>
             </div>
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">City</label>
-                <input type="text" onChange={formik.handleChange} name='address.city' className="formInput" />
+                <input type="text" onChange={formik.handleChange} name='address.city' value={formik.values.address.city} className="formInput" />
+                {formik.errors.address?.city && <div className="text-red-500">{formik.errors.address.city}</div>}
               </div>
             </div>
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">LGA</label>
-                <input type="text" onChange={formik.handleChange} name='address.lga' className="formInput" />
+                <input type="text" onChange={formik.handleChange} name='address.lga' value={formik.values.address.lga} className="formInput" />
+                {formik.errors.address?.lga && <div className="text-red-500">{formik.errors.address.lga}</div>}
               </div>
             </div>
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel">Country</label>
-                <select name="address.country" onChange={formik.handleChange} id="" className="formInput">
-                  <option value="">select</option>
+                <select name="address.country" onChange={formik.handleChange} value={formik.values.address.country} id="" className="formInput">
+                  <option value="">Select</option>
                   {countries?.map((country) => (
                     <option key={country} value={country}>
                       {country}
                     </option>
                   ))}
                 </select>
+                {formik.errors.address?.country && <div className="text-red-500">{formik.errors.address.country}</div>}
               </div>
             </div>
             <div className="container">
               <div className="innerContainer">
                 <label className="formLabel" >Home phone</label>
-                <input type="number" onChange={formik.handleChange} name="address.homePhone" className="formInput spin-button-none" />
+                <input type="number" onChange={formik.handleChange} name="address.homePhone" value={formik.values.address.homePhone} className="formInput spin-button-none" />
+                {formik.errors.address?.homePhone && <div className="text-red-500">{formik.errors.address.homePhone}</div>}
               </div>
             </div>
-            {/* <div className="container">
-              <div className="innerContainer">
-                <label className="formLabel">Email</label>
-                <input type="email" onChange={formik.handleChange} name="address" className="formInput" />
-              </div>
-            </div> */}
-            {/* upload */}
            
              <div className="flex flex-col gap-2">
               <ImageInputCard
@@ -88,57 +90,41 @@ const FormThree =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
                 name="address.proofOfAddressBase64String"
                 title="Upload Proof of Address (Utility bill)"
               />
-              {/* <p className="text-sm font-medium text-[#404B7C]">
-                Upload Proof of Address{" "}
-                <span className="font-light text-[#404B7C99]">
-                  (Utility bill)
-                </span>
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="border border-dashed rounded-lg border-pryColor">
-                  <div className="py-5 px-3 flex flex-col gap-1">
-                    <p className="text-xs md:text-sm text-pryColor">
-                      Drag or click to upload file
-                    </p>
-                    <p className="text-xs text-[#575757]">
-                      Supported formats: JPEG, JPG or PNG
-                    </p>
-                  </div>
-                </div>
-                <button className="bg-[#6699FF] py-1.5 px-4 text-white text-xs md:text-sm">
-                  Upload
-                </button>
-              </div> */}
+              {formik.errors.address?.proofOfAddressBase64String && <div className="text-red-500">{formik.errors.address.proofOfAddressBase64String}</div>}
               <div className="flex flex-col gap-4 pt-2"> 
-                {/* next of kin */}
                 <p className="font-semibold lg:text-lg">Next of Kin</p>
                 <div className="flex flex-col gap-3">
                   <div className="container">
                     <div className="innerContainer">
                       <label className="formLabel">Title</label>
-                      <select name="nextOfKin.title" onChange={formik.handleChange} id="" className="formInput">
+                      <select name="nextOfKin.title" onChange={formik.handleChange} value={formik.values.nextOfKin.title} id="" className="formInput">
+                        <option value="">Select</option>
                         <option value="Mr">Mr</option>
                         <option value="Ms">Ms</option>
                         <option value="Mrs">Mrs</option>
                       </select>
+                      {formik.errors.nextOfKin?.title && <div className="text-red-500">{formik.errors.nextOfKin.title}</div>}
                     </div>
                   </div>
                   <div className="container">
                     <div className="innerContainer">
                       <label className="formLabel">First Name</label>
-                      <input type="text" name='nextOfKin.firstName' onChange={formik.handleChange}  className="formInput" />
+                      <input type="text" name='nextOfKin.firstName' onChange={formik.handleChange} value={formik.values.nextOfKin.firstName} className="formInput" />
+                      {formik.errors.nextOfKin?.firstName && <div className="text-red-500">{formik.errors.nextOfKin.firstName}</div>}
                     </div>
                   </div>
                   <div className="container">
                     <div className="innerContainer">
                       <label className="formLabel">Last Name</label>
-                      <input type="text" name='nextOfKin.lastName' onChange={formik.handleChange}  className="formInput" />
+                      <input type="text" name='nextOfKin.lastName' onChange={formik.handleChange} value={formik.values.nextOfKin.lastName} className="formInput" />
+                      {formik.errors.nextOfKin?.lastName && <div className="text-red-500">{formik.errors.nextOfKin.lastName}</div>}
                     </div>
                   </div>
                   <div className="container">
                     <div className="innerContainer">
                       <label className="formLabel">Address</label>
-                      <input type="text" name="nextOfKin.address" onChange={formik.handleChange}  className="formInput" />
+                      <input type="text" name="nextOfKin.address" onChange={formik.handleChange} value={formik.values.nextOfKin.address} className="formInput" />
+                      {formik.errors.nextOfKin?.address && <div className="text-red-500">{formik.errors.nextOfKin.address}</div>}
                     </div>
                   </div>
                   <div className="container">
@@ -149,7 +135,9 @@ const FormThree =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
                         className="formInput spin-button-none"
                         onChange={formik.handleChange}
                         name="nextOfKin.phone"
+                        value={formik.values.nextOfKin.phone}
                       />
+                      {formik.errors.nextOfKin?.phone && <div className="text-red-500">{formik.errors.nextOfKin.phone}</div>}
                     </div>
                   </div>
                   <div className="container">
@@ -158,7 +146,9 @@ const FormThree =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
                       <input type="email"
                        onChange={formik.handleChange}
                         name="nextOfKin.email"
+                        value={formik.values.nextOfKin.email}
                       className="formInput" />
+                      {formik.errors.nextOfKin?.email && <div className="text-red-500">{formik.errors.nextOfKin.email}</div>}
                     </div>
                   </div>
                   <div className="container">
@@ -167,8 +157,9 @@ const FormThree =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
                       <select id=""
                        onChange={formik.handleChange}
                         name="nextOfKin.relationship"
+                        value={formik.values.nextOfKin.relationship}
                       className="formInput">
-                        <option value="">Select one</option>
+                        <option value="">Select</option>
                         <option value="Father">Father</option>
                         <option value="Mother">Mother</option>
                         <option value="Sister">Sister</option>
@@ -177,6 +168,7 @@ const FormThree =  <T,>({ formik, changePage }: ChildComponentProps<T>) => {
                         <option value="Aunt">Aunt</option>
                         <option value="Child">Child</option>
                       </select>
+                      {formik.errors.nextOfKin?.relationship && <div className="text-red-500">{formik.errors.nextOfKin.relationship}</div>}
                     </div>
                   </div>
                 </div>
